@@ -3,6 +3,10 @@
   "WorkspaceRootPath": "C:\\Users\\mikel\\Documentos\\AA Eskola\\Erronkak\\3.Erronka\\Programazioa\\InbentarioaUnmi\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{5087AA69-326A-4324-9AF8-6BB8DC061CE1}|InbentarioaUnmi.csproj|c:\\users\\mikel\\documentos\\aa eskola\\erronkak\\3.erronka\\programazioa\\inbentarioaunmi\\datubasea\\dbkonexioa.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5087AA69-326A-4324-9AF8-6BB8DC061CE1}|InbentarioaUnmi.csproj|solutionrelative:datubasea\\dbkonexioa.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{5087AA69-326A-4324-9AF8-6BB8DC061CE1}|InbentarioaUnmi.csproj|c:\\users\\mikel\\documentos\\aa eskola\\erronkak\\3.erronka\\programazioa\\inbentarioaunmi\\datubasea\\inbentarioadb.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{5087AA69-326A-4324-9AF8-6BB8DC061CE1}|InbentarioaUnmi.csproj|solutionrelative:datubasea\\inbentarioadb.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -19,7 +23,7 @@
       "RelativeMoniker": "D:0:0:{5087AA69-326A-4324-9AF8-6BB8DC061CE1}|InbentarioaUnmi.csproj|solutionrelative:datumodeloak\\gailuak.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{5087AA69-326A-4324-9AF8-6BB8DC061CE1}|InbentarioaUnmi.csproj|c:\\users\\mikel\\documentos\\aa eskola\\erronkak\\3.erronka\\programazioa\\inbentarioaunmi\\formularioak\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{5087AA69-326A-4324-9AF8-6BB8DC061CE1}|InbentarioaUnmi.csproj|C:\\Users\\mikel\\Documentos\\AA Eskola\\Erronkak\\3.Erronka\\Programazioa\\InbentarioaUnmi\\formularioak\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{5087AA69-326A-4324-9AF8-6BB8DC061CE1}|InbentarioaUnmi.csproj|solutionrelative:formularioak\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     }
   ],
@@ -43,6 +47,19 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "DBKonexioa.cs",
+              "DocumentMoniker": "C:\\Users\\mikel\\Documentos\\AA Eskola\\Erronkak\\3.Erronka\\Programazioa\\InbentarioaUnmi\\DatuBasea\\DBKonexioa.cs",
+              "RelativeDocumentMoniker": "DatuBasea\\DBKonexioa.cs",
+              "ToolTip": "C:\\Users\\mikel\\Documentos\\AA Eskola\\Erronkak\\3.Erronka\\Programazioa\\InbentarioaUnmi\\DatuBasea\\DBKonexioa.cs",
+              "RelativeToolTip": "DatuBasea\\DBKonexioa.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAkAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-25T08:24:38.37Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
               "Title": "InbentarioaDB.cs",
               "DocumentMoniker": "C:\\Users\\mikel\\Documentos\\AA Eskola\\Erronkak\\3.Erronka\\Programazioa\\InbentarioaUnmi\\DatuBasea\\InbentarioaDB.cs",
               "RelativeDocumentMoniker": "DatuBasea\\InbentarioaDB.cs",
@@ -55,7 +72,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "Erabiltzaileak.cs",
               "DocumentMoniker": "C:\\Users\\mikel\\Documentos\\AA Eskola\\Erronkak\\3.Erronka\\Programazioa\\InbentarioaUnmi\\DatuModeloak\\Erabiltzaileak.cs",
               "RelativeDocumentMoniker": "DatuModeloak\\Erabiltzaileak.cs",
@@ -68,7 +85,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "Irakasleak.cs",
               "DocumentMoniker": "C:\\Users\\mikel\\Documentos\\AA Eskola\\Erronkak\\3.Erronka\\Programazioa\\InbentarioaUnmi\\DatuModeloak\\Irakasleak.cs",
               "RelativeDocumentMoniker": "DatuModeloak\\Irakasleak.cs",
@@ -81,7 +98,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "Gailuak.cs",
               "DocumentMoniker": "C:\\Users\\mikel\\Documentos\\AA Eskola\\Erronkak\\3.Erronka\\Programazioa\\InbentarioaUnmi\\DatuModeloak\\Gailuak.cs",
               "RelativeDocumentMoniker": "DatuModeloak\\Gailuak.cs",
@@ -94,7 +111,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "Form1.cs [Dise\u00F1o]",
               "DocumentMoniker": "C:\\Users\\mikel\\Documentos\\AA Eskola\\Erronkak\\3.Erronka\\Programazioa\\InbentarioaUnmi\\Formularioak\\Form1.cs",
               "RelativeDocumentMoniker": "Formularioak\\Form1.cs",
