@@ -1,10 +1,26 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\mikel\\Documentos\\AA Eskola\\Erronkak\\3.Proiektua\\Progrmazioa\\InbentarioaUnmi\\",
+  "WorkspaceRootPath": "C:\\Users\\mikel\\Documentos\\AA Eskola\\Erronkak\\3.Erronka\\Programazioa\\InbentarioaUnmi\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{5087AA69-326A-4324-9AF8-6BB8DC061CE1}|InbentarioaUnmi.csproj|c:\\users\\mikel\\documentos\\aa eskola\\erronkak\\3.proiektua\\progrmazioa\\inbentarioaunmi\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{5087AA69-326A-4324-9AF8-6BB8DC061CE1}|InbentarioaUnmi.csproj|solutionrelative:form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{5087AA69-326A-4324-9AF8-6BB8DC061CE1}|InbentarioaUnmi.csproj|c:\\users\\mikel\\documentos\\aa eskola\\erronkak\\3.erronka\\programazioa\\inbentarioaunmi\\datubasea\\inbentarioadb.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5087AA69-326A-4324-9AF8-6BB8DC061CE1}|InbentarioaUnmi.csproj|solutionrelative:datubasea\\inbentarioadb.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5087AA69-326A-4324-9AF8-6BB8DC061CE1}|InbentarioaUnmi.csproj|c:\\users\\mikel\\documentos\\aa eskola\\erronkak\\3.erronka\\programazioa\\inbentarioaunmi\\datumodeloak\\erabiltzaileak.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5087AA69-326A-4324-9AF8-6BB8DC061CE1}|InbentarioaUnmi.csproj|solutionrelative:datumodeloak\\erabiltzaileak.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5087AA69-326A-4324-9AF8-6BB8DC061CE1}|InbentarioaUnmi.csproj|c:\\users\\mikel\\documentos\\aa eskola\\erronkak\\3.erronka\\programazioa\\inbentarioaunmi\\datumodeloak\\irakasleak.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5087AA69-326A-4324-9AF8-6BB8DC061CE1}|InbentarioaUnmi.csproj|solutionrelative:datumodeloak\\irakasleak.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5087AA69-326A-4324-9AF8-6BB8DC061CE1}|InbentarioaUnmi.csproj|c:\\users\\mikel\\documentos\\aa eskola\\erronkak\\3.erronka\\programazioa\\inbentarioaunmi\\datumodeloak\\gailuak.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5087AA69-326A-4324-9AF8-6BB8DC061CE1}|InbentarioaUnmi.csproj|solutionrelative:datumodeloak\\gailuak.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5087AA69-326A-4324-9AF8-6BB8DC061CE1}|InbentarioaUnmi.csproj|c:\\users\\mikel\\documentos\\aa eskola\\erronkak\\3.erronka\\programazioa\\inbentarioaunmi\\formularioak\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{5087AA69-326A-4324-9AF8-6BB8DC061CE1}|InbentarioaUnmi.csproj|solutionrelative:formularioak\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     }
   ],
   "DocumentGroupContainers": [
@@ -27,11 +43,63 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "InbentarioaDB.cs",
+              "DocumentMoniker": "C:\\Users\\mikel\\Documentos\\AA Eskola\\Erronkak\\3.Erronka\\Programazioa\\InbentarioaUnmi\\DatuBasea\\InbentarioaDB.cs",
+              "RelativeDocumentMoniker": "DatuBasea\\InbentarioaDB.cs",
+              "ToolTip": "C:\\Users\\mikel\\Documentos\\AA Eskola\\Erronkak\\3.Erronka\\Programazioa\\InbentarioaUnmi\\DatuBasea\\InbentarioaDB.cs",
+              "RelativeToolTip": "DatuBasea\\InbentarioaDB.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-25T08:22:01.644Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Erabiltzaileak.cs",
+              "DocumentMoniker": "C:\\Users\\mikel\\Documentos\\AA Eskola\\Erronkak\\3.Erronka\\Programazioa\\InbentarioaUnmi\\DatuModeloak\\Erabiltzaileak.cs",
+              "RelativeDocumentMoniker": "DatuModeloak\\Erabiltzaileak.cs",
+              "ToolTip": "C:\\Users\\mikel\\Documentos\\AA Eskola\\Erronkak\\3.Erronka\\Programazioa\\InbentarioaUnmi\\DatuModeloak\\Erabiltzaileak.cs",
+              "RelativeToolTip": "DatuModeloak\\Erabiltzaileak.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-25T08:21:07.068Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Irakasleak.cs",
+              "DocumentMoniker": "C:\\Users\\mikel\\Documentos\\AA Eskola\\Erronkak\\3.Erronka\\Programazioa\\InbentarioaUnmi\\DatuModeloak\\Irakasleak.cs",
+              "RelativeDocumentMoniker": "DatuModeloak\\Irakasleak.cs",
+              "ToolTip": "C:\\Users\\mikel\\Documentos\\AA Eskola\\Erronkak\\3.Erronka\\Programazioa\\InbentarioaUnmi\\DatuModeloak\\Irakasleak.cs",
+              "RelativeToolTip": "DatuModeloak\\Irakasleak.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-25T08:20:50.676Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Gailuak.cs",
+              "DocumentMoniker": "C:\\Users\\mikel\\Documentos\\AA Eskola\\Erronkak\\3.Erronka\\Programazioa\\InbentarioaUnmi\\DatuModeloak\\Gailuak.cs",
+              "RelativeDocumentMoniker": "DatuModeloak\\Gailuak.cs",
+              "ToolTip": "C:\\Users\\mikel\\Documentos\\AA Eskola\\Erronkak\\3.Erronka\\Programazioa\\InbentarioaUnmi\\DatuModeloak\\Gailuak.cs",
+              "RelativeToolTip": "DatuModeloak\\Gailuak.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-25T08:20:41.306Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
               "Title": "Form1.cs [Dise\u00F1o]",
-              "DocumentMoniker": "C:\\Users\\mikel\\Documentos\\AA Eskola\\Erronkak\\3.Proiektua\\Progrmazioa\\InbentarioaUnmi\\Form1.cs",
-              "RelativeDocumentMoniker": "Form1.cs",
-              "ToolTip": "C:\\Users\\mikel\\Documentos\\AA Eskola\\Erronkak\\3.Proiektua\\Progrmazioa\\InbentarioaUnmi\\Form1.cs [Dise\u00F1o]",
-              "RelativeToolTip": "Form1.cs [Dise\u00F1o]",
+              "DocumentMoniker": "C:\\Users\\mikel\\Documentos\\AA Eskola\\Erronkak\\3.Erronka\\Programazioa\\InbentarioaUnmi\\Formularioak\\Form1.cs",
+              "RelativeDocumentMoniker": "Formularioak\\Form1.cs",
+              "ToolTip": "C:\\Users\\mikel\\Documentos\\AA Eskola\\Erronkak\\3.Erronka\\Programazioa\\InbentarioaUnmi\\Formularioak\\Form1.cs [Dise\u00F1o]",
+              "RelativeToolTip": "Formularioak\\Form1.cs [Dise\u00F1o]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-03-25T08:06:37.734Z",
               "EditorCaption": " [Dise\u00F1o]"

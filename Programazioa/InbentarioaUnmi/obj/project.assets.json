@@ -14,11 +14,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\mikel\\Documentos\\AA Eskola\\Erronkak\\3.Proiektua\\Progrmazioa\\InbentarioaUnmi\\InbentarioaUnmi.csproj",
+      "projectUniqueName": "C:\\Users\\mikel\\Documentos\\AA Eskola\\Erronkak\\3.Erronka\\Programazioa\\InbentarioaUnmi\\InbentarioaUnmi.csproj",
       "projectName": "InbentarioaUnmi",
-      "projectPath": "C:\\Users\\mikel\\Documentos\\AA Eskola\\Erronkak\\3.Proiektua\\Progrmazioa\\InbentarioaUnmi\\InbentarioaUnmi.csproj",
+      "projectPath": "C:\\Users\\mikel\\Documentos\\AA Eskola\\Erronkak\\3.Erronka\\Programazioa\\InbentarioaUnmi\\InbentarioaUnmi.csproj",
       "packagesPath": "C:\\Users\\mikel\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\mikel\\Documentos\\AA Eskola\\Erronkak\\3.Proiektua\\Progrmazioa\\InbentarioaUnmi\\obj\\",
+      "outputPath": "C:\\Users\\mikel\\Documentos\\AA Eskola\\Erronkak\\3.Erronka\\Programazioa\\InbentarioaUnmi\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

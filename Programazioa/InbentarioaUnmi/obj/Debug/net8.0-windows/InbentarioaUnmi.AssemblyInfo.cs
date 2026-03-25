@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("InbentarioaUnmi")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a1aff1aeafbf9e8c86e0c976f3b6a49abf2bfeea")]
 [assembly: System.Reflection.AssemblyProductAttribute("InbentarioaUnmi")]
 [assembly: System.Reflection.AssemblyTitleAttribute("InbentarioaUnmi")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
