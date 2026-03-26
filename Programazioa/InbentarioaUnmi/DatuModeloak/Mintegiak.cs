@@ -6,7 +6,18 @@ using System.Threading.Tasks;
 
 namespace InbentarioaUnmi.DatuModeloak
 {
-    internal class Mintegiak
+    public class Mintegiak
     {
+        // Atributuak
+        private string izena;
+
+        // Get-Set
+        public string Izena { get => izena; set => izena = value; }
+
+        // Eraikitzailea
+        public Mintegiak(string i)
+        {
+            this.izena = i;
+        }
     }
 }
