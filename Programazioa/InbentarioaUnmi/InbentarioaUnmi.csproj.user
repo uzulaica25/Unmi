@@ -7,7 +7,13 @@
     <Compile Update="Formularioak\FInbentarioa.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="Formularioak\FIrakaslea.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="Formularioak\FLogina.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Formularioak\FMintegia.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="Formularioak\FSarrera.cs">

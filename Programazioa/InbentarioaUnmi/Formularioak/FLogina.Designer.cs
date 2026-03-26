@@ -39,6 +39,7 @@
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "FLogina";
             Text = "Inbentarioa";
+            Load += FLogina_Load;
             ResumeLayout(false);
         }
 

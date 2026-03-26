@@ -6,5 +6,10 @@ namespace InbentarioaUnmi
         {
             InitializeComponent();
         }
+
+        private void FLogina_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
