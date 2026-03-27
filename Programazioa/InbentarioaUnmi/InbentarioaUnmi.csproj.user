@@ -16,9 +16,6 @@
     <Compile Update="Formularioak\FMintegia.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="Formularioak\Form1.cs">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Update="Formularioak\FSarrera.cs">
       <SubType>Form</SubType>
     </Compile>

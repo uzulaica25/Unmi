@@ -16,5 +16,10 @@ namespace InbentarioaUnmi.Formularioak
         {
             InitializeComponent();
         }
+
+        private void cbIrten_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

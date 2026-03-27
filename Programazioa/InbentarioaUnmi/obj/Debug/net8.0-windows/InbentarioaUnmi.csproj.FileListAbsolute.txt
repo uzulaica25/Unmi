@@ -36,4 +36,3 @@ C:\Users\mikel\Documentos\AA Eskola\Erronkak\3.Erronka\Programazioa\InbentarioaU
 C:\Users\mikel\Documentos\AA Eskola\Erronkak\3.Erronka\Programazioa\InbentarioaUnmi\obj\Debug\net8.0-windows\ref\InbentarioaUnmi.dll
 C:\Users\mikel\Documentos\AA Eskola\Erronkak\3.Erronka\Programazioa\InbentarioaUnmi\obj\Debug\net8.0-windows\InbentarioaUnmi.Properties.Resources.resources
 C:\Users\mikel\Documentos\AA Eskola\Erronkak\3.Erronka\Programazioa\InbentarioaUnmi\obj\Debug\net8.0-windows\InbentarioaUnmi.Formularioak.FInzidentziak.resources
-C:\Users\mikel\Documentos\AA Eskola\Erronkak\3.Erronka\Programazioa\InbentarioaUnmi\obj\Debug\net8.0-windows\InbentarioaUnmi.Formularioak.Form1.resources

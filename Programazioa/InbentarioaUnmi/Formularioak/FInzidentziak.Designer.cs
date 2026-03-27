@@ -28,7 +28,19 @@
         /// </summary>
         private void InitializeComponent()
         {
+            cbIrten = new Button();
             SuspendLayout();
+            // 
+            // cbIrten
+            // 
+            cbIrten.Font = new Font("Times New Roman", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            cbIrten.Location = new Point(353, 211);
+            cbIrten.Name = "cbIrten";
+            cbIrten.Size = new Size(94, 29);
+            cbIrten.TabIndex = 7;
+            cbIrten.Text = "Irten";
+            cbIrten.UseVisualStyleBackColor = true;
+            cbIrten.Click += cbIrten_Click;
             // 
             // FInzidentziak
             // 
@@ -36,11 +48,14 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(192, 192, 255);
             ClientSize = new Size(800, 450);
+            Controls.Add(cbIrten);
             FormBorderStyle = FormBorderStyle.None;
             Name = "FInzidentziak";
             ResumeLayout(false);
         }
 
         #endregion
+
+        private Button cbIrten;
     }
 }
