@@ -1,6 +1,6 @@
 ﻿namespace InbentarioaUnmi.Formularioak
 {
-    partial class FIrakaslea
+    partial class FInzidentziak
     {
         /// <summary>
         /// Required designer variable.
@@ -30,15 +30,14 @@
         {
             SuspendLayout();
             // 
-            // FIrakaslea
+            // FInzidentziak
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(192, 192, 255);
             ClientSize = new Size(800, 450);
             FormBorderStyle = FormBorderStyle.None;
-            Name = "FIrakaslea";
-            Text = "FIrakaslea";
+            Name = "FInzidentziak";
             ResumeLayout(false);
         }
 

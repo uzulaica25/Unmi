@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace InbentarioaUnmi.Formularioak
 {
-    public partial class FIrakaslea : Form
+    public partial class FInzidentziak : Form
     {
-        public FIrakaslea()
+        public FInzidentziak()
         {
             InitializeComponent();
         }

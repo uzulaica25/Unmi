@@ -7,7 +7,7 @@
     <Compile Update="Formularioak\FInbentarioa.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="Formularioak\FIrakaslea.cs">
+    <Compile Update="Formularioak\FInzidentziak.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="Formularioak\FLogina.cs">

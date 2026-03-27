@@ -1,4 +1,5 @@
-﻿using System;
+﻿using InbentarioaUnmi.DatuModeloak;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +7,8 @@ using System.Threading.Tasks;
 
 namespace InbentarioaUnmi.DatuBasea
 {
-    internal class ErabiltzaileaDB
+    public class ErabiltzaileaDB
     {
+       
     }
 }

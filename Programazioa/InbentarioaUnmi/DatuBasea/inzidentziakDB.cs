@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace InbentarioaUnmi.DatuBasea
 {
-    internal class IrakasleakDB
+    internal class inzidentziakDB
     {
     }
 }
