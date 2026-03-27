@@ -81,5 +81,45 @@ namespace InbentarioaUnmi
                 txtErabiltzailea.Focus();
             };
         }
+
+        private void gailuakToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FInbentarioa fi = new FInbentarioa();
+            fi.TopLevel = false;
+            fi.Dock = DockStyle.Fill;
+            panelak.Controls.Add(fi);
+            fi.BringToFront();
+            fi.Show();
+        }
+
+        private void erabiltzaileakToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FErabiltzailea fe = new FErabiltzailea();
+            fe.TopLevel = false;
+            fe.Dock = DockStyle.Fill;
+            panelak.Controls.Add(fe);
+            fe.BringToFront();
+            fe.Show();
+        }
+
+        private void inzidentziakToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FInzidentziak fi = new FInzidentziak();
+            fi.TopLevel = false;
+            fi.Dock = DockStyle.Fill;
+            panelak.Controls.Add(fi);
+            fi.BringToFront();
+            fi.Show();
+        }
+
+        private void mintegiakToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FMintegia fm = new FMintegia();
+            fm.TopLevel = false;
+            fm.Dock = DockStyle.Fill;
+            panelak.Controls.Add(fm);
+            fm.BringToFront();
+            fm.Show();
+        }
     }
 }
