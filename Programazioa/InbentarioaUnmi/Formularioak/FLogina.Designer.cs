@@ -29,62 +29,125 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FLogina));
-            cbIrten = new Button();
+            BottomToolStripPanel = new ToolStripPanel();
+            TopToolStripPanel = new ToolStripPanel();
+            RightToolStripPanel = new ToolStripPanel();
+            LeftToolStripPanel = new ToolStripPanel();
+            ContentPanel = new ToolStripContentPanel();
+            menuStrip1 = new MenuStrip();
+            toolStripContainer2 = new ToolStripContainer();
             cbSartu = new Button();
-            lblErabiltzailea = new Label();
-            txtErabiltzailea = new TextBox();
+            cbIrten = new Button();
             txtPasahitza = new TextBox();
             lblPasahitza = new Label();
-            panel1 = new Panel();
-            panel1.SuspendLayout();
+            txtErabiltzailea = new TextBox();
+            lblErabiltzailea = new Label();
+            toolStripContainer2.ContentPanel.SuspendLayout();
+            toolStripContainer2.TopToolStripPanel.SuspendLayout();
+            toolStripContainer2.SuspendLayout();
             SuspendLayout();
             // 
-            // cbIrten
+            // BottomToolStripPanel
             // 
-            cbIrten.Font = new Font("Times New Roman", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            cbIrten.Location = new Point(423, 246);
-            cbIrten.Name = "cbIrten";
-            cbIrten.Size = new Size(94, 29);
-            cbIrten.TabIndex = 4;
-            cbIrten.Text = "Irten";
-            cbIrten.UseVisualStyleBackColor = true;
-            cbIrten.Click += cbIrten_Click;
+            BottomToolStripPanel.Location = new Point(0, 0);
+            BottomToolStripPanel.Name = "BottomToolStripPanel";
+            BottomToolStripPanel.Orientation = Orientation.Horizontal;
+            BottomToolStripPanel.RowMargin = new Padding(4, 0, 0, 0);
+            BottomToolStripPanel.Size = new Size(0, 0);
+            // 
+            // TopToolStripPanel
+            // 
+            TopToolStripPanel.Location = new Point(0, 0);
+            TopToolStripPanel.Name = "TopToolStripPanel";
+            TopToolStripPanel.Orientation = Orientation.Horizontal;
+            TopToolStripPanel.RowMargin = new Padding(4, 0, 0, 0);
+            TopToolStripPanel.Size = new Size(0, 0);
+            // 
+            // RightToolStripPanel
+            // 
+            RightToolStripPanel.Location = new Point(0, 0);
+            RightToolStripPanel.Name = "RightToolStripPanel";
+            RightToolStripPanel.Orientation = Orientation.Horizontal;
+            RightToolStripPanel.RowMargin = new Padding(4, 0, 0, 0);
+            RightToolStripPanel.Size = new Size(0, 0);
+            // 
+            // LeftToolStripPanel
+            // 
+            LeftToolStripPanel.Location = new Point(0, 0);
+            LeftToolStripPanel.Name = "LeftToolStripPanel";
+            LeftToolStripPanel.Orientation = Orientation.Horizontal;
+            LeftToolStripPanel.RowMargin = new Padding(4, 0, 0, 0);
+            LeftToolStripPanel.Size = new Size(0, 0);
+            // 
+            // ContentPanel
+            // 
+            ContentPanel.Size = new Size(800, 425);
+            // 
+            // menuStrip1
+            // 
+            menuStrip1.Dock = DockStyle.None;
+            menuStrip1.Enabled = false;
+            menuStrip1.ImageScalingSize = new Size(20, 20);
+            menuStrip1.Location = new Point(0, 0);
+            menuStrip1.Name = "menuStrip1";
+            menuStrip1.Size = new Size(800, 24);
+            menuStrip1.TabIndex = 1;
+            menuStrip1.Text = "menuStrip1";
+            // 
+            // toolStripContainer2
+            // 
+            toolStripContainer2.BottomToolStripPanelVisible = false;
+            // 
+            // toolStripContainer2.ContentPanel
+            // 
+            toolStripContainer2.ContentPanel.Controls.Add(cbSartu);
+            toolStripContainer2.ContentPanel.Controls.Add(cbIrten);
+            toolStripContainer2.ContentPanel.Controls.Add(txtPasahitza);
+            toolStripContainer2.ContentPanel.Controls.Add(lblPasahitza);
+            toolStripContainer2.ContentPanel.Controls.Add(txtErabiltzailea);
+            toolStripContainer2.ContentPanel.Controls.Add(lblErabiltzailea);
+            toolStripContainer2.ContentPanel.Size = new Size(800, 426);
+            toolStripContainer2.Dock = DockStyle.Fill;
+            toolStripContainer2.LeftToolStripPanelVisible = false;
+            toolStripContainer2.Location = new Point(0, 0);
+            toolStripContainer2.Name = "toolStripContainer2";
+            toolStripContainer2.RightToolStripPanelVisible = false;
+            toolStripContainer2.Size = new Size(800, 450);
+            toolStripContainer2.TabIndex = 2;
+            toolStripContainer2.Text = "toolStripContainer2";
+            // 
+            // toolStripContainer2.TopToolStripPanel
+            // 
+            toolStripContainer2.TopToolStripPanel.Controls.Add(menuStrip1);
             // 
             // cbSartu
             // 
             cbSartu.Enabled = false;
             cbSartu.Font = new Font("Times New Roman", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            cbSartu.Location = new Point(273, 246);
+            cbSartu.Location = new Point(318, 193);
             cbSartu.Name = "cbSartu";
             cbSartu.Size = new Size(94, 29);
-            cbSartu.TabIndex = 3;
+            cbSartu.TabIndex = 2;
             cbSartu.Text = "Sartu";
             cbSartu.UseVisualStyleBackColor = true;
-            cbSartu.Click += cbSartu_Click;
+            cbSartu.Click += cbSartu_Click_1;
             // 
-            // lblErabiltzailea
+            // cbIrten
             // 
-            lblErabiltzailea.AutoSize = true;
-            lblErabiltzailea.Font = new Font("Times New Roman", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblErabiltzailea.Location = new Point(120, 102);
-            lblErabiltzailea.Name = "lblErabiltzailea";
-            lblErabiltzailea.Size = new Size(99, 19);
-            lblErabiltzailea.TabIndex = 2;
-            lblErabiltzailea.Text = "Erabiltzailea:";
-            // 
-            // txtErabiltzailea
-            // 
-            txtErabiltzailea.Font = new Font("Times New Roman", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtErabiltzailea.Location = new Point(273, 98);
-            txtErabiltzailea.Name = "txtErabiltzailea";
-            txtErabiltzailea.Size = new Size(244, 27);
-            txtErabiltzailea.TabIndex = 0;
-            txtErabiltzailea.Leave += txtErabiltzailea_Leave;
+            cbIrten.Font = new Font("Times New Roman", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            cbIrten.Location = new Point(468, 193);
+            cbIrten.Name = "cbIrten";
+            cbIrten.Size = new Size(94, 29);
+            cbIrten.TabIndex = 3;
+            cbIrten.Text = "Irten";
+            cbIrten.UseVisualStyleBackColor = true;
+            cbIrten.Click += cbIrten_Click_1;
             // 
             // txtPasahitza
             // 
+            txtPasahitza.Enabled = false;
             txtPasahitza.Font = new Font("Times New Roman", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtPasahitza.Location = new Point(273, 153);
+            txtPasahitza.Location = new Point(318, 141);
             txtPasahitza.Name = "txtPasahitza";
             txtPasahitza.Size = new Size(244, 27);
             txtPasahitza.TabIndex = 1;
@@ -94,21 +157,30 @@
             // 
             lblPasahitza.AutoSize = true;
             lblPasahitza.Font = new Font("Times New Roman", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblPasahitza.Location = new Point(120, 157);
+            lblPasahitza.Location = new Point(165, 145);
             lblPasahitza.Name = "lblPasahitza";
             lblPasahitza.Size = new Size(77, 19);
-            lblPasahitza.TabIndex = 4;
+            lblPasahitza.TabIndex = 20;
             lblPasahitza.Text = "Pasahitza:";
             // 
-            // panel1
+            // txtErabiltzailea
             // 
-            panel1.Controls.Add(cbSartu);
-            panel1.Controls.Add(cbIrten);
-            panel1.Dock = DockStyle.Fill;
-            panel1.Location = new Point(0, 0);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(800, 450);
-            panel1.TabIndex = 6;
+            txtErabiltzailea.Font = new Font("Times New Roman", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtErabiltzailea.Location = new Point(318, 86);
+            txtErabiltzailea.Name = "txtErabiltzailea";
+            txtErabiltzailea.Size = new Size(244, 27);
+            txtErabiltzailea.TabIndex = 0;
+            txtErabiltzailea.Leave += txtErabiltzailea_Leave;
+            // 
+            // lblErabiltzailea
+            // 
+            lblErabiltzailea.AutoSize = true;
+            lblErabiltzailea.Font = new Font("Times New Roman", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblErabiltzailea.Location = new Point(165, 90);
+            lblErabiltzailea.Name = "lblErabiltzailea";
+            lblErabiltzailea.Size = new Size(99, 19);
+            lblErabiltzailea.TabIndex = 19;
+            lblErabiltzailea.Text = "Erabiltzailea:";
             // 
             // FLogina
             // 
@@ -116,28 +188,36 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(192, 192, 255);
             ClientSize = new Size(800, 450);
-            Controls.Add(txtPasahitza);
-            Controls.Add(lblPasahitza);
-            Controls.Add(txtErabiltzailea);
-            Controls.Add(lblErabiltzailea);
-            Controls.Add(panel1);
+            Controls.Add(toolStripContainer2);
             Icon = (Icon)resources.GetObject("$this.Icon");
+            MainMenuStrip = menuStrip1;
             Name = "FLogina";
             Text = "Inbentarioa";
             Load += FLogina_Load;
-            panel1.ResumeLayout(false);
+            toolStripContainer2.ContentPanel.ResumeLayout(false);
+            toolStripContainer2.ContentPanel.PerformLayout();
+            toolStripContainer2.TopToolStripPanel.ResumeLayout(false);
+            toolStripContainer2.TopToolStripPanel.PerformLayout();
+            toolStripContainer2.ResumeLayout(false);
+            toolStripContainer2.PerformLayout();
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
-
-        private Button cbIrten;
-        private Button cbSartu;
-        private Label lblErabiltzailea;
-        private TextBox txtErabiltzailea;
+        private ToolStripPanel BottomToolStripPanel;
+        private ToolStripPanel TopToolStripPanel;
+        private ToolStripPanel RightToolStripPanel;
+        private ToolStripPanel LeftToolStripPanel;
+        private ToolStripContentPanel Panela;
+        private MenuStrip menuStrip1;
+        private ToolStripContainer toolStripContainer2;
         private TextBox txtPasahitza;
         private Label lblPasahitza;
-        private Panel panel1;
+        private TextBox txtErabiltzailea;
+        private Label lblErabiltzailea;
+        private Button cbSartu;
+        private Button cbIrten;
+        private ToolStripContentPanel panel;
+        private ToolStripContentPanel ContentPanel;
     }
 }
