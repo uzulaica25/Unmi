@@ -111,6 +111,7 @@
             FormBorderStyle = FormBorderStyle.None;
             Name = "FSarrera";
             Text = "Form2";
+            Load += FSarrera_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
             PerformLayout();

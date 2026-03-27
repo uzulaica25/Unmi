@@ -1,3 +1,4 @@
+using InbentarioaUnmi.DatuModeloak;
 using InbentarioaUnmi.Formularioak;
 
 namespace InbentarioaUnmi
@@ -48,7 +49,9 @@ namespace InbentarioaUnmi
         }
         private void cbSartu_Click_1(object sender, EventArgs e)
         {
-            FSarrera fs = new FSarrera();
+            Mintegiak min = new Mintegiak("Informatika");
+            Erabiltzaileak era = new Erabiltzaileak("Maria", "1234r", min, false, false);
+            FSarrera fs = new FSarrera(era);
             fs.TopLevel = false;
             fs.Dock = DockStyle.Fill;
             panelak.Controls.Add(fs);

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using InbentarioaUnmi.DatuModeloak;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,9 +13,15 @@ namespace InbentarioaUnmi.Formularioak
 {
     public partial class FSarrera : Form
     {
-        public FSarrera()
+        private Erabiltzaileak era;
+        public FSarrera(Erabiltzaileak era)
         {
             InitializeComponent();
+            this.era = era;
+            txtIzena.Text = era.Izena;
+            txtMintegia.Text = era.Mintegia.Izena;
+            txtIzena.Enabled = false;
+            txtMintegia.Enabled = false;
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -25,7 +32,11 @@ namespace InbentarioaUnmi.Formularioak
         private void cbIrten_Click(object sender, EventArgs e)
         {
             this.Close();
-            
+
+        }
+        private void FSarrera_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
