@@ -65,6 +65,7 @@
             cbIrten.TabIndex = 6;
             cbIrten.Text = "Irten";
             cbIrten.UseVisualStyleBackColor = true;
+            cbIrten.Click += cbIrten_Click;
             // 
             // txtMintegia
             // 

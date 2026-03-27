@@ -21,5 +21,11 @@ namespace InbentarioaUnmi.Formularioak
         {
 
         }
+
+        private void cbIrten_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            
+        }
     }
 }

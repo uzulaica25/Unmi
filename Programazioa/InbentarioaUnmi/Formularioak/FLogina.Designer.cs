@@ -42,6 +42,13 @@
             lblPasahitza = new Label();
             txtErabiltzailea = new TextBox();
             lblErabiltzailea = new Label();
+            aukerakToolStripMenuItem = new ToolStripMenuItem();
+            gailuakToolStripMenuItem = new ToolStripMenuItem();
+            erabiltzaileakToolStripMenuItem = new ToolStripMenuItem();
+            inzidentziakToolStripMenuItem = new ToolStripMenuItem();
+            mintegiakToolStripMenuItem = new ToolStripMenuItem();
+            panelak = new Panel();
+            menuStrip1.SuspendLayout();
             toolStripContainer2.ContentPanel.SuspendLayout();
             toolStripContainer2.TopToolStripPanel.SuspendLayout();
             toolStripContainer2.SuspendLayout();
@@ -88,9 +95,10 @@
             menuStrip1.Dock = DockStyle.None;
             menuStrip1.Enabled = false;
             menuStrip1.ImageScalingSize = new Size(20, 20);
+            menuStrip1.Items.AddRange(new ToolStripItem[] { aukerakToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
-            menuStrip1.Size = new Size(800, 24);
+            menuStrip1.Size = new Size(800, 28);
             menuStrip1.TabIndex = 1;
             menuStrip1.Text = "menuStrip1";
             // 
@@ -106,7 +114,8 @@
             toolStripContainer2.ContentPanel.Controls.Add(lblPasahitza);
             toolStripContainer2.ContentPanel.Controls.Add(txtErabiltzailea);
             toolStripContainer2.ContentPanel.Controls.Add(lblErabiltzailea);
-            toolStripContainer2.ContentPanel.Size = new Size(800, 426);
+            toolStripContainer2.ContentPanel.Controls.Add(panelak);
+            toolStripContainer2.ContentPanel.Size = new Size(800, 422);
             toolStripContainer2.Dock = DockStyle.Fill;
             toolStripContainer2.LeftToolStripPanelVisible = false;
             toolStripContainer2.Location = new Point(0, 0);
@@ -182,6 +191,44 @@
             lblErabiltzailea.TabIndex = 19;
             lblErabiltzailea.Text = "Erabiltzailea:";
             // 
+            // aukerakToolStripMenuItem
+            // 
+            aukerakToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { gailuakToolStripMenuItem, erabiltzaileakToolStripMenuItem, inzidentziakToolStripMenuItem, mintegiakToolStripMenuItem });
+            aukerakToolStripMenuItem.Name = "aukerakToolStripMenuItem";
+            aukerakToolStripMenuItem.Size = new Size(76, 24);
+            aukerakToolStripMenuItem.Text = "Aukerak";
+            // 
+            // gailuakToolStripMenuItem
+            // 
+            gailuakToolStripMenuItem.Name = "gailuakToolStripMenuItem";
+            gailuakToolStripMenuItem.Size = new Size(224, 26);
+            gailuakToolStripMenuItem.Text = "Gailuak";
+            // 
+            // erabiltzaileakToolStripMenuItem
+            // 
+            erabiltzaileakToolStripMenuItem.Name = "erabiltzaileakToolStripMenuItem";
+            erabiltzaileakToolStripMenuItem.Size = new Size(224, 26);
+            erabiltzaileakToolStripMenuItem.Text = "Erabiltzaileak";
+            // 
+            // inzidentziakToolStripMenuItem
+            // 
+            inzidentziakToolStripMenuItem.Name = "inzidentziakToolStripMenuItem";
+            inzidentziakToolStripMenuItem.Size = new Size(224, 26);
+            inzidentziakToolStripMenuItem.Text = "Inzidentziak";
+            // 
+            // mintegiakToolStripMenuItem
+            // 
+            mintegiakToolStripMenuItem.Name = "mintegiakToolStripMenuItem";
+            mintegiakToolStripMenuItem.Size = new Size(224, 26);
+            mintegiakToolStripMenuItem.Text = "Mintegiak";
+            // 
+            // panelak
+            // 
+            panelak.Location = new Point(0, 0);
+            panelak.Name = "panelak";
+            panelak.Size = new Size(800, 422);
+            panelak.TabIndex = 21;
+            // 
             // FLogina
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -194,6 +241,8 @@
             Name = "FLogina";
             Text = "Inbentarioa";
             Load += FLogina_Load;
+            menuStrip1.ResumeLayout(false);
+            menuStrip1.PerformLayout();
             toolStripContainer2.ContentPanel.ResumeLayout(false);
             toolStripContainer2.ContentPanel.PerformLayout();
             toolStripContainer2.TopToolStripPanel.ResumeLayout(false);
@@ -219,5 +268,11 @@
         private Button cbIrten;
         private ToolStripContentPanel panel;
         private ToolStripContentPanel ContentPanel;
+        private ToolStripMenuItem aukerakToolStripMenuItem;
+        private ToolStripMenuItem gailuakToolStripMenuItem;
+        private ToolStripMenuItem erabiltzaileakToolStripMenuItem;
+        private ToolStripMenuItem inzidentziakToolStripMenuItem;
+        private ToolStripMenuItem mintegiakToolStripMenuItem;
+        private Panel panelak;
     }
 }

@@ -11,18 +11,18 @@ namespace InbentarioaUnmi
 
         private void FLogina_Load(object sender, EventArgs e)
         {
+            txtPasahitza.Enabled = false;
+            cbSartu.Enabled = false;
             menuStrip1.Visible = false;
             txtErabiltzailea.Focus();
         }
         private void cbIrten_Click_1(object sender, EventArgs e)
         {
             this.Close();
-            menuStrip1.Visible = true;
-            menuStrip1.Enabled = true;
         }
         private void txtErabiltzailea_Leave(object sender, EventArgs e)
         {
-            if (txtErabiltzailea.Text == null)
+            if (string.IsNullOrWhiteSpace(txtErabiltzailea.Text))
             {
                 MessageBox.Show("Sartu erabiltzaile izena");
                 txtErabiltzailea.Focus();
@@ -35,7 +35,7 @@ namespace InbentarioaUnmi
         }
         private void txtPasahitza_Leave(object sender, EventArgs e)
         {
-            if (txtPasahitza.Text == null)
+            if (string.IsNullOrWhiteSpace(txtPasahitza.Text))
             {
                 MessageBox.Show("Sartu pasahitza");
                 txtPasahitza.Focus();
@@ -51,9 +51,32 @@ namespace InbentarioaUnmi
             FSarrera fs = new FSarrera();
             fs.TopLevel = false;
             fs.Dock = DockStyle.Fill;
-            ContentPanel.Controls.Add(fs);
+            panelak.Controls.Add(fs);
             fs.BringToFront();
             fs.Show();
+            menuStrip1.Visible = true;
+            menuStrip1.Enabled = true;
+
+            lblErabiltzailea.Visible = false;
+            lblPasahitza.Visible = false;
+            txtErabiltzailea.Visible = false;
+            txtPasahitza.Visible = false;
+            cbSartu.Visible = false;
+            cbIrten.Visible = false;
+            fs.FormClosed += (s, args) =>
+            {
+                lblErabiltzailea.Visible = true;
+                lblPasahitza.Visible = true;
+                txtErabiltzailea.Visible = true;
+                txtPasahitza.Visible = true;
+                cbIrten.Visible = true;
+                cbSartu.Visible = true;
+                menuStrip1.Visible = false;
+                menuStrip1.Enabled = false;
+                txtErabiltzailea.Text = "";
+                txtPasahitza.Text = "";
+                txtErabiltzailea.Focus();
+            };
         }
     }
 }
