@@ -104,7 +104,7 @@ namespace InbentarioaUnmi
 
         private void inzidentziakToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            FInzidentziak fi = new FInzidentziak();
+            FIntzidentziak fi = new FIntzidentziak();
             fi.TopLevel = false;
             fi.Dock = DockStyle.Fill;
             panelak.Controls.Add(fi);

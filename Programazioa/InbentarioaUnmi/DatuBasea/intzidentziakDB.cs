@@ -9,13 +9,13 @@ using System.Threading.Tasks;
 
 namespace InbentarioaUnmi.DatuBasea
 {
-    public static class inzidentziakDB
+    public static class intzidentziakDB
     {
-        public static int InzidentziaGehitu(Inzidentziak k)
+        public static int IntzidentziaGehitu(Intzidentziak k)
         {
             // Id nola jarri erabakitzia falta da
             string insert;
-            insert = @"INSERT INTO Inzidentzia.Historiala(ID, data, mezua, IDGailua) VALUES(@ID, @data, @mezua, @gailua)";
+            insert = @"INSERT INTO Inbentarioa.Historiala(ID, data, mezua, IDGailua) VALUES(@ID, @data, @mezua, @gailua)";
 
             using (MySqlConnection conn = DBKonexioa.Konektatu())
             using (MySqlCommand komandua = new MySqlCommand(insert, conn))
@@ -36,7 +36,7 @@ namespace InbentarioaUnmi.DatuBasea
 
             }
         }
-        public static int InzidentziaAldatu(Gailuak gail, string m)
+        public static int IntzidentziaAldatu(Gailuak gail, string m)
         {
             string update;
 
@@ -55,7 +55,7 @@ namespace InbentarioaUnmi.DatuBasea
             }
 
         }
-        public static List<Inzidentziak> InzidentziaZerrendatu()
+        public static List<Intzidentziak> IntzidentziaZerrendatu()
         {
             string select, mezua, id, mar, kok, ize, ram, cpu;
             bool kolore;
@@ -64,7 +64,7 @@ namespace InbentarioaUnmi.DatuBasea
             Ordenagailuak or;
             Inprimagailuak inp;
             Mintegiak min;
-            List<Inzidentziak> LisInz = new List<Inzidentziak>();
+            List<Intzidentziak> LisInz = new List<Intzidentziak>();
 
             // Ordenagailuen izidentziak
             select = @"SELECT h.mezua, h.data, o.ID, o.marka, o.kokalekua, o.erostedata, m.izena, o.RAM, o.CPU FROM Inbentarioa.Historialak h JOIN Inbentarioa.Ordenagailuak o ON h.IDGailua = o.ID JOIN Inbentarioa.Mintegiak m ON o.IDMintegiak = m.ID";
@@ -89,7 +89,7 @@ namespace InbentarioaUnmi.DatuBasea
 
                         min = new Mintegiak(ize);
                         or = new Ordenagailuak(id, mar, kok, er, min, ram, cpu);
-                        Inzidentziak Inz = new Inzidentziak(or, data, mezua);
+                        Intzidentziak Inz = new Intzidentziak(or, data, mezua);
 
                         LisInz.Add(Inz);
                     }
@@ -126,7 +126,7 @@ namespace InbentarioaUnmi.DatuBasea
 
                         min = new Mintegiak(ize);
                         inp = new Inprimagailuak(id, mar, kok, er, min, kolore);
-                        Inzidentziak Inz = new Inzidentziak(inp, data, mezua);
+                        Intzidentziak Inz = new Intzidentziak(inp, data, mezua);
 
                         LisInz.Add(Inz);
                     }
@@ -134,12 +134,12 @@ namespace InbentarioaUnmi.DatuBasea
             }
             return LisInz;
         }
-        public static List<Inzidentziak> InzidentziaAurkitu(Gailuak gail)
+        public static List<Intzidentziak> IntzidentziaAurkitu(Gailuak gail)
         {
             string select, mezua;
             DateTime dataordua;
             DateOnly data;
-            List<Inzidentziak> LisInz = new List<Inzidentziak>();
+            List<Intzidentziak> LisInz = new List<Intzidentziak>();
 
             select = @"SELECT * FROM Inbentarioa.Historiala WHERE IDGailua = '" + gail.Id + "';";
 
@@ -152,7 +152,7 @@ namespace InbentarioaUnmi.DatuBasea
                         mezua = reader.GetString("mezua");
                         dataordua = reader.GetDateTime("data");
                         data = DateOnly.FromDateTime(dataordua);
-                        Inzidentziak Inz = new Inzidentziak(gail, data, mezua);
+                        Intzidentziak Inz = new Intzidentziak(gail, data, mezua);
                         LisInz.Add(Inz);
                     }
                 }

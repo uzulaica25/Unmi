@@ -1,6 +1,6 @@
 ﻿namespace InbentarioaUnmi.Formularioak
 {
-    partial class FInzidentziak
+    partial class FIntzidentziak
     {
         /// <summary>
         /// Required designer variable.
