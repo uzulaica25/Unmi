@@ -12,7 +12,7 @@ namespace InterAgenda
     /// </summary>
     public static class DBKonexioa
     {
-        private static readonly string konexioa = "server=localhost;user=root;password=root;database=Agenda;";
+        private static readonly string konexioa = "server=localhost;user=root;password=root;database=Inbentarioa;";
         /// <summary>
         /// Datu basea konektatzeko.
         /// </summary>
