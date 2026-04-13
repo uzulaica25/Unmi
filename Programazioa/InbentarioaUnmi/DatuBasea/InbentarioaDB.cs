@@ -1,8 +1,10 @@
 ﻿using InbentarioaUnmi.DatuModeloak;
 using InterAgenda;
 using MySql.Data.MySqlClient;
+using Mysqlx.Crud;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -63,7 +65,7 @@ namespace InbentarioaUnmi.DatuBasea
                         erosteData = reader.GetDateTime("erosteData");
                         er = DateOnly.FromDateTime(erosteData);
                         min = new Mintegiak(reader.GetString("izena"));
-                        if(reader.GetString("Koloretakoa") == "Bai")
+                        if (reader.GetString("Koloretakoa") == "Bai")
                         {
                             kol = true;
                         }
@@ -79,58 +81,129 @@ namespace InbentarioaUnmi.DatuBasea
             }
             return Lisgai;
         }
-        public static int GailuaAldatu(Gailuak ga1, Gailuak berri)
+        public static int GailuaAldatu(Gailuak ga1, Gailuak be)
         {
-            string update;
+            string update, min;
 
-            update = @"UPDATE Inbentarioa SET telefonoa = '" + t + "' WHERE kontaktua = '" + i + "';";
-            try
+            min = MintegiaLortu(be.Mintegia.Izena);
+
+            if (be is Ordenagailuak or)
             {
-                using (MySqlCommand komandua = new MySqlCommand(update, DBKonexioa.Konektatu()))
-                {
-                    using (MySqlDataReader reader = komandua.ExecuteReader()) ;
-                }
-                return 1;
-            }
-            catch (MySqlException ex)
-            {
-                return ex.Number;
-            }
-
-        }
-
-
-
-        public static int KontaktuaGehitu(Gailuak g)
-        {
-            string insert;
-            insert = @"INSERT INTO Agenda(kontaktua, telefonoa) VALUES(@izena, @telefonoa)";
-
-            using (MySqlConnection conn = DBKonexioa.Konektatu())
-            using (MySqlCommand komandua = new MySqlCommand(insert, conn))
-            {
-                komandua.Parameters.AddWithValue("@izena", k.Izena);
-                komandua.Parameters.AddWithValue("@telefonoa", k.Telefonoa);
+                update = @"UPDATE Inbentarioa.Ordenagailuak SET ID = '" + or.Id + "', marka = '" + or.Marka + "', kokalekua = '" + or.Kokalekua + "', erostedata = '" + or.ErosteData + "', IDMintegia = '" + min + "', CPU = '" + or.Cpu + "', RAM = '" + or.Ram + "' WHERE ID = '" + ga1.Id + "';";
                 try
                 {
-                    komandua.ExecuteNonQuery();
+                    using (MySqlCommand komandua = new MySqlCommand(update, DBKonexioa.Konektatu()))
+                    {
+                        using (MySqlDataReader reader = komandua.ExecuteReader()) ;
+                    }
                     return 1;
                 }
                 catch (MySqlException ex)
                 {
                     return ex.Number;
                 }
-
             }
+            else if (be is Inprimagailuak inpri)
+            {
+                if (inpri.Koloretakoa)
+                {
+                    update = @"UPDATE Inbentarioa.Inprimagailuak SET ID = '" + inpri.Id + "', marka = '" + inpri.Marka + "', kokalekua = '" + inpri.Kokalekua + "', erostedata = '" + inpri.ErosteData + "', IDMintegia = '" + min + "', koloretakoa = 'Bai' WHERE ID = '" + ga1.Id + "';";
+
+                }
+                else
+                {
+                    update = @"UPDATE Inbentarioa.Inprimagailuak SET ID = '" + inpri.Id + "', marka = '" + inpri.Marka + "', kokalekua = '" + inpri.Kokalekua + "', erostedata = '" + inpri.ErosteData + "', IDMintegia = '" + min + "', koloretakoa = 'Ez' WHERE ID = '" + ga1.Id + "';";
+                }
+
+                try
+                {
+                    using (MySqlCommand komandua = new MySqlCommand(update, DBKonexioa.Konektatu()))
+                    {
+                        using (MySqlDataReader reader = komandua.ExecuteReader()) ;
+                    }
+                    return 1;
+                }
+                catch (MySqlException ex)
+                {
+                    return ex.Number;
+                }
+            }
+            return 0;
         }
-        
-        public static int KontaktuaEzabatu(string i)
+        public static int GailuaGehitu(Gailuak g)
+        {
+            string inserto = @"INSERT INTO Inbentarioa.Ordenagailuak(ID, marka, kokalekua, erostedata, IDMintegia, CPU, RAM) VALUES(@ID, @marka, @kokalekua, @erostedata, @IDMintegia, @CPU, @RAM)";
+            string inserti = @"INSERT INTO Inbentarioa.Inprimagailuak(ID, marka, kokalekua, erostedata, IDMintegia, koloretakoa) VALUES(@ID, @marka, @kokalekua, @erostedata, @IDMintegia, @koloretakoa)";
+            string min;
+            using (MySqlConnection conn = DBKonexioa.Konektatu())
+            {
+                conn.Open();
+                min = MintegiaLortu(g.Mintegia.Izena);
+
+                if (g is Ordenagailuak or)
+                {
+                    using (MySqlCommand komandua1 = new MySqlCommand(inserto, conn))
+                    {
+                        komandua1.Parameters.AddWithValue("@ID", g.Id);
+                        komandua1.Parameters.AddWithValue("@marka", g.Marka);
+                        komandua1.Parameters.AddWithValue("@kokalekua", g.Kokalekua);
+                        komandua1.Parameters.AddWithValue("@erostedata", g.ErosteData);
+                        komandua1.Parameters.AddWithValue("@IDMintegia", min);
+                        komandua1.Parameters.AddWithValue("@CPU", or.Cpu);
+                        komandua1.Parameters.AddWithValue("@RAM", or.Ram);
+                        try
+                        {
+                            komandua1.ExecuteNonQuery();
+                            return 1;
+                        }
+                        catch (MySqlException ex)
+                        {
+                            return ex.Number;
+                        }
+                    }
+                }
+                else if (g is Inprimagailuak inpri)
+                {
+                    using (MySqlCommand komandua1 = new MySqlCommand(inserti, conn))
+                    {
+                        komandua1.Parameters.AddWithValue("@ID", g.Id);
+                        komandua1.Parameters.AddWithValue("@marka", g.Marka);
+                        komandua1.Parameters.AddWithValue("@kokalekua", g.Kokalekua);
+                        komandua1.Parameters.AddWithValue("@erostedata", g.ErosteData);
+                        komandua1.Parameters.AddWithValue("@IDMintegia", min);
+                        if (inpri.Koloretakoa)
+                        {
+                            komandua1.Parameters.AddWithValue("@koloretakoa", "Bai");
+                        }
+                        else
+                        {
+                            komandua1.Parameters.AddWithValue("@koloretakoa", "Ez");
+                        }
+                        try
+                        {
+                            komandua1.ExecuteNonQuery();
+                            return 1;
+                        }
+                        catch (MySqlException ex)
+                        {
+                            return ex.Number;
+                        }
+                    }
+                }
+            }
+            return 0;
+        }
+        public static int KontaktuaEzabatu(Gailuak g)
         {
             string delete;
-
-            List<Kontaktua> LisKon = new List<Kontaktua>();
-            delete = @"DELETE FROM Agenda WHERE kontaktua = '" + i + "';";
-
+            if (g is Inprimagailuak)
+            {
+                delete = @"DELETE FROM Inbentarioa.Inprimagailuak WHERE ID = '" + g.Id + "';";
+            }
+            else
+            {
+                delete = @"DELETE FROM Inbentarioa.Ordenagailuak WHERE ID = '" + g.Id + "';";
+            }
             try
             {
                 using (MySqlCommand komandua = new MySqlCommand(delete, DBKonexioa.Konektatu()))
@@ -142,31 +215,32 @@ namespace InbentarioaUnmi.DatuBasea
             catch (MySqlException ex)
             {
                 return ex.Number;
-
             }
         }
-        
-        public static Kontaktua KontaktuaAurkitu(string ize)
+        public static string MintegiaLortu(string i)
         {
-            string select, Izena, Tel;
+            string min = null;
+            string select = @"SELECT ID FROM Inbentarioa.mintegiak WHERE izena = '" + i + "';";
 
-            List<Kontaktua> LisKon = new List<Kontaktua>();
-            select = @"SELECT * FROM Agenda WHERE kontaktua = '" + ize + "';";
-
-            using (MySqlCommand komandua = new MySqlCommand(select, DBKonexioa.Konektatu()))
+            using (MySqlConnection conn = DBKonexioa.Konektatu())
             {
-                using (MySqlDataReader reader = komandua.ExecuteReader())
+                conn.Open();
+
+                using (MySqlCommand komandua = new MySqlCommand(select, conn))
                 {
-                    if (reader.Read())
+                    komandua.Parameters.AddWithValue("@izena", i);
+
+                    using (MySqlDataReader reader = komandua.ExecuteReader())
                     {
-                        Izena = reader.GetString("kontaktua");
-                        Tel = reader.GetString("telefonoa");
-                        Kontaktua kon = new Kontaktua(Izena, Tel);
-                        return kon;
+                        if (reader.Read())
+                        {
+                            min = reader.GetString("ID");
+                        }
                     }
+
                 }
             }
-            return null;
+            return min;
         }
     }
 }
