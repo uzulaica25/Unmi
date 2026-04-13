@@ -1,4 +1,5 @@
-﻿using InterAgenda;
+﻿using InbentarioaUnmi.DatuModeloak;
+using InterAgenda;
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
@@ -10,7 +11,7 @@ namespace InbentarioaUnmi.DatuBasea
 {
     public static class inzidentziakDB
     {
-        public static int KontaktuaGehitu(Kontaktua k)
+        public static int KontaktuaGehitu(Inzidentziak k)
         {
             string insert;
             insert = @"INSERT INTO Agenda(kontaktua, telefonoa) VALUES(@izena, @telefonoa)";
@@ -52,28 +53,7 @@ namespace InbentarioaUnmi.DatuBasea
             }
 
         }
-        public static int KontaktuaEzabatu(string i)
-        {
-            string delete;
-
-            List<Kontaktua> LisKon = new List<Kontaktua>();
-            delete = @"DELETE FROM Agenda WHERE kontaktua = '" + i + "';";
-
-            try
-            {
-                using (MySqlCommand komandua = new MySqlCommand(delete, DBKonexioa.Konektatu()))
-                {
-                    using (MySqlDataReader reader = komandua.ExecuteReader()) ;
-                }
-                return 1;
-            }
-            catch (MySqlException ex)
-            {
-                return ex.Number;
-
-            }
-        }
-        public static List<Kontaktua> KontaktuaZerrendatu()
+        public static List<Inzidentziak> KontaktuaZerrendatu()
         {
             string select, Izena, Tel;
             List<Kontaktua> LisKon = new List<Kontaktua>();
@@ -96,7 +76,7 @@ namespace InbentarioaUnmi.DatuBasea
             }
             return LisKon;
         }
-        public static Kontaktua KontaktuaAurkitu(string ize)
+        public static List<Inzidentziak> KontaktuaAurkitu(Gailuak gai)
         {
             string select, Izena, Tel;
 

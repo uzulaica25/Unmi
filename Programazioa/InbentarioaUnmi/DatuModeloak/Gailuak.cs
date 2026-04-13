@@ -42,7 +42,7 @@ namespace InbentarioaUnmi.DatuModeloak
         public string Cpu { get => cpu; set => cpu = value; }
         public string Ram { get => ram; set => ram = value; }
         // Eraikitzailea
-        public Ordenagailuak(string i, string m, string k, DateOnly e, Mintegiak mi, string c, string r, string d) : base(i, m, k, e, mi)
+        public Ordenagailuak(string i, string m, string k, DateOnly e, Mintegiak mi, string c, string r) : base(i, m, k, e, mi)
         {
             this.cpu = c;
             this.ram = r;

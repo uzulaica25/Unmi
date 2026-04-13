@@ -11,34 +11,80 @@ namespace InbentarioaUnmi.DatuBasea
 {
     public static class ErabiltzaileaDB
     {
-        public static int KontaktuaGehitu(Kontaktua k)
+        public static int ErabiltzaileaGehitu(Erabiltzaileak e)
         {
             string insert;
-            insert = @"INSERT INTO Agenda(kontaktua, telefonoa) VALUES(@izena, @telefonoa)";
 
-            using (MySqlConnection conn = DBKonexioa.Konektatu())
-            using (MySqlCommand komandua = new MySqlCommand(insert, conn))
+            if(e.MinBurua)
             {
-                komandua.Parameters.AddWithValue("@izena", k.Izena);
-                komandua.Parameters.AddWithValue("@telefonoa", k.Telefonoa);
-                try
-                {
-                    komandua.ExecuteNonQuery();
-                    return 1;
-                }
-                catch (MySqlException ex)
-                {
-                    return ex.Number;
-                }
+                insert = @"INSERT INTO Inbentarioa.MintegiBurua(ID, izena, pasahitza, IDMintegia) VALUES(@ID, @izena, @pasahitza, @Mintegia)";
 
+                using (MySqlConnection conn = DBKonexioa.Konektatu())
+                using (MySqlCommand komandua = new MySqlCommand(insert, conn))
+                {
+                    komandua.Parameters.AddWithValue("@izena", e.Izena);
+                    komandua.Parameters.AddWithValue("@pasahitza", e.Pasahitza);
+                    komandua.Parameters.AddWithValue("@Mintegia", e.Mintegia);
+                    try
+                    {
+                        komandua.ExecuteNonQuery();
+                        return 1;
+                    }
+                    catch (MySqlException ex)
+                    {
+                        return ex.Number;
+                    }
+                }
+            }else if (e.IktArduraduna)
+            {
+                insert = @"INSERT INTO Inbentarioa.IKTArduraduna(ID, izena, pasahitza, IDMintegia) VALUES(@ID, @izena, @pasahitza, @Mintegia)";
+
+                using (MySqlConnection conn = DBKonexioa.Konektatu())
+                using (MySqlCommand komandua = new MySqlCommand(insert, conn))
+                {
+                    komandua.Parameters.AddWithValue("@izena", e.Izena);
+                    komandua.Parameters.AddWithValue("@pasahitza", e.Pasahitza);
+                    komandua.Parameters.AddWithValue("@Mintegia", e.Mintegia);
+                    try
+                    {
+                        komandua.ExecuteNonQuery();
+                        return 1;
+                    }
+                    catch (MySqlException ex)
+                    {
+                        return ex.Number;
+                    }
+
+                }
+            }
+            else
+            {
+                insert = @"INSERT INTO Inbentarioa.Irakaslea(ID, izena, pasahitza, IDMintegia) VALUES(@ID, @izena, @pasahitza, @Mintegia)";
+
+                using (MySqlConnection conn = DBKonexioa.Konektatu())
+                using (MySqlCommand komandua = new MySqlCommand(insert, conn))
+                {
+                    komandua.Parameters.AddWithValue("@izena", e.Izena);
+                    komandua.Parameters.AddWithValue("@pasahitza", e.Pasahitza);
+                    komandua.Parameters.AddWithValue("@Mintegia", e.Mintegia);
+                    try
+                    {
+                        komandua.ExecuteNonQuery();
+                        return 1;
+                    }
+                    catch (MySqlException ex)
+                    {
+                        return ex.Number;
+                    }
+
+                }
             }
         }
-        public static int KontaktuaAldatu(string i, string t)
+        public static int ErabiltzaileaAldatu(string e, string p)
         {
             string update;
 
-            List<Kontaktua> LisKon = new List<Kontaktua>();
-            update = @"UPDATE Agenda SET telefonoa = '" + t + "' WHERE kontaktua = '" + i + "';";
+            update = @"UPDATE Inbentarioa.Erabiltzailea SET pasahitza = '" + p + "' WHERE izena = '" + e + "';";
             try
             {
                 using (MySqlCommand komandua = new MySqlCommand(update, DBKonexioa.Konektatu()))
@@ -53,12 +99,11 @@ namespace InbentarioaUnmi.DatuBasea
             }
 
         }
-        public static int KontaktuaEzabatu(string i)
+        public static int ErabiltzaileaEzabatu(string i)
         {
             string delete;
 
-            List<Kontaktua> LisKon = new List<Kontaktua>();
-            delete = @"DELETE FROM Agenda WHERE kontaktua = '" + i + "';";
+            delete = @"DELETE FROM Inbentarioa.Erabiltzailea WHERE ID = '" + i + "';";
 
             try
             {
@@ -74,12 +119,14 @@ namespace InbentarioaUnmi.DatuBasea
 
             }
         }
-        public static List<Kontaktua> KontaktuaZerrendatu()
+        public static List<Erabiltzaileak> KontaktuaZerrendatu()
         {
-            string select, Izena, Tel;
-            List<Kontaktua> LisKon = new List<Kontaktua>();
+            string select, Izena, Pas, minte;
+            Mintegiak min;
+            List<Erabiltzaileak> LisEr = new List<Erabiltzaileak>();
 
-            select = @"SELECT * FROM Agenda";
+            // Irakasle motako erabiltzaileak 
+            select = @"SELECT * FROM Inbentarioa.Irakaslea";
 
             using (MySqlCommand komandua = new MySqlCommand(select, DBKonexioa.Konektatu()))
             {
@@ -87,37 +134,57 @@ namespace InbentarioaUnmi.DatuBasea
                 {
                     while (reader.Read())
                     {
-                        Izena = reader.GetString("kontaktua");
-                        Tel = reader.GetString("telefonoa");
-                        Kontaktua kon = new Kontaktua(Izena, Tel);
+                        Izena = reader.GetString("izena");
+                        Pas = reader.GetString("pasahitza");
+                        minte = reader.GetString("IDMintegia");
+                        min = new Mintegiak(minte);
+                        Erabiltzaileak era = new Erabiltzaileak(Izena, Pas, min, false, false);
 
-                        LisKon.Add(kon);
+                        LisEr.Add(era);
                     }
                 }
             }
-            return LisKon;
-        }
-        public static Kontaktua KontaktuaAurkitu(string ize)
-        {
-            string select, Izena, Tel;
 
-            List<Kontaktua> LisKon = new List<Kontaktua>();
-            select = @"SELECT * FROM Agenda WHERE kontaktua = '" + ize + "';";
+            // Mintegi burua motako erabiltzaileak
+            select = @"SELECT * FROM Inbentarioa.MintegiBurua";
 
             using (MySqlCommand komandua = new MySqlCommand(select, DBKonexioa.Konektatu()))
             {
                 using (MySqlDataReader reader = komandua.ExecuteReader())
                 {
-                    if (reader.Read())
+                    while (reader.Read())
                     {
-                        Izena = reader.GetString("kontaktua");
-                        Tel = reader.GetString("telefonoa");
-                        Kontaktua kon = new Kontaktua(Izena, Tel);
-                        return kon;
+                        Izena = reader.GetString("izena");
+                        Pas = reader.GetString("pasahitza");
+                        minte = reader.GetString("IDMintegia");
+                        min = new Mintegiak(minte);
+                        Erabiltzaileak era = new Erabiltzaileak(Izena, Pas, min, true, false);
+
+                        LisEr.Add(era);
                     }
                 }
             }
-            return null;
+
+            // IKT arduraduna motako erabiltzaileak
+            select = @"SELECT * FROM Inbentarioa.IKTArduraduna";
+
+            using (MySqlCommand komandua = new MySqlCommand(select, DBKonexioa.Konektatu()))
+            {
+                using (MySqlDataReader reader = komandua.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        Izena = reader.GetString("izena");
+                        Pas = reader.GetString("pasahitza");
+                        minte = reader.GetString("IDMintegia");
+                        min = new Mintegiak(minte);
+                        Erabiltzaileak era = new Erabiltzaileak(Izena, Pas, min, false, true);
+
+                        LisEr.Add(era);
+                    }
+                }
+            }
+            return LisEr;
         }
     }
 }

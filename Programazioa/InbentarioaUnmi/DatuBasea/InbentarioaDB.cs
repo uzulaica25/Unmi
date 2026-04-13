@@ -11,17 +11,21 @@ namespace InbentarioaUnmi.DatuBasea
 {
     public static class InbentarioaDB
     {
-        /* DB klaseak txukun jartzeko daude InbentarioaDB, ErabiltzaileaDB, InzidentzianDB, KontaktuakDB kodea dake.
+        /* Gailuak listaratu bakarrik dao mas o menos jarrita baino definitzia falta da gailuak gehitu ta aldatzian nola bereiztu ze gailu mota dan.
+         * 
+         * DB klaseak txukun jartzeko daude InbentarioaDB, ErabiltzaileaDB, InzidentzianDB, KontaktuakDB kodea dake.
          * KontaktuaZerrendatu Selecta ondo definitzeko nola itean. FMintegia erdi kodifikatzen hasita.
         */
-        public static List<Gailuak> KontaktuaZerrendatu()
+        public static List<Gailuak> GailuakListaratu()
         {
-            string select, marka, kokalekua, CPU, RAM;
+            string id, select, marka, kokalekua, CPU, RAM;
+            bool kol;
             Mintegiak min;
             DateOnly er;
+            DateTime erosteData;
             List<Gailuak> Lisgai = new List<Gailuak>();
 
-            select = @"SELECT o.marka, o.Kokalekua, o.CPU, o.RAM, o.erosteData, m.izena FROM Inbentarioak.Ordenagailuak o JOIN Inbentarioak.Mintegiak m ON o.IDMintegiak = m.Id";
+            select = @"SELECT o.ID, o.marka, o.Kokalekua, o.CPU, o.RAM, o.erosteData, m.izena FROM Inbentarioa.Ordenagailuak o JOIN Inbentarioa.Mintegiak m ON o.IDMintegiak = m.Id";
 
             using (MySqlCommand komandua = new MySqlCommand(select, DBKonexioa.Konektatu()))
             {
@@ -29,20 +33,71 @@ namespace InbentarioaUnmi.DatuBasea
                 {
                     while (reader.Read())
                     {
-                        marka = reader.GetString("o.marka");
-                        kokalekua = reader.GetString("o.kokalekua");
-                        CPU = reader.GetString("o.CPU");
-                        RAM = reader.GetString("o.RAM");
+                        id = reader.GetString("ID");
+                        marka = reader.GetString("marka");
+                        kokalekua = reader.GetString("kokalekua");
+                        CPU = reader.GetString("CPU");
+                        RAM = reader.GetString("RAM");
+                        erosteData = reader.GetDateTime("erosteData");
+                        er = DateOnly.FromDateTime(erosteData);
+                        min = new Mintegiak(reader.GetString("izena"));
 
-                        Gailuak kon = new Gailuak(Izena, Tel);
+                        Ordenagailuak ga = new Ordenagailuak(id, marka, kokalekua, er, min, CPU, RAM);
 
-                        Lisgai.Add(kon);
+                        Lisgai.Add(ga);
+                    }
+                }
+            }
+            select = @"SELECT i.ID, i.marka, i.Kokalekua, i.Koloretakoa, i.erosteData, m.izena FROM Inbentarioa.Inprimagailuak i JOIN Inbentarioa.Mintegiak m ON o.IDMintegiak = m.Id";
+
+            using (MySqlCommand komandua = new MySqlCommand(select, DBKonexioa.Konektatu()))
+            {
+                using (MySqlDataReader reader = komandua.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        id = reader.GetString("ID");
+                        marka = reader.GetString("marka");
+                        kokalekua = reader.GetString("kokalekua");
+                        CPU = reader.GetString("CPU");
+                        erosteData = reader.GetDateTime("erosteData");
+                        er = DateOnly.FromDateTime(erosteData);
+                        min = new Mintegiak(reader.GetString("izena"));
+                        if(reader.GetString("Koloretakoa") == "Bai")
+                        {
+                            kol = true;
+                        }
+                        else
+                        {
+                            kol = false;
+                        }
+                        Inprimagailuak ga = new Inprimagailuak(id, marka, kokalekua, er, min, kol);
+
+                        Lisgai.Add(ga);
                     }
                 }
             }
             return Lisgai;
         }
+        public static int GailuaAldatu(Gailuak ga1, Gailuak berri)
+        {
+            string update;
 
+            update = @"UPDATE Inbentarioa SET telefonoa = '" + t + "' WHERE kontaktua = '" + i + "';";
+            try
+            {
+                using (MySqlCommand komandua = new MySqlCommand(update, DBKonexioa.Konektatu()))
+                {
+                    using (MySqlDataReader reader = komandua.ExecuteReader()) ;
+                }
+                return 1;
+            }
+            catch (MySqlException ex)
+            {
+                return ex.Number;
+            }
+
+        }
 
 
 
@@ -68,26 +123,7 @@ namespace InbentarioaUnmi.DatuBasea
 
             }
         }
-        public static int KontaktuaAldatu(string i, string t)
-        {
-            string update;
-
-            List<Kontaktua> LisKon = new List<Kontaktua>();
-            update = @"UPDATE Agenda SET telefonoa = '" + t + "' WHERE kontaktua = '" + i + "';";
-            try
-            {
-                using (MySqlCommand komandua = new MySqlCommand(update, DBKonexioa.Konektatu()))
-                {
-                    using (MySqlDataReader reader = komandua.ExecuteReader()) ;
-                }
-                return 1;
-            }
-            catch (MySqlException ex)
-            {
-                return ex.Number;
-            }
-
-        }
+        
         public static int KontaktuaEzabatu(string i)
         {
             string delete;
