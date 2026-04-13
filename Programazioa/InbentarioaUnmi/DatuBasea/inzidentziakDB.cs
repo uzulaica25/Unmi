@@ -11,16 +11,19 @@ namespace InbentarioaUnmi.DatuBasea
 {
     public static class inzidentziakDB
     {
-        public static int KontaktuaGehitu(Inzidentziak k)
+        public static int InzidentziaGehitu(Inzidentziak k)
         {
+            // Id nola jarri erabakitzia falta da
             string insert;
-            insert = @"INSERT INTO Agenda(kontaktua, telefonoa) VALUES(@izena, @telefonoa)";
+            insert = @"INSERT INTO Inzidentzia.Historiala(ID, data, mezua, IDGailua) VALUES(@ID, @data, @mezua, @gailua)";
 
             using (MySqlConnection conn = DBKonexioa.Konektatu())
             using (MySqlCommand komandua = new MySqlCommand(insert, conn))
             {
-                komandua.Parameters.AddWithValue("@izena", k.Izena);
-                komandua.Parameters.AddWithValue("@telefonoa", k.Telefonoa);
+                komandua.Parameters.AddWithValue("@Id", "");
+                komandua.Parameters.AddWithValue("@data", DateTime.Now);
+                komandua.Parameters.AddWithValue("@mezua", k.Mezua);
+                komandua.Parameters.AddWithValue("@gailua", k.Gailua.Id);
                 try
                 {
                     komandua.ExecuteNonQuery();
@@ -33,12 +36,11 @@ namespace InbentarioaUnmi.DatuBasea
 
             }
         }
-        public static int KontaktuaAldatu(string i, string t)
+        public static int InzidentziaAldatu(Gailuak gail, string m)
         {
             string update;
 
-            List<Kontaktua> LisKon = new List<Kontaktua>();
-            update = @"UPDATE Agenda SET telefonoa = '" + t + "' WHERE kontaktua = '" + i + "';";
+            update = @"UPDATE Inbentarioa.Historiala SET mezua = '" + m + "' WHERE IDGailua = '" + gail.Id + "';";
             try
             {
                 using (MySqlCommand komandua = new MySqlCommand(update, DBKonexioa.Konektatu()))
@@ -53,7 +55,7 @@ namespace InbentarioaUnmi.DatuBasea
             }
 
         }
-        public static List<Inzidentziak> KontaktuaZerrendatu()
+        public static List<Inzidentziak> InzidentziaZerrendatu()
         {
             string select, Izena, Tel;
             List<Kontaktua> LisKon = new List<Kontaktua>();
@@ -76,27 +78,30 @@ namespace InbentarioaUnmi.DatuBasea
             }
             return LisKon;
         }
-        public static List<Inzidentziak> KontaktuaAurkitu(Gailuak gai)
+        public static List<Inzidentziak> InzidentziaAurkitu(Gailuak gail)
         {
-            string select, Izena, Tel;
+            string select, mezua;
+            DateTime dataordua;
+            DateOnly data;
+            List<Inzidentziak> LisInz = new List<Inzidentziak>();
 
-            List<Kontaktua> LisKon = new List<Kontaktua>();
-            select = @"SELECT * FROM Agenda WHERE kontaktua = '" + ize + "';";
+            select = @"SELECT * FROM Inbentarioa.Historiala WHERE IDGailua = '" + gail.Id + "';";
 
             using (MySqlCommand komandua = new MySqlCommand(select, DBKonexioa.Konektatu()))
             {
                 using (MySqlDataReader reader = komandua.ExecuteReader())
                 {
-                    if (reader.Read())
+                    while (reader.Read())
                     {
-                        Izena = reader.GetString("kontaktua");
-                        Tel = reader.GetString("telefonoa");
-                        Kontaktua kon = new Kontaktua(Izena, Tel);
-                        return kon;
+                        mezua = reader.GetString("mezua");
+                        dataordua = reader.GetDateTime("data");
+                        data = DateOnly.FromDateTime(dataordua);
+                        Inzidentziak Inz = new Inzidentziak(gail, data, mezua);
+                        LisInz.Add(Inz);
                     }
                 }
             }
-            return null;
+            return LisInz;
         }
     }
 }
