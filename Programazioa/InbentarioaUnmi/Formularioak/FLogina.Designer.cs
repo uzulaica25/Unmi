@@ -113,35 +113,35 @@
             // sarreraToolStripMenuItem
             // 
             sarreraToolStripMenuItem.Name = "sarreraToolStripMenuItem";
-            sarreraToolStripMenuItem.Size = new Size(224, 26);
+            sarreraToolStripMenuItem.Size = new Size(176, 26);
             sarreraToolStripMenuItem.Text = "Sarrera";
             sarreraToolStripMenuItem.Click += sarreraToolStripMenuItem_Click;
             // 
             // inbentarioaToolStripMenuItem
             // 
             inbentarioaToolStripMenuItem.Name = "inbentarioaToolStripMenuItem";
-            inbentarioaToolStripMenuItem.Size = new Size(224, 26);
+            inbentarioaToolStripMenuItem.Size = new Size(176, 26);
             inbentarioaToolStripMenuItem.Text = "Inbentarioa";
             inbentarioaToolStripMenuItem.Click += inbentarioaToolStripMenuItem_Click;
             // 
             // intzidentziakToolStripMenuItem
             // 
             intzidentziakToolStripMenuItem.Name = "intzidentziakToolStripMenuItem";
-            intzidentziakToolStripMenuItem.Size = new Size(224, 26);
+            intzidentziakToolStripMenuItem.Size = new Size(176, 26);
             intzidentziakToolStripMenuItem.Text = "Intzidentziak";
             intzidentziakToolStripMenuItem.Click += intzidentziakToolStripMenuItem_Click_1;
             // 
             // mintegiakToolStripMenuItem
             // 
             mintegiakToolStripMenuItem.Name = "mintegiakToolStripMenuItem";
-            mintegiakToolStripMenuItem.Size = new Size(224, 26);
+            mintegiakToolStripMenuItem.Size = new Size(176, 26);
             mintegiakToolStripMenuItem.Text = "Mintegiak";
             mintegiakToolStripMenuItem.Click += mintegiakToolStripMenuItem_Click;
             // 
             // erabiltzaileaToolStripMenuItem
             // 
             erabiltzaileaToolStripMenuItem.Name = "erabiltzaileaToolStripMenuItem";
-            erabiltzaileaToolStripMenuItem.Size = new Size(224, 26);
+            erabiltzaileaToolStripMenuItem.Size = new Size(176, 26);
             erabiltzaileaToolStripMenuItem.Text = "Erabiltzailea";
             erabiltzaileaToolStripMenuItem.Click += erabiltzaileaToolStripMenuItem_Click;
             // 
@@ -194,6 +194,8 @@
             cbIrten.Text = "Irten";
             cbIrten.UseVisualStyleBackColor = true;
             cbIrten.Click += cbIrten_Click_1;
+            cbIrten.MouseDown += cbIrten_MouseDown;
+            cbIrten.MouseMove += cbIrten_MouseMove;
             // 
             // txtPasahitza
             // 
@@ -222,6 +224,7 @@
             txtErabiltzailea.Name = "txtErabiltzailea";
             txtErabiltzailea.Size = new Size(244, 27);
             txtErabiltzailea.TabIndex = 0;
+            txtErabiltzailea.TextChanged += txtErabiltzailea_TextChanged;
             txtErabiltzailea.Leave += txtErabiltzailea_Leave;
             // 
             // lblErabiltzailea

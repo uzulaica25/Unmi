@@ -39,7 +39,7 @@
             // cbIrten
             // 
             cbIrten.Font = new Font("Times New Roman", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            cbIrten.Location = new Point(694, 409);
+            cbIrten.Location = new Point(543, 365);
             cbIrten.Name = "cbIrten";
             cbIrten.Size = new Size(94, 29);
             cbIrten.TabIndex = 7;
@@ -92,7 +92,7 @@
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(192, 192, 255);
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(766, 433);
             Controls.Add(cbEzabatu);
             Controls.Add(cbAldatu);
             Controls.Add(cbGehitu);

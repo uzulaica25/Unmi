@@ -8,6 +8,7 @@ namespace InbentarioaUnmi
     public partial class FLogina : Form
     {
         private Erabiltzaileak era;
+        private bool txi = false;
         public FLogina()
         {
             InitializeComponent();
@@ -22,33 +23,48 @@ namespace InbentarioaUnmi
         }
         private void cbIrten_Click_1(object sender, EventArgs e)
         {
-             this.Close();
+            this.Close();
         }
         private void txtErabiltzailea_Leave(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(txtErabiltzailea.Text))
+            if (txi)
             {
-                MessageBox.Show("Sartu erabiltzaile izena");
-                txtErabiltzailea.Focus();
+                return;
             }
             else
             {
-                txtPasahitza.Enabled = true;
-                txtPasahitza.Focus();
+                if (string.IsNullOrWhiteSpace(txtErabiltzailea.Text))
+                {
+                    MessageBox.Show("Sartu erabiltzaile izena");
+                    txtErabiltzailea.Focus();
+                }
+                else
+                {
+                    txtPasahitza.Enabled = true;
+                    txtPasahitza.Focus();
+                }
             }
         }
         private void txtPasahitza_Leave(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(txtPasahitza.Text))
+            if (txi)
             {
-                MessageBox.Show("Sartu pasahitza");
-                txtPasahitza.Focus();
+                return;
             }
             else
             {
-                cbSartu.Enabled = true;
-                cbSartu.Focus();
+                if (string.IsNullOrWhiteSpace(txtPasahitza.Text))
+                {
+                    MessageBox.Show("Sartu pasahitza");
+                    txtPasahitza.Focus();
+                }
+                else
+                {
+                    cbSartu.Enabled = true;
+                    cbSartu.Focus();
+                }
             }
+           
         }
         private void cbSartu_Click_1(object sender, EventArgs e)
         {
@@ -161,6 +177,21 @@ namespace InbentarioaUnmi
             panelak.Controls.Add(fe);
             fe.BringToFront();
             fe.Show();
+        }
+
+        private void txtErabiltzailea_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cbIrten_MouseDown(object sender, MouseEventArgs e)
+        {
+            this.txi = true;
+        }
+
+        private void cbIrten_MouseMove(object sender, MouseEventArgs e)
+        {
+            this.txi = true;
         }
     }
 }
