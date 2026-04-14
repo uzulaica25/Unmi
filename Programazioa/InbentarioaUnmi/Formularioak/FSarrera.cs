@@ -22,6 +22,20 @@ namespace InbentarioaUnmi.Formularioak
             txtMintegia.Text = era.Mintegia.Izena;
             txtIzena.Enabled = false;
             txtMintegia.Enabled = false;
+            if(era.MinBurua == true || era.IktArduraduna == true)
+            {
+                cbInbentarioa.Enabled = true;
+                cbIntzidentziak.Enabled = true;
+                cbMintegia.Enabled = true;
+                cbErabiltzailea.Enabled = true;
+            }
+             else
+            {
+                cbInbentarioa.Enabled = true;
+                cbIntzidentziak.Enabled = true;
+                cbMintegia.Enabled = false;
+                cbErabiltzailea.Enabled = false;
+            }
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -35,6 +49,26 @@ namespace InbentarioaUnmi.Formularioak
 
         }
         private void FSarrera_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cbInbentarioa_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cbIntzidentziak_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cbMintegia_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cbErabiltzailea_Click(object sender, EventArgs e)
         {
 
         }

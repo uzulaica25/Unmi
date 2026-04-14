@@ -1,5 +1,7 @@
+using InbentarioaUnmi.DatuBasea;
 using InbentarioaUnmi.DatuModeloak;
 using InbentarioaUnmi.Formularioak;
+
 
 namespace InbentarioaUnmi
 {
@@ -49,25 +51,44 @@ namespace InbentarioaUnmi
         }
         private void cbSartu_Click_1(object sender, EventArgs e)
         {
-            Mintegiak min = new Mintegiak("Informatika");
-            Erabiltzaileak era = new Erabiltzaileak("Maria", "1234r", min, false, false);
-            FSarrera fs = new FSarrera(era);
-            fs.TopLevel = false;
-            fs.Dock = DockStyle.Fill;
-            panelak.Controls.Add(fs);
-            fs.BringToFront();
-            fs.Show();
-            menuStrip1.Visible = true;
-            menuStrip1.Enabled = true;
+            Erabiltzaileak era;
 
-            lblErabiltzailea.Visible = false;
-            lblPasahitza.Visible = false;
-            txtErabiltzailea.Visible = false;
-            txtPasahitza.Visible = false;
-            cbSartu.Visible = false;
-            cbIrten.Visible = false;
-            fs.FormClosed += (s, args) =>
+            era = ErabiltzaileaDB.ErabiltzaileaBilatu(txtErabiltzailea.Text, txtPasahitza.Text);
+            if (era != null)
             {
+                FSarrera fs = new FSarrera(era);
+                fs.TopLevel = false;
+                fs.Dock = DockStyle.Fill;
+                panelak.Controls.Add(fs);
+                fs.BringToFront();
+                fs.Show();
+                menuStrip1.Visible = true;
+                menuStrip1.Enabled = true;
+
+                lblErabiltzailea.Visible = false;
+                lblPasahitza.Visible = false;
+                txtErabiltzailea.Visible = false;
+                txtPasahitza.Visible = false;
+                cbSartu.Visible = false;
+                cbIrten.Visible = false;
+                fs.FormClosed += (s, args) =>
+                {
+                    lblErabiltzailea.Visible = true;
+                    lblPasahitza.Visible = true;
+                    txtErabiltzailea.Visible = true;
+                    txtPasahitza.Visible = true;
+                    cbIrten.Visible = true;
+                    cbSartu.Visible = true;
+                    menuStrip1.Visible = false;
+                    menuStrip1.Enabled = false;
+                    txtErabiltzailea.Text = "";
+                    txtPasahitza.Text = "";
+                    txtErabiltzailea.Focus();
+                };
+            }
+            else
+            {
+                MessageBox.Show("Erabiltzaile edo pasahitz okerra");
                 lblErabiltzailea.Visible = true;
                 lblPasahitza.Visible = true;
                 txtErabiltzailea.Visible = true;
@@ -79,7 +100,7 @@ namespace InbentarioaUnmi
                 txtErabiltzailea.Text = "";
                 txtPasahitza.Text = "";
                 txtErabiltzailea.Focus();
-            };
+            }
         }
 
         private void gailuakToolStripMenuItem_Click(object sender, EventArgs e)

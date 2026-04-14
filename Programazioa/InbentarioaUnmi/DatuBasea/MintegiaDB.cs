@@ -60,8 +60,7 @@ namespace InbentarioaUnmi.DatuBasea
             using (MySqlConnection conn = DBKonexioa.Konektatu())
             using (MySqlCommand komandua = new MySqlCommand(insert, conn))
             {
-                komandua.Parameters.AddWithValue("@izena", k.Izena);
-                komandua.Parameters.AddWithValue("@telefonoa", k.Telefonoa);
+                komandua.Parameters.AddWithValue("@izena", m.Izena);
                 try
                 {
                     komandua.ExecuteNonQuery();

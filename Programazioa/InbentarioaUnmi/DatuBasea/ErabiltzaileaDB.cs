@@ -15,7 +15,7 @@ namespace InbentarioaUnmi.DatuBasea
         {
             string insert;
 
-            if(e.MinBurua)
+            if (e.MinBurua)
             {
                 insert = @"INSERT INTO Inbentarioa.MintegiBurua(ID, izena, pasahitza, IDMintegia) VALUES(@ID, @izena, @pasahitza, @Mintegia)";
 
@@ -35,7 +35,8 @@ namespace InbentarioaUnmi.DatuBasea
                         return ex.Number;
                     }
                 }
-            }else if (e.IktArduraduna)
+            }
+            else if (e.IktArduraduna)
             {
                 insert = @"INSERT INTO Inbentarioa.IKTArduraduna(ID, izena, pasahitza, IDMintegia) VALUES(@ID, @izena, @pasahitza, @Mintegia)";
 
@@ -185,6 +186,63 @@ namespace InbentarioaUnmi.DatuBasea
                 }
             }
             return LisEr;
+        }
+        public static Erabiltzaileak ErabiltzaileaBilatu(string i, string p)
+        {
+            string select, Izena, Pas, minte;
+            Mintegiak min;
+            // Irakasle motako erabiltzaileak 
+            select = @"SELECT * FROM Inbentarioa.Irakaslea WHERE izena = '" + i + "' AND pasahitza = '" + p + "';";
+            using (MySqlCommand komandua = new MySqlCommand(select, DBKonexioa.Konektatu()))
+            {
+                using (MySqlDataReader reader = komandua.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        Izena = reader.GetString("izena");
+                        Pas = reader.GetString("pasahitza");
+                        minte = reader.GetString("IDMintegia");
+                        min = new Mintegiak(minte);
+                        Erabiltzaileak era = new Erabiltzaileak(Izena, Pas, min, false, false);
+                        return era;
+                    }
+                }
+            }
+            // Mintegi burua motako erabiltzaileak
+            select = @"SELECT * FROM Inbentarioa.MintegiBurua WHERE izena = '" + i + "' AND pasahitza = '" + p + "';";
+            using (MySqlCommand komandua = new MySqlCommand(select, DBKonexioa.Konektatu()))
+            {
+                using (MySqlDataReader reader = komandua.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        Izena = reader.GetString("izena");
+                        Pas = reader.GetString("pasahitza");
+                        minte = reader.GetString("IDMintegia");
+                        min = new Mintegiak(minte);
+                        Erabiltzaileak era = new Erabiltzaileak(Izena, Pas, min, true, false);
+                        return era;
+                    }
+                }
+            }
+            // IKT arduraduna motako erabiltzaileak
+            select = @"SELECT * FROM Inbentarioa.IKTArduraduna WHERE izena = '" + i + "'  AND pasahitza = '" + p + "';";
+            using (MySqlCommand komandua = new MySqlCommand(select, DBKonexioa.Konektatu()))
+            {
+                using (MySqlDataReader reader = komandua.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        Izena = reader.GetString("izena");
+                        Pas = reader.GetString("pasahitza");
+                        minte = reader.GetString("IDMintegia");
+                        min = new Mintegiak(minte);
+                        Erabiltzaileak era = new Erabiltzaileak(Izena, Pas, min, false, true);
+                        return era;
+                    }
+                }
+            }
+            return null;
         }
     }
 }
