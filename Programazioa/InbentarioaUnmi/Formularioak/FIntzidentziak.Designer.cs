@@ -42,7 +42,7 @@
             cbIrten.UseVisualStyleBackColor = true;
             cbIrten.Click += cbIrten_Click;
             // 
-            // FInzidentziak
+            // FIntzidentziak
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -50,7 +50,8 @@
             ClientSize = new Size(800, 450);
             Controls.Add(cbIrten);
             FormBorderStyle = FormBorderStyle.None;
-            Name = "FInzidentziak";
+            Name = "FIntzidentziak";
+            Load += FIntzidentziak_Load;
             ResumeLayout(false);
         }
 

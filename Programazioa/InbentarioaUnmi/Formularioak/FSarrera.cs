@@ -14,15 +14,17 @@ namespace InbentarioaUnmi.Formularioak
     public partial class FSarrera : Form
     {
         private Erabiltzaileak era;
-        public FSarrera(Erabiltzaileak era)
+        private Panel panela;
+        public FSarrera(Erabiltzaileak era, Panel panela)
         {
             InitializeComponent();
+            this.panela = panela;
             this.era = era;
             txtIzena.Text = era.Izena;
             txtMintegia.Text = era.Mintegia.Izena;
             txtIzena.Enabled = false;
             txtMintegia.Enabled = false;
-            if(era.MinBurua == true || era.IktArduraduna == true)
+            if(era.Rola != " ")
             {
                 cbInbentarioa.Enabled = true;
                 cbIntzidentziak.Enabled = true;
@@ -55,22 +57,43 @@ namespace InbentarioaUnmi.Formularioak
 
         private void cbInbentarioa_Click(object sender, EventArgs e)
         {
-
+            FInbentarioa fi = new FInbentarioa(era);
+            fi.TopLevel = false;
+            fi.Dock = DockStyle.Fill;
+            panela.Controls.Add(fi);
+            fi.BringToFront();
+            fi.Show();
+            
         }
 
         private void cbIntzidentziak_Click(object sender, EventArgs e)
         {
-
+            FIntzidentziak fi = new FIntzidentziak(era);
+            fi.TopLevel = false;
+            fi.Dock = DockStyle.Fill;
+            panela.Controls.Add(fi);
+            fi.BringToFront();
+            fi.Show();
         }
 
         private void cbMintegia_Click(object sender, EventArgs e)
         {
-
+            FMintegia fm = new FMintegia(era);
+            fm.TopLevel = false;
+            fm.Dock = DockStyle.Fill;
+            panela.Controls.Add(fm);
+            fm.BringToFront();
+            fm.Show();
         }
 
         private void cbErabiltzailea_Click(object sender, EventArgs e)
         {
-
+            FErabiltzailea fe = new FErabiltzailea(era);
+            fe.TopLevel = false;
+            fe.Dock = DockStyle.Fill;
+            panela.Controls.Add(fe);
+            fe.BringToFront();
+            fe.Show();
         }
     }
 }

@@ -15,7 +15,7 @@ namespace InbentarioaUnmi.DatuBasea
         {
             string insert;
 
-            if (e.MinBurua)
+            if (e.Rola == "MintegiBurua")
             {
                 insert = @"INSERT INTO Inbentarioa.MintegiBurua(ID, izena, pasahitza, IDMintegia) VALUES(@ID, @izena, @pasahitza, @Mintegia)";
 
@@ -36,7 +36,7 @@ namespace InbentarioaUnmi.DatuBasea
                     }
                 }
             }
-            else if (e.IktArduraduna)
+            else if (e.Rola == "IktArduraduna")
             {
                 insert = @"INSERT INTO Inbentarioa.IKTArduraduna(ID, izena, pasahitza, IDMintegia) VALUES(@ID, @izena, @pasahitza, @Mintegia)";
 
@@ -139,7 +139,7 @@ namespace InbentarioaUnmi.DatuBasea
                         Pas = reader.GetString("pasahitza");
                         minte = reader.GetString("IDMintegia");
                         min = new Mintegiak(minte);
-                        Erabiltzaileak era = new Erabiltzaileak(Izena, Pas, min, false, false);
+                        Erabiltzaileak era = new Erabiltzaileak(Izena, Pas, min, " ");
 
                         LisEr.Add(era);
                     }
@@ -159,7 +159,7 @@ namespace InbentarioaUnmi.DatuBasea
                         Pas = reader.GetString("pasahitza");
                         minte = reader.GetString("IDMintegia");
                         min = new Mintegiak(minte);
-                        Erabiltzaileak era = new Erabiltzaileak(Izena, Pas, min, true, false);
+                        Erabiltzaileak era = new Erabiltzaileak(Izena, Pas, min, "MintegiBurua");
 
                         LisEr.Add(era);
                     }
@@ -179,7 +179,7 @@ namespace InbentarioaUnmi.DatuBasea
                         Pas = reader.GetString("pasahitza");
                         minte = reader.GetString("IDMintegia");
                         min = new Mintegiak(minte);
-                        Erabiltzaileak era = new Erabiltzaileak(Izena, Pas, min, false, true);
+                        Erabiltzaileak era = new Erabiltzaileak(Izena, Pas, min, "IktArduraduna");
 
                         LisEr.Add(era);
                     }
@@ -203,7 +203,7 @@ namespace InbentarioaUnmi.DatuBasea
                         Pas = reader.GetString("pasahitza");
                         minte = reader.GetString("IDMintegia");
                         min = new Mintegiak(minte);
-                        Erabiltzaileak era = new Erabiltzaileak(Izena, Pas, min, false, false);
+                        Erabiltzaileak era = new Erabiltzaileak(Izena, Pas, min, " " );
                         return era;
                     }
                 }
@@ -220,7 +220,7 @@ namespace InbentarioaUnmi.DatuBasea
                         Pas = reader.GetString("pasahitza");
                         minte = reader.GetString("IDMintegia");
                         min = new Mintegiak(minte);
-                        Erabiltzaileak era = new Erabiltzaileak(Izena, Pas, min, true, false);
+                        Erabiltzaileak era = new Erabiltzaileak(Izena, Pas, min, "MintegiBurua");
                         return era;
                     }
                 }
@@ -237,7 +237,7 @@ namespace InbentarioaUnmi.DatuBasea
                         Pas = reader.GetString("pasahitza");
                         minte = reader.GetString("IDMintegia");
                         min = new Mintegiak(minte);
-                        Erabiltzaileak era = new Erabiltzaileak(Izena, Pas, min, false, true);
+                        Erabiltzaileak era = new Erabiltzaileak(Izena, Pas, min, "IktArduraduna");
                         return era;
                     }
                 }

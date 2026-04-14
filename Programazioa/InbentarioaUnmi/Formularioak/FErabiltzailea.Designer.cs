@@ -52,6 +52,7 @@
             FormBorderStyle = FormBorderStyle.None;
             Name = "FErabiltzailea";
             Text = "FErabiltzailea";
+            Load += FErabiltzailea_Load;
             ResumeLayout(false);
         }
 

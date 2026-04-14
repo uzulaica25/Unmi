@@ -36,10 +36,11 @@
             ContentPanel = new ToolStripContentPanel();
             menuStrip1 = new MenuStrip();
             aukerakToolStripMenuItem = new ToolStripMenuItem();
-            gailuakToolStripMenuItem = new ToolStripMenuItem();
-            erabiltzaileakToolStripMenuItem = new ToolStripMenuItem();
-            inzidentziakToolStripMenuItem = new ToolStripMenuItem();
+            sarreraToolStripMenuItem = new ToolStripMenuItem();
+            inbentarioaToolStripMenuItem = new ToolStripMenuItem();
+            intzidentziakToolStripMenuItem = new ToolStripMenuItem();
             mintegiakToolStripMenuItem = new ToolStripMenuItem();
+            erabiltzaileaToolStripMenuItem = new ToolStripMenuItem();
             toolStripContainer2 = new ToolStripContainer();
             cbSartu = new Button();
             cbIrten = new Button();
@@ -104,31 +105,31 @@
             // 
             // aukerakToolStripMenuItem
             // 
-            aukerakToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { gailuakToolStripMenuItem, erabiltzaileakToolStripMenuItem, inzidentziakToolStripMenuItem, mintegiakToolStripMenuItem });
+            aukerakToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { sarreraToolStripMenuItem, inbentarioaToolStripMenuItem, intzidentziakToolStripMenuItem, mintegiakToolStripMenuItem, erabiltzaileaToolStripMenuItem });
             aukerakToolStripMenuItem.Name = "aukerakToolStripMenuItem";
             aukerakToolStripMenuItem.Size = new Size(76, 24);
             aukerakToolStripMenuItem.Text = "Aukerak";
             // 
-            // gailuakToolStripMenuItem
+            // sarreraToolStripMenuItem
             // 
-            gailuakToolStripMenuItem.Name = "gailuakToolStripMenuItem";
-            gailuakToolStripMenuItem.Size = new Size(224, 26);
-            gailuakToolStripMenuItem.Text = "Gailuak";
-            gailuakToolStripMenuItem.Click += gailuakToolStripMenuItem_Click;
+            sarreraToolStripMenuItem.Name = "sarreraToolStripMenuItem";
+            sarreraToolStripMenuItem.Size = new Size(224, 26);
+            sarreraToolStripMenuItem.Text = "Sarrera";
+            sarreraToolStripMenuItem.Click += sarreraToolStripMenuItem_Click;
             // 
-            // erabiltzaileakToolStripMenuItem
+            // inbentarioaToolStripMenuItem
             // 
-            erabiltzaileakToolStripMenuItem.Name = "erabiltzaileakToolStripMenuItem";
-            erabiltzaileakToolStripMenuItem.Size = new Size(224, 26);
-            erabiltzaileakToolStripMenuItem.Text = "Erabiltzaileak";
-            erabiltzaileakToolStripMenuItem.Click += erabiltzaileakToolStripMenuItem_Click;
+            inbentarioaToolStripMenuItem.Name = "inbentarioaToolStripMenuItem";
+            inbentarioaToolStripMenuItem.Size = new Size(224, 26);
+            inbentarioaToolStripMenuItem.Text = "Inbentarioa";
+            inbentarioaToolStripMenuItem.Click += inbentarioaToolStripMenuItem_Click;
             // 
-            // inzidentziakToolStripMenuItem
+            // intzidentziakToolStripMenuItem
             // 
-            inzidentziakToolStripMenuItem.Name = "inzidentziakToolStripMenuItem";
-            inzidentziakToolStripMenuItem.Size = new Size(224, 26);
-            inzidentziakToolStripMenuItem.Text = "Inzidentziak";
-            inzidentziakToolStripMenuItem.Click += inzidentziakToolStripMenuItem_Click;
+            intzidentziakToolStripMenuItem.Name = "intzidentziakToolStripMenuItem";
+            intzidentziakToolStripMenuItem.Size = new Size(224, 26);
+            intzidentziakToolStripMenuItem.Text = "Intzidentziak";
+            intzidentziakToolStripMenuItem.Click += intzidentziakToolStripMenuItem_Click_1;
             // 
             // mintegiakToolStripMenuItem
             // 
@@ -136,6 +137,13 @@
             mintegiakToolStripMenuItem.Size = new Size(224, 26);
             mintegiakToolStripMenuItem.Text = "Mintegiak";
             mintegiakToolStripMenuItem.Click += mintegiakToolStripMenuItem_Click;
+            // 
+            // erabiltzaileaToolStripMenuItem
+            // 
+            erabiltzaileaToolStripMenuItem.Name = "erabiltzaileaToolStripMenuItem";
+            erabiltzaileaToolStripMenuItem.Size = new Size(224, 26);
+            erabiltzaileaToolStripMenuItem.Text = "Erabiltzailea";
+            erabiltzaileaToolStripMenuItem.Click += erabiltzaileaToolStripMenuItem_Click;
             // 
             // toolStripContainer2
             // 
@@ -273,10 +281,11 @@
         private ToolStripContentPanel panel;
         private ToolStripContentPanel ContentPanel;
         private ToolStripMenuItem aukerakToolStripMenuItem;
-        private ToolStripMenuItem gailuakToolStripMenuItem;
-        private ToolStripMenuItem erabiltzaileakToolStripMenuItem;
-        private ToolStripMenuItem inzidentziakToolStripMenuItem;
+        private ToolStripMenuItem sarreraToolStripMenuItem;
+        private ToolStripMenuItem inbentarioaToolStripMenuItem;
+        private ToolStripMenuItem intzidentziakToolStripMenuItem;
         private ToolStripMenuItem mintegiakToolStripMenuItem;
         private Panel panelak;
+        private ToolStripMenuItem erabiltzaileaToolStripMenuItem;
     }
 }

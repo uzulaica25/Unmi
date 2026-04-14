@@ -101,6 +101,7 @@
             FormBorderStyle = FormBorderStyle.None;
             Name = "FMintegia";
             Text = "FMintegia";
+            Load += FMintegia_Load;
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
         }

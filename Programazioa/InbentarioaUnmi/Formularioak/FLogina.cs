@@ -7,6 +7,7 @@ namespace InbentarioaUnmi
 {
     public partial class FLogina : Form
     {
+        private Erabiltzaileak era;
         public FLogina()
         {
             InitializeComponent();
@@ -21,7 +22,7 @@ namespace InbentarioaUnmi
         }
         private void cbIrten_Click_1(object sender, EventArgs e)
         {
-            this.Close();
+             this.Close();
         }
         private void txtErabiltzailea_Leave(object sender, EventArgs e)
         {
@@ -52,11 +53,11 @@ namespace InbentarioaUnmi
         private void cbSartu_Click_1(object sender, EventArgs e)
         {
             Erabiltzaileak era;
-
             era = ErabiltzaileaDB.ErabiltzaileaBilatu(txtErabiltzailea.Text, txtPasahitza.Text);
+            this.era = era;
             if (era != null)
             {
-                FSarrera fs = new FSarrera(era);
+                FSarrera fs = new FSarrera(era, panelak);
                 fs.TopLevel = false;
                 fs.Dock = DockStyle.Fill;
                 panelak.Controls.Add(fs);
@@ -103,19 +104,19 @@ namespace InbentarioaUnmi
             }
         }
 
-        private void gailuakToolStripMenuItem_Click(object sender, EventArgs e)
+        private void sarreraToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            FInbentarioa fi = new FInbentarioa();
-            fi.TopLevel = false;
-            fi.Dock = DockStyle.Fill;
-            panelak.Controls.Add(fi);
-            fi.BringToFront();
-            fi.Show();
+            FSarrera fs = new FSarrera(era, panelak);
+            fs.TopLevel = false;
+            fs.Dock = DockStyle.Fill;
+            panelak.Controls.Add(fs);
+            fs.BringToFront();
+            fs.Show();
         }
 
         private void erabiltzaileakToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            FErabiltzailea fe = new FErabiltzailea();
+            FErabiltzailea fe = new FErabiltzailea(era);
             fe.TopLevel = false;
             fe.Dock = DockStyle.Fill;
             panelak.Controls.Add(fe);
@@ -123,9 +124,18 @@ namespace InbentarioaUnmi
             fe.Show();
         }
 
-        private void inzidentziakToolStripMenuItem_Click(object sender, EventArgs e)
+        private void mintegiakToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            FIntzidentziak fi = new FIntzidentziak();
+            FMintegia fm = new FMintegia(era);
+            fm.TopLevel = false;
+            fm.Dock = DockStyle.Fill;
+            panelak.Controls.Add(fm);
+            fm.BringToFront();
+            fm.Show();
+        }
+        private void inbentarioaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FInbentarioa fi = new FInbentarioa(era);
             fi.TopLevel = false;
             fi.Dock = DockStyle.Fill;
             panelak.Controls.Add(fi);
@@ -133,14 +143,24 @@ namespace InbentarioaUnmi
             fi.Show();
         }
 
-        private void mintegiakToolStripMenuItem_Click(object sender, EventArgs e)
+        private void intzidentziakToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
-            FMintegia fm = new FMintegia();
-            fm.TopLevel = false;
-            fm.Dock = DockStyle.Fill;
-            panelak.Controls.Add(fm);
-            fm.BringToFront();
-            fm.Show();
+            FIntzidentziak fi = new FIntzidentziak(era);
+            fi.TopLevel = false;
+            fi.Dock = DockStyle.Fill;
+            panelak.Controls.Add(fi);
+            fi.BringToFront();
+            fi.Show();
+        }
+
+        private void erabiltzaileaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FErabiltzailea fe = new FErabiltzailea(era);
+            fe.TopLevel = false;
+            fe.Dock = DockStyle.Fill;
+            panelak.Controls.Add(fe);
+            fe.BringToFront();
+            fe.Show();
         }
     }
 }

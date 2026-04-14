@@ -1,4 +1,5 @@
-﻿using System;
+﻿using InbentarioaUnmi.DatuModeloak;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,7 +13,7 @@ namespace InbentarioaUnmi.Formularioak
 {
     public partial class FInbentarioa : Form
     {
-        public FInbentarioa()
+        public FInbentarioa(Erabiltzaileak era)
         {
             InitializeComponent();
         }
@@ -20,6 +21,11 @@ namespace InbentarioaUnmi.Formularioak
         private void cbIrten_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void FInbentarioa_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

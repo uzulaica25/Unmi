@@ -13,7 +13,7 @@ namespace InbentarioaUnmi.Formularioak
 {
     public partial class FMintegia : Form
     {
-        public FMintegia()
+        public FMintegia(Erabiltzaileak era)
         {
             InitializeComponent();
         }
@@ -40,10 +40,15 @@ namespace InbentarioaUnmi.Formularioak
 
         private void cbAldatu_Click(object sender, EventArgs e)
         {
-           
+
         }
 
         private void cbEzabatu_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void FMintegia_Load(object sender, EventArgs e)
         {
 
         }

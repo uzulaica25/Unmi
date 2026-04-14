@@ -52,6 +52,7 @@
             FormBorderStyle = FormBorderStyle.None;
             Name = "FInbentarioa";
             Text = "FInbentarioa";
+            Load += FInbentarioa_Load;
             ResumeLayout(false);
         }
 
