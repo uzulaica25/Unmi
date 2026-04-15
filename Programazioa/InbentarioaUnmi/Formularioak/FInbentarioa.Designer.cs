@@ -28,19 +28,74 @@
         /// </summary>
         private void InitializeComponent()
         {
+            panel1 = new Panel();
+            dgwInbentarioa = new DataGridView();
+            cbEzabatu = new Button();
+            cbAldatu = new Button();
+            cbGehitu = new Button();
             cbIrten = new Button();
+            panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dgwInbentarioa).BeginInit();
             SuspendLayout();
+            // 
+            // panel1
+            // 
+            panel1.Controls.Add(dgwInbentarioa);
+            panel1.Location = new Point(53, 56);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(497, 256);
+            panel1.TabIndex = 14;
+            // 
+            // dgwInbentarioa
+            // 
+            dgwInbentarioa.BackgroundColor = Color.FromArgb(192, 192, 255);
+            dgwInbentarioa.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgwInbentarioa.Dock = DockStyle.Fill;
+            dgwInbentarioa.Location = new Point(0, 0);
+            dgwInbentarioa.Name = "dgwInbentarioa";
+            dgwInbentarioa.RowHeadersWidth = 51;
+            dgwInbentarioa.Size = new Size(497, 256);
+            dgwInbentarioa.TabIndex = 0;
+            // 
+            // cbEzabatu
+            // 
+            cbEzabatu.Font = new Font("Times New Roman", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            cbEzabatu.Location = new Point(584, 152);
+            cbEzabatu.Name = "cbEzabatu";
+            cbEzabatu.Size = new Size(94, 29);
+            cbEzabatu.TabIndex = 12;
+            cbEzabatu.Text = "Ezabatu";
+            cbEzabatu.UseVisualStyleBackColor = true;
+            // 
+            // cbAldatu
+            // 
+            cbAldatu.Font = new Font("Times New Roman", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            cbAldatu.Location = new Point(584, 104);
+            cbAldatu.Name = "cbAldatu";
+            cbAldatu.Size = new Size(94, 29);
+            cbAldatu.TabIndex = 11;
+            cbAldatu.Text = "Aldatu";
+            cbAldatu.UseVisualStyleBackColor = true;
+            // 
+            // cbGehitu
+            // 
+            cbGehitu.Font = new Font("Times New Roman", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            cbGehitu.Location = new Point(584, 56);
+            cbGehitu.Name = "cbGehitu";
+            cbGehitu.Size = new Size(94, 29);
+            cbGehitu.TabIndex = 10;
+            cbGehitu.Text = "Gehitu";
+            cbGehitu.UseVisualStyleBackColor = true;
             // 
             // cbIrten
             // 
             cbIrten.Font = new Font("Times New Roman", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            cbIrten.Location = new Point(353, 211);
+            cbIrten.Location = new Point(584, 373);
             cbIrten.Name = "cbIrten";
             cbIrten.Size = new Size(94, 29);
-            cbIrten.TabIndex = 7;
+            cbIrten.TabIndex = 13;
             cbIrten.Text = "Irten";
             cbIrten.UseVisualStyleBackColor = true;
-            cbIrten.Click += cbIrten_Click;
             // 
             // FInbentarioa
             // 
@@ -48,16 +103,27 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(192, 192, 255);
             ClientSize = new Size(800, 450);
+            Controls.Add(panel1);
+            Controls.Add(cbEzabatu);
+            Controls.Add(cbAldatu);
+            Controls.Add(cbGehitu);
             Controls.Add(cbIrten);
             FormBorderStyle = FormBorderStyle.None;
             Name = "FInbentarioa";
             Text = "FInbentarioa";
             Load += FInbentarioa_Load;
+            panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)dgwInbentarioa).EndInit();
             ResumeLayout(false);
         }
 
         #endregion
 
         private Button cbIrten;
+        private Panel panel1;
+        private DataGridView dgwInbentarioa;
+        private Button cbEzabatu;
+        private Button cbAldatu;
+        private Button cbGehitu;
     }
 }

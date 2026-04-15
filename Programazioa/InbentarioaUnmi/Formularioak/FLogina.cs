@@ -13,7 +13,6 @@ namespace InbentarioaUnmi
         {
             InitializeComponent();
         }
-
         private void FLogina_Load(object sender, EventArgs e)
         {
             txtPasahitza.Enabled = false;
@@ -119,7 +118,6 @@ namespace InbentarioaUnmi
                 txtErabiltzailea.Focus();
             }
         }
-
         private void sarreraToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FSarrera fs = new FSarrera(era, panelak);
@@ -129,7 +127,6 @@ namespace InbentarioaUnmi
             fs.BringToFront();
             fs.Show();
         }
-
         private void erabiltzaileakToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FErabiltzailea fe = new FErabiltzailea(era);
@@ -139,7 +136,6 @@ namespace InbentarioaUnmi
             fe.BringToFront();
             fe.Show();
         }
-
         private void mintegiakToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FMintegia fm = new FMintegia(era);
@@ -158,7 +154,6 @@ namespace InbentarioaUnmi
             fi.BringToFront();
             fi.Show();
         }
-
         private void intzidentziakToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
             FIntzidentziak fi = new FIntzidentziak(era);
@@ -168,7 +163,6 @@ namespace InbentarioaUnmi
             fi.BringToFront();
             fi.Show();
         }
-
         private void erabiltzaileaToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FErabiltzailea fe = new FErabiltzailea(era);
@@ -178,17 +172,14 @@ namespace InbentarioaUnmi
             fe.BringToFront();
             fe.Show();
         }
-
         private void txtErabiltzailea_TextChanged(object sender, EventArgs e)
         {
 
         }
-
         private void cbIrten_MouseDown(object sender, MouseEventArgs e)
         {
-            this.txi = true;
+        
         }
-
         private void cbIrten_MouseMove(object sender, MouseEventArgs e)
         {
             this.txi = true;

@@ -1,4 +1,5 @@
-﻿using InbentarioaUnmi.DatuModeloak;
+﻿using InbentarioaUnmi.DatuBasea;
+using InbentarioaUnmi.DatuModeloak;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -49,6 +50,14 @@ namespace InbentarioaUnmi.Formularioak
         }
 
         private void FMintegia_Load(object sender, EventArgs e)
+        {
+            List<Mintegiak> mintegiak = new List<Mintegiak>();
+
+            mintegiak = MintegiaDB.MintegiakListaratu();
+            dgwMintegiak.DataSource = mintegiak;
+        }
+
+        private void dgwMintegiak_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
         }

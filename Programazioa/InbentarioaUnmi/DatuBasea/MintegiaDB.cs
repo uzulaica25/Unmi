@@ -13,7 +13,7 @@ namespace InbentarioaUnmi.DatuBasea
     {
         public static List<Mintegiak> MintegiakListaratu()
         {
-            string select, Izena, Tel;
+            string select, Izena, Id;
             List<Mintegiak> LisMin = new List<Mintegiak>();
 
             select = @"SELECT * FROM Inbentarioa.Mintegiak";
@@ -25,24 +25,25 @@ namespace InbentarioaUnmi.DatuBasea
                     while (reader.Read())
                     {
                         Izena = reader.GetString("Izena");
-                        Mintegiak kon = new Mintegiak(Izena);
+                        Id = reader.GetString("id");
+                        Mintegiak min = new Mintegiak(Id, Izena);
 
-                        LisMin.Add(kon);
+                        LisMin.Add(min);
                     }
                 }
             }
             return LisMin;
         }
-        public static int MintegiakAldatu(string m, string berria)
+        public static int MintegiakAldatu(string id, string berria)
         {
             string update;
 
-            update = @"UPDATE inbentarioa.Mintegiak SET izena = '" + berria + "' WHERE izena = '" + m + "';";
+            update = @"UPDATE inbentarioa.Mintegiak SET izena = '" + berria + "' WHERE ID = '" + id + "';";
             try
             {
                 using (MySqlCommand komandua = new MySqlCommand(update, DBKonexioa.Konektatu()))
                 {
-                    using (MySqlDataReader reader = komandua.ExecuteReader()) ;
+                    using (MySqlDataReader reader = komandua.ExecuteReader());
                 }
                 return 1;
             }
@@ -55,7 +56,8 @@ namespace InbentarioaUnmi.DatuBasea
         public static int MintegiakGehitu(Mintegiak m)
         {
             string insert;
-            insert = @"INSERT INTO Agenda(kontaktua, telefonoa) VALUES(@izena, @telefonoa)";
+
+            insert = @"INSERT INTO Mintegiak (ID, izena) SELECT CONCAT('M', LPAD(IFNULL(MAX(CAST(SUBSTRING(ID,2) AS UNSIGNED)),0) + 1, 2, '0')), @izena FROM Mintegiak;";
 
             using (MySqlConnection conn = DBKonexioa.Konektatu())
             using (MySqlCommand komandua = new MySqlCommand(insert, conn))
