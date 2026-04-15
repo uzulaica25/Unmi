@@ -62,7 +62,7 @@ namespace InbentarioaUnmi
                     cbSartu.Focus();
                 }
             }
-           
+
         }
         private void cbSartu_Click_1(object sender, EventArgs e)
         {
@@ -117,11 +117,21 @@ namespace InbentarioaUnmi
         }
         private void cbIrten_MouseDown(object sender, MouseEventArgs e)
         {
-        
+
         }
         private void cbIrten_MouseMove(object sender, MouseEventArgs e)
         {
             this.txi = true;
+        }
+
+        private void panelak_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void txtErabiltzailea_MouseMove(object sender, MouseEventArgs e)
+        {
+            this.txi = false;
         }
     }
 }

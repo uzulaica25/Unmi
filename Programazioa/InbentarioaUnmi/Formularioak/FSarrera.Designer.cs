@@ -114,10 +114,10 @@
             // cbMintegia
             // 
             cbMintegia.Font = new Font("Times New Roman", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            cbMintegia.Location = new Point(614, 120);
+            cbMintegia.Location = new Point(614, 155);
             cbMintegia.Name = "cbMintegia";
             cbMintegia.Size = new Size(105, 29);
-            cbMintegia.TabIndex = 2;
+            cbMintegia.TabIndex = 3;
             cbMintegia.Text = "Mintegia";
             cbMintegia.UseVisualStyleBackColor = true;
             cbMintegia.Click += cbMintegia_Click;
@@ -136,10 +136,10 @@
             // cbErabiltzailea
             // 
             cbErabiltzailea.Font = new Font("Times New Roman", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            cbErabiltzailea.Location = new Point(614, 164);
+            cbErabiltzailea.Location = new Point(614, 115);
             cbErabiltzailea.Name = "cbErabiltzailea";
             cbErabiltzailea.Size = new Size(105, 29);
-            cbErabiltzailea.TabIndex = 3;
+            cbErabiltzailea.TabIndex = 2;
             cbErabiltzailea.Text = "Erabiltzailea";
             cbErabiltzailea.UseVisualStyleBackColor = true;
             cbErabiltzailea.Click += cbErabiltzailea_Click;

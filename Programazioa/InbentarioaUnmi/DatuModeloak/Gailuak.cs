@@ -21,6 +21,7 @@ namespace InbentarioaUnmi.DatuModeloak
         public string Kokalekua { get => kokalekua; set => kokalekua = value; }
         public DateOnly ErosteData { get => erosteData; set => erosteData = value; }
         public Mintegiak Mintegia { get => mintegia; set => mintegia = value; }
+        public string IdMintegia => mintegia.Id;
 
         // Eraikitzailea
         public Gailuak(string i, string m, string k, DateOnly e, Mintegiak mi)

@@ -15,7 +15,7 @@ namespace InbentarioaUnmi.DatuBasea
         {
             // Id nola jarri erabakitzia falta da
             string insert;
-            insert = @"INSERT INTO Inbentarioa.Historiala(ID, data, mezua, IDGailua) VALUES(@ID, @data, @mezua, @gailua)";
+            insert = @"INSERT INTO Inbentarioa.Intzidentziak(ID, data, mezua, IDGailua) VALUES(@ID, @data, @mezua, @gailua)";
 
             using (MySqlConnection conn = DBKonexioa.Konektatu())
             using (MySqlCommand komandua = new MySqlCommand(insert, conn))
@@ -40,7 +40,7 @@ namespace InbentarioaUnmi.DatuBasea
         {
             string update;
 
-            update = @"UPDATE Inbentarioa.Historiala SET mezua = '" + m + "' WHERE IDGailua = '" + gail.Id + "';";
+            update = @"UPDATE Inbentarioa.Intzidentziak SET mezua = '" + m + "' WHERE IDGailua = '" + gail.Id + "';";
             try
             {
                 using (MySqlCommand komandua = new MySqlCommand(update, DBKonexioa.Konektatu()))
@@ -55,7 +55,7 @@ namespace InbentarioaUnmi.DatuBasea
             }
 
         }
-        public static List<Intzidentziak> IntzidentziaZerrendatu()
+        public static List<Intzidentziak> IntzidentziakZerrendatu()
         {
             string select, mezua, id, mar, kok, ize, ram, cpu;
             bool kolore;
@@ -67,7 +67,7 @@ namespace InbentarioaUnmi.DatuBasea
             List<Intzidentziak> LisInz = new List<Intzidentziak>();
 
             // Ordenagailuen izidentziak
-            select = @"SELECT h.mezua, h.data, o.ID, o.marka, o.kokalekua, o.erostedata, m.izena, o.RAM, o.CPU FROM Inbentarioa.Historialak h JOIN Inbentarioa.Ordenagailuak o ON h.IDGailua = o.ID JOIN Inbentarioa.Mintegiak m ON o.IDMintegiak = m.ID";
+            select = @"SELECT h.mezua, h.data, o.ID, o.marka, o.kokalekua, o.erostedata, m.izena, o.RAM, o.CPU FROM Inbentarioa.Intzidentziak h JOIN Inbentarioa.Ordenagailuak o ON h.IDGailua = o.ID JOIN Inbentarioa.Mintegiak m ON o.IDMintegia = m.ID";
 
             using (MySqlCommand komandua = new MySqlCommand(select, DBKonexioa.Konektatu()))
             {
@@ -97,7 +97,7 @@ namespace InbentarioaUnmi.DatuBasea
             }
 
             // Inprimagailuen izidentziak
-            select = @"SELECT h.mezua, h.data, o.ID, o.marka, o.kokalekua, o.erostedata, m.izena, o.Koloretakoa FROM Inbentarioa.Historialak h JOIN Inbentarioa.Inprimagailuak o ON h.IDGailua = o.ID JOIN Inbentarioa.Mintegiak m ON o.IDMintegiak = m.ID";
+            select = @"SELECT h.mezua, h.data, o.ID, o.marka, o.kokalekua, o.erostedata, m.izena, o.Koloretakoa FROM Inbentarioa.Intzidentziak h JOIN Inbentarioa.Inprimagailuak o ON h.IDGailua = o.ID JOIN Inbentarioa.Mintegiak m ON o.IDMintegia = m.ID";
 
             using (MySqlCommand komandua = new MySqlCommand(select, DBKonexioa.Konektatu()))
             {
@@ -141,7 +141,7 @@ namespace InbentarioaUnmi.DatuBasea
             DateOnly data;
             List<Intzidentziak> LisInz = new List<Intzidentziak>();
 
-            select = @"SELECT * FROM Inbentarioa.Historiala WHERE IDGailua = '" + gail.Id + "';";
+            select = @"SELECT * FROM Inbentarioa.Intzidentziak WHERE IDGailua = '" + gail.Id + "';";
 
             using (MySqlCommand komandua = new MySqlCommand(select, DBKonexioa.Konektatu()))
             {

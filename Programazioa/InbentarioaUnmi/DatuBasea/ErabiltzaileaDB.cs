@@ -84,8 +84,18 @@ namespace InbentarioaUnmi.DatuBasea
         public static int ErabiltzaileaAldatu(Erabiltzaileak e, string p)
         {
             string update;
-
-            update = @"UPDATE Inbentarioa.Erabiltzailea SET pasahitza = '" + p + "' WHERE ID = '" + e.Izena + "';";
+            if(e.Rola == "MintegiBurua")
+            {
+                update = @"UPDATE Inbentarioa.MintegiBurua SET pasahitza = '" + p + "' WHERE ID = '" + e.Izena + "';";
+            }
+            else if(e.Rola == "IKTArduraduna")
+            {
+                update = @"UPDATE Inbentarioa.IKTArduraduna SET pasahitza = '" + p + "' WHERE ID = '" + e.Izena + "';";
+            }
+            else
+            {
+                update = @"UPDATE Inbentarioa.Irakaslea SET pasahitza = '" + p + "' WHERE ID = '" + e.Izena + "';";
+            }
             try
             {
                 using (MySqlCommand komandua = new MySqlCommand(update, DBKonexioa.Konektatu()))
@@ -103,9 +113,19 @@ namespace InbentarioaUnmi.DatuBasea
         public static int ErabiltzaileaEzabatu(Erabiltzaileak e)
         {
             string delete;
+            if(e.Rola == "MintegiBurua")
+            {
+                delete = @"DELETE FROM Inbentarioa.MintegiBurua WHERE ID = '" + e.Id + "';";
+            }
+            else if (e.Rola == "IKTArduraduna")
+            {
+                delete = @"DELETE FROM Inbentarioa.IKTArduraduna WHERE ID = '" + e.Id + "';";
+            }
+            else
+            {
+                delete = @"DELETE FROM Inbentarioa.Irakaslea WHERE ID = '" + e.Id + "';";
 
-            delete = @"DELETE FROM Inbentarioa.Erabiltzailea WHERE ID = '" + e.Id + "';";
-
+            }
             try
             {
                 using (MySqlCommand komandua = new MySqlCommand(delete, DBKonexioa.Konektatu()))
@@ -141,7 +161,7 @@ namespace InbentarioaUnmi.DatuBasea
                         IDmin = reader.GetString("IDMintegia");
                         minte = reader.GetString("mintegia");
                         min = new Mintegiak(IDmin, minte);
-                        Erabiltzaileak era = new Erabiltzaileak(id, Izena, Pas, min, " ");
+                        Erabiltzaileak era = new Erabiltzaileak(id, Izena, Pas, min, "Irakaslea");
 
                         LisEr.Add(era);
                     }
@@ -211,7 +231,7 @@ namespace InbentarioaUnmi.DatuBasea
                         minte = reader.GetString("IDMintegia");
                         mizena = reader.GetString("mintegia");
                         min = new Mintegiak(minte, mizena);
-                        Erabiltzaileak era = new Erabiltzaileak(id, Izena, Pas, min, " " );
+                        Erabiltzaileak era = new Erabiltzaileak(id, Izena, Pas, min, "Irakaslea" );
                         return era;
                     }
                 }

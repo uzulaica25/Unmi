@@ -14,9 +14,11 @@ namespace InbentarioaUnmi.Formularioak
 {
     public partial class FMintegia : Form
     {
+        public Erabiltzaileak era;
         public List<Mintegiak> LisMin = new List<Mintegiak>();
         public FMintegia(Erabiltzaileak era)
         {
+            this.era = era;
             InitializeComponent();
         }
         private void cbIrten_Click(object sender, EventArgs e)

@@ -95,7 +95,7 @@
             toolStripContainer2.ContentPanel.Controls.Add(txtErabiltzailea);
             toolStripContainer2.ContentPanel.Controls.Add(lblErabiltzailea);
             toolStripContainer2.ContentPanel.Controls.Add(panelak);
-            toolStripContainer2.ContentPanel.Size = new Size(800, 450);
+            toolStripContainer2.ContentPanel.Size = new Size(800, 425);
             toolStripContainer2.Dock = DockStyle.Fill;
             toolStripContainer2.LeftToolStripPanelVisible = false;
             toolStripContainer2.Location = new Point(0, 0);
@@ -159,6 +159,7 @@
             txtErabiltzailea.TabIndex = 0;
             txtErabiltzailea.TextChanged += txtErabiltzailea_TextChanged;
             txtErabiltzailea.Leave += txtErabiltzailea_Leave;
+            txtErabiltzailea.MouseMove += txtErabiltzailea_MouseMove;
             // 
             // lblErabiltzailea
             // 
@@ -176,6 +177,7 @@
             panelak.Name = "panelak";
             panelak.Size = new Size(800, 422);
             panelak.TabIndex = 21;
+            panelak.Paint += panelak_Paint;
             // 
             // FLogina
             // 

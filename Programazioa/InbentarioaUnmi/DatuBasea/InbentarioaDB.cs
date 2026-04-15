@@ -13,11 +13,6 @@ namespace InbentarioaUnmi.DatuBasea
 {
     public static class InbentarioaDB
     {
-        /* Gailuak listaratu bakarrik dao mas o menos jarrita baino definitzia falta da gailuak gehitu ta aldatzian nola bereiztu ze gailu mota dan.
-         * 
-         * DB klaseak txukun jartzeko daude InbentarioaDB, ErabiltzaileaDB, InzidentzianDB, KontaktuakDB kodea dake.
-         * KontaktuaZerrendatu Selecta ondo definitzeko nola itean. FMintegia erdi kodifikatzen hasita.
-        */
         public static List<Gailuak> GailuakListaratu()
         {
             string id, select, marka, kokalekua, CPU, RAM;
@@ -27,7 +22,7 @@ namespace InbentarioaUnmi.DatuBasea
             DateTime erosteData;
             List<Gailuak> Lisgai = new List<Gailuak>();
 
-            select = @"SELECT o.ID, o.marka, o.Kokalekua, o.CPU, o.RAM, o.erosteData, m.izena FROM Inbentarioa.Ordenagailuak o JOIN Inbentarioa.Mintegiak m ON o.IDMintegiak = m.Id";
+            select = @"SELECT o.ID, o.marka, o.Kokalekua, o.CPU, o.RAM, o.erosteData, m.izena FROM Inbentarioa.Ordenagailuak o JOIN Inbentarioa.Mintegiak m ON o.IDMintegia = m.Id";
 
             using (MySqlCommand komandua = new MySqlCommand(select, DBKonexioa.Konektatu()))
             {
@@ -50,7 +45,7 @@ namespace InbentarioaUnmi.DatuBasea
                     }
                 }
             }
-            select = @"SELECT i.ID, i.marka, i.Kokalekua, i.Koloretakoa, i.erosteData, m.izena FROM Inbentarioa.Inprimagailuak i JOIN Inbentarioa.Mintegiak m ON o.IDMintegiak = m.Id";
+            select = @"SELECT i.ID, i.marka, i.Kokalekua, i.Koloretakoa, i.erosteData, m.izena FROM Inbentarioa.Inprimagailuak i JOIN Inbentarioa.Mintegiak m ON i.IDMintegia = m.Id";
 
             using (MySqlCommand komandua = new MySqlCommand(select, DBKonexioa.Konektatu()))
             {
@@ -61,7 +56,6 @@ namespace InbentarioaUnmi.DatuBasea
                         id = reader.GetString("ID");
                         marka = reader.GetString("marka");
                         kokalekua = reader.GetString("kokalekua");
-                        CPU = reader.GetString("CPU");
                         erosteData = reader.GetDateTime("erosteData");
                         er = DateOnly.FromDateTime(erosteData);
                         min = new Mintegiak(reader.GetString("izena"));

@@ -10,15 +10,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace InbentarioaUnmi.Formularioak
 {
     public partial class FErabiltzailea : Form
     {
         public List<Erabiltzaileak> LisEra = new List<Erabiltzaileak>();
+        public Erabiltzaileak era;
         public FErabiltzailea(Erabiltzaileak era)
         {
             InitializeComponent();
+            this.era = era;
         }
 
         private void cbIrten_Click(object sender, EventArgs e)
@@ -30,8 +33,16 @@ namespace InbentarioaUnmi.Formularioak
         {
             cbGehitu.Focus();
             LisEra = ErabiltzaileaDB.ErabiltzaileaZerrendatu();
-            dgvErabiltzaileak.DataSource = LisEra;
-            dgvErabiltzaileak.Columns["Mintegia"].Visible = false;
+            if (era.Rola == "MintegiBurua")
+            {
+                var filtrado = LisEra.Where(x => x.Mintegia.Id == era.Mintegia.Id).ToList();
+                dgvErabiltzaileak.DataSource = filtrado;
+
+            }
+            else
+            {
+                dgvErabiltzaileak.DataSource = LisEra;
+            }
         }
 
         private void cbGehitu_Click(object sender, EventArgs e)
@@ -91,7 +102,7 @@ namespace InbentarioaUnmi.Formularioak
             mintegia = MintegiaDB.MintegiaBilatu(min);
             if (rola == "1")
             {
-                er = new Erabiltzaileak(Eizena, pas, mintegia, " ");
+                er = new Erabiltzaileak(Eizena, pas, mintegia, "Irakaslea");
             }
             else if (rola == "2")
             {

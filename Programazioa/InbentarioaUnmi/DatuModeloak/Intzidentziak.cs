@@ -15,8 +15,10 @@ namespace InbentarioaUnmi.DatuModeloak
 
         // Get-Set
         public Gailuak Gailua { get => gailua; set => gailua = value; }
+        public string IDGailua => Gailua?.Id;
         public DateOnly Data { get => data; set => data = value; }
         public string Mezua { get => mezua; set => mezua = value; }
+        
 
         // Eraikitzaileak
         public Intzidentziak(Gailuak g, DateOnly d, string m)

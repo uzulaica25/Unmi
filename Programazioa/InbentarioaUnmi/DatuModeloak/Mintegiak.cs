@@ -15,7 +15,7 @@ namespace InbentarioaUnmi.DatuModeloak
         // Get-Set
         public string Id { get => id; set => id = value; }
         public string Izena { get => izena; set => izena = value; }
-        
+
 
         // Eraikitzailea
         public Mintegiak(string id, string i)

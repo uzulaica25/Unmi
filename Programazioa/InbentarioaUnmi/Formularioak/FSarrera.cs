@@ -24,22 +24,33 @@ namespace InbentarioaUnmi.Formularioak
             txtMintegia.Text = era.Mintegia.Izena;
             txtIzena.Enabled = false;
             txtMintegia.Enabled = false;
-            if(era.Rola != " ")
+            if (era.Rola == "Irakaslea")
+            {
+                cbInbentarioa.Enabled = true;
+                cbIntzidentziak.Enabled = true;
+                cbMintegia.Visible = false;
+                cbErabiltzailea.Visible = false;
+            }
+            else if (era.Rola == "MintegiBurua")
+            {
+                cbInbentarioa.Enabled = true;
+                cbIntzidentziak.Enabled = true;
+                cbMintegia.Visible = false;
+                cbErabiltzailea.Enabled = true;
+                cbErabiltzailea.Visible = true;
+            }
+            else if (era.Rola == "IKTArduraduna")
             {
                 cbInbentarioa.Enabled = true;
                 cbIntzidentziak.Enabled = true;
                 cbMintegia.Enabled = true;
                 cbErabiltzailea.Enabled = true;
-            }
-             else
-            {
-                cbInbentarioa.Enabled = true;
-                cbIntzidentziak.Enabled = true;
-                cbMintegia.Enabled = false;
-                cbErabiltzailea.Enabled = false;
+                cbInbentarioa.Visible = true;
+                cbIntzidentziak.Visible = true;
+                cbMintegia.Visible = true;
+                cbErabiltzailea.Visible = true;
             }
         }
-
         private void label1_Click(object sender, EventArgs e)
         {
 
