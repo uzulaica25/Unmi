@@ -1,6 +1,7 @@
 ﻿using InbentarioaUnmi.DatuModeloak;
 using InterAgenda;
 using MySql.Data.MySqlClient;
+using Mysqlx.Crud;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -34,11 +35,11 @@ namespace InbentarioaUnmi.DatuBasea
             }
             return LisMin;
         }
-        public static int MintegiakAldatu(string id, string berria)
+        public static int MintegiakAldatu(string i, string berria)
         {
             string update;
 
-            update = @"UPDATE inbentarioa.Mintegiak SET izena = '" + berria + "' WHERE ID = '" + id + "';";
+            update = @"UPDATE Inbentarioa.Mintegiak SET izena = '" + berria + "' WHERE ID = '" + i + "';";
             try
             {
                 using (MySqlCommand komandua = new MySqlCommand(update, DBKonexioa.Konektatu()))
@@ -79,7 +80,7 @@ namespace InbentarioaUnmi.DatuBasea
         {
             string delete;
 
-            delete = @"DELETE FROM Inbentarioa.Mintegiak WHERE izena = '" + m.Izena + "';";
+            delete = @"DELETE FROM Inbentarioa.Mintegiak WHERE ID = '" + m.Id + "';";
 
             try
             {
@@ -94,6 +95,23 @@ namespace InbentarioaUnmi.DatuBasea
                 return ex.Number;
 
             }
+        }
+        public static Mintegiak MintegiaBilatu(string i)
+        {
+            Mintegiak min;
+            string select, Id;
+
+            select = @"SELECT * FROM Inbentarioa.Mintegiak WHERE izena = '" + i + "';";
+
+            using (MySqlCommand komandua = new MySqlCommand(select, DBKonexioa.Konektatu()))
+            {
+                using (MySqlDataReader reader = komandua.ExecuteReader())
+                {
+                    Id = reader.GetString("id");
+                    min = new Mintegiak(Id, i);
+                }
+            }
+            return min;
         }
     }
 }

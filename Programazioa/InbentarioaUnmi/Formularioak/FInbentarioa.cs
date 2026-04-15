@@ -20,10 +20,30 @@ namespace InbentarioaUnmi.Formularioak
 
         private void cbIrten_Click(object sender, EventArgs e)
         {
-            this.Close();
+
         }
 
         private void FInbentarioa_Load(object sender, EventArgs e)
+        {
+            cbGehitu.Focus();
+        }
+
+        private void cbIrten_Click_1(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void cbGehitu_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cbAldatu_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cbEzabatu_Click(object sender, EventArgs e)
         {
 
         }

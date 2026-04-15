@@ -34,13 +34,6 @@
             RightToolStripPanel = new ToolStripPanel();
             LeftToolStripPanel = new ToolStripPanel();
             ContentPanel = new ToolStripContentPanel();
-            menuStrip1 = new MenuStrip();
-            aukerakToolStripMenuItem = new ToolStripMenuItem();
-            sarreraToolStripMenuItem = new ToolStripMenuItem();
-            inbentarioaToolStripMenuItem = new ToolStripMenuItem();
-            intzidentziakToolStripMenuItem = new ToolStripMenuItem();
-            mintegiakToolStripMenuItem = new ToolStripMenuItem();
-            erabiltzaileaToolStripMenuItem = new ToolStripMenuItem();
             toolStripContainer2 = new ToolStripContainer();
             cbSartu = new Button();
             cbIrten = new Button();
@@ -49,9 +42,7 @@
             txtErabiltzailea = new TextBox();
             lblErabiltzailea = new Label();
             panelak = new Panel();
-            menuStrip1.SuspendLayout();
             toolStripContainer2.ContentPanel.SuspendLayout();
-            toolStripContainer2.TopToolStripPanel.SuspendLayout();
             toolStripContainer2.SuspendLayout();
             SuspendLayout();
             // 
@@ -91,60 +82,6 @@
             // 
             ContentPanel.Size = new Size(800, 425);
             // 
-            // menuStrip1
-            // 
-            menuStrip1.Dock = DockStyle.None;
-            menuStrip1.Enabled = false;
-            menuStrip1.ImageScalingSize = new Size(20, 20);
-            menuStrip1.Items.AddRange(new ToolStripItem[] { aukerakToolStripMenuItem });
-            menuStrip1.Location = new Point(0, 0);
-            menuStrip1.Name = "menuStrip1";
-            menuStrip1.Size = new Size(800, 28);
-            menuStrip1.TabIndex = 1;
-            menuStrip1.Text = "menuStrip1";
-            // 
-            // aukerakToolStripMenuItem
-            // 
-            aukerakToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { sarreraToolStripMenuItem, inbentarioaToolStripMenuItem, intzidentziakToolStripMenuItem, mintegiakToolStripMenuItem, erabiltzaileaToolStripMenuItem });
-            aukerakToolStripMenuItem.Name = "aukerakToolStripMenuItem";
-            aukerakToolStripMenuItem.Size = new Size(76, 24);
-            aukerakToolStripMenuItem.Text = "Aukerak";
-            // 
-            // sarreraToolStripMenuItem
-            // 
-            sarreraToolStripMenuItem.Name = "sarreraToolStripMenuItem";
-            sarreraToolStripMenuItem.Size = new Size(176, 26);
-            sarreraToolStripMenuItem.Text = "Sarrera";
-            sarreraToolStripMenuItem.Click += sarreraToolStripMenuItem_Click;
-            // 
-            // inbentarioaToolStripMenuItem
-            // 
-            inbentarioaToolStripMenuItem.Name = "inbentarioaToolStripMenuItem";
-            inbentarioaToolStripMenuItem.Size = new Size(176, 26);
-            inbentarioaToolStripMenuItem.Text = "Inbentarioa";
-            inbentarioaToolStripMenuItem.Click += inbentarioaToolStripMenuItem_Click;
-            // 
-            // intzidentziakToolStripMenuItem
-            // 
-            intzidentziakToolStripMenuItem.Name = "intzidentziakToolStripMenuItem";
-            intzidentziakToolStripMenuItem.Size = new Size(176, 26);
-            intzidentziakToolStripMenuItem.Text = "Intzidentziak";
-            intzidentziakToolStripMenuItem.Click += intzidentziakToolStripMenuItem_Click_1;
-            // 
-            // mintegiakToolStripMenuItem
-            // 
-            mintegiakToolStripMenuItem.Name = "mintegiakToolStripMenuItem";
-            mintegiakToolStripMenuItem.Size = new Size(176, 26);
-            mintegiakToolStripMenuItem.Text = "Mintegiak";
-            mintegiakToolStripMenuItem.Click += mintegiakToolStripMenuItem_Click;
-            // 
-            // erabiltzaileaToolStripMenuItem
-            // 
-            erabiltzaileaToolStripMenuItem.Name = "erabiltzaileaToolStripMenuItem";
-            erabiltzaileaToolStripMenuItem.Size = new Size(176, 26);
-            erabiltzaileaToolStripMenuItem.Text = "Erabiltzailea";
-            erabiltzaileaToolStripMenuItem.Click += erabiltzaileaToolStripMenuItem_Click;
-            // 
             // toolStripContainer2
             // 
             toolStripContainer2.BottomToolStripPanelVisible = false;
@@ -158,7 +95,7 @@
             toolStripContainer2.ContentPanel.Controls.Add(txtErabiltzailea);
             toolStripContainer2.ContentPanel.Controls.Add(lblErabiltzailea);
             toolStripContainer2.ContentPanel.Controls.Add(panelak);
-            toolStripContainer2.ContentPanel.Size = new Size(800, 422);
+            toolStripContainer2.ContentPanel.Size = new Size(800, 450);
             toolStripContainer2.Dock = DockStyle.Fill;
             toolStripContainer2.LeftToolStripPanelVisible = false;
             toolStripContainer2.Location = new Point(0, 0);
@@ -167,10 +104,6 @@
             toolStripContainer2.Size = new Size(800, 450);
             toolStripContainer2.TabIndex = 2;
             toolStripContainer2.Text = "toolStripContainer2";
-            // 
-            // toolStripContainer2.TopToolStripPanel
-            // 
-            toolStripContainer2.TopToolStripPanel.Controls.Add(menuStrip1);
             // 
             // cbSartu
             // 
@@ -252,16 +185,11 @@
             ClientSize = new Size(800, 450);
             Controls.Add(toolStripContainer2);
             Icon = (Icon)resources.GetObject("$this.Icon");
-            MainMenuStrip = menuStrip1;
             Name = "FLogina";
             Text = "Inbentarioa";
             Load += FLogina_Load;
-            menuStrip1.ResumeLayout(false);
-            menuStrip1.PerformLayout();
             toolStripContainer2.ContentPanel.ResumeLayout(false);
             toolStripContainer2.ContentPanel.PerformLayout();
-            toolStripContainer2.TopToolStripPanel.ResumeLayout(false);
-            toolStripContainer2.TopToolStripPanel.PerformLayout();
             toolStripContainer2.ResumeLayout(false);
             toolStripContainer2.PerformLayout();
             ResumeLayout(false);
@@ -273,7 +201,6 @@
         private ToolStripPanel RightToolStripPanel;
         private ToolStripPanel LeftToolStripPanel;
         private ToolStripContentPanel Panela;
-        private MenuStrip menuStrip1;
         private ToolStripContainer toolStripContainer2;
         private TextBox txtPasahitza;
         private Label lblPasahitza;
@@ -283,12 +210,6 @@
         private Button cbIrten;
         private ToolStripContentPanel panel;
         private ToolStripContentPanel ContentPanel;
-        private ToolStripMenuItem aukerakToolStripMenuItem;
-        private ToolStripMenuItem sarreraToolStripMenuItem;
-        private ToolStripMenuItem inbentarioaToolStripMenuItem;
-        private ToolStripMenuItem intzidentziakToolStripMenuItem;
-        private ToolStripMenuItem mintegiakToolStripMenuItem;
         private Panel panelak;
-        private ToolStripMenuItem erabiltzaileaToolStripMenuItem;
     }
 }

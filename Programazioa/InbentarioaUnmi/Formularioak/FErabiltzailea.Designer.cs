@@ -30,73 +30,76 @@
         {
             cbIrten = new Button();
             panel1 = new Panel();
-            dgwErabiltzaileak = new DataGridView();
+            dgvErabiltzaileak = new DataGridView();
             cbEzabatu = new Button();
             cbAldatu = new Button();
             cbGehitu = new Button();
             panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dgwErabiltzaileak).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dgvErabiltzaileak).BeginInit();
             SuspendLayout();
             // 
             // cbIrten
             // 
             cbIrten.Font = new Font("Times New Roman", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            cbIrten.Location = new Point(619, 374);
+            cbIrten.Location = new Point(620, 378);
             cbIrten.Name = "cbIrten";
             cbIrten.Size = new Size(94, 29);
-            cbIrten.TabIndex = 7;
+            cbIrten.TabIndex = 3;
             cbIrten.Text = "Irten";
             cbIrten.UseVisualStyleBackColor = true;
             cbIrten.Click += cbIrten_Click;
             // 
             // panel1
             // 
-            panel1.Controls.Add(dgwErabiltzaileak);
-            panel1.Location = new Point(88, 52);
+            panel1.Controls.Add(dgvErabiltzaileak);
+            panel1.Location = new Point(89, 56);
             panel1.Name = "panel1";
             panel1.Size = new Size(497, 256);
             panel1.TabIndex = 14;
             // 
-            // dgwErabiltzaileak
+            // dgvErabiltzaileak
             // 
-            dgwErabiltzaileak.BackgroundColor = Color.FromArgb(192, 192, 255);
-            dgwErabiltzaileak.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgwErabiltzaileak.Dock = DockStyle.Fill;
-            dgwErabiltzaileak.Location = new Point(0, 0);
-            dgwErabiltzaileak.Name = "dgwErabiltzaileak";
-            dgwErabiltzaileak.RowHeadersWidth = 51;
-            dgwErabiltzaileak.Size = new Size(497, 256);
-            dgwErabiltzaileak.TabIndex = 0;
+            dgvErabiltzaileak.BackgroundColor = Color.FromArgb(192, 192, 255);
+            dgvErabiltzaileak.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvErabiltzaileak.Dock = DockStyle.Fill;
+            dgvErabiltzaileak.Location = new Point(0, 0);
+            dgvErabiltzaileak.Name = "dgvErabiltzaileak";
+            dgvErabiltzaileak.RowHeadersWidth = 51;
+            dgvErabiltzaileak.Size = new Size(497, 256);
+            dgvErabiltzaileak.TabIndex = 0;
             // 
             // cbEzabatu
             // 
             cbEzabatu.Font = new Font("Times New Roman", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            cbEzabatu.Location = new Point(619, 148);
+            cbEzabatu.Location = new Point(620, 152);
             cbEzabatu.Name = "cbEzabatu";
             cbEzabatu.Size = new Size(94, 29);
-            cbEzabatu.TabIndex = 12;
+            cbEzabatu.TabIndex = 2;
             cbEzabatu.Text = "Ezabatu";
             cbEzabatu.UseVisualStyleBackColor = true;
+            cbEzabatu.Click += cbEzabatu_Click;
             // 
             // cbAldatu
             // 
             cbAldatu.Font = new Font("Times New Roman", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            cbAldatu.Location = new Point(619, 100);
+            cbAldatu.Location = new Point(620, 104);
             cbAldatu.Name = "cbAldatu";
             cbAldatu.Size = new Size(94, 29);
-            cbAldatu.TabIndex = 11;
+            cbAldatu.TabIndex = 1;
             cbAldatu.Text = "Aldatu";
             cbAldatu.UseVisualStyleBackColor = true;
+            cbAldatu.Click += cbAldatu_Click;
             // 
             // cbGehitu
             // 
             cbGehitu.Font = new Font("Times New Roman", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            cbGehitu.Location = new Point(619, 52);
+            cbGehitu.Location = new Point(620, 56);
             cbGehitu.Name = "cbGehitu";
             cbGehitu.Size = new Size(94, 29);
-            cbGehitu.TabIndex = 10;
+            cbGehitu.TabIndex = 0;
             cbGehitu.Text = "Gehitu";
             cbGehitu.UseVisualStyleBackColor = true;
+            cbGehitu.Click += cbGehitu_Click;
             // 
             // FErabiltzailea
             // 
@@ -114,7 +117,7 @@
             Text = "FErabiltzailea";
             Load += FErabiltzailea_Load;
             panel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)dgwErabiltzaileak).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dgvErabiltzaileak).EndInit();
             ResumeLayout(false);
         }
 
@@ -122,7 +125,7 @@
 
         private Button cbIrten;
         private Panel panel1;
-        private DataGridView dgwErabiltzaileak;
+        private DataGridView dgvErabiltzaileak;
         private Button cbEzabatu;
         private Button cbAldatu;
         private Button cbGehitu;

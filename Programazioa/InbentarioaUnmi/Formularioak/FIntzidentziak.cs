@@ -25,6 +25,21 @@ namespace InbentarioaUnmi.Formularioak
 
         private void FIntzidentziak_Load(object sender, EventArgs e)
         {
+            cbGehitu.Focus();
+        }
+
+        private void cbGehitu_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cbAldatu_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cbEzabatu_Click(object sender, EventArgs e)
+        {
 
         }
     }

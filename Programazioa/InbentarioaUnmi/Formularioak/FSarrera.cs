@@ -52,7 +52,7 @@ namespace InbentarioaUnmi.Formularioak
         }
         private void FSarrera_Load(object sender, EventArgs e)
         {
-
+            cbInbentarioa.Focus();
         }
 
         private void cbInbentarioa_Click(object sender, EventArgs e)
