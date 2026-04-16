@@ -31,27 +31,9 @@ namespace InbentarioaUnmi.Formularioak
         private void FIntzidentziak_Load(object sender, EventArgs e)
         {
             cbGehitu.Focus();
-            LisInt = intzidentziakDB.IntzidentziakZerrendatu();
+            LisInt = intzidentziakDB.IntzidentziakZerrendatu(era);
 
-            if (era.Rola == "Irakaslea")
-            {
-                cbGehitu.Visible = false;
-                cbAldatu.Visible = false;
-                cbEzabatu.Visible = false;
-                var filtrado = LisInt.Where(x => x.Gailua.Mintegia.Id == era.Mintegia.Id).ToList();
-                dgvintzidentziak.DataSource = filtrado;
-
-            }
-            else if (era.Rola == "MintegiBurua")
-            {
-                var filtrado = LisInt.Where(x => x.Gailua.Mintegia.Id == era.Mintegia.Id).ToList();
-                dgvintzidentziak.DataSource = filtrado;
-                
-            }
-            else
-            {
-                dgvintzidentziak.DataSource = LisInt;
-            }
+            dgvintzidentziak.DataSource = LisInt;
         }
 
         private void cbGehitu_Click(object sender, EventArgs e)

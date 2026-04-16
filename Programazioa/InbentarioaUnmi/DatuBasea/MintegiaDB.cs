@@ -25,8 +25,8 @@ namespace InbentarioaUnmi.DatuBasea
                 {
                     while (reader.Read())
                     {
-                        Izena = reader.GetString("Izena");
-                        Id = reader.GetString("id");
+                        Izena = reader.GetString("izena");
+                        Id = reader.GetString("ID");
                         Mintegiak min = new Mintegiak(Id, Izena);
 
                         LisMin.Add(min);
@@ -99,16 +99,16 @@ namespace InbentarioaUnmi.DatuBasea
         public static Mintegiak MintegiaBilatu(string i)
         {
             Mintegiak min;
-            string select, Id;
+            string select, izena;
 
-            select = @"SELECT * FROM Inbentarioa.Mintegiak WHERE izena = '" + i + "';";
+            select = @"SELECT * FROM Inbentarioa.Mintegiak WHERE ID = '" + i + "';";
 
             using (MySqlCommand komandua = new MySqlCommand(select, DBKonexioa.Konektatu()))
             {
                 using (MySqlDataReader reader = komandua.ExecuteReader())
                 {
-                    Id = reader.GetString("id");
-                    min = new Mintegiak(Id, i);
+                    izena = reader.GetString("izena");
+                    min = new Mintegiak(i, izena);
                 }
             }
             return min;

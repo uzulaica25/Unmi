@@ -48,7 +48,7 @@ namespace InbentarioaUnmi.Formularioak
         private void cbGehitu_Click(object sender, EventArgs e)
         {
             int eragiketa;
-            string Eizena, pas, rola, min;
+            string Eizena, pas, rola = " ", min;
             Erabiltzaileak er;
             Mintegiak mintegia;
             while (true)
@@ -75,31 +75,49 @@ namespace InbentarioaUnmi.Formularioak
                     break;
                 }
             }
-            while (true)
+            if (era.Rola == "MintegiBurua")
             {
-                rola = Microsoft.VisualBasic.Interaction.InputBox("Rola: 1-Irakaslea, 2-MintegiBurua edo 3-IKTArtduraduna", "Erabiltzailea gehitu", "Sartu rolaren zenbaki. Adb: Irakaslea bada sartu 1");
-                if (string.IsNullOrEmpty(rola))
+                while (rola != "1" && rola != "2")
                 {
-                    throw new Exception("Erabiltzailearen rola ezin da hutsik egon.");
+                    rola = Microsoft.VisualBasic.Interaction.InputBox("Rola: 1-Irakaslea edo 2-MintegiBurua", "Erabiltzailea gehitu", "Sartu rolaren zenbaki. Adb: Irakaslea bada sartu 1");
+                    if (string.IsNullOrEmpty(rola))
+                    {
+                        throw new Exception("Erabiltzailearen rola ezin da hutsik egon.");
+                    }
+
                 }
-                else
+                
+            }else
+            {
+                while (rola != "1" && rola != "2" && rola != "3") 
                 {
-                    break;
+                    rola = Microsoft.VisualBasic.Interaction.InputBox("Rola: 1-Irakaslea, 2-MintegiBurua edo 3-IKTArtduraduna", "Erabiltzailea gehitu", "Sartu rolaren zenbaki. Adb: Irakaslea bada sartu 1");
+                    if (string.IsNullOrEmpty(rola))
+                    {
+                        throw new Exception("Erabiltzailearen rola ezin da hutsik egon.");
+                    }
                 }
             }
-            while (true)
+            if(era.Rola == "MintegiBurua")
             {
-                min = Microsoft.VisualBasic.Interaction.InputBox("Mintegia:", "Erabiltzailea gehitu", "Erabiltzailearen mintegia");
-                if (string.IsNullOrEmpty(min))
-                {
-                    throw new Exception("Erabiltzailearen mintegia ezin da hutsik egon.");
-                }
-                else
-                {
-                    break;
-                }
+                mintegia = era.Mintegia;
             }
-            mintegia = MintegiaDB.MintegiaBilatu(min);
+            else
+            {
+                while (true)
+                {
+                    min = Microsoft.VisualBasic.Interaction.InputBox("Mintegiare ID-a:", "Erabiltzailea gehitu", "Erabiltzailearen mintegiaren ID-a");
+                    if (string.IsNullOrEmpty(min))
+                    {
+                        throw new Exception("Erabiltzailearen mintegia ezin da hutsik egon.");
+                    }
+                    else
+                    {
+                        break;
+                    }
+                }
+                mintegia = MintegiaDB.MintegiaBilatu(min);
+            }
             if (rola == "1")
             {
                 er = new Erabiltzaileak(Eizena, pas, mintegia, "Irakaslea");
@@ -108,13 +126,9 @@ namespace InbentarioaUnmi.Formularioak
             {
                 er = new Erabiltzaileak(Eizena, pas, mintegia, "MintegiBurua");
             }
-            else if (rola == "3")
-            {
-                er = new Erabiltzaileak(Eizena, pas, mintegia, "IKTArduraduna");
-            }
             else
             {
-                throw new Exception("Rola ez da zuzena. Mesedez, sartu 1, 2 edo 3.");
+                er = new Erabiltzaileak(Eizena, pas, mintegia, "IKTArduraduna");
             }
             eragiketa = ErabiltzaileaDB.ErabiltzaileaGehitu(er);
             if (eragiketa == 1)
@@ -210,14 +224,22 @@ namespace InbentarioaUnmi.Formularioak
                 }
             }
             er = LisEra[z1];
-            erantzuna = ErabiltzaileaDB.ErabiltzaileaEzabatu(er);
-            if (erantzuna == 1)
+            if (era.Id == er.Id)
             {
-                MessageBox.Show(er.Izena + " erabiltzailea ezabatu da.");
+                MessageBox.Show("Ezin duzu zure burua ezabatu.");
+                return;
             }
             else
             {
-                MessageBox.Show("Erabiltzailea ez da ezabatu. Mesedez, egiaztatu ID-a zuzena dela.");
+                erantzuna = ErabiltzaileaDB.ErabiltzaileaEzabatu(er);
+                if (erantzuna == 1)
+                {
+                    MessageBox.Show(er.Izena + " erabiltzailea ezabatu da.");
+                }
+                else
+                {
+                    MessageBox.Show("Erabiltzailea ez da ezabatu. Mesedez, egiaztatu ID-a zuzena dela.");
+                }
             }
             FErabiltzailea_Load(sender, e);
         }

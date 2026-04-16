@@ -14,8 +14,9 @@ namespace InbentarioaUnmi.Formularioak
 {
     public partial class FInbentarioa : Form
     {
-        // Select motak repasau informaziua erakusteko
         public List<Gailuak> LisInb = new List<Gailuak>();
+        public BindingList<Inprimagailuak> LisInp = new BindingList<Inprimagailuak>();
+        public BindingList<Ordenagailuak> LisOrd = new BindingList<Ordenagailuak>();
         public Erabiltzaileak era;
         public FInbentarioa(Erabiltzaileak era)
         {
@@ -30,45 +31,24 @@ namespace InbentarioaUnmi.Formularioak
 
         private void FInbentarioa_Load(object sender, EventArgs e)
         {
-            cbGehitu.Focus();
-            LisInb = InbentarioaDB.GailuakListaratu();
-            List<Ordenagailuak> LisOrd = new List<Ordenagailuak>();
-            List<Inprimagailuak> LisInp = new List<Inprimagailuak>();
-            foreach(var g in LisInb)
+            if (this.txi)
             {
-                if (g is Ordenagailuak o)
+                cbGehitu.Focus();
+                LisInb = InbentarioaDB.GailuakListaratu(era);
+                foreach (var g in LisInb)
                 {
-                    LisOrd.Add(o);
+                    if (g is Ordenagailuak o)
+                    {
+                        this.LisOrd.Add(o);
+                    }
+                    else if (g is Inprimagailuak i)
+                    {
+                        this.LisInp.Add(i);
+                    }
                 }
-                else if (g is Inprimagailuak i)
-                {
-                    LisInp.Add(i);
-                }
             }
-            if (era.Rola == "Irakaslea")
-            {
-                cbGehitu.Visible = false;
-                cbAldatu.Visible = false;
-                cbEzabatu.Visible = false;
-                var filtrado1 = LisOrd.Where(x => x.Mintegia.Id == era.Mintegia.Id).ToList();
-                var filtrado2 = LisInp.Where(x => x.Mintegia.Id == era.Mintegia.Id).ToList();
-                dgvOrdenagailua.DataSource = filtrado1;
-                dgvInprimagailua.DataSource = filtrado2;
-
-            }
-            else if (era.Rola == "MintegiBurua")
-            {
-                var filtrado1 = LisOrd.Where(x => x.Mintegia.Id == era.Mintegia.Id).ToList();
-                var filtrado2 = LisInp.Where(x => x.Mintegia.Id == era.Mintegia.Id).ToList();
-                dgvOrdenagailua.DataSource = filtrado1;
-                dgvInprimagailua.DataSource = filtrado2;
-
-            }
-            else
-            {
-                dgvOrdenagailua.DataSource = LisOrd;
-                dgvInprimagailua.DataSource = LisInp;
-            }
+            dgvOrdenagailua.DataSource = LisOrd;
+            dgvInprimagailua.DataSource = LisInp;
         }
 
         private void cbIrten_Click_1(object sender, EventArgs e)
@@ -78,6 +58,30 @@ namespace InbentarioaUnmi.Formularioak
 
         private void cbGehitu_Click(object sender, EventArgs e)
         {
+            cbAldatu.Visible = false;
+            cbEzabatu.Visible = false;
+            Gailuak g;
+            if (cbGehitu.Text == "Gehitu")
+            {
+                cbGehitu.Text = "Gorde";
+                if (era.Rola == "IKTArduraduna")
+                {
+                    LisInp.Add(new Inprimagailuak(
+                        "ID",
+                        "Marka",
+                        "Kokalekua",
+                        DateOnly.FromDateTime(DateTime.Now),
+                        new Mintegiak("ID", "Mintegia"),
+                        true
+                    ));
+                }
+            }
+            else
+            {
+                cbGehitu.Text = "Gehitu";
+                g = LisInp.LastOrDefault();
+                InbentarioaDB.GailuaGehitu(g);
+            }
 
         }
 
@@ -90,5 +94,43 @@ namespace InbentarioaUnmi.Formularioak
         {
 
         }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+        private void Desaktibatu(int z1)
+        {
+            // z1 1 = Gehitu, 2 = Aldatu, 3 = Ezabatu
+            if (z1 == 1 || z1 == 2 || z1 == 3)
+            {
+                dgvInprimagailua.Visible = false;
+                dgvOrdenagailua.Visible = false;
+
+                lblId.Visible = true;
+                txtId.Visible = true;
+                txtId.Enabled = false;
+
+                if (z1 == 1)
+                {
+                    cbAldatu.Visible = false;
+                    cbEzabatu.Visible = false;
+                }
+                else if (z1 == 2)
+                {
+                    cbGehitu.Visible = false;
+                    cbEzabatu.Visible = false;
+                }
+                else
+                {
+                    cbGehitu.Visible = false;
+                    cbAldatu.Visible = false;
+                }
+            }
+            else
+            {
+                cbAldatu.Visible = false;
+                cbEzabatu.Visible = false;
+            }
     }
 }
