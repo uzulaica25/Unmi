@@ -142,52 +142,70 @@ namespace InbentarioaUnmi.DatuBasea
         }
         public static int GailuaAldatu(Gailuak ga1, Gailuak be)
         {
-            string update, min;
-
-            min = MintegiaLortu(be.Mintegia.Izena);
-
-            if (be is Ordenagailuak or)
+            try
             {
-                update = @"UPDATE Inbentarioa.Ordenagailuak SET ID = '" + or.Id + "', marka = '" + or.Marka + "', kokalekua = '" + or.Kokalekua + "', erostedata = '" + or.ErosteData + "', IDMintegia = '" + min + "', CPU = '" + or.Cpu + "', RAM = '" + or.Ram + "' WHERE ID = '" + ga1.Id + "';";
-                try
+                using (MySqlConnection conn = DBKonexioa.Konektatu())
                 {
-                    using (MySqlCommand komandua = new MySqlCommand(update, DBKonexioa.Konektatu()))
+                    string updateBase = @"UPDATE Inbentarioa.Gailuak SET ID = @newId, marka = @marka, kokalekua = @kokalekua, erostedata = @fecha, IDMintegia = @mintegia WHERE ID = @oldId";
+
+                    using (MySqlCommand cmd = new MySqlCommand(updateBase, conn))
                     {
-                        using (MySqlDataReader reader = komandua.ExecuteReader()) ;
+                        cmd.Parameters.AddWithValue("@newId", be.Id);
+                        cmd.Parameters.AddWithValue("@marka", be.Marka);
+                        cmd.Parameters.AddWithValue("@kokalekua", be.Kokalekua);
+                        cmd.Parameters.AddWithValue("@fecha", be.ErosteData.ToDateTime(TimeOnly.MinValue));
+                        cmd.Parameters.AddWithValue("@mintegia", be.Mintegia.Id);
+                        cmd.Parameters.AddWithValue("@oldId", ga1.Id);
+
+                        cmd.ExecuteNonQuery();
                     }
-                    return 1;
-                }
-                catch (MySqlException ex)
-                {
-                    return ex.Number;
+                    if (be is Ordenagailuak or)
+                    {
+                        string sql = @"UPDATE Inbentarioa.Ordenagailuak SET marka=@marka, kokalekua=@kokalekua, erostedata=@fecha, IDMintegia=@mintegia, CPU=@cpu, RAM=@ram WHERE ID=@oldId";
+
+                        using (MySqlCommand cmd = new MySqlCommand(sql, conn))
+                        {
+                            cmd.Parameters.AddWithValue("@marka", or.Marka);
+                            cmd.Parameters.AddWithValue("@kokalekua", or.Kokalekua);
+                            cmd.Parameters.AddWithValue("@fecha", or.ErosteData.ToDateTime(TimeOnly.MinValue));
+                            cmd.Parameters.AddWithValue("@mintegia", or.Mintegia.Id);
+                            cmd.Parameters.AddWithValue("@cpu", or.Cpu);
+                            cmd.Parameters.AddWithValue("@ram", or.Ram);
+                            cmd.Parameters.AddWithValue("@oldId", ga1.Id);
+
+                            cmd.ExecuteNonQuery();
+                        }
+
+                        return 1;
+                    }
+
+                    // 🔹 INPRIMAGAILUA
+                    if (be is Inprimagailuak inpri)
+                    {
+                        string sql = @"UPDATE Inbentarioa.Inprimagailuak SET marka=@marka, kokalekua=@kokalekua, erostedata=@fecha, IDMintegia=@mintegia, koloretakoa=@kolor WHERE ID=@oldId";
+
+                        using (MySqlCommand cmd = new MySqlCommand(sql, conn))
+                        {
+                            cmd.Parameters.AddWithValue("@marka", inpri.Marka);
+                            cmd.Parameters.AddWithValue("@kokalekua", inpri.Kokalekua);
+                            cmd.Parameters.AddWithValue("@fecha", inpri.ErosteData.ToDateTime(TimeOnly.MinValue));
+                            cmd.Parameters.AddWithValue("@mintegia", inpri.Mintegia.Id);
+                            cmd.Parameters.AddWithValue("@kolor", inpri.Koloretakoa ? "Bai" : "Ez");
+                            cmd.Parameters.AddWithValue("@oldId", ga1.Id);
+
+                            cmd.ExecuteNonQuery();
+                        }
+
+                        return 1;
+                    }
+
+                    return 0;
                 }
             }
-            else if (be is Inprimagailuak inpri)
+            catch (MySqlException ex)
             {
-                if (inpri.Koloretakoa)
-                {
-                    update = @"UPDATE Inbentarioa.Inprimagailuak SET ID = '" + inpri.Id + "', marka = '" + inpri.Marka + "', kokalekua = '" + inpri.Kokalekua + "', erostedata = '" + inpri.ErosteData + "', IDMintegia = '" + min + "', koloretakoa = 'Bai' WHERE ID = '" + ga1.Id + "';";
-
-                }
-                else
-                {
-                    update = @"UPDATE Inbentarioa.Inprimagailuak SET ID = '" + inpri.Id + "', marka = '" + inpri.Marka + "', kokalekua = '" + inpri.Kokalekua + "', erostedata = '" + inpri.ErosteData + "', IDMintegia = '" + min + "', koloretakoa = 'Ez' WHERE ID = '" + ga1.Id + "';";
-                }
-
-                try
-                {
-                    using (MySqlCommand komandua = new MySqlCommand(update, DBKonexioa.Konektatu()))
-                    {
-                        using (MySqlDataReader reader = komandua.ExecuteReader()) ;
-                    }
-                    return 1;
-                }
-                catch (MySqlException ex)
-                {
-                    return ex.Number;
-                }
+                return ex.Number;
             }
-            return 0;
         }
         public static int GailuaGehitu(Gailuak g)
         {
@@ -299,12 +317,10 @@ namespace InbentarioaUnmi.DatuBasea
         public static string MintegiaLortu(string i)
         {
             string min = null;
-            string select = @"SELECT ID FROM Inbentarioa.mintegiak WHERE izena = '" + i + "';";
+            string select = @"SELECT ID FROM Inbentarioa.Mintegiak WHERE izena = '" + i + "';";
 
             using (MySqlConnection conn = DBKonexioa.Konektatu())
             {
-                conn.Open();
-
                 using (MySqlCommand komandua = new MySqlCommand(select, conn))
                 {
                     komandua.Parameters.AddWithValue("@izena", i);
