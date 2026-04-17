@@ -88,7 +88,7 @@ namespace InbentarioaUnmi.Formularioak
 
                     g = new Inprimagailuak(Id, Marka, Kokalekua, ers, mintegia, Koloretakoa);
 
-                    Desaktibatu(5);
+                    Desaktibatu(10);
                 }
 
                 erantzuna = InbentarioaDB.GailuaGehitu(g);
@@ -96,7 +96,7 @@ namespace InbentarioaUnmi.Formularioak
                 {
                     MessageBox.Show("Gailua gehitu da.");
                     cbGehitu.Text = "Gehitu";
-                    Desaktibatu(5);
+                    Desaktibatu(10);
                 }
                 else
                 {
@@ -142,7 +142,7 @@ namespace InbentarioaUnmi.Formularioak
 
                     g = new Inprimagailuak(Id, Marka, Kokalekua, ers, mintegia, Koloretakoa);
 
-                    Desaktibatu(5);
+                    Desaktibatu(10);
                 }
                 gz = LisInb[cmbId.SelectedIndex];
                 erantzuna = InbentarioaDB.GailuaAldatu(gz, g);
@@ -150,7 +150,7 @@ namespace InbentarioaUnmi.Formularioak
                 {
                     MessageBox.Show("Gailua aldatu da.");
                     cbAldatu.Text = "Aldatu";
-                    Desaktibatu(5);
+                    Desaktibatu(10);
                     FInbentarioa_Load(sender, e);
                 }
                 else

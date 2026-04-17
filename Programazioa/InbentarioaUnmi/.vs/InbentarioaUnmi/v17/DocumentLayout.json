@@ -62,7 +62,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Bookmark",
@@ -71,6 +71,10 @@
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
             },
             {
               "$type": "Document",
@@ -249,7 +253,7 @@
               "RelativeDocumentMoniker": "Formularioak\\FInbentarioa.cs",
               "ToolTip": "C:\\Users\\mikel\\Documentos\\AA Eskola\\Erronkak\\3.Erronka\\Programazioa\\InbentarioaUnmi\\Formularioak\\FInbentarioa.cs*",
               "RelativeToolTip": "Formularioak\\FInbentarioa.cs*",
-              "ViewState": "AgIAAGUBAAAAAAAAAAAswHsBAAAVAAAAAAAAAA==",
+              "ViewState": "AgIAAEMAAAAAAAAAAAAuwGIAAAAiAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-04-16T06:02:50.891Z",
               "EditorCaption": ""
