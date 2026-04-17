@@ -30,6 +30,23 @@
         {
             components = new System.ComponentModel.Container();
             panel1 = new Panel();
+            cmbId = new ComboBox();
+            chbBai = new CheckBox();
+            cmbMintegia = new ComboBox();
+            lblMintegia = new Label();
+            lblGailuMota = new Label();
+            comboBox1 = new ComboBox();
+            txtRam = new TextBox();
+            cmbGailuMota = new ComboBox();
+            lblKoloretakoa = new Label();
+            lblRam = new Label();
+            lblId = new Label();
+            txtCpu = new TextBox();
+            lblCpu = new Label();
+            txtKokalekua = new TextBox();
+            lblKokalekua = new Label();
+            txtMarka = new TextBox();
+            lblMarka = new Label();
             dgvOrdenagailua = new DataGridView();
             idDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             markaDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
@@ -39,12 +56,14 @@
             Cpu = new DataGridViewTextBoxColumn();
             Ram = new DataGridViewTextBoxColumn();
             ordenagailuakBindingSource = new BindingSource(components);
+            lblErosteData = new Label();
             cbEzabatu = new Button();
             cbAldatu = new Button();
             cbGehitu = new Button();
             cbIrten = new Button();
             inprimagailuakBindingSource = new BindingSource(components);
             panel2 = new Panel();
+            dtpErosteData = new DateTimePicker();
             dgvInprimagailua = new DataGridView();
             dataGridViewTextBoxColumn1 = new DataGridViewTextBoxColumn();
             dataGridViewTextBoxColumn2 = new DataGridViewTextBoxColumn();
@@ -52,22 +71,6 @@
             dataGridViewTextBoxColumn4 = new DataGridViewTextBoxColumn();
             dataGridViewTextBoxColumn5 = new DataGridViewTextBoxColumn();
             Koloretakoa = new DataGridViewCheckBoxColumn();
-            lblId = new Label();
-            txtId = new TextBox();
-            txtMarka = new TextBox();
-            lblMarka = new Label();
-            txtKokalekua = new TextBox();
-            lblKokalekua = new Label();
-            textBox1 = new TextBox();
-            label1 = new Label();
-            textBox2 = new TextBox();
-            label2 = new Label();
-            textBox3 = new TextBox();
-            label3 = new Label();
-            textBox4 = new TextBox();
-            label4 = new Label();
-            textBox5 = new TextBox();
-            label5 = new Label();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvOrdenagailua).BeginInit();
             ((System.ComponentModel.ISupportInitialize)ordenagailuakBindingSource).BeginInit();
@@ -78,12 +81,19 @@
             // 
             // panel1
             // 
-            panel1.Controls.Add(textBox4);
-            panel1.Controls.Add(textBox1);
-            panel1.Controls.Add(label4);
-            panel1.Controls.Add(label1);
-            panel1.Controls.Add(textBox3);
-            panel1.Controls.Add(label3);
+            panel1.Controls.Add(cmbId);
+            panel1.Controls.Add(chbBai);
+            panel1.Controls.Add(cmbMintegia);
+            panel1.Controls.Add(lblMintegia);
+            panel1.Controls.Add(lblGailuMota);
+            panel1.Controls.Add(comboBox1);
+            panel1.Controls.Add(txtRam);
+            panel1.Controls.Add(cmbGailuMota);
+            panel1.Controls.Add(lblKoloretakoa);
+            panel1.Controls.Add(lblRam);
+            panel1.Controls.Add(lblId);
+            panel1.Controls.Add(txtCpu);
+            panel1.Controls.Add(lblCpu);
             panel1.Controls.Add(txtKokalekua);
             panel1.Controls.Add(lblKokalekua);
             panel1.Controls.Add(txtMarka);
@@ -93,6 +103,189 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(676, 177);
             panel1.TabIndex = 14;
+            // 
+            // cmbId
+            // 
+            cmbId.Font = new Font("Times New Roman", 10.2F);
+            cmbId.FormattingEnabled = true;
+            cmbId.Location = new Point(124, -3);
+            cmbId.Name = "cmbId";
+            cmbId.Size = new Size(125, 27);
+            cmbId.TabIndex = 28;
+            cmbId.UseWaitCursor = true;
+            cmbId.Visible = false;
+            cmbId.SelectedValueChanged += cmbId_SelectedValueChanged;
+            // 
+            // chbBai
+            // 
+            chbBai.AutoSize = true;
+            chbBai.Font = new Font("Times New Roman", 10.2F);
+            chbBai.Location = new Point(498, 6);
+            chbBai.Name = "chbBai";
+            chbBai.Size = new Size(54, 23);
+            chbBai.TabIndex = 18;
+            chbBai.Text = "Bai";
+            chbBai.UseVisualStyleBackColor = true;
+            chbBai.Visible = false;
+            // 
+            // cmbMintegia
+            // 
+            cmbMintegia.Font = new Font("Times New Roman", 10.2F);
+            cmbMintegia.FormattingEnabled = true;
+            cmbMintegia.Location = new Point(124, 146);
+            cmbMintegia.Name = "cmbMintegia";
+            cmbMintegia.Size = new Size(125, 27);
+            cmbMintegia.TabIndex = 16;
+            cmbMintegia.UseWaitCursor = true;
+            cmbMintegia.Visible = false;
+            // 
+            // lblMintegia
+            // 
+            lblMintegia.AutoSize = true;
+            lblMintegia.Font = new Font("Times New Roman", 10.2F);
+            lblMintegia.Location = new Point(28, 150);
+            lblMintegia.Name = "lblMintegia";
+            lblMintegia.Size = new Size(75, 19);
+            lblMintegia.TabIndex = 18;
+            lblMintegia.Text = "Mintegia:";
+            lblMintegia.Visible = false;
+            // 
+            // lblGailuMota
+            // 
+            lblGailuMota.AutoSize = true;
+            lblGailuMota.Font = new Font("Times New Roman", 10.2F);
+            lblGailuMota.Location = new Point(245, 128);
+            lblGailuMota.Name = "lblGailuMota";
+            lblGailuMota.Size = new Size(89, 19);
+            lblGailuMota.TabIndex = 27;
+            lblGailuMota.Text = "Gailu mota:";
+            lblGailuMota.Visible = false;
+            lblGailuMota.Leave += cmbGailuMota_Leave;
+            // 
+            // comboBox1
+            // 
+            comboBox1.FormattingEnabled = true;
+            comboBox1.Location = new Point(637, 253);
+            comboBox1.Name = "comboBox1";
+            comboBox1.Size = new Size(151, 28);
+            comboBox1.TabIndex = 26;
+            // 
+            // txtRam
+            // 
+            txtRam.Font = new Font("Times New Roman", 10.2F);
+            txtRam.Location = new Point(498, 95);
+            txtRam.Name = "txtRam";
+            txtRam.Size = new Size(125, 27);
+            txtRam.TabIndex = 20;
+            txtRam.Visible = false;
+            // 
+            // cmbGailuMota
+            // 
+            cmbGailuMota.Font = new Font("Times New Roman", 10.2F);
+            cmbGailuMota.FormattingEnabled = true;
+            cmbGailuMota.Items.AddRange(new object[] { "Ordenagailua", "Inprimagailua" });
+            cmbGailuMota.Location = new Point(341, 124);
+            cmbGailuMota.Name = "cmbGailuMota";
+            cmbGailuMota.Size = new Size(125, 27);
+            cmbGailuMota.TabIndex = 16;
+            cmbGailuMota.UseWaitCursor = true;
+            cmbGailuMota.Visible = false;
+            cmbGailuMota.SelectedIndexChanged += cmbGailuMota_SelectedIndexChanged;
+            cmbGailuMota.Leave += cmbGailuMota_Leave;
+            // 
+            // lblKoloretakoa
+            // 
+            lblKoloretakoa.AutoSize = true;
+            lblKoloretakoa.Font = new Font("Times New Roman", 10.2F);
+            lblKoloretakoa.Location = new Point(384, 9);
+            lblKoloretakoa.Name = "lblKoloretakoa";
+            lblKoloretakoa.Size = new Size(99, 19);
+            lblKoloretakoa.TabIndex = 24;
+            lblKoloretakoa.Text = "Koloretakoa:";
+            lblKoloretakoa.Visible = false;
+            // 
+            // lblRam
+            // 
+            lblRam.AutoSize = true;
+            lblRam.Font = new Font("Times New Roman", 10.2F);
+            lblRam.Location = new Point(384, 102);
+            lblRam.Name = "lblRam";
+            lblRam.Size = new Size(51, 19);
+            lblRam.TabIndex = 22;
+            lblRam.Text = "RAM:";
+            lblRam.Visible = false;
+            // 
+            // lblId
+            // 
+            lblId.AutoSize = true;
+            lblId.Font = new Font("Times New Roman", 10.2F);
+            lblId.Location = new Point(28, 6);
+            lblId.Name = "lblId";
+            lblId.Size = new Size(27, 19);
+            lblId.TabIndex = 16;
+            lblId.Text = "Id:";
+            lblId.Visible = false;
+            lblId.Click += label1_Click;
+            // 
+            // txtCpu
+            // 
+            txtCpu.Font = new Font("Times New Roman", 10.2F);
+            txtCpu.Location = new Point(498, 50);
+            txtCpu.Name = "txtCpu";
+            txtCpu.Size = new Size(125, 27);
+            txtCpu.TabIndex = 19;
+            txtCpu.Visible = false;
+            // 
+            // lblCpu
+            // 
+            lblCpu.AutoSize = true;
+            lblCpu.Font = new Font("Times New Roman", 10.2F);
+            lblCpu.Location = new Point(384, 57);
+            lblCpu.Name = "lblCpu";
+            lblCpu.Size = new Size(47, 19);
+            lblCpu.TabIndex = 20;
+            lblCpu.Text = "CPU:";
+            lblCpu.Visible = false;
+            // 
+            // txtKokalekua
+            // 
+            txtKokalekua.Font = new Font("Times New Roman", 10.2F);
+            txtKokalekua.Location = new Point(124, 100);
+            txtKokalekua.Name = "txtKokalekua";
+            txtKokalekua.Size = new Size(125, 27);
+            txtKokalekua.TabIndex = 15;
+            txtKokalekua.Visible = false;
+            // 
+            // lblKokalekua
+            // 
+            lblKokalekua.AutoSize = true;
+            lblKokalekua.Font = new Font("Times New Roman", 10.2F);
+            lblKokalekua.Location = new Point(28, 106);
+            lblKokalekua.Name = "lblKokalekua";
+            lblKokalekua.Size = new Size(86, 19);
+            lblKokalekua.TabIndex = 20;
+            lblKokalekua.Text = "Kokalekua:";
+            lblKokalekua.Visible = false;
+            // 
+            // txtMarka
+            // 
+            txtMarka.Font = new Font("Times New Roman", 10.2F);
+            txtMarka.Location = new Point(124, 48);
+            txtMarka.Name = "txtMarka";
+            txtMarka.Size = new Size(125, 27);
+            txtMarka.TabIndex = 14;
+            txtMarka.Visible = false;
+            // 
+            // lblMarka
+            // 
+            lblMarka.AutoSize = true;
+            lblMarka.Font = new Font("Times New Roman", 10.2F);
+            lblMarka.Location = new Point(28, 54);
+            lblMarka.Name = "lblMarka";
+            lblMarka.Size = new Size(57, 19);
+            lblMarka.TabIndex = 18;
+            lblMarka.Text = "Marka:";
+            lblMarka.Visible = false;
             // 
             // dgvOrdenagailua
             // 
@@ -171,6 +364,18 @@
             // 
             ordenagailuakBindingSource.DataSource = typeof(DatuModeloak.Ordenagailuak);
             // 
+            // lblErosteData
+            // 
+            lblErosteData.AutoSize = true;
+            lblErosteData.Font = new Font("Times New Roman", 10.2F);
+            lblErosteData.Location = new Point(28, 20);
+            lblErosteData.Name = "lblErosteData";
+            lblErosteData.Size = new Size(90, 19);
+            lblErosteData.TabIndex = 22;
+            lblErosteData.Text = "ErosteData:";
+            lblErosteData.Visible = false;
+            lblErosteData.Click += label1_Click_1;
+            // 
             // cbEzabatu
             // 
             cbEzabatu.Font = new Font("Times New Roman", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
@@ -221,13 +426,25 @@
             // 
             // panel2
             // 
-            panel2.Controls.Add(textBox2);
-            panel2.Controls.Add(label2);
+            panel2.Controls.Add(dtpErosteData);
+            panel2.Controls.Add(lblErosteData);
             panel2.Controls.Add(dgvInprimagailua);
             panel2.Location = new Point(12, 239);
             panel2.Name = "panel2";
             panel2.Size = new Size(676, 158);
             panel2.TabIndex = 15;
+            // 
+            // dtpErosteData
+            // 
+            dtpErosteData.CalendarFont = new Font("Times New Roman", 10.2F);
+            dtpErosteData.Font = new Font("Times New Roman", 10.2F);
+            dtpErosteData.Format = DateTimePickerFormat.Short;
+            dtpErosteData.Location = new Point(124, 14);
+            dtpErosteData.Name = "dtpErosteData";
+            dtpErosteData.Size = new Size(125, 27);
+            dtpErosteData.TabIndex = 17;
+            dtpErosteData.Visible = false;
+            dtpErosteData.ValueChanged += dateTimePicker1_ValueChanged;
             // 
             // dgvInprimagailua
             // 
@@ -294,177 +511,12 @@
             Koloretakoa.Name = "Koloretakoa";
             Koloretakoa.Width = 125;
             // 
-            // lblId
-            // 
-            lblId.AutoSize = true;
-            lblId.Font = new Font("Times New Roman", 10.2F);
-            lblId.Location = new Point(40, 24);
-            lblId.Name = "lblId";
-            lblId.Size = new Size(27, 19);
-            lblId.TabIndex = 16;
-            lblId.Text = "Id:";
-            lblId.Visible = false;
-            lblId.Click += label1_Click;
-            // 
-            // txtId
-            // 
-            txtId.Font = new Font("Times New Roman", 10.2F);
-            txtId.Location = new Point(90, 21);
-            txtId.Name = "txtId";
-            txtId.Size = new Size(125, 27);
-            txtId.TabIndex = 17;
-            txtId.Visible = false;
-            // 
-            // txtMarka
-            // 
-            txtMarka.Font = new Font("Times New Roman", 10.2F);
-            txtMarka.Location = new Point(78, 17);
-            txtMarka.Name = "txtMarka";
-            txtMarka.Size = new Size(125, 27);
-            txtMarka.TabIndex = 19;
-            txtMarka.Visible = false;
-            // 
-            // lblMarka
-            // 
-            lblMarka.AutoSize = true;
-            lblMarka.Font = new Font("Times New Roman", 10.2F);
-            lblMarka.Location = new Point(28, 20);
-            lblMarka.Name = "lblMarka";
-            lblMarka.Size = new Size(57, 19);
-            lblMarka.TabIndex = 18;
-            lblMarka.Text = "Marka:";
-            lblMarka.Visible = false;
-            // 
-            // txtKokalekua
-            // 
-            txtKokalekua.Font = new Font("Times New Roman", 10.2F);
-            txtKokalekua.Location = new Point(78, 69);
-            txtKokalekua.Name = "txtKokalekua";
-            txtKokalekua.Size = new Size(125, 27);
-            txtKokalekua.TabIndex = 21;
-            txtKokalekua.Visible = false;
-            // 
-            // lblKokalekua
-            // 
-            lblKokalekua.AutoSize = true;
-            lblKokalekua.Font = new Font("Times New Roman", 10.2F);
-            lblKokalekua.Location = new Point(28, 72);
-            lblKokalekua.Name = "lblKokalekua";
-            lblKokalekua.Size = new Size(86, 19);
-            lblKokalekua.TabIndex = 20;
-            lblKokalekua.Text = "Kokalekua:";
-            lblKokalekua.Visible = false;
-            // 
-            // textBox1
-            // 
-            textBox1.Font = new Font("Times New Roman", 10.2F);
-            textBox1.Location = new Point(78, 120);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(125, 27);
-            textBox1.TabIndex = 23;
-            textBox1.Visible = false;
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Times New Roman", 10.2F);
-            label1.Location = new Point(28, 123);
-            label1.Name = "label1";
-            label1.Size = new Size(27, 19);
-            label1.TabIndex = 22;
-            label1.Text = "Id:";
-            label1.Visible = false;
-            // 
-            // textBox2
-            // 
-            textBox2.Font = new Font("Times New Roman", 10.2F);
-            textBox2.Location = new Point(78, -15);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(125, 27);
-            textBox2.TabIndex = 19;
-            textBox2.Visible = false;
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Font = new Font("Times New Roman", 10.2F);
-            label2.Location = new Point(28, -12);
-            label2.Name = "label2";
-            label2.Size = new Size(27, 19);
-            label2.TabIndex = 18;
-            label2.Text = "Id:";
-            label2.Visible = false;
-            // 
-            // textBox3
-            // 
-            textBox3.Font = new Font("Times New Roman", 10.2F);
-            textBox3.Location = new Point(434, 20);
-            textBox3.Name = "textBox3";
-            textBox3.Size = new Size(125, 27);
-            textBox3.TabIndex = 21;
-            textBox3.Visible = false;
-            // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.Font = new Font("Times New Roman", 10.2F);
-            label3.Location = new Point(384, 23);
-            label3.Name = "label3";
-            label3.Size = new Size(27, 19);
-            label3.TabIndex = 20;
-            label3.Text = "Id:";
-            label3.Visible = false;
-            // 
-            // textBox4
-            // 
-            textBox4.Font = new Font("Times New Roman", 10.2F);
-            textBox4.Location = new Point(434, 65);
-            textBox4.Name = "textBox4";
-            textBox4.Size = new Size(125, 27);
-            textBox4.TabIndex = 23;
-            textBox4.Visible = false;
-            // 
-            // label4
-            // 
-            label4.AutoSize = true;
-            label4.Font = new Font("Times New Roman", 10.2F);
-            label4.Location = new Point(384, 68);
-            label4.Name = "label4";
-            label4.Size = new Size(27, 19);
-            label4.TabIndex = 22;
-            label4.Text = "Id:";
-            label4.Visible = false;
-            // 
-            // textBox5
-            // 
-            textBox5.Font = new Font("Times New Roman", 10.2F);
-            textBox5.Location = new Point(446, 24);
-            textBox5.Name = "textBox5";
-            textBox5.Size = new Size(125, 27);
-            textBox5.TabIndex = 25;
-            textBox5.Visible = false;
-            // 
-            // label5
-            // 
-            label5.AutoSize = true;
-            label5.Font = new Font("Times New Roman", 10.2F);
-            label5.Location = new Point(396, 27);
-            label5.Name = "label5";
-            label5.Size = new Size(27, 19);
-            label5.TabIndex = 24;
-            label5.Text = "Id:";
-            label5.Visible = false;
-            // 
             // FInbentarioa
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(192, 192, 255);
             ClientSize = new Size(800, 450);
-            Controls.Add(textBox5);
-            Controls.Add(label5);
-            Controls.Add(txtId);
-            Controls.Add(lblId);
             Controls.Add(panel2);
             Controls.Add(panel1);
             Controls.Add(cbEzabatu);
@@ -484,7 +536,6 @@
             panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dgvInprimagailua).EndInit();
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
@@ -514,20 +565,23 @@
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
         private DataGridViewCheckBoxColumn Koloretakoa;
         private Label lblId;
-        private TextBox txtId;
-        private TextBox textBox1;
-        private Label label1;
+        private Label lblErosteData;
         private TextBox txtKokalekua;
         private Label lblKokalekua;
         private TextBox txtMarka;
         private Label lblMarka;
-        private TextBox textBox4;
-        private Label label4;
-        private TextBox textBox3;
-        private Label label3;
-        private TextBox textBox2;
-        private Label label2;
-        private TextBox textBox5;
-        private Label label5;
+        private TextBox txtRam;
+        private Label lblRam;
+        private TextBox txtCpu;
+        private Label lblCpu;
+        private Label lblMintegia;
+        private Label lblKoloretakoa;
+        private ComboBox comboBox1;
+        private ComboBox cmbGailuMota;
+        private Label lblGailuMota;
+        private ComboBox cmbMintegia;
+        private CheckBox chbBai;
+        private DateTimePicker dtpErosteData;
+        private ComboBox cmbId;
     }
 }

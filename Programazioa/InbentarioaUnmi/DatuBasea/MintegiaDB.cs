@@ -107,11 +107,15 @@ namespace InbentarioaUnmi.DatuBasea
             {
                 using (MySqlDataReader reader = komandua.ExecuteReader())
                 {
-                    izena = reader.GetString("izena");
-                    min = new Mintegiak(i, izena);
+                    while (reader.Read())
+                    {
+                        izena = reader.GetString("izena");
+                        min = new Mintegiak(i, izena);
+                        return min;
+                    }
                 }
             }
-            return min;
+            return null;
         }
     }
 }
