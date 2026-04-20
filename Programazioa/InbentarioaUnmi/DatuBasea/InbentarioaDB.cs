@@ -321,22 +321,14 @@ namespace InbentarioaUnmi.DatuBasea
         }
         public static int EzabatutakoGAiluak(Gailuak g)
         {
-            string insert, inserto, inserti, idb, queryID;
-
-            queryID = @"SELECT CONCAT('E', LPAD(IFNULL(MAX(CAST(SUBSTRING(ID,2) AS UNSIGNED)),0)+1,2,'0')) FROM Inbentarioa.Ezabatuak";
-
-            using (MySqlConnection conn = DBKonexioa.Konektatu())
-            using (MySqlCommand cmd = new MySqlCommand(queryID, conn))
-            {
-                idb = cmd.ExecuteScalar().ToString();
-            }
+            string insert, inserto, inserti, update;
 
             using (MySqlConnection conn = DBKonexioa.Konektatu())
             {
                 insert = @"INSERT INTO Inbentarioa.Ezabatuak(ID, marka, kokalekua, erostedata, IDMintegia) VALUES (@ID, @marka, @kokalekua, @erostedata, @IDMintegia)";
                 using (MySqlCommand cmd = new MySqlCommand(insert, conn))
                 {
-                    cmd.Parameters.AddWithValue("@ID", idb);
+                    cmd.Parameters.AddWithValue("@ID", g.Id);
                     cmd.Parameters.AddWithValue("@marka", g.Marka);
                     cmd.Parameters.AddWithValue("@kokalekua", g.Kokalekua);
                     cmd.Parameters.AddWithValue("@erostedata", g.ErosteData.ToDateTime(TimeOnly.MinValue));
@@ -350,7 +342,7 @@ namespace InbentarioaUnmi.DatuBasea
 
                     using (MySqlCommand cmd = new MySqlCommand(inserto, conn))
                     {
-                        cmd.Parameters.AddWithValue("@ID", idb);
+                        cmd.Parameters.AddWithValue("@ID", g.Id);
                         cmd.Parameters.AddWithValue("@marka", g.Marka);
                         cmd.Parameters.AddWithValue("@kokalekua", g.Kokalekua);
                         cmd.Parameters.AddWithValue("@erostedata", g.ErosteData.ToDateTime(TimeOnly.MinValue));
@@ -374,7 +366,7 @@ namespace InbentarioaUnmi.DatuBasea
                     inserti = @"INSERT INTO Inbentarioa.Ezabatutako_Inprimagailuak(ID, marka, kokalekua, erostedata, IDMintegia, koloretakoa) VALUES(@ID, @marka, @kokalekua, @erostedata, @IDMintegia, @koloretakoa)";
                     using (MySqlCommand cmd = new MySqlCommand(inserti, conn))
                     {
-                        cmd.Parameters.AddWithValue("@ID", idb);
+                        cmd.Parameters.AddWithValue("@ID", g.Id);
                         cmd.Parameters.AddWithValue("@marka", g.Marka);
                         cmd.Parameters.AddWithValue("@kokalekua", g.Kokalekua);
                         cmd.Parameters.AddWithValue("@erostedata", g.ErosteData.ToDateTime(TimeOnly.MinValue));
@@ -397,6 +389,21 @@ namespace InbentarioaUnmi.DatuBasea
                         {
                             return ex.Number;
                         }
+                    }
+                }
+
+                update = @"UPDATE Inbentarioa.Intzidentziak SET IDEzabatutakoGailuak = @ID WHERE IDGailua = null AND IDEzabatutakoGailuak = null";
+                using (MySqlCommand cmd = new MySqlCommand(update, conn))
+                {
+                    cmd.Parameters.AddWithValue("@ID", g.Id);
+                    try
+                    {
+                        cmd.ExecuteNonQuery();
+                        return 1;
+                    }
+                    catch (MySqlException ex)
+                    {
+                        return ex.Number;
                     }
                 }
             }
