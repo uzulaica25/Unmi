@@ -146,11 +146,10 @@ namespace InbentarioaUnmi.DatuBasea
             {
                 using (MySqlConnection conn = DBKonexioa.Konektatu())
                 {
-                    string updateBase = @"UPDATE Inbentarioa.Gailuak SET ID = @newId, marka = @marka, kokalekua = @kokalekua, erostedata = @fecha, IDMintegia = @mintegia WHERE ID = @oldId";
+                    string updateBase = @"UPDATE Inbentarioa.Gailuak SET  marka = @marka, kokalekua = @kokalekua, erostedata = @fecha, IDMintegia = @mintegia WHERE ID = @oldId";
 
                     using (MySqlCommand cmd = new MySqlCommand(updateBase, conn))
                     {
-                        cmd.Parameters.AddWithValue("@newId", be.Id);
                         cmd.Parameters.AddWithValue("@marka", be.Marka);
                         cmd.Parameters.AddWithValue("@kokalekua", be.Kokalekua);
                         cmd.Parameters.AddWithValue("@fecha", be.ErosteData.ToDateTime(TimeOnly.MinValue));
@@ -290,9 +289,11 @@ namespace InbentarioaUnmi.DatuBasea
             }
             return 0;
         }
-        public static int KontaktuaEzabatu(Gailuak g)
+        public static int GailuaEzabatu(Gailuak g)
         {
-            string delete;
+            string delete, delet, insert, inser;
+            delet = @"DELETE FROM Inbentarioa.Gailuak WHERE ID = '" + g.Id + "';";
+            
             if (g is Inprimagailuak)
             {
                 delete = @"DELETE FROM Inbentarioa.Inprimagailuak WHERE ID = '" + g.Id + "';";
@@ -307,6 +308,10 @@ namespace InbentarioaUnmi.DatuBasea
                 {
                     using (MySqlDataReader reader = komandua.ExecuteReader()) ;
                 }
+                using (MySqlCommand komandua = new MySqlCommand(delet, DBKonexioa.Konektatu()))
+                {
+                    using (MySqlDataReader reader = komandua.ExecuteReader()) ;
+                }
                 return 1;
             }
             catch (MySqlException ex)
@@ -314,28 +319,88 @@ namespace InbentarioaUnmi.DatuBasea
                 return ex.Number;
             }
         }
-        public static string MintegiaLortu(string i)
+        public static int EzabatutakoGAiluak(Gailuak g)
         {
-            string min = null;
-            string select = @"SELECT ID FROM Inbentarioa.Mintegiak WHERE izena = '" + i + "';";
+            string insert, inserto, inserti, idb, queryID;
+
+            queryID = @"SELECT CONCAT('E', LPAD(IFNULL(MAX(CAST(SUBSTRING(ID,2) AS UNSIGNED)),0)+1,2,'0')) FROM Inbentarioa.Ezabatuak";
+
+            using (MySqlConnection conn = DBKonexioa.Konektatu())
+            using (MySqlCommand cmd = new MySqlCommand(queryID, conn))
+            {
+                idb = cmd.ExecuteScalar().ToString();
+            }
 
             using (MySqlConnection conn = DBKonexioa.Konektatu())
             {
-                using (MySqlCommand komandua = new MySqlCommand(select, conn))
+                insert = @"INSERT INTO Inbentarioa.Ezabatuak(ID, marka, kokalekua, erostedata, IDMintegia) VALUES (@ID, @marka, @kokalekua, @erostedata, @IDMintegia)";
+                using (MySqlCommand cmd = new MySqlCommand(insert, conn))
                 {
-                    komandua.Parameters.AddWithValue("@izena", i);
+                    cmd.Parameters.AddWithValue("@ID", idb);
+                    cmd.Parameters.AddWithValue("@marka", g.Marka);
+                    cmd.Parameters.AddWithValue("@kokalekua", g.Kokalekua);
+                    cmd.Parameters.AddWithValue("@erostedata", g.ErosteData.ToDateTime(TimeOnly.MinValue));
+                    cmd.Parameters.AddWithValue("@IDMintegia", g.Mintegia.Id);
 
-                    using (MySqlDataReader reader = komandua.ExecuteReader())
+                    cmd.ExecuteNonQuery();
+                }
+                if (g is Ordenagailuak or)
+                {
+                    inserto = @"INSERT INTO Inbentarioa.Ezabatutako_Ordenagailuak(ID, marka, kokalekua, erostedata, IDMintegia, CPU, RAM) VALUES (@ID, @marka, @kokalekua, @erostedata, @IDMintegia, @CPU, @RAM)";
+
+                    using (MySqlCommand cmd = new MySqlCommand(inserto, conn))
                     {
-                        if (reader.Read())
+                        cmd.Parameters.AddWithValue("@ID", idb);
+                        cmd.Parameters.AddWithValue("@marka", g.Marka);
+                        cmd.Parameters.AddWithValue("@kokalekua", g.Kokalekua);
+                        cmd.Parameters.AddWithValue("@erostedata", g.ErosteData.ToDateTime(TimeOnly.MinValue));
+                        cmd.Parameters.AddWithValue("@IDMintegia", g.Mintegia.Id);
+                        cmd.Parameters.AddWithValue("@CPU", or.Cpu);
+                        cmd.Parameters.AddWithValue("@RAM", or.Ram);
+
+                        try
                         {
-                            min = reader.GetString("ID");
+                            cmd.ExecuteNonQuery();
+                            return 1;
+                        }
+                        catch (MySqlException ex)
+                        {
+                            return ex.Number;
                         }
                     }
+                }
+                else if (g is Inprimagailuak inpri)
+                {
+                    inserti = @"INSERT INTO Inbentarioa.Ezabatutako_Inprimagailuak(ID, marka, kokalekua, erostedata, IDMintegia, koloretakoa) VALUES(@ID, @marka, @kokalekua, @erostedata, @IDMintegia, @koloretakoa)";
+                    using (MySqlCommand cmd = new MySqlCommand(inserti, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@ID", idb);
+                        cmd.Parameters.AddWithValue("@marka", g.Marka);
+                        cmd.Parameters.AddWithValue("@kokalekua", g.Kokalekua);
+                        cmd.Parameters.AddWithValue("@erostedata", g.ErosteData.ToDateTime(TimeOnly.MinValue));
+                        cmd.Parameters.AddWithValue("@IDMintegia", inpri.Mintegia.Id);
+                        if (inpri.Koloretakoa)
+                        {
+                            cmd.Parameters.AddWithValue("@koloretakoa", "Bai");
+                        }
+                        else
+                        {
+                            cmd.Parameters.AddWithValue("@koloretakoa", "Ez");
+                        }
 
+                        try
+                        {
+                            cmd.ExecuteNonQuery();
+                            return 1;
+                        }
+                        catch (MySqlException ex)
+                        {
+                            return ex.Number;
+                        }
+                    }
                 }
             }
-            return min;
+            return 0;
         }
     }
 }

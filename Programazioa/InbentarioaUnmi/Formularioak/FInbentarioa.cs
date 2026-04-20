@@ -26,6 +26,9 @@ namespace InbentarioaUnmi.Formularioak
         private void FInbentarioa_Load(object sender, EventArgs e)
         {
             cbGehitu.Focus();
+            LisInb.Clear();
+            LisInp.Clear();
+            LisOrd.Clear();
             LisInb = InbentarioaDB.GailuakListaratu(era);
             foreach (var g in LisInb)
             {
@@ -123,8 +126,6 @@ namespace InbentarioaUnmi.Formularioak
                     Koloretakoa = chbBai.Checked;
 
                     g = new Inprimagailuak(Id, Marka, Kokalekua, ers, mintegia, Koloretakoa);
-
-                    Aktibatu(10);
                 }
                 gz = LisInb[cmbId.SelectedIndex];
                 erantzuna = InbentarioaDB.GailuaAldatu(gz, g);
@@ -137,7 +138,7 @@ namespace InbentarioaUnmi.Formularioak
                 }
                 else
                 {
-                    MessageBox.Show("Errorea gailua gehitzean.");
+                    MessageBox.Show("Errorea gailua aldatzean.");
                 }
             }
             else
@@ -149,7 +150,40 @@ namespace InbentarioaUnmi.Formularioak
         }
         private void cbEzabatu_Click(object sender, EventArgs e)
         {
+            int erantzuna;
+            Gailuak gz;
 
+            if (cbEzabatu.Text == "Gorde")
+            {
+                gz = LisInb[cmbId.SelectedIndex];
+                erantzuna = InbentarioaDB.GailuaEzabatu(gz);
+                if (erantzuna == 1)
+                {
+                    erantzuna = InbentarioaDB.EzabatutakoGAiluak(gz);
+                    if(erantzuna == 1)
+                    {
+                        MessageBox.Show("Gailua eta lotutako datuak ezabatu dira.");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Gailua ezabatu da, baina errorea egon da lotutako datuak ezabatzean.");
+                    }
+                    MessageBox.Show("Gailua ezabatu da.");
+                    cbEzabatu.Text = "Aldatu";
+                    Aktibatu(10);
+                    FInbentarioa_Load(sender, e);
+                }
+                else
+                {
+                    MessageBox.Show("Errorea gailua ezabatzean.");
+                }
+            }
+            else
+            {
+                Aktibatu(0);
+
+                cbEzabatu.Text = "Gorde";
+            }
         }
         private void label1_Click(object sender, EventArgs e)
         {
@@ -285,7 +319,7 @@ namespace InbentarioaUnmi.Formularioak
             if(cbGehitu.Text == "Gorde")
             {
                 Aktibatu(1);
-            }else if(cbAldatu.Text == "Gorde")
+            }else
             {
                 if (cmbGailuMota.Text == "Ordenagailua")
                 {
@@ -303,57 +337,50 @@ namespace InbentarioaUnmi.Formularioak
                     cmbId.DisplayMember = "Id";
                     cmbId.ValueMember = "Id";
                 }
-                Aktibatu(2);
-            }
-            else
-            {
-                if (cmbGailuMota.Text == "Ordenagailua")
+                if (cbAldatu.Text == "Gorde")
                 {
-                    cmbId.DataSource = null;
-                    cmbId.Items.Clear();
-                    cmbId.DataSource = this.LisOrd;
-                    cmbId.DisplayMember = "Id";
-                    cmbId.ValueMember = "Id";
+                    Aktibatu(2);
                 }
-                else if (cmbGailuMota.Text == "Inprimagailua")
+                else if(cbEzabatu.Text == "Gorde")
                 {
-                    cmbId.DataSource = null;
-                    cmbId.Items.Clear();
-                    cmbId.DataSource = this.LisInp;
-                    cmbId.DisplayMember = "Id";
-                    cmbId.ValueMember = "Id";
-                }
-                Aktibatu(3);
-            }
-            
+                    Aktibatu(3);
+                }   
+            }            
         }
         private void cmbId_SelectedValueChanged(object sender, EventArgs e)
         {
             string id;
-            id = cmbId.SelectedValue.ToString();
-            foreach (var g in LisInb)
+            if(cmbId.SelectedValue == null)
             {
-                if (g.Id == id)
+                return;
+            }
+            else
+            {
+                id = cmbId.SelectedValue.ToString();
+                foreach (var g in LisInb)
                 {
-                    txtMarka.Text = g.Marka;
-                    txtKokalekua.Text = g.Kokalekua;
-                    dtpErosteData.Value = g.ErosteData.ToDateTime(TimeOnly.MinValue);
-                    cmbMintegia.SelectedItem = g.Mintegia;
-                    if (g is Ordenagailuak o)
+                    if (g.Id == id)
                     {
-                        txtCpu.Text = o.Cpu;
-                        txtRam.Text = o.Ram;
+                        txtMarka.Text = g.Marka;
+                        txtKokalekua.Text = g.Kokalekua;
+                        dtpErosteData.Value = g.ErosteData.ToDateTime(TimeOnly.MinValue);
+                        cmbMintegia.SelectedItem = g.Mintegia;
+                        if (g is Ordenagailuak o)
+                        {
+                            txtCpu.Text = o.Cpu;
+                            txtRam.Text = o.Ram;
+                        }
+                        else if (g is Inprimagailuak i)
+                        {
+                            chbBai.Checked = i.Koloretakoa;
+                        }
                     }
-                    else if (g is Inprimagailuak i)
-                    {
-                        chbBai.Checked = i.Koloretakoa;
-                    }
-                }
+                } 
             }
         }
         private void cmbId_Leave(object sender, EventArgs e)
         {
-            if (!string.IsNullOrWhiteSpace(cmbId.Text))
+            if(cbAldatu.Text == "Gorde")
             {
                 cmbId.Enabled = false;
                 txtMarka.Enabled = true;
@@ -366,7 +393,8 @@ namespace InbentarioaUnmi.Formularioak
             }
             else
             {
-                cmbId.Focus();
+                cbEzabatu.Enabled = true;
+                cbEzabatu.Focus();
             }
         }
         private void txtMarka_Leave(object sender, EventArgs e)
