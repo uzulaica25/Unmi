@@ -14,7 +14,7 @@ namespace InbentarioaUnmi.DatuBasea
     {
         public static List<Intzidentziak> IntzidentziakZerrendatu(Erabiltzaileak erab)
         {
-            string select, mezua, id, mar, kok, ize, ram, cpu, idmin;
+            string select, mezua, id, mar, kok, ize, ram, cpu, idmin, idIntz;
             bool kolore;
             DateTime dataordua, erostedata;
             DateOnly data, er;
@@ -25,8 +25,8 @@ namespace InbentarioaUnmi.DatuBasea
 
             if (erab.Rola == "MintegiBurua" || erab.Rola == "Irakaslea")
             {
-                // Ordenagailuen izidentziak
-                select = @"SELECT h.mezua, h.data, o.ID, o.marka, o.kokalekua, o.erostedata,o.IDMintegia, m.izena, o.RAM, o.CPU FROM Inbentarioa.Intzidentziak h JOIN Inbentarioa.Ordenagailuak o ON h.IDGailua = o.ID JOIN Inbentarioa.Mintegiak m ON o.IDMintegia = m.ID WHERE o.ID IN (SELECT ID FROM Gailuak WHERE IDMintegia = '" + erab.Mintegia.Id + "');";
+                // Ordenagailuen itzidentziak
+                select = @"SELECT h.ID AS IdIntzi, h.mezua, h.data, o.ID as IdGailua, o.marka, o.kokalekua, o.erostedata,o.IDMintegia, m.izena, o.RAM, o.CPU FROM Inbentarioa.Intzidentziak h JOIN Inbentarioa.Ordenagailuak o ON h.IDGailua = o.ID JOIN Inbentarioa.Mintegiak m ON o.IDMintegia = m.ID WHERE o.ID IN (SELECT ID FROM Gailuak WHERE IDMintegia = '" + erab.Mintegia.Id + "');";
 
                 using (MySqlCommand komandua = new MySqlCommand(select, DBKonexioa.Konektatu()))
                 {
@@ -34,10 +34,11 @@ namespace InbentarioaUnmi.DatuBasea
                     {
                         while (reader.Read())
                         {
+                            idIntz = reader.GetString("IdIntzi");
                             mezua = reader.GetString("mezua");
                             dataordua = reader.GetDateTime("data");
                             data = DateOnly.FromDateTime(dataordua);
-                            id = reader.GetString("ID");
+                            id = reader.GetString("IdGailua");
                             mar = reader.GetString("marka");
                             kok = reader.GetString("kokalekua");
                             erostedata = reader.GetDateTime("erostedata");
@@ -49,15 +50,15 @@ namespace InbentarioaUnmi.DatuBasea
 
                             min = new Mintegiak(idmin, ize);
                             or = new Ordenagailuak(id, mar, kok, er, min, ram, cpu);
-                            Intzidentziak Inz = new Intzidentziak(or, data, mezua);
+                            Intzidentziak Inz = new Intzidentziak(idIntz, or, "Ordenagailua", data, mezua);
 
                             LisInz.Add(Inz);
                         }
                     }
                 }
 
-                // Inprimagailuen izidentziak
-                select = @"SELECT h.mezua, h.data, o.ID, o.marka, o.kokalekua, o.erostedata,o.IDMintegia, m.izena, o.Koloretakoa FROM Inbentarioa.Intzidentziak h JOIN Inbentarioa.Inprimagailuak o ON h.IDGailua = o.ID JOIN Inbentarioa.Mintegiak m ON o.IDMintegia = m.ID";
+                // Inprimagailuen itzidentziak
+                select = @"SELECT h.ID AS IdIntzi, h.mezua, h.data, o.ID as IdGailua, o.marka, o.kokalekua, o.erostedata,o.IDMintegia, m.izena, o.Koloretakoa FROM Inbentarioa.Intzidentziak h JOIN Inbentarioa.Inprimagailuak o ON h.IDGailua = o.ID JOIN Inbentarioa.Mintegiak m ON o.IDMintegia = m.ID";
 
                 using (MySqlCommand komandua = new MySqlCommand(select, DBKonexioa.Konektatu()))
                 {
@@ -65,10 +66,11 @@ namespace InbentarioaUnmi.DatuBasea
                     {
                         while (reader.Read())
                         {
+                            idIntz = reader.GetString("IdIntzi");
                             mezua = reader.GetString("mezua");
                             dataordua = reader.GetDateTime("data");
                             data = DateOnly.FromDateTime(dataordua);
-                            id = reader.GetString("ID");
+                            id = reader.GetString("IdGailua");
                             mar = reader.GetString("marka");
                             kok = reader.GetString("kokalekua");
                             erostedata = reader.GetDateTime("erostedata");
@@ -87,7 +89,7 @@ namespace InbentarioaUnmi.DatuBasea
 
                             min = new Mintegiak(idmin, ize);
                             inp = new Inprimagailuak(id, mar, kok, er, min, kolore);
-                            Intzidentziak Inz = new Intzidentziak(inp, data, mezua);
+                            Intzidentziak Inz = new Intzidentziak(idIntz, inp, "Inprimagailua", data, mezua);
 
                             LisInz.Add(Inz);
                         }
@@ -96,8 +98,8 @@ namespace InbentarioaUnmi.DatuBasea
             }
             else
             {
-                // Ordenagailuen izidentziak
-                select = @"SELECT h.mezua, h.data, o.ID, o.marka, o.kokalekua, o.erostedata,o.IDMintegia, m.izena, o.RAM, o.CPU FROM Inbentarioa.Intzidentziak h JOIN Inbentarioa.Ordenagailuak o ON h.IDGailua = o.ID JOIN Inbentarioa.Mintegiak m ON o.IDMintegia = m.ID";
+                // Ordenagailuen itzidentziak
+                select = @"SELECT h.ID AS IdIntzi, h.mezua, h.data, o.ID as IdGailua, o.marka, o.kokalekua, o.erostedata,o.IDMintegia, m.izena, o.RAM, o.CPU FROM Inbentarioa.Intzidentziak h JOIN Inbentarioa.Ordenagailuak o ON h.IDGailua = o.ID JOIN Inbentarioa.Mintegiak m ON o.IDMintegia = m.ID";
 
                 using (MySqlCommand komandua = new MySqlCommand(select, DBKonexioa.Konektatu()))
                 {
@@ -105,10 +107,11 @@ namespace InbentarioaUnmi.DatuBasea
                     {
                         while (reader.Read())
                         {
+                            idIntz = reader.GetString("IdIntzi");
                             mezua = reader.GetString("mezua");
                             dataordua = reader.GetDateTime("data");
                             data = DateOnly.FromDateTime(dataordua);
-                            id = reader.GetString("ID");
+                            id = reader.GetString("IdGailua");
                             mar = reader.GetString("marka");
                             kok = reader.GetString("kokalekua");
                             erostedata = reader.GetDateTime("erostedata");
@@ -120,15 +123,15 @@ namespace InbentarioaUnmi.DatuBasea
 
                             min = new Mintegiak(idmin, ize);
                             or = new Ordenagailuak(id, mar, kok, er, min, ram, cpu);
-                            Intzidentziak Inz = new Intzidentziak(or, data, mezua);
+                            Intzidentziak Inz = new Intzidentziak(idIntz, or, "Ordenagailua", data, mezua);
 
                             LisInz.Add(Inz);
                         }
                     }
                 }
 
-                // Inprimagailuen izidentziak
-                select = @"SELECT h.mezua, h.data, o.ID, o.marka, o.kokalekua, o.erostedata,o.IDMintegia, m.izena, o.Koloretakoa FROM Inbentarioa.Intzidentziak h JOIN Inbentarioa.Inprimagailuak o ON h.IDGailua = o.ID JOIN Inbentarioa.Mintegiak m ON o.IDMintegia = m.ID";
+                // Inprimagailuen itzidentziak
+                select = @"SELECT h.ID AS IdIntzi, h.mezua, h.data, o.ID as IdGailua, o.marka, o.kokalekua, o.erostedata,o.IDMintegia, m.izena, o.Koloretakoa FROM Inbentarioa.Intzidentziak h JOIN Inbentarioa.Inprimagailuak o ON h.IDGailua = o.ID JOIN Inbentarioa.Mintegiak m ON o.IDMintegia = m.ID";
 
                 using (MySqlCommand komandua = new MySqlCommand(select, DBKonexioa.Konektatu()))
                 {
@@ -136,10 +139,11 @@ namespace InbentarioaUnmi.DatuBasea
                     {
                         while (reader.Read())
                         {
+                            idIntz = reader.GetString("IdIntzi");
                             mezua = reader.GetString("mezua");
                             dataordua = reader.GetDateTime("data");
                             data = DateOnly.FromDateTime(dataordua);
-                            id = reader.GetString("ID");
+                            id = reader.GetString("IdGailua");
                             mar = reader.GetString("marka");
                             kok = reader.GetString("kokalekua");
                             erostedata = reader.GetDateTime("erostedata");
@@ -158,7 +162,7 @@ namespace InbentarioaUnmi.DatuBasea
 
                             min = new Mintegiak(idmin, ize);
                             inp = new Inprimagailuak(id, mar, kok, er, min, kolore);
-                            Intzidentziak Inz = new Intzidentziak(inp, data, mezua);
+                            Intzidentziak Inz = new Intzidentziak(idIntz, inp, "Inprimagailua", data, mezua);
 
                             LisInz.Add(Inz);
                         }
@@ -169,14 +173,21 @@ namespace InbentarioaUnmi.DatuBasea
         }
         public static int IntzidentziaGehitu(Intzidentziak k)
         {
-            // Id nola jarri erabakitzia falta da
-            string insert;
+            string insert, queryID, idb;
+
+            queryID = @"SELECT CONCAT('I', LPAD(IFNULL(MAX(CAST(SUBSTRING(ID,2) AS UNSIGNED)),0)+1,2,'0')) FROM Inbentarioa.Intzidentziak";
+
+            using (MySqlConnection conn = DBKonexioa.Konektatu())
+            using (MySqlCommand cmd = new MySqlCommand(queryID, conn))
+            {
+                idb = cmd.ExecuteScalar().ToString();
+            }
             insert = @"INSERT INTO Inbentarioa.Intzidentziak(ID, data, mezua, IDGailua) VALUES(@ID, @data, @mezua, @gailua)";
 
             using (MySqlConnection conn = DBKonexioa.Konektatu())
             using (MySqlCommand komandua = new MySqlCommand(insert, conn))
             {
-                komandua.Parameters.AddWithValue("@Id", "");
+                komandua.Parameters.AddWithValue("@ID", idb);
                 komandua.Parameters.AddWithValue("@data", DateTime.Now);
                 komandua.Parameters.AddWithValue("@mezua", k.Mezua);
                 komandua.Parameters.AddWithValue("@gailua", k.Gailua.Id);
@@ -192,28 +203,37 @@ namespace InbentarioaUnmi.DatuBasea
 
             }
         }
-        public static int IntzidentziaAldatu(Gailuak gail, string m)
+        public static int IntzidentziaAldatu(Intzidentziak berria, Intzidentziak intzi)
         {
             string update;
 
-            update = @"UPDATE Inbentarioa.Intzidentziak SET mezua = '" + m + "' WHERE IDGailua = '" + gail.Id + "';";
+            update = @"UPDATE Inbentarioa.Intzidentziak SET IDGailua = @Gailua, mezua = @mezua, data = @data WHERE ID = '" + intzi.Id + "';";
             try
             {
-                using (MySqlCommand komandua = new MySqlCommand(update, DBKonexioa.Konektatu()))
+                using (MySqlConnection conn = DBKonexioa.Konektatu())
                 {
-                    using (MySqlDataReader reader = komandua.ExecuteReader()) ;
+                    using (MySqlCommand komandua = new MySqlCommand(update, conn))
+                    {
+                        komandua.Parameters.AddWithValue("@Gailua", berria.Gailua.Id);
+                        komandua.Parameters.AddWithValue("@mezua", berria.Mezua);
+                        komandua.Parameters.Add("@data", MySqlDbType.Date).Value = berria.Data.ToDateTime(TimeOnly.MinValue);
+                        komandua.Parameters.AddWithValue("@oldGailua", intzi.Gailua.Id);
+
+                        komandua.ExecuteNonQuery();
+                    }
                 }
                 return 1;
             }
             catch (MySqlException ex)
             {
+                MessageBox.Show(ex.ToString()); // 👈 para debug real
                 return ex.Number;
             }
-
         }
         public static List<Intzidentziak> IntzidentziaAurkitu(Gailuak gail)
         {
-            string select, mezua;
+            Intzidentziak Inz;
+            string select, mezua, id;
             DateTime dataordua;
             DateOnly data;
             List<Intzidentziak> LisInz = new List<Intzidentziak>();
@@ -226,15 +246,40 @@ namespace InbentarioaUnmi.DatuBasea
                 {
                     while (reader.Read())
                     {
+                        id = reader.GetString("ID");
                         mezua = reader.GetString("mezua");
                         dataordua = reader.GetDateTime("data");
                         data = DateOnly.FromDateTime(dataordua);
-                        Intzidentziak Inz = new Intzidentziak(gail, data, mezua);
+                        if (gail is Ordenagailuak or)
+                        {
+                            Inz = new Intzidentziak(id, gail, "Ordenagailua", data, mezua);
+                        }
+                        else
+                        {
+                            Inz = new Intzidentziak(id, gail,"Inprimagailua", data, mezua);
+                        }
                         LisInz.Add(Inz);
                     }
                 }
             }
             return LisInz;
+        }
+        public static int IntzidentziaEzabatu(Intzidentziak intzi)
+        {
+            string delete;
+            delete = @"DELETE FROM Inbentarioa.Intzidentziak WHERE ID = '" + intzi.Id + "';";
+            try
+            {
+                using (MySqlCommand komandua = new MySqlCommand(delete, DBKonexioa.Konektatu()))
+                {
+                    using (MySqlDataReader reader = komandua.ExecuteReader()) ;
+                }
+                return 1;
+            }
+            catch (MySqlException ex)
+            {
+                return ex.Number;
+            }
         }
     }
 }

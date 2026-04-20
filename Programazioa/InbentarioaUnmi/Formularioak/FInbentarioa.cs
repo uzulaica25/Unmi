@@ -276,7 +276,6 @@ namespace InbentarioaUnmi.Formularioak
                 else
                 {
                     cbEzabatu.Visible = true;
-                    cmbId.Focus();
                 }
                 cmbId.Focus();
             }
