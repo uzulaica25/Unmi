@@ -291,27 +291,34 @@ namespace InbentarioaUnmi.DatuBasea
         }
         public static int GailuaEzabatu(Gailuak g)
         {
-            string delete, delet, insert, inser;
-            delet = @"DELETE FROM Inbentarioa.Gailuak WHERE ID = '" + g.Id + "';";
-            
+            string delete, deleteGeneral;
+            deleteGeneral = @"DELETE FROM Inbentarioa.Gailuak WHERE ID = @id;";
+
             if (g is Inprimagailuak)
             {
-                delete = @"DELETE FROM Inbentarioa.Inprimagailuak WHERE ID = '" + g.Id + "';";
+                delete = @"DELETE FROM Inbentarioa.Inprimagailuak WHERE ID = @id;";
             }
             else
             {
-                delete = @"DELETE FROM Inbentarioa.Ordenagailuak WHERE ID = '" + g.Id + "';";
+                delete = @"DELETE FROM Inbentarioa.Ordenagailuak WHERE ID = @id;";
             }
+
             try
             {
-                using (MySqlCommand komandua = new MySqlCommand(delete, DBKonexioa.Konektatu()))
+                using var conn = DBKonexioa.Konektatu();
+
+                using (var cmd = new MySqlCommand(delete, conn))
                 {
-                    using (MySqlDataReader reader = komandua.ExecuteReader()) ;
+                    cmd.Parameters.AddWithValue("@id", g.Id);
+                    cmd.ExecuteNonQuery();
                 }
-                using (MySqlCommand komandua = new MySqlCommand(delet, DBKonexioa.Konektatu()))
+
+                using (var cmd = new MySqlCommand(deleteGeneral, conn))
                 {
-                    using (MySqlDataReader reader = komandua.ExecuteReader()) ;
+                    cmd.Parameters.AddWithValue("@id", g.Id);
+                    cmd.ExecuteNonQuery();
                 }
+
                 return 1;
             }
             catch (MySqlException ex)
@@ -338,7 +345,7 @@ namespace InbentarioaUnmi.DatuBasea
                 }
                 if (g is Ordenagailuak or)
                 {
-                    inserto = @"INSERT INTO Inbentarioa.Ezabatutako_Ordenagailuak(ID, marka, kokalekua, erostedata, IDMintegia, CPU, RAM) VALUES (@ID, @marka, @kokalekua, @erostedata, @IDMintegia, @CPU, @RAM)";
+                    inserto = @"INSERT INTO Inbentarioa.Ezabatutako_ordenagailuak(ID, marka, kokalekua, erostedata, IDMintegia, CPU, RAM) VALUES (@ID, @marka, @kokalekua, @erostedata, @IDMintegia, @CPU, @RAM)";
 
                     using (MySqlCommand cmd = new MySqlCommand(inserto, conn))
                     {
@@ -363,7 +370,7 @@ namespace InbentarioaUnmi.DatuBasea
                 }
                 else if (g is Inprimagailuak inpri)
                 {
-                    inserti = @"INSERT INTO Inbentarioa.Ezabatutako_Inprimagailuak(ID, marka, kokalekua, erostedata, IDMintegia, koloretakoa) VALUES(@ID, @marka, @kokalekua, @erostedata, @IDMintegia, @koloretakoa)";
+                    inserti = @"INSERT INTO Inbentarioa.Ezabatutako_inprimagailuak(ID, marka, kokalekua, erostedata, IDMintegia, koloretakoa) VALUES(@ID, @marka, @kokalekua, @erostedata, @IDMintegia, @koloretakoa)";
                     using (MySqlCommand cmd = new MySqlCommand(inserti, conn))
                     {
                         cmd.Parameters.AddWithValue("@ID", g.Id);

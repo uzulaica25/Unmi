@@ -96,6 +96,7 @@
             cmbId.UseWaitCursor = true;
             cmbId.Visible = false;
             cmbId.SelectedIndexChanged += cmbId_SelectedIndexChanged;
+            cmbId.Leave += cmbId_Leave;
             // 
             // cmbMintegia
             // 

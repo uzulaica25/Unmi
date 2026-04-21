@@ -99,20 +99,18 @@
             panel1.Controls.Add(txtMarka);
             panel1.Controls.Add(lblMarka);
             panel1.Controls.Add(dgvOrdenagailua);
-            panel1.Location = new Point(10, 42);
-            panel1.Margin = new Padding(3, 2, 3, 2);
+            panel1.Location = new Point(11, 56);
             panel1.Name = "panel1";
-            panel1.Size = new Size(592, 133);
+            panel1.Size = new Size(677, 177);
             panel1.TabIndex = 14;
             // 
             // cmbId
             // 
             cmbId.Font = new Font("Times New Roman", 10.2F);
             cmbId.FormattingEnabled = true;
-            cmbId.Location = new Point(108, -2);
-            cmbId.Margin = new Padding(3, 2, 3, 2);
+            cmbId.Location = new Point(123, -3);
             cmbId.Name = "cmbId";
-            cmbId.Size = new Size(110, 24);
+            cmbId.Size = new Size(125, 27);
             cmbId.TabIndex = 28;
             cmbId.UseWaitCursor = true;
             cmbId.Visible = false;
@@ -123,10 +121,9 @@
             // 
             chbBai.AutoSize = true;
             chbBai.Font = new Font("Times New Roman", 10.2F);
-            chbBai.Location = new Point(436, 4);
-            chbBai.Margin = new Padding(3, 2, 3, 2);
+            chbBai.Location = new Point(498, 5);
             chbBai.Name = "chbBai";
-            chbBai.Size = new Size(43, 20);
+            chbBai.Size = new Size(54, 23);
             chbBai.TabIndex = 18;
             chbBai.Text = "Bai";
             chbBai.UseVisualStyleBackColor = true;
@@ -137,10 +134,9 @@
             // 
             cmbMintegia.Font = new Font("Times New Roman", 10.2F);
             cmbMintegia.FormattingEnabled = true;
-            cmbMintegia.Location = new Point(108, 110);
-            cmbMintegia.Margin = new Padding(3, 2, 3, 2);
+            cmbMintegia.Location = new Point(123, 147);
             cmbMintegia.Name = "cmbMintegia";
-            cmbMintegia.Size = new Size(110, 24);
+            cmbMintegia.Size = new Size(125, 27);
             cmbMintegia.TabIndex = 16;
             cmbMintegia.UseWaitCursor = true;
             cmbMintegia.Visible = false;
@@ -150,9 +146,9 @@
             // 
             lblMintegia.AutoSize = true;
             lblMintegia.Font = new Font("Times New Roman", 10.2F);
-            lblMintegia.Location = new Point(24, 112);
+            lblMintegia.Location = new Point(27, 149);
             lblMintegia.Name = "lblMintegia";
-            lblMintegia.Size = new Size(58, 16);
+            lblMintegia.Size = new Size(75, 19);
             lblMintegia.TabIndex = 18;
             lblMintegia.Text = "Mintegia:";
             lblMintegia.Visible = false;
@@ -161,9 +157,9 @@
             // 
             lblGailuMota.AutoSize = true;
             lblGailuMota.Font = new Font("Times New Roman", 10.2F);
-            lblGailuMota.Location = new Point(214, 96);
+            lblGailuMota.Location = new Point(245, 128);
             lblGailuMota.Name = "lblGailuMota";
-            lblGailuMota.Size = new Size(71, 16);
+            lblGailuMota.Size = new Size(89, 19);
             lblGailuMota.TabIndex = 27;
             lblGailuMota.Text = "Gailu mota:";
             lblGailuMota.Visible = false;
@@ -171,19 +167,17 @@
             // comboBox1
             // 
             comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(557, 190);
-            comboBox1.Margin = new Padding(3, 2, 3, 2);
+            comboBox1.Location = new Point(637, 253);
             comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(133, 23);
+            comboBox1.Size = new Size(151, 28);
             comboBox1.TabIndex = 26;
             // 
             // txtRam
             // 
             txtRam.Font = new Font("Times New Roman", 10.2F);
-            txtRam.Location = new Point(436, 71);
-            txtRam.Margin = new Padding(3, 2, 3, 2);
+            txtRam.Location = new Point(498, 95);
             txtRam.Name = "txtRam";
-            txtRam.Size = new Size(110, 23);
+            txtRam.Size = new Size(125, 27);
             txtRam.TabIndex = 20;
             txtRam.Visible = false;
             txtRam.Leave += txtRam_Leave;
@@ -193,22 +187,22 @@
             cmbGailuMota.Font = new Font("Times New Roman", 10.2F);
             cmbGailuMota.FormattingEnabled = true;
             cmbGailuMota.Items.AddRange(new object[] { "Ordenagailua", "Inprimagailua" });
-            cmbGailuMota.Location = new Point(298, 93);
-            cmbGailuMota.Margin = new Padding(3, 2, 3, 2);
+            cmbGailuMota.Location = new Point(341, 124);
             cmbGailuMota.Name = "cmbGailuMota";
-            cmbGailuMota.Size = new Size(110, 24);
+            cmbGailuMota.Size = new Size(125, 27);
             cmbGailuMota.TabIndex = 16;
             cmbGailuMota.UseWaitCursor = true;
             cmbGailuMota.Visible = false;
             cmbGailuMota.SelectedIndexChanged += cmbGailuMota_SelectedIndexChanged;
+            cmbGailuMota.SelectedValueChanged += cmbGailuMota_SelectedValueChanged;
             // 
             // lblKoloretakoa
             // 
             lblKoloretakoa.AutoSize = true;
             lblKoloretakoa.Font = new Font("Times New Roman", 10.2F);
-            lblKoloretakoa.Location = new Point(336, 7);
+            lblKoloretakoa.Location = new Point(384, 9);
             lblKoloretakoa.Name = "lblKoloretakoa";
-            lblKoloretakoa.Size = new Size(77, 16);
+            lblKoloretakoa.Size = new Size(99, 19);
             lblKoloretakoa.TabIndex = 24;
             lblKoloretakoa.Text = "Koloretakoa:";
             lblKoloretakoa.Visible = false;
@@ -217,9 +211,9 @@
             // 
             lblRam.AutoSize = true;
             lblRam.Font = new Font("Times New Roman", 10.2F);
-            lblRam.Location = new Point(336, 76);
+            lblRam.Location = new Point(384, 101);
             lblRam.Name = "lblRam";
-            lblRam.Size = new Size(40, 16);
+            lblRam.Size = new Size(51, 19);
             lblRam.TabIndex = 22;
             lblRam.Text = "RAM:";
             lblRam.Visible = false;
@@ -228,21 +222,19 @@
             // 
             lblId.AutoSize = true;
             lblId.Font = new Font("Times New Roman", 10.2F);
-            lblId.Location = new Point(24, 4);
+            lblId.Location = new Point(27, 5);
             lblId.Name = "lblId";
-            lblId.Size = new Size(22, 16);
+            lblId.Size = new Size(27, 19);
             lblId.TabIndex = 16;
             lblId.Text = "Id:";
             lblId.Visible = false;
-            lblId.Click += label1_Click;
             // 
             // txtCpu
             // 
             txtCpu.Font = new Font("Times New Roman", 10.2F);
-            txtCpu.Location = new Point(436, 38);
-            txtCpu.Margin = new Padding(3, 2, 3, 2);
+            txtCpu.Location = new Point(498, 51);
             txtCpu.Name = "txtCpu";
-            txtCpu.Size = new Size(110, 23);
+            txtCpu.Size = new Size(125, 27);
             txtCpu.TabIndex = 19;
             txtCpu.Visible = false;
             txtCpu.Leave += txtCpu_Leave;
@@ -251,9 +243,9 @@
             // 
             lblCpu.AutoSize = true;
             lblCpu.Font = new Font("Times New Roman", 10.2F);
-            lblCpu.Location = new Point(336, 43);
+            lblCpu.Location = new Point(384, 57);
             lblCpu.Name = "lblCpu";
-            lblCpu.Size = new Size(36, 16);
+            lblCpu.Size = new Size(47, 19);
             lblCpu.TabIndex = 20;
             lblCpu.Text = "CPU:";
             lblCpu.Visible = false;
@@ -261,10 +253,9 @@
             // txtKokalekua
             // 
             txtKokalekua.Font = new Font("Times New Roman", 10.2F);
-            txtKokalekua.Location = new Point(108, 75);
-            txtKokalekua.Margin = new Padding(3, 2, 3, 2);
+            txtKokalekua.Location = new Point(123, 100);
             txtKokalekua.Name = "txtKokalekua";
-            txtKokalekua.Size = new Size(110, 23);
+            txtKokalekua.Size = new Size(125, 27);
             txtKokalekua.TabIndex = 15;
             txtKokalekua.Visible = false;
             txtKokalekua.Leave += txtKokalekua_Leave;
@@ -273,9 +264,9 @@
             // 
             lblKokalekua.AutoSize = true;
             lblKokalekua.Font = new Font("Times New Roman", 10.2F);
-            lblKokalekua.Location = new Point(24, 80);
+            lblKokalekua.Location = new Point(27, 107);
             lblKokalekua.Name = "lblKokalekua";
-            lblKokalekua.Size = new Size(68, 16);
+            lblKokalekua.Size = new Size(86, 19);
             lblKokalekua.TabIndex = 20;
             lblKokalekua.Text = "Kokalekua:";
             lblKokalekua.Visible = false;
@@ -283,10 +274,9 @@
             // txtMarka
             // 
             txtMarka.Font = new Font("Times New Roman", 10.2F);
-            txtMarka.Location = new Point(108, 36);
-            txtMarka.Margin = new Padding(3, 2, 3, 2);
+            txtMarka.Location = new Point(123, 48);
             txtMarka.Name = "txtMarka";
-            txtMarka.Size = new Size(110, 23);
+            txtMarka.Size = new Size(125, 27);
             txtMarka.TabIndex = 14;
             txtMarka.Visible = false;
             txtMarka.Leave += txtMarka_Leave;
@@ -295,9 +285,9 @@
             // 
             lblMarka.AutoSize = true;
             lblMarka.Font = new Font("Times New Roman", 10.2F);
-            lblMarka.Location = new Point(24, 40);
+            lblMarka.Location = new Point(27, 53);
             lblMarka.Name = "lblMarka";
-            lblMarka.Size = new Size(46, 16);
+            lblMarka.Size = new Size(57, 19);
             lblMarka.TabIndex = 18;
             lblMarka.Text = "Marka:";
             lblMarka.Visible = false;
@@ -313,10 +303,9 @@
             dgvOrdenagailua.DataSource = ordenagailuakBindingSource;
             dgvOrdenagailua.Dock = DockStyle.Fill;
             dgvOrdenagailua.Location = new Point(0, 0);
-            dgvOrdenagailua.Margin = new Padding(3, 2, 3, 2);
             dgvOrdenagailua.Name = "dgvOrdenagailua";
             dgvOrdenagailua.RowHeadersWidth = 51;
-            dgvOrdenagailua.Size = new Size(592, 133);
+            dgvOrdenagailua.Size = new Size(677, 177);
             dgvOrdenagailua.TabIndex = 0;
             // 
             // idDataGridViewTextBoxColumn
@@ -384,9 +373,9 @@
             // 
             lblErosteData.AutoSize = true;
             lblErosteData.Font = new Font("Times New Roman", 10.2F);
-            lblErosteData.Location = new Point(24, 15);
+            lblErosteData.Location = new Point(27, 20);
             lblErosteData.Name = "lblErosteData";
-            lblErosteData.Size = new Size(72, 16);
+            lblErosteData.Size = new Size(90, 19);
             lblErosteData.TabIndex = 22;
             lblErosteData.Text = "ErosteData:";
             lblErosteData.Visible = false;
@@ -394,10 +383,9 @@
             // cbEzabatu
             // 
             cbEzabatu.Font = new Font("Times New Roman", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            cbEzabatu.Location = new Point(607, 114);
-            cbEzabatu.Margin = new Padding(3, 2, 3, 2);
+            cbEzabatu.Location = new Point(694, 152);
             cbEzabatu.Name = "cbEzabatu";
-            cbEzabatu.Size = new Size(82, 22);
+            cbEzabatu.Size = new Size(94, 29);
             cbEzabatu.TabIndex = 23;
             cbEzabatu.Text = "Ezabatu";
             cbEzabatu.UseVisualStyleBackColor = true;
@@ -406,10 +394,9 @@
             // cbAldatu
             // 
             cbAldatu.Font = new Font("Times New Roman", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            cbAldatu.Location = new Point(607, 78);
-            cbAldatu.Margin = new Padding(3, 2, 3, 2);
+            cbAldatu.Location = new Point(694, 104);
             cbAldatu.Name = "cbAldatu";
-            cbAldatu.Size = new Size(82, 22);
+            cbAldatu.Size = new Size(94, 29);
             cbAldatu.TabIndex = 22;
             cbAldatu.Text = "Aldatu";
             cbAldatu.UseVisualStyleBackColor = true;
@@ -418,10 +405,9 @@
             // cbGehitu
             // 
             cbGehitu.Font = new Font("Times New Roman", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            cbGehitu.Location = new Point(607, 42);
-            cbGehitu.Margin = new Padding(3, 2, 3, 2);
+            cbGehitu.Location = new Point(694, 56);
             cbGehitu.Name = "cbGehitu";
-            cbGehitu.Size = new Size(82, 22);
+            cbGehitu.Size = new Size(94, 29);
             cbGehitu.TabIndex = 21;
             cbGehitu.Text = "Gehitu";
             cbGehitu.UseVisualStyleBackColor = true;
@@ -430,10 +416,9 @@
             // cbIrten
             // 
             cbIrten.Font = new Font("Times New Roman", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            cbIrten.Location = new Point(607, 276);
-            cbIrten.Margin = new Padding(3, 2, 3, 2);
+            cbIrten.Location = new Point(694, 368);
             cbIrten.Name = "cbIrten";
-            cbIrten.Size = new Size(82, 22);
+            cbIrten.Size = new Size(94, 29);
             cbIrten.TabIndex = 50;
             cbIrten.Text = "Irten";
             cbIrten.UseVisualStyleBackColor = true;
@@ -448,10 +433,9 @@
             panel2.Controls.Add(dtpErosteData);
             panel2.Controls.Add(lblErosteData);
             panel2.Controls.Add(dgvInprimagailua);
-            panel2.Location = new Point(10, 179);
-            panel2.Margin = new Padding(3, 2, 3, 2);
+            panel2.Location = new Point(11, 239);
             panel2.Name = "panel2";
-            panel2.Size = new Size(592, 118);
+            panel2.Size = new Size(677, 157);
             panel2.TabIndex = 15;
             // 
             // dtpErosteData
@@ -459,10 +443,9 @@
             dtpErosteData.CalendarFont = new Font("Times New Roman", 10.2F);
             dtpErosteData.Font = new Font("Times New Roman", 10.2F);
             dtpErosteData.Format = DateTimePickerFormat.Short;
-            dtpErosteData.Location = new Point(108, 10);
-            dtpErosteData.Margin = new Padding(3, 2, 3, 2);
+            dtpErosteData.Location = new Point(123, 13);
             dtpErosteData.Name = "dtpErosteData";
-            dtpErosteData.Size = new Size(110, 23);
+            dtpErosteData.Size = new Size(125, 27);
             dtpErosteData.TabIndex = 17;
             dtpErosteData.Value = new DateTime(2026, 4, 17, 19, 5, 51, 0);
             dtpErosteData.Visible = false;
@@ -479,10 +462,9 @@
             dgvInprimagailua.DataSource = inprimagailuakBindingSource;
             dgvInprimagailua.Dock = DockStyle.Fill;
             dgvInprimagailua.Location = new Point(0, 0);
-            dgvInprimagailua.Margin = new Padding(3, 2, 3, 2);
             dgvInprimagailua.Name = "dgvInprimagailua";
             dgvInprimagailua.RowHeadersWidth = 51;
-            dgvInprimagailua.Size = new Size(592, 118);
+            dgvInprimagailua.Size = new Size(677, 157);
             dgvInprimagailua.TabIndex = 0;
             // 
             // dataGridViewTextBoxColumn1
@@ -536,10 +518,10 @@
             // 
             // FInbentarioa
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(192, 192, 255);
-            ClientSize = new Size(700, 338);
+            ClientSize = new Size(800, 451);
             Controls.Add(panel2);
             Controls.Add(panel1);
             Controls.Add(cbEzabatu);
@@ -547,7 +529,6 @@
             Controls.Add(cbGehitu);
             Controls.Add(cbIrten);
             FormBorderStyle = FormBorderStyle.None;
-            Margin = new Padding(3, 2, 3, 2);
             Name = "FInbentarioa";
             Text = "FInbentarioa";
             Load += FInbentarioa_Load;

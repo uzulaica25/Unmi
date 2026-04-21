@@ -173,43 +173,20 @@ namespace InbentarioaUnmi.Formularioak
             cmbMintegia.Visible = false;
             lblMintegia.Visible = false;
         }
+
         private void Aktibatu(int z1)
         {
             Desaktibatu();
-            List<Mintegiak> LisMin = new List<Mintegiak>();
-            // z1 1=Gehitu, 2=Aldatu, 3=Ezabatu, 10=Gehitu/Aldatu amaitu
-            if (z1 == 1)
-            {
-                lblId.Visible = true;
-                cmbId.Visible = true;
-                cmbId.Enabled = false;
-                lblErabiltzailea.Visible = true;
-                txtErabiltzailea.Visible = true;
-                txtErabiltzailea.Text = "";
-                lblPasahitza.Visible = true;
-                txtPasahitza.Visible = true;
-                txtPasahitza.Text = "";
-                lblMintegia.Visible = true;
-                cmbMintegia.Visible = true;
-                cmbMintegia.Enabled = false;
-                cmbMintegia.Text = "";
-                LisMin = MintegiaDB.MintegiakListaratu();
-                cmbMintegia.DataSource = LisMin;
-                cmbMintegia.DisplayMember = "Izena";
-                cmbMintegia.ValueMember = "Id";
-                lblRola.Visible = true;
-                cmbRola.Visible = true;
-                cmbRola.Text = "";
-                cbGehitu.Visible = true;
-                cbGehitu.Enabled = false;
-            }
-            else if (z1 == 2 || z1 == 3)
+            // z1 1=Gehitu, 2=Aldatu, 3=Ezabatu, 10=Hasiera panela
+            if (z1 == 1 ||z1 == 2 || z1 == 3)
             {
                 lblId.Visible = true;
                 cmbId.Visible = true;
                 cmbId.Enabled = true;
                 cmbId.DataSource = LisEra;
                 cmbId.DisplayMember = "Id";
+                cmbId.ValueMember = "Id";
+                cmbId.SelectedIndex = -1;
                 lblErabiltzailea.Visible = true;
                 txtErabiltzailea.Visible = true;
                 txtErabiltzailea.Enabled = false;
@@ -219,23 +196,27 @@ namespace InbentarioaUnmi.Formularioak
                 lblRola.Visible = true;
                 cmbRola.Visible = true;
                 cmbRola.Enabled = false;
+                lblMintegia.Visible = true;
                 cmbMintegia.Visible = true;
                 cmbMintegia.Enabled = false;
-                cmbMintegia.Text = "";
-                LisMin = MintegiaDB.MintegiakListaratu();
-                cmbMintegia.DataSource = LisMin;
-                cmbMintegia.DisplayMember = "Izena";
-                cmbMintegia.ValueMember = "Id";
+                MintegiakKargatu();
 
                 if (z1 == 2)
                 {
                     cbAldatu.Visible = true;
+                    cmbId.Focus();
                 }
-                else
+                else if (z1 == 3)
                 {
                     cbEzabatu.Visible = true;
+                    cmbId.Focus();
+                }else
+                {
+                    cmbId.Enabled = false;
+                    cbGehitu.Visible = true;
+                    cbGehitu.Enabled = false;
                 }
-                cmbId.Focus();
+                
             }
             else if (z1 == 10)
             {
@@ -269,7 +250,7 @@ namespace InbentarioaUnmi.Formularioak
         {
             string t;
             bool txi = false;
-            if (!string.IsNullOrWhiteSpace(txtErabiltzailea.Text))
+            if (!string.IsNullOrWhiteSpace(txtErabiltzailea.Text) && cbGehitu.Text == "Gorde")
             {
                 t = txtErabiltzailea.Text;
                 foreach (var item in LisEra)
@@ -283,7 +264,7 @@ namespace InbentarioaUnmi.Formularioak
                         break;
                     }
                 }
-                if(txi)
+                if (txi)
                 {
                     txtErabiltzailea.Focus();
                 }
@@ -329,12 +310,38 @@ namespace InbentarioaUnmi.Formularioak
 
         private void cmbMintegia_Leave(object sender, EventArgs e)
         {
-            if(!string.IsNullOrWhiteSpace(cmbMintegia.Text))
+            if (!string.IsNullOrWhiteSpace(cmbMintegia.Text))
             {
                 cmbMintegia.Enabled = false;
                 cbGehitu.Enabled = true;
                 cbGehitu.Focus();
             }
+        }
+
+        private void cmbId_Leave(object sender, EventArgs e)
+        {
+            txtErabiltzailea.Enabled = true;
+            txtPasahitza.Enabled = true;
+            cmbRola.Enabled = true;
+            cmbMintegia.Enabled = true;
+            cmbId.Enabled = false;
+            if (cbAldatu.Text == "Gorde")
+            {
+                txtErabiltzailea.Focus();
+            }
+            else
+            {
+                cbEzabatu.Focus();
+            }
+        }
+
+        private void MintegiakKargatu()
+        {
+            var lisMin = MintegiaDB.MintegiakListaratu();
+            cmbMintegia.DataSource = lisMin;
+            cmbMintegia.DisplayMember = "Izena";
+            cmbMintegia.ValueMember = "Id";
+            cmbMintegia.SelectedIndex = -1;
         }
     }
 }

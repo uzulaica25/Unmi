@@ -87,6 +87,7 @@ namespace InbentarioaUnmi.DatuBasea
             }
             return LisEr;
         }
+
         public static int ErabiltzaileaGehitu(Erabiltzaileak e)
         {
             string insert, idberria, queryID;
@@ -140,6 +141,7 @@ namespace InbentarioaUnmi.DatuBasea
                 }
             }
         }
+
         public static int ErabiltzaileaAldatu(Erabiltzaileak e)
         {
             string update, updatee;
@@ -167,7 +169,6 @@ namespace InbentarioaUnmi.DatuBasea
                         komandua.Parameters.AddWithValue("@pas", e.Pasahitza);
                         komandua.Parameters.AddWithValue("@min", e.Mintegia.Id);
                 }
-                using (MySqlConnection conn = DBKonexioa.Konektatu())
                 using (MySqlCommand komandua = new MySqlCommand(update, conn))
                 {
                     komandua.Parameters.AddWithValue("@id", e.Id);
@@ -183,29 +184,32 @@ namespace InbentarioaUnmi.DatuBasea
             }
 
         }
+
         public static int ErabiltzaileaEzabatu(Erabiltzaileak e)
         {
             string delete;
             if(e.Rola == "MintegiBurua")
             {
-                delete = @"DELETE FROM Inbentarioa.MintegiBurua WHERE ID = '" + e.Id + "';";
+                delete = @"DELETE FROM Inbentarioa.MintegiBurua WHERE ID = @id;";
             }
             else if (e.Rola == "IKTArduraduna")
             {
-                delete = @"DELETE FROM Inbentarioa.IKTArduraduna WHERE ID = '" + e.Id + "';";
+                delete = @"DELETE FROM Inbentarioa.IKTArduraduna WHERE ID = @id;";
             }
             else
             {
-                delete = @"DELETE FROM Inbentarioa.Irakaslea WHERE ID = '" + e.Id + "';";
-
+                delete = @"DELETE FROM Inbentarioa.Irakaslea WHERE ID = @id;";
             }
             try
             {
-                using (MySqlCommand komandua = new MySqlCommand(delete, DBKonexioa.Konektatu()))
+                using var conn = DBKonexioa.Konektatu();
+
+                using (var cmd = new MySqlCommand(delete, conn))
                 {
-                    using (MySqlDataReader reader = komandua.ExecuteReader()) ;
+                    cmd.Parameters.AddWithValue("@id", e.Id);
+                    cmd.ExecuteNonQuery();
                 }
-                return 1;
+                    return 1;
             }
             catch (MySqlException ex)
             {
@@ -213,6 +217,7 @@ namespace InbentarioaUnmi.DatuBasea
 
             }
         }
+
         public static Erabiltzaileak ErabiltzaileaBilatu(string i, string p)
         {
             string id, select, Izena, Pas, minte, mizena;
