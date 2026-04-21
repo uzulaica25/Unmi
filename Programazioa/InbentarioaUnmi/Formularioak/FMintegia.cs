@@ -124,7 +124,7 @@ namespace InbentarioaUnmi.Formularioak
                 id = cmbId.Text;
                 Mizena = txtIzena.Text.Trim();
                 mi = new Mintegiak(id, Mizena);
-                DialogResult result = MessageBox.Show("Ziur zaude " + mi.Izena + " mintegia ezabatu nahi duzula? Minteiarekin batera mintegiaren erabiltzaile eta gailuak ezabatuko dira.", "Berretsi", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                DialogResult result = MessageBox.Show("Ziur zaude " + mi.Izena + " mintegia ezabatu nahi duzula? Mintegiarekin batera mintegiaren erabiltzaile eta gailuak ezabatuko dira.", "Berretsi", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (result == DialogResult.Yes)
                 {
                     erantzuna = MintegiaDB.MintegiakEzabatu(mi);

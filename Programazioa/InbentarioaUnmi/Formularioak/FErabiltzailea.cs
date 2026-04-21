@@ -52,7 +52,6 @@ namespace InbentarioaUnmi.Formularioak
             Erabiltzaileak er;
             Mintegiak mintegia;
 
-            Desaktibatu();
             if (cbGehitu.Text == "Gehitu")
             {
                 Aktibatu(1);
@@ -176,6 +175,7 @@ namespace InbentarioaUnmi.Formularioak
         }
         private void Aktibatu(int z1)
         {
+            Desaktibatu();
             List<Mintegiak> LisMin = new List<Mintegiak>();
             // z1 1=Gehitu, 2=Aldatu, 3=Ezabatu, 10=Gehitu/Aldatu amaitu
             if (z1 == 1)
@@ -239,7 +239,6 @@ namespace InbentarioaUnmi.Formularioak
             }
             else if (z1 == 10)
             {
-                Desaktibatu();
                 cbGehitu.Visible = true;
                 cbAldatu.Visible = true;
                 cbEzabatu.Visible = true;
@@ -269,6 +268,7 @@ namespace InbentarioaUnmi.Formularioak
         private void txtErabiltzailea_Leave(object sender, EventArgs e)
         {
             string t;
+            bool txi = false;
             if (!string.IsNullOrWhiteSpace(txtErabiltzailea.Text))
             {
                 t = txtErabiltzailea.Text;
@@ -279,14 +279,19 @@ namespace InbentarioaUnmi.Formularioak
                         MessageBox.Show("Erabiltzaile izen hori dagoeneko existitzen da. Mesedez, sartu beste bat.");
                         txtErabiltzailea.Text = "";
                         txtErabiltzailea.Focus();
+                        txi = true;
                         break;
                     }
-                    else
-                    {
-                        txtErabiltzailea.Enabled = false;
-                        txtPasahitza.Enabled = true;
-                        txtPasahitza.Focus();
-                    }
+                }
+                if(txi)
+                {
+                    txtErabiltzailea.Focus();
+                }
+                else
+                {
+                    txtErabiltzailea.Enabled = false;
+                    txtPasahitza.Enabled = true;
+                    txtPasahitza.Focus();
                 }
             }
         }

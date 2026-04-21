@@ -101,24 +101,24 @@ namespace InbentarioaUnmi.DatuBasea
         }
         public static Mintegiak MintegiaBilatu(string i)
         {
-            Mintegiak min;
-            string select, izena;
-
-            select = @"SELECT * FROM Inbentarioa.Mintegiak WHERE ID = '" + i + "';";
+            Mintegiak min = null;
+            string select, id;
+                select = @"SELECT * FROM Inbentarioa.Mintegiak WHERE izena = @izena;";
 
             using (MySqlCommand komandua = new MySqlCommand(select, DBKonexioa.Konektatu()))
             {
+                komandua.Parameters.AddWithValue("@izena", i);
+
                 using (MySqlDataReader reader = komandua.ExecuteReader())
                 {
-                    while (reader.Read())
+                    if (reader.Read())
                     {
-                        izena = reader.GetString("izena");
-                        min = new Mintegiak(i, izena);
-                        return min;
+                        id = reader.GetString("ID");
+                        min = new Mintegiak(id, i);
                     }
                 }
             }
-            return null;
+            return min;
         }
     }
 }
