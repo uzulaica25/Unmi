@@ -267,12 +267,15 @@ namespace InbentarioaUnmi.DatuBasea
         public static int IntzidentziaEzabatu(Intzidentziak intzi)
         {
             string delete;
-            delete = @"DELETE FROM Inbentarioa.Intzidentziak WHERE ID = '" + intzi.Id + "';";
+            delete = @"DELETE FROM Inbentarioa.Intzidentziak WHERE ID = @id;";
             try
             {
-                using (MySqlCommand komandua = new MySqlCommand(delete, DBKonexioa.Konektatu()))
+                using var conn = DBKonexioa.Konektatu();
+
+                using (var cmd = new MySqlCommand(delete, conn))
                 {
-                    using (MySqlDataReader reader = komandua.ExecuteReader()) ;
+                    cmd.Parameters.AddWithValue("@id", intzi.Id);
+                    cmd.ExecuteNonQuery();
                 }
                 return 1;
             }

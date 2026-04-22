@@ -149,25 +149,27 @@ namespace InbentarioaUnmi.DatuBasea
             updatee = @"UPDATE Inbentarioa.Erabiltzaileak SET izena = @era, pasahitza = @pas, IDMintegia = @min WHERE ID = @id;";
             if (e.Rola == "MintegiBurua")
             {
-                update = @"UPDATE Inbentarioa.MintegiBurua SET erabiltzailea = @era, pasahitza = @pas, IDMintegia = @min WHERE ID = @id;";
+                update = @"UPDATE Inbentarioa.MintegiBurua SET izena = @era, pasahitza = @pas, IDMintegia = @min WHERE ID = @id;";
             }
             else if(e.Rola == "IKTArduraduna")
             {
-                update = @"UPDATE Inbentarioa.IKTArduraduna SET erabiltzailea = @era, pasahitza = @pas, IDMintegia = @min WHERE ID = @id;";
+                update = @"UPDATE Inbentarioa.IKTArduraduna SET izena = @era, pasahitza = @pas, IDMintegia = @min WHERE ID = @id;";
             }
             else
             {
-                update = @"UPDATE Inbentarioa.Irakaslea SET erabiltzailea = @era, pasahitza = @pas, IDMintegia = @min WHERE ID = @id;";
+                update = @"UPDATE Inbentarioa.Irakaslea SET izena = @era, pasahitza = @pas, IDMintegia = @min WHERE ID = @id;";
             }
             try
             {
-                using (MySqlConnection conn = DBKonexioa.Konektatu())
+                using var conn = DBKonexioa.Konektatu();
+
                 using (MySqlCommand komandua = new MySqlCommand(updatee, conn))
                 {
-                        komandua.Parameters.AddWithValue("@id", e.Id);
-                        komandua.Parameters.AddWithValue("@era", e.Izena);
-                        komandua.Parameters.AddWithValue("@pas", e.Pasahitza);
-                        komandua.Parameters.AddWithValue("@min", e.Mintegia.Id);
+                    komandua.Parameters.AddWithValue("@id", e.Id);
+                    komandua.Parameters.AddWithValue("@era", e.Izena);
+                    komandua.Parameters.AddWithValue("@pas", e.Pasahitza);
+                    komandua.Parameters.AddWithValue("@min", e.Mintegia.Id);
+                    komandua.ExecuteNonQuery();
                 }
                 using (MySqlCommand komandua = new MySqlCommand(update, conn))
                 {
@@ -175,6 +177,7 @@ namespace InbentarioaUnmi.DatuBasea
                     komandua.Parameters.AddWithValue("@era", e.Izena);
                     komandua.Parameters.AddWithValue("@pas", e.Pasahitza);
                     komandua.Parameters.AddWithValue("@min", e.Mintegia.Id);
+                    komandua.ExecuteNonQuery();
                 }
                 return 1;
             }
@@ -187,8 +190,11 @@ namespace InbentarioaUnmi.DatuBasea
 
         public static int ErabiltzaileaEzabatu(Erabiltzaileak e)
         {
-            string delete;
-            if(e.Rola == "MintegiBurua")
+            string delete, deleteGeneral;
+
+            deleteGeneral = @"DELETE FROM Inbentarioa.Erabiltzaileak WHERE ID = @id;";
+
+            if (e.Rola == "MintegiBurua")
             {
                 delete = @"DELETE FROM Inbentarioa.MintegiBurua WHERE ID = @id;";
             }
@@ -209,7 +215,12 @@ namespace InbentarioaUnmi.DatuBasea
                     cmd.Parameters.AddWithValue("@id", e.Id);
                     cmd.ExecuteNonQuery();
                 }
-                    return 1;
+                using (var cmd = new MySqlCommand(deleteGeneral, conn))
+                {
+                    cmd.Parameters.AddWithValue("@id", e.Id);
+                    cmd.ExecuteNonQuery();
+                }
+                return 1;
             }
             catch (MySqlException ex)
             {
@@ -222,6 +233,7 @@ namespace InbentarioaUnmi.DatuBasea
         {
             string id, select, Izena, Pas, minte, mizena;
             Mintegiak min;
+            Erabiltzaileak era =  null;
             // Irakasle motako erabiltzaileak 
             select = @"SELECT i.ID, i.izena as erabil, i.pasahitza, i.IDMintegia, m.izena as mintegia FROM Inbentarioa.Irakaslea i JOIN Inbentarioa.Mintegiak m ON i.IDMintegia = m.ID WHERE i.izena = '" + i + "' AND i.pasahitza = '" + p + "';";
             using (MySqlCommand komandua = new MySqlCommand(select, DBKonexioa.Konektatu()))
@@ -236,7 +248,7 @@ namespace InbentarioaUnmi.DatuBasea
                         minte = reader.GetString("IDMintegia");
                         mizena = reader.GetString("mintegia");
                         min = new Mintegiak(minte, mizena);
-                        Erabiltzaileak era = new Erabiltzaileak(id, Izena, Pas, min, "Irakaslea" );
+                        era = new Erabiltzaileak(id, Izena, Pas, min, "Irakaslea" );
                         return era;
                     }
                 }
@@ -255,7 +267,7 @@ namespace InbentarioaUnmi.DatuBasea
                         minte = reader.GetString("IDMintegia");
                         mizena = reader.GetString("mintegia");
                         min = new Mintegiak(minte, mizena);
-                        Erabiltzaileak era = new Erabiltzaileak(id, Izena, Pas, min, "MintegiBurua");
+                        era = new Erabiltzaileak(id, Izena, Pas, min, "MintegiBurua");
                         return era;
                     }
                 }
@@ -274,12 +286,12 @@ namespace InbentarioaUnmi.DatuBasea
                         minte = reader.GetString("IDMintegia");
                         mizena = reader.GetString("mintegia");
                         min = new Mintegiak(minte, mizena);
-                        Erabiltzaileak era = new Erabiltzaileak(id, Izena, Pas, min, "IKTArduraduna");
+                        era = new Erabiltzaileak(id, Izena, Pas, min, "IKTArduraduna");
                         return era;
                     }
                 }
             }
-            return null;
+            return era;
         }
     }
 }

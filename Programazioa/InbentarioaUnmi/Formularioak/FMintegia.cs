@@ -28,8 +28,11 @@ namespace InbentarioaUnmi.Formularioak
         private void FMintegia_Load(object sender, EventArgs e)
         {
             cbGehitu.Focus();
+            LisMin.Clear();
             LisMin = MintegiaDB.MintegiakListaratu();
+            dgvMintegiak.DataSource = null;
             dgvMintegiak.DataSource = LisMin;
+            dgvMintegiak.ReadOnly = true;
         }
         private void cbGehitu_Click(object sender, EventArgs e)
         {
@@ -117,7 +120,7 @@ namespace InbentarioaUnmi.Formularioak
             if(cbEzabatu.Text == "Ezabatu")
             {
                 Aktibatu(3);
-                cbEzabatu.Text = "Gorde";
+                cbEzabatu.Text = "Bai";
             }
             else
             {

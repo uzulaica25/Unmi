@@ -83,13 +83,16 @@ namespace InbentarioaUnmi.DatuBasea
         {
             string delete;
 
-            delete = @"DELETE FROM Inbentarioa.Mintegiak WHERE ID = '" + m.Id + "';";
+            delete = @"DELETE FROM Inbentarioa.Mintegiak WHERE ID = @id;";
 
             try
             {
-                using (MySqlCommand komandua = new MySqlCommand(delete, DBKonexioa.Konektatu()))
+                using var conn = DBKonexioa.Konektatu();
+
+                using (var cmd = new MySqlCommand(delete, conn))
                 {
-                    using (MySqlDataReader reader = komandua.ExecuteReader()) ;
+                    cmd.Parameters.AddWithValue("@id", m.Id);
+                    cmd.ExecuteNonQuery();
                 }
                 return 1;
             }

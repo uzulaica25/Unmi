@@ -125,7 +125,7 @@ namespace InbentarioaUnmi.Formularioak
             if (cbEzabatu.Text == "Ezabatu")
             {
                 Aktibatu(3);
-                cbEzabatu.Text = "Ezabatu.";
+                cbEzabatu.Text = "Bai";
             }
             else
             {

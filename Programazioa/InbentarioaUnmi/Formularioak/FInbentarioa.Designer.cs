@@ -296,6 +296,8 @@
             // 
             dgvOrdenagailua.AllowUserToAddRows = false;
             dgvOrdenagailua.AllowUserToDeleteRows = false;
+            dgvOrdenagailua.AllowUserToResizeColumns = false;
+            dgvOrdenagailua.AllowUserToResizeRows = false;
             dgvOrdenagailua.AutoGenerateColumns = false;
             dgvOrdenagailua.BackgroundColor = Color.FromArgb(192, 192, 255);
             dgvOrdenagailua.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -304,6 +306,7 @@
             dgvOrdenagailua.Dock = DockStyle.Fill;
             dgvOrdenagailua.Location = new Point(0, 0);
             dgvOrdenagailua.Name = "dgvOrdenagailua";
+            dgvOrdenagailua.ReadOnly = true;
             dgvOrdenagailua.RowHeadersWidth = 51;
             dgvOrdenagailua.Size = new Size(677, 177);
             dgvOrdenagailua.TabIndex = 0;
@@ -314,6 +317,7 @@
             idDataGridViewTextBoxColumn.HeaderText = "Id";
             idDataGridViewTextBoxColumn.MinimumWidth = 6;
             idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
+            idDataGridViewTextBoxColumn.ReadOnly = true;
             idDataGridViewTextBoxColumn.Width = 125;
             // 
             // markaDataGridViewTextBoxColumn
@@ -322,6 +326,7 @@
             markaDataGridViewTextBoxColumn.HeaderText = "Marka";
             markaDataGridViewTextBoxColumn.MinimumWidth = 6;
             markaDataGridViewTextBoxColumn.Name = "markaDataGridViewTextBoxColumn";
+            markaDataGridViewTextBoxColumn.ReadOnly = true;
             markaDataGridViewTextBoxColumn.Width = 125;
             // 
             // kokalekuaDataGridViewTextBoxColumn
@@ -330,6 +335,7 @@
             kokalekuaDataGridViewTextBoxColumn.HeaderText = "Kokalekua";
             kokalekuaDataGridViewTextBoxColumn.MinimumWidth = 6;
             kokalekuaDataGridViewTextBoxColumn.Name = "kokalekuaDataGridViewTextBoxColumn";
+            kokalekuaDataGridViewTextBoxColumn.ReadOnly = true;
             kokalekuaDataGridViewTextBoxColumn.Width = 125;
             // 
             // erosteDataDataGridViewTextBoxColumn
@@ -338,6 +344,7 @@
             erosteDataDataGridViewTextBoxColumn.HeaderText = "ErosteData";
             erosteDataDataGridViewTextBoxColumn.MinimumWidth = 6;
             erosteDataDataGridViewTextBoxColumn.Name = "erosteDataDataGridViewTextBoxColumn";
+            erosteDataDataGridViewTextBoxColumn.ReadOnly = true;
             erosteDataDataGridViewTextBoxColumn.Width = 125;
             // 
             // MintegiaIzena
@@ -355,6 +362,7 @@
             Cpu.HeaderText = "Cpu";
             Cpu.MinimumWidth = 6;
             Cpu.Name = "Cpu";
+            Cpu.ReadOnly = true;
             Cpu.Width = 125;
             // 
             // Ram
@@ -363,6 +371,7 @@
             Ram.HeaderText = "Ram";
             Ram.MinimumWidth = 6;
             Ram.Name = "Ram";
+            Ram.ReadOnly = true;
             Ram.Width = 125;
             // 
             // ordenagailuakBindingSource

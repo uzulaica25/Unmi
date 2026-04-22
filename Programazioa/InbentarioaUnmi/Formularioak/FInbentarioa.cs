@@ -105,10 +105,10 @@ namespace InbentarioaUnmi.Formularioak
             int erantzuna;
             Gailuak gz = null;
 
-            if (cbEzabatu.Text != "Gorde")
+            if (cbEzabatu.Text != "Bai")
             {
                 Aktibatu(0);
-                cbEzabatu.Text = "Gorde";
+                cbEzabatu.Text = "Bai";
                 return;
             }
 
@@ -202,10 +202,13 @@ namespace InbentarioaUnmi.Formularioak
             {
                 lblId.Visible = true;
                 cmbId.Visible = true;
+                cmbId.Enabled = true;
                 lblMarka.Visible = true;
                 txtMarka.Visible = true;
+                txtMarka.Text = "";
                 lblKokalekua.Visible = true;
                 txtKokalekua.Visible = true;
+                txtKokalekua.Text = "";
                 lblErosteData.Visible = true;
                 dtpErosteData.Visible = true; ;
                 lblMintegia.Visible = true;
@@ -238,14 +241,17 @@ namespace InbentarioaUnmi.Formularioak
                 Desaktibatu();
                 lblCpu.Visible = true;
                 txtCpu.Visible = true;
+                txtCpu.Text = "";
                 lblRam.Visible = true;
                 txtRam.Visible = true;
+                txtRam.Text = "";
             }
             else if (z1 == 5)
             {
                 Desaktibatu();
                 lblKoloretakoa.Visible = true;
                 chbBai.Visible = true;
+                chbBai.Enabled = true;
             }
             else if (z1 == 10)
             {
@@ -371,7 +377,6 @@ namespace InbentarioaUnmi.Formularioak
         {
             if (!string.IsNullOrWhiteSpace(txtMarka.Text))
             {
-                txtMarka.Enabled = false;
                 txtKokalekua.Enabled = true;
                 txtKokalekua.Focus();
             }
@@ -385,7 +390,6 @@ namespace InbentarioaUnmi.Formularioak
         {
             if (!string.IsNullOrWhiteSpace(txtKokalekua.Text))
             {
-                txtKokalekua.Enabled = false;
                 cmbMintegia.Enabled = true;
                 cmbMintegia.Focus();
             }
@@ -400,7 +404,6 @@ namespace InbentarioaUnmi.Formularioak
             if (!string.IsNullOrWhiteSpace(cmbMintegia.Text))
             {
                 dtpErosteData.Enabled = true;
-                cmbMintegia.Enabled = false;
                 dtpErosteData.Focus();
             }
             else
@@ -413,7 +416,6 @@ namespace InbentarioaUnmi.Formularioak
         {
             if (!string.IsNullOrWhiteSpace(dtpErosteData.Text))
             {
-                dtpErosteData.Enabled = false;
                 if (cmbGailuMota.Text == "Ordenagailua")
                 {
                     txtCpu.Enabled = true;
@@ -435,7 +437,6 @@ namespace InbentarioaUnmi.Formularioak
         {
             if (!string.IsNullOrWhiteSpace(txtCpu.Text))
             {
-                txtCpu.Enabled = false;
                 txtRam.Enabled = true;
                 txtRam.Focus();
             }
@@ -455,7 +456,6 @@ namespace InbentarioaUnmi.Formularioak
         {
             if (!string.IsNullOrWhiteSpace(txtRam.Text))
             {
-                txtRam.Enabled = false;
                 cbAldatu.Enabled = true;
                 cbGehitu.Enabled = true;
             }
@@ -479,6 +479,9 @@ namespace InbentarioaUnmi.Formularioak
 
             dgvOrdenagailua.DataSource = LisOrd;
             dgvInprimagailua.DataSource = LisInp;
+
+            dgvInprimagailua.ReadOnly = true;
+            dgvOrdenagailua.ReadOnly = true;
         }
 
         private Gailuak GailuaSortu()

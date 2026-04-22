@@ -160,14 +160,11 @@ namespace InbentarioaUnmi.DatuBasea
                     }
                     if (be is Ordenagailuak or)
                     {
-                        string sql = @"UPDATE Inbentarioa.Ordenagailuak SET marka=@marka, kokalekua=@kokalekua, erostedata=@fecha, IDMintegia=@mintegia, CPU=@cpu, RAM=@ram WHERE ID=@oldId";
+                        string sql = @"UPDATE Inbentarioa.Ordenagailuak SET CPU=@cpu, RAM=@ram WHERE ID=@oldId";
 
                         using (MySqlCommand cmd = new MySqlCommand(sql, conn))
                         {
-                            cmd.Parameters.AddWithValue("@marka", or.Marka);
-                            cmd.Parameters.AddWithValue("@kokalekua", or.Kokalekua);
-                            cmd.Parameters.AddWithValue("@fecha", or.ErosteData.ToDateTime(TimeOnly.MinValue));
-                            cmd.Parameters.AddWithValue("@mintegia", or.Mintegia.Id);
+                            
                             cmd.Parameters.AddWithValue("@cpu", or.Cpu);
                             cmd.Parameters.AddWithValue("@ram", or.Ram);
                             cmd.Parameters.AddWithValue("@oldId", ga1.Id);
@@ -181,14 +178,11 @@ namespace InbentarioaUnmi.DatuBasea
                     // 🔹 INPRIMAGAILUA
                     if (be is Inprimagailuak inpri)
                     {
-                        string sql = @"UPDATE Inbentarioa.Inprimagailuak SET marka=@marka, kokalekua=@kokalekua, erostedata=@fecha, IDMintegia=@mintegia, koloretakoa=@kolor WHERE ID=@oldId";
+                        string sql = @"UPDATE Inbentarioa.Inprimagailuak SET koloretakoa=@kolor WHERE ID=@oldId";
 
                         using (MySqlCommand cmd = new MySqlCommand(sql, conn))
                         {
-                            cmd.Parameters.AddWithValue("@marka", inpri.Marka);
-                            cmd.Parameters.AddWithValue("@kokalekua", inpri.Kokalekua);
-                            cmd.Parameters.AddWithValue("@fecha", inpri.ErosteData.ToDateTime(TimeOnly.MinValue));
-                            cmd.Parameters.AddWithValue("@mintegia", inpri.Mintegia.Id);
+                            
                             cmd.Parameters.AddWithValue("@kolor", inpri.Koloretakoa ? "Bai" : "Ez");
                             cmd.Parameters.AddWithValue("@oldId", ga1.Id);
 
@@ -294,24 +288,9 @@ namespace InbentarioaUnmi.DatuBasea
             string delete, deleteGeneral;
             deleteGeneral = @"DELETE FROM Inbentarioa.Gailuak WHERE ID = @id;";
 
-            if (g is Inprimagailuak)
-            {
-                delete = @"DELETE FROM Inbentarioa.Inprimagailuak WHERE ID = @id;";
-            }
-            else
-            {
-                delete = @"DELETE FROM Inbentarioa.Ordenagailuak WHERE ID = @id;";
-            }
-
             try
             {
                 using var conn = DBKonexioa.Konektatu();
-
-                using (var cmd = new MySqlCommand(delete, conn))
-                {
-                    cmd.Parameters.AddWithValue("@id", g.Id);
-                    cmd.ExecuteNonQuery();
-                }
 
                 using (var cmd = new MySqlCommand(deleteGeneral, conn))
                 {

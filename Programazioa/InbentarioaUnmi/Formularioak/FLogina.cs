@@ -111,22 +111,9 @@ namespace InbentarioaUnmi
                 txtErabiltzailea.Focus();
             }
         }
-        private void txtErabiltzailea_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-        private void cbIrten_MouseDown(object sender, MouseEventArgs e)
-        {
-
-        }
         private void cbIrten_MouseMove(object sender, MouseEventArgs e)
         {
             this.txi = true;
-        }
-
-        private void panelak_Paint(object sender, PaintEventArgs e)
-        {
-
         }
 
         private void txtErabiltzailea_MouseMove(object sender, MouseEventArgs e)

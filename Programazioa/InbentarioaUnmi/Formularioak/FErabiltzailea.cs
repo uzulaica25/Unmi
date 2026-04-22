@@ -32,7 +32,9 @@ namespace InbentarioaUnmi.Formularioak
         private void FErabiltzailea_Load(object sender, EventArgs e)
         {
             cbGehitu.Focus();
+            LisEra.Clear();
             LisEra = ErabiltzaileaDB.ErabiltzaileaZerrendatu();
+            dgvErabiltzaileak.DataSource = null;
             if (era.Rola == "MintegiBurua")
             {
                 var filtrado = LisEra.Where(x => x.Mintegia.Id == era.Mintegia.Id).ToList();
@@ -43,6 +45,7 @@ namespace InbentarioaUnmi.Formularioak
             {
                 dgvErabiltzaileak.DataSource = LisEra;
             }
+            dgvErabiltzaileak.ReadOnly = true;
         }
 
         private void cbGehitu_Click(object sender, EventArgs e)
@@ -127,24 +130,34 @@ namespace InbentarioaUnmi.Formularioak
             else
             {
                 Eid = cmbId.Text;
-                foreach (var item in LisEra)
+                if (Eid == era.Id)
                 {
-                    if (item.Id == Eid)
-                    {
-                        er = item;
-                        break;
-                    }
-                }
-                erantzuna = ErabiltzaileaDB.ErabiltzaileaEzabatu(er);
-                if (erantzuna == 1)
-                {
-                    MessageBox.Show("Erabiltzailea ezabatu da.");
-                    Aktibatu(10);
+                    MessageBox.Show("Ezin duzu zure erabiltzailea ezabatu. Mesedez, sartu beste bat.");
+                    cmbId.Focus();
+                    return;
                 }
                 else
                 {
-                    MessageBox.Show("Erabiltzailea ez da ezabatu. Mesedez, saiatu berriro.");
-                    cbEzabatu_Click(sender, e);
+
+                    foreach (var item in LisEra)
+                    {
+                        if (item.Id == Eid)
+                        {
+                            er = item;
+                            break;
+                        }
+                    }
+                    erantzuna = ErabiltzaileaDB.ErabiltzaileaEzabatu(er);
+                    if (erantzuna == 1)
+                    {
+                        MessageBox.Show("Erabiltzailea ezabatu da.");
+                        Aktibatu(10);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Erabiltzailea ez da ezabatu. Mesedez, saiatu berriro.");
+                        cbEzabatu_Click(sender, e);
+                    }
                 }
             }
         }

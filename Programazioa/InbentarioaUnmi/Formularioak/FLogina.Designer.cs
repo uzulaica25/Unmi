@@ -127,7 +127,6 @@
             cbIrten.Text = "Irten";
             cbIrten.UseVisualStyleBackColor = true;
             cbIrten.Click += cbIrten_Click_1;
-            cbIrten.MouseDown += cbIrten_MouseDown;
             cbIrten.MouseMove += cbIrten_MouseMove;
             // 
             // txtPasahitza
@@ -157,7 +156,6 @@
             txtErabiltzailea.Name = "txtErabiltzailea";
             txtErabiltzailea.Size = new Size(244, 27);
             txtErabiltzailea.TabIndex = 0;
-            txtErabiltzailea.TextChanged += txtErabiltzailea_TextChanged;
             txtErabiltzailea.Leave += txtErabiltzailea_Leave;
             txtErabiltzailea.MouseMove += txtErabiltzailea_MouseMove;
             // 
@@ -177,7 +175,6 @@
             panelak.Name = "panelak";
             panelak.Size = new Size(800, 422);
             panelak.TabIndex = 21;
-            panelak.Paint += panelak_Paint;
             // 
             // FLogina
             // 
