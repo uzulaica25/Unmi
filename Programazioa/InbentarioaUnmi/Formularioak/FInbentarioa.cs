@@ -52,7 +52,6 @@ namespace InbentarioaUnmi.Formularioak
                 MessageBox.Show("Gailua gehitu da.");
                 cbGehitu.Text = "Gehitu";
                 Aktibatu(10);
-                DatuakKargatu();
             }
             else
             {
@@ -65,10 +64,10 @@ namespace InbentarioaUnmi.Formularioak
             string Id;
             int eran;
             Gailuak gberria = null, gz = null;
-            if (cbAldatu.Text != "Gorde")
+            if (cbAldatu.Text == "Aldatu")
             {
-                Aktibatu(0);
                 cbAldatu.Text = "Gorde";
+                Aktibatu(0);
                 return;
             }
 
@@ -91,7 +90,6 @@ namespace InbentarioaUnmi.Formularioak
                 MessageBox.Show("Gailua aldatu da.");
                 cbAldatu.Text = "Aldatu";
                 Aktibatu(10);
-                DatuakKargatu();
             }
             else
             {
@@ -105,10 +103,10 @@ namespace InbentarioaUnmi.Formularioak
             int erantzuna;
             Gailuak gz = null;
 
-            if (cbEzabatu.Text != "Bai")
+            if (cbEzabatu.Text == "Ezabatu")
             {
-                Aktibatu(0);
                 cbEzabatu.Text = "Bai";
+                Aktibatu(0);
                 return;
             }
 
@@ -151,7 +149,6 @@ namespace InbentarioaUnmi.Formularioak
             }
             cbEzabatu.Text = "Ezabatu";
             Aktibatu(10);
-            DatuakKargatu();
         }
 
         private void Desaktibatu()
@@ -196,7 +193,7 @@ namespace InbentarioaUnmi.Formularioak
                 cmbGailuMota.Focus();
                 lblGailuMota.Visible = true;
                 cmbGailuMota.Visible = true;
-                cmbGailuMota.Text = "";
+                cmbGailuMota.SelectedIndex = -1;
             }
             else if (z1 == 1 || z1 == 2 || z1 == 3)
             {
@@ -205,16 +202,21 @@ namespace InbentarioaUnmi.Formularioak
                 cmbId.Enabled = true;
                 lblMarka.Visible = true;
                 txtMarka.Visible = true;
+                txtMarka.Enabled = true;
                 txtMarka.Text = "";
                 lblKokalekua.Visible = true;
                 txtKokalekua.Visible = true;
+                txtKokalekua.Enabled = true;
                 txtKokalekua.Text = "";
                 lblErosteData.Visible = true;
-                dtpErosteData.Visible = true; ;
+                dtpErosteData.Visible = true;
+                dtpErosteData.Enabled = true;
                 lblMintegia.Visible = true;
                 cmbMintegia.Visible = true;
+                cmbMintegia.Enabled = true;
                 cmbMintegia.DataSource = LisMin;
                 cmbMintegia.DisplayMember = "Izena";
+                cmbMintegia.SelectedIndex = -1;
 
                 if (z1 == 2)
                 {
@@ -223,16 +225,21 @@ namespace InbentarioaUnmi.Formularioak
                 }
                 else if (z1 == 3)
                 {
+                    txtMarka.Enabled = false;
+                    txtKokalekua.Enabled = false;
+                    dtpErosteData.Enabled = false;
+                    cmbMintegia.Enabled = false;
+                    txtCpu.Enabled = false;
+                    txtRam.Enabled = false;
+                    chbBai.Enabled = false;
                     cmbId.Focus();
                     cbEzabatu.Visible = true;
                 }
                 else
                 {
                     cmbId.Enabled = false;
-
                     cbGehitu.Visible = true;
                     cbGehitu.Enabled = false;
-
                     txtMarka.Focus();
                 }
             }
@@ -256,6 +263,7 @@ namespace InbentarioaUnmi.Formularioak
             else if (z1 == 10)
             {
                 Desaktibatu();
+                DatuakKargatu();
                 cbGehitu.Visible = true;
                 cbAldatu.Visible = true;
                 cbEzabatu.Visible = true;
@@ -266,12 +274,6 @@ namespace InbentarioaUnmi.Formularioak
 
         private void cmbGailuMota_SelectedValueChanged(object sender, EventArgs e)
         {
-            if (cbGehitu.Text == "Gorde")
-            {
-                Aktibatu(1);
-                return;
-            }
-
             if (cmbGailuMota.Text == "Ordenagailua")
             {
                 Aktibatu(4);
@@ -287,38 +289,13 @@ namespace InbentarioaUnmi.Formularioak
             {
                 Aktibatu(2);
             }
-            else if (cbEzabatu.Text == "Gorde")
+            else if (cbEzabatu.Text == "Bai")
             {
                 Aktibatu(3);
             }
-        }
-
-        private void cmbGailuMota_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (cmbGailuMota.Text == "Ordenagailua")
-            {
-                Aktibatu(4);
-            }
-            else if (cmbGailuMota.Text == "Inprimagailua")
-            {
-                Aktibatu(5);
-            }
-
-            if (cbGehitu.Text == "Gorde")
+            else if(cbGehitu.Text == "Gorde")
             {
                 Aktibatu(1);
-                return;
-            }
-
-            IdakKargatu();
-
-            if (cbAldatu.Text == "Gorde")
-            {
-                Aktibatu(2);
-            }
-            else if (cbEzabatu.Text == "Gorde")
-            {
-                Aktibatu(3);
             }
         }
 

@@ -46,9 +46,8 @@ namespace InbentarioaUnmi.Formularioak
             Desaktibatu();
             if (cbGehitu.Text == "Gehitu")
             {
-                Aktibatu(1);
-                
                 cbGehitu.Text = "Gorde";
+                Aktibatu(1);
                 cbGehitu.Enabled = true;
             }
             else
@@ -57,7 +56,7 @@ namespace InbentarioaUnmi.Formularioak
                 data = DateOnly.FromDateTime(dtpData.Value);
                 mezua = txtMezua.Text;
 
-                intz = new Intzidentziak("aa", g," ", data, mezua);
+                intz = new Intzidentziak("aa", g, " ", data, mezua);
 
                 eran = intzidentziakDB.IntzidentziaGehitu(intz);
 
@@ -86,11 +85,10 @@ namespace InbentarioaUnmi.Formularioak
             Desaktibatu();
             if (cbAldatu.Text == "Aldatu")
             {
+                cbAldatu.Text = "Gorde";
                 Aktibatu(2);
                 LisGai = InbentarioaDB.GailuakListaratu(era);
                 cmbGailua.DataSource = LisGai;
-
-                cbAldatu.Text = "Gorde";
             }
             else
             {
@@ -98,7 +96,7 @@ namespace InbentarioaUnmi.Formularioak
                 g = (Gailuak)cmbGailua.SelectedItem;
                 data = DateOnly.FromDateTime(dtpData.Value);
                 mezua = txtMezua.Text;
-                intz = new Intzidentziak(cmbId.Text, g," ", data, mezua);
+                intz = new Intzidentziak(cmbId.Text, g, " ", data, mezua);
 
                 eran = intzidentziakDB.IntzidentziaAldatu(intz, intzidentzia);
                 if (eran == 1)
@@ -124,8 +122,8 @@ namespace InbentarioaUnmi.Formularioak
             Desaktibatu();
             if (cbEzabatu.Text == "Ezabatu")
             {
-                Aktibatu(3);
                 cbEzabatu.Text = "Bai";
+                Aktibatu(3);
             }
             else
             {
@@ -197,38 +195,23 @@ namespace InbentarioaUnmi.Formularioak
             lblGailua.Visible = false;
             cmbGailua.Visible = false;
         }
+
         private void Aktibatu(int z1)
         {
             List<Gailuak> LisGai = new List<Gailuak>();
 
             // z1 1=Gehitu, 2=Aldatu, 3=Ezabatu, 4=Aurkitu, 10=Gehitu/Aldatu amaitu
-            if (z1 == 1)
-            {
-                lblId.Visible = true;
-                cmbId.Visible = true;
-                lblMezua.Visible = true;
-                txtMezua.Visible = true;
-                txtMezua.Text = "";
-                lblData.Visible = true;
-                dtpData.Visible = true;
-                lblGailua.Visible = true;
-                cmbGailua.Visible = true;
-                LisGai = InbentarioaDB.GailuakListaratu(era);
-                cmbGailua.DataSource = LisGai;
-                cmbGailua.DisplayMember = "Id";
-                cmbId.Enabled = false;
-                cbGehitu.Visible = true;
-                cbGehitu.Enabled = false;
-            }
-            else if (z1 == 2 || z1 == 3)
+            if (z1 == 1 || z1 == 2 || z1 == 3)
             {
                 lblId.Visible = true;
                 cmbId.Visible = true;
                 cmbId.Enabled = true;
                 cmbId.DataSource = LisInt;
                 cmbId.DisplayMember = "Id";
+                cmbId.SelectedIndex = -1;
                 lblMezua.Visible = true;
                 txtMezua.Visible = true;
+                txtMezua.Text = "";
                 txtMezua.Enabled = false;
                 lblData.Visible = true;
                 dtpData.Visible = true;
@@ -239,16 +222,26 @@ namespace InbentarioaUnmi.Formularioak
                 LisGai = InbentarioaDB.GailuakListaratu(era);
                 cmbGailua.DataSource = LisGai;
                 cmbGailua.DisplayMember = "Id";
-
-                if (z1 == 2)
+                cmbGailua.SelectedIndex = -1;
+                if (z1 == 1)
                 {
+                    cmbGailua.Enabled = true;
+                    dtpData.Enabled = true;
+                    txtMezua.Enabled = true;
+                    cmbGailua.Focus();
+                    cmbId.Enabled = false;
+                    cbGehitu.Visible = true;
+                }
+                else if (z1 == 2)
+                {
+                    cmbId.Focus();
                     cbAldatu.Visible = true;
                 }
                 else
                 {
+                    cmbId.Focus();
                     cbEzabatu.Visible = true;
                 }
-                cmbId.Focus();
             }
             else if (z1 == 4)
             {
@@ -270,16 +263,11 @@ namespace InbentarioaUnmi.Formularioak
 
         private void cmbId_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Intzidentziak intzidentziak;
-            intzidentziak = (Intzidentziak)cmbId.SelectedItem;
-            txtMezua.Text = intzidentziak.Mezua;
-            dtpData.Value = intzidentziak.Data.ToDateTime(new TimeOnly(0, 0));
-            cmbGailua.SelectedItem = intzidentziak.Gailua;
         }
 
         private void cmbId_Leave(object sender, EventArgs e)
         {
-            if(cbEzabatu.Text == "Ezabatu.")
+            if (cbEzabatu.Text == "Bai")
             {
                 cbEzabatu.Focus();
             }
@@ -293,6 +281,18 @@ namespace InbentarioaUnmi.Formularioak
                     cmbGailua.Enabled = true;
                     cmbGailua.Focus();
                 }
+            }
+        }
+
+        private void cmbId_SelectedValueChanged(object sender, EventArgs e)
+        {
+            Intzidentziak intzidentziak = null;
+            intzidentziak = (Intzidentziak)cmbId.SelectedItem;
+            if(intzidentziak != null)
+            {
+                txtMezua.Text = intzidentziak.Mezua;
+                dtpData.Value = intzidentziak.Data.ToDateTime(new TimeOnly(0, 0));
+                cmbGailua.SelectedItem = intzidentziak.Gailua;
             }
         }
     }

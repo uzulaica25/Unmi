@@ -193,7 +193,6 @@
             cmbGailuMota.TabIndex = 16;
             cmbGailuMota.UseWaitCursor = true;
             cmbGailuMota.Visible = false;
-            cmbGailuMota.SelectedIndexChanged += cmbGailuMota_SelectedIndexChanged;
             cmbGailuMota.SelectedValueChanged += cmbGailuMota_SelectedValueChanged;
             // 
             // lblKoloretakoa

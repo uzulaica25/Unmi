@@ -57,6 +57,7 @@
             cbIrten.Text = "Irten";
             cbIrten.UseVisualStyleBackColor = true;
             cbIrten.Click += cbIrten_Click;
+            cbIrten.MouseMove += cbIrten_MouseMove;
             // 
             // cbGehitu
             // 

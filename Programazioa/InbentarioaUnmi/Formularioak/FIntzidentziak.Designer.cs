@@ -31,6 +31,10 @@
             components = new System.ComponentModel.Container();
             cbIrten = new Button();
             dgvIntzidentziak = new DataGridView();
+            Column1 = new DataGridViewTextBoxColumn();
+            gailuaDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            dataDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            mezuaDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             intzidentziakBindingSource2 = new BindingSource(components);
             intzidentziakBindingSource1 = new BindingSource(components);
             intzidentziakBindingSource = new BindingSource(components);
@@ -48,10 +52,6 @@
             cbEzabatu = new Button();
             inprimagailuakBindingSource = new BindingSource(components);
             cbAurkitu = new Button();
-            Column1 = new DataGridViewTextBoxColumn();
-            gailuaDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            dataDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            mezuaDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)dgvIntzidentziak).BeginInit();
             ((System.ComponentModel.ISupportInitialize)intzidentziakBindingSource2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)intzidentziakBindingSource1).BeginInit();
@@ -87,6 +87,42 @@
             dgvIntzidentziak.RowHeadersWidth = 51;
             dgvIntzidentziak.Size = new Size(653, 339);
             dgvIntzidentziak.TabIndex = 0;
+            // 
+            // Column1
+            // 
+            Column1.DataPropertyName = "Id";
+            Column1.HeaderText = "ID";
+            Column1.MinimumWidth = 6;
+            Column1.Name = "Column1";
+            Column1.ReadOnly = true;
+            Column1.Width = 125;
+            // 
+            // gailuaDataGridViewTextBoxColumn
+            // 
+            gailuaDataGridViewTextBoxColumn.DataPropertyName = "IDGailua";
+            gailuaDataGridViewTextBoxColumn.HeaderText = "Gailua";
+            gailuaDataGridViewTextBoxColumn.MinimumWidth = 6;
+            gailuaDataGridViewTextBoxColumn.Name = "gailuaDataGridViewTextBoxColumn";
+            gailuaDataGridViewTextBoxColumn.ReadOnly = true;
+            gailuaDataGridViewTextBoxColumn.Width = 125;
+            // 
+            // dataDataGridViewTextBoxColumn
+            // 
+            dataDataGridViewTextBoxColumn.DataPropertyName = "Data";
+            dataDataGridViewTextBoxColumn.HeaderText = "Data";
+            dataDataGridViewTextBoxColumn.MinimumWidth = 6;
+            dataDataGridViewTextBoxColumn.Name = "dataDataGridViewTextBoxColumn";
+            dataDataGridViewTextBoxColumn.ReadOnly = true;
+            dataDataGridViewTextBoxColumn.Width = 125;
+            // 
+            // mezuaDataGridViewTextBoxColumn
+            // 
+            mezuaDataGridViewTextBoxColumn.DataPropertyName = "Mezua";
+            mezuaDataGridViewTextBoxColumn.HeaderText = "Mezua";
+            mezuaDataGridViewTextBoxColumn.MinimumWidth = 6;
+            mezuaDataGridViewTextBoxColumn.Name = "mezuaDataGridViewTextBoxColumn";
+            mezuaDataGridViewTextBoxColumn.ReadOnly = true;
+            mezuaDataGridViewTextBoxColumn.Width = 125;
             // 
             // intzidentziakBindingSource2
             // 
@@ -149,6 +185,7 @@
             cmbId.UseWaitCursor = true;
             cmbId.Visible = false;
             cmbId.SelectedIndexChanged += cmbId_SelectedIndexChanged;
+            cmbId.SelectedValueChanged += cmbId_SelectedValueChanged;
             cmbId.Leave += cmbId_Leave;
             // 
             // lblId
@@ -252,42 +289,6 @@
             cbAurkitu.Text = "Aurkitu";
             cbAurkitu.UseVisualStyleBackColor = true;
             cbAurkitu.Click += cbAurkitu_Click;
-            // 
-            // Column1
-            // 
-            Column1.DataPropertyName = "Id";
-            Column1.HeaderText = "ID";
-            Column1.MinimumWidth = 6;
-            Column1.Name = "Column1";
-            Column1.ReadOnly = true;
-            Column1.Width = 125;
-            // 
-            // gailuaDataGridViewTextBoxColumn
-            // 
-            gailuaDataGridViewTextBoxColumn.DataPropertyName = "IDGailua";
-            gailuaDataGridViewTextBoxColumn.HeaderText = "Gailua";
-            gailuaDataGridViewTextBoxColumn.MinimumWidth = 6;
-            gailuaDataGridViewTextBoxColumn.Name = "gailuaDataGridViewTextBoxColumn";
-            gailuaDataGridViewTextBoxColumn.ReadOnly = true;
-            gailuaDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // dataDataGridViewTextBoxColumn
-            // 
-            dataDataGridViewTextBoxColumn.DataPropertyName = "Data";
-            dataDataGridViewTextBoxColumn.HeaderText = "Data";
-            dataDataGridViewTextBoxColumn.MinimumWidth = 6;
-            dataDataGridViewTextBoxColumn.Name = "dataDataGridViewTextBoxColumn";
-            dataDataGridViewTextBoxColumn.ReadOnly = true;
-            dataDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // mezuaDataGridViewTextBoxColumn
-            // 
-            mezuaDataGridViewTextBoxColumn.DataPropertyName = "Mezua";
-            mezuaDataGridViewTextBoxColumn.HeaderText = "Mezua";
-            mezuaDataGridViewTextBoxColumn.MinimumWidth = 6;
-            mezuaDataGridViewTextBoxColumn.Name = "mezuaDataGridViewTextBoxColumn";
-            mezuaDataGridViewTextBoxColumn.ReadOnly = true;
-            mezuaDataGridViewTextBoxColumn.Width = 125;
             // 
             // FIntzidentziak
             // 

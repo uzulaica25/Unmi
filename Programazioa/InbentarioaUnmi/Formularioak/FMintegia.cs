@@ -21,10 +21,12 @@ namespace InbentarioaUnmi.Formularioak
             this.era = era;
             InitializeComponent();
         }
+
         private void cbIrten_Click(object sender, EventArgs e)
         {
             this.Close();
         }
+
         private void FMintegia_Load(object sender, EventArgs e)
         {
             cbGehitu.Focus();
@@ -34,6 +36,7 @@ namespace InbentarioaUnmi.Formularioak
             dgvMintegiak.DataSource = LisMin;
             dgvMintegiak.ReadOnly = true;
         }
+
         private void cbGehitu_Click(object sender, EventArgs e)
         {
             int erantzuna;
@@ -42,8 +45,8 @@ namespace InbentarioaUnmi.Formularioak
             if (cbGehitu.Text == "Gehitu")
             {
                 cmbId.Text = "";
-                Aktibatu(1);
                 cbGehitu.Text = "Gorde";
+                Aktibatu(1);
             }
             else
             {
@@ -74,6 +77,7 @@ namespace InbentarioaUnmi.Formularioak
                 cbGehitu.Text = "Gehitu";
             }
         }
+
         private void cbAldatu_Click_1(object sender, EventArgs e)
         {
             int erantzuna;
@@ -82,8 +86,8 @@ namespace InbentarioaUnmi.Formularioak
 
             if (cbAldatu.Text == "Aldatu")
             {
-                Aktibatu(2);
                 cbAldatu.Text = "Gorde";
+                Aktibatu(2);
             }
             else
             {
@@ -111,16 +115,17 @@ namespace InbentarioaUnmi.Formularioak
                 cbAldatu.Text = "Aldatu";
             }
         }
+
         private void cbEzabatu_Click_1(object sender, EventArgs e)
         {
             int erantzuna;
             string Mizena, id;
             Mintegiak mi;
-            
-            if(cbEzabatu.Text == "Ezabatu")
+
+            if (cbEzabatu.Text == "Ezabatu")
             {
-                Aktibatu(3);
                 cbEzabatu.Text = "Bai";
+                Aktibatu(3);
             }
             else
             {
@@ -149,6 +154,7 @@ namespace InbentarioaUnmi.Formularioak
                 cbEzabatu.Text = "Ezabatu";
             }
         }
+
         private void Desaktibatu()
         {
             // Formularioko elementuak ezkutatzen ditu.
@@ -163,40 +169,40 @@ namespace InbentarioaUnmi.Formularioak
             lblIzena.Visible = false;
             txtIzena.Visible = false;
         }
+
         private void Aktibatu(int z1)
         {
             Desaktibatu();
             // z1 1=Gehitu, 2=Aldatu, 3=Ezabatu, 10=Gehitu/Aldatu amaitu
-            if (z1 == 1)
-            {
-                lblId.Visible = true;
-                cmbId.Visible = true;
-                cmbId.Enabled = false;
-                lblIzena.Visible = true;
-                txtIzena.Visible = true;
-                txtIzena.Text = "";
-                cbGehitu.Visible = true;
-            }
-            else if (z1 == 2 || z1 == 3)
+            if (z1 == 1 || z1 == 2 || z1 == 3)
             {
                 lblId.Visible = true;
                 cmbId.Visible = true;
                 cmbId.Enabled = true;
                 cmbId.DataSource = LisMin;
                 cmbId.DisplayMember = "Id";
+                cmbId.SelectedIndex = -1;
                 lblIzena.Visible = true;
                 txtIzena.Visible = true;
                 txtIzena.Enabled = false;
-
-                if (z1 == 2)
+                if (z1 == 1)
+                {
+                    cmbId.Enabled = false;
+                    txtIzena.Enabled = true;
+                    txtIzena.Focus();
+                    cbGehitu.Visible = true;
+                }
+                else if (z1 == 2)
                 {
                     cbAldatu.Visible = true;
+                    cmbId.Focus();
                 }
                 else
                 {
                     cbEzabatu.Visible = true;
+                    cmbId.Focus();
                 }
-                cmbId.Focus();
+
             }
             else if (z1 == 10)
             {
@@ -211,65 +217,92 @@ namespace InbentarioaUnmi.Formularioak
         private void txtIzena_Leave(object sender, EventArgs e)
         {
             bool txi = false;
-            while (txi == false)
+            if (cbGehitu.Text == "Gorde")
             {
-                txi = false;
-                if (string.IsNullOrEmpty(txtIzena.Text.Trim()))
+                while (txi == false)
                 {
-                    MessageBox.Show("Mintegiaren izena ezin da hutsik egon.");
-                    txtIzena.Focus();
-                    break;
-                }
-                foreach (Mintegiak m in LisMin)
-                {
-                    if (m.Izena == txtIzena.Text.Trim())
+                    txi = false;
+                    if (string.IsNullOrEmpty(txtIzena.Text.Trim()))
                     {
-                        MessageBox.Show("Mintegiaren izena ezin da errepikatu.");
+                        MessageBox.Show("Mintegiaren izena ezin da hutsik egon.");
                         txtIzena.Focus();
-                        return;
-                    }
-                    else
-                    {
-                        txi = true;
                         break;
                     }
+                    foreach (Mintegiak m in LisMin)
+                    {
+                        if (m.Izena == txtIzena.Text.Trim())
+                        {
+                            MessageBox.Show("Mintegiaren izena ezin da errepikatu.");
+                            txtIzena.Focus();
+                            return;
+                        }
+                        else
+                        {
+                            txi = true;
+                            break;
+                        }
+                    }
                 }
-            }
-            if (txi == true)
-            {
-                if (cbGehitu.Text == "Gorde")
+                if (txi == true)
                 {
-                    cbGehitu.Focus();
-                }
-                else if (cbAldatu.Text == "Gorde")
-                {
-                    cbAldatu.Focus();
+                    if (cbGehitu.Text == "Gorde")
+                    {
+                        cbGehitu.Focus();
+                    }
+                    else if (cbAldatu.Text == "Gorde")
+                    {
+                        cbAldatu.Focus();
+                    }
                 }
             }
         }
 
         private void cmbId_Leave(object sender, EventArgs e)
         {
-            txtIzena.Enabled = true;
-            txtIzena.Focus();
+            if (cbAldatu.Text == "Gorde")
+            {
+                txtIzena.Enabled = true;
+                if (cmbId.Text != "")
+                {
+                    txtIzena.Focus();
+                }
+            }
+            else
+            {
+                txtIzena.Enabled = false;
+                cbEzabatu.Focus();
+            }
         }
 
         private void cmbId_SelectedIndexChanged(object sender, EventArgs e)
         {
             string Id;
             Mintegiak m;
+
             Id = cmbId.Text;
-            foreach (Mintegiak min in LisMin)
+            if (Id == "")
             {
-                if (min.Id == Id)
+                txtIzena.Text = "";
+                return;
+            }
+            else
+            {
+                foreach (Mintegiak min in LisMin)
                 {
-                    m = min;
-                    txtIzena.Text = m.Izena;
-                    txtIzena.Enabled = true;
-                    txtIzena.Focus();
-                    break;
+                    if (min.Id == Id)
+                    {
+                        m = min;
+                        txtIzena.Text = m.Izena;
+                        break;
+                    }
                 }
             }
+        }
+
+        private void cbIrten_MouseMove(object sender, MouseEventArgs e)
+        {
+            cbGehitu.Text = "Gehitu";
+            cbIrten.Focus();
         }
     }
 }

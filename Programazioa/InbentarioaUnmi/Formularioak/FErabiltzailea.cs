@@ -57,8 +57,8 @@ namespace InbentarioaUnmi.Formularioak
 
             if (cbGehitu.Text == "Gehitu")
             {
-                Aktibatu(1);
                 cbGehitu.Text = "Gorde";
+                Aktibatu(1);
             }
             else
             {
@@ -91,8 +91,8 @@ namespace InbentarioaUnmi.Formularioak
 
             if (cbAldatu.Text == "Aldatu")
             {
-                Aktibatu(2);
                 cbAldatu.Text = "Gorde";
+                Aktibatu(2);
             }
             else
             {
@@ -124,8 +124,8 @@ namespace InbentarioaUnmi.Formularioak
             Erabiltzaileak er = null;
             if (cbEzabatu.Text == "Ezabatu")
             {
-                Aktibatu(3);
                 cbEzabatu.Text = "Bai";
+                Aktibatu(3);
             }
             else
             {
@@ -203,16 +203,20 @@ namespace InbentarioaUnmi.Formularioak
                 lblErabiltzailea.Visible = true;
                 txtErabiltzailea.Visible = true;
                 txtErabiltzailea.Enabled = false;
+                txtErabiltzailea.Text = "";
                 lblPasahitza.Visible = true;
                 txtPasahitza.Visible = true;
                 txtPasahitza.Enabled = false;
+                txtPasahitza.Text = "";
                 lblRola.Visible = true;
                 cmbRola.Visible = true;
                 cmbRola.Enabled = false;
+                cmbRola.SelectedIndex = -1;
                 lblMintegia.Visible = true;
                 cmbMintegia.Visible = true;
                 cmbMintegia.Enabled = false;
                 MintegiakKargatu();
+                cmbMintegia.SelectedIndex = -1;
 
                 if (z1 == 2)
                 {
@@ -225,6 +229,10 @@ namespace InbentarioaUnmi.Formularioak
                     cmbId.Focus();
                 }else
                 {
+                    txtErabiltzailea.Enabled = true;
+                    txtPasahitza.Enabled = true;
+                    cmbRola.Enabled = true;
+                    cmbMintegia.Enabled = true;
                     cmbId.Enabled = false;
                     cbGehitu.Visible = true;
                     cbGehitu.Enabled = false;
@@ -333,13 +341,13 @@ namespace InbentarioaUnmi.Formularioak
 
         private void cmbId_Leave(object sender, EventArgs e)
         {
-            txtErabiltzailea.Enabled = true;
-            txtPasahitza.Enabled = true;
-            cmbRola.Enabled = true;
-            cmbMintegia.Enabled = true;
             cmbId.Enabled = false;
             if (cbAldatu.Text == "Gorde")
             {
+                txtErabiltzailea.Enabled = true;
+                txtPasahitza.Enabled = true;
+                cmbRola.Enabled = true;
+                cmbMintegia.Enabled = true;
                 txtErabiltzailea.Focus();
             }
             else
