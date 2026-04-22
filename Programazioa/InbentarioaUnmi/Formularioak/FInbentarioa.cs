@@ -17,6 +17,7 @@ namespace InbentarioaUnmi.Formularioak
         public List<Gailuak> LisInb = new List<Gailuak>();
         public BindingList<Inprimagailuak> LisInp = new BindingList<Inprimagailuak>();
         public BindingList<Ordenagailuak> LisOrd = new BindingList<Ordenagailuak>();
+        public List<Mintegiak> LisMin = new List<Mintegiak>();
         public Erabiltzaileak era;
         public FInbentarioa(Erabiltzaileak era)
         {
@@ -72,6 +73,11 @@ namespace InbentarioaUnmi.Formularioak
             }
 
             gberria = GailuaSortu();
+            if(gberria == null)
+            {
+                MessageBox.Show("Errorea");
+                return;
+            }
             Id = cmbId.Text;
 
             foreach (var g in LisInb)
@@ -131,7 +137,7 @@ namespace InbentarioaUnmi.Formularioak
                 erantzuna = InbentarioaDB.GailuaEzabatu(gz);
                 if (erantzuna == 1)
                 {
-                    erantzuna = InbentarioaDB.EzabatutakoGAiluak(gz);
+                    erantzuna = InbentarioaDB.EzabatutakoGailuak(gz);
                     if (erantzuna == 1)
                     {
                         MessageBox.Show("Gailua eta lotutako datuak ezabatu dira.");
@@ -183,9 +189,7 @@ namespace InbentarioaUnmi.Formularioak
 
         private void Aktibatu(int z1)
         {
-            List<Mintegiak> LisMin = new List<Mintegiak>();
-            
-            LisMin = MintegiaDB.MintegiakListaratu();
+            this.LisMin = MintegiaDB.MintegiakListaratu();
             // z1 0=Gailu mota, 1=Gehitu, 2=Aldatu, 3=Ezabatu, 4=Ordenagailua, 5=Inprimagailua, 10=Gehitu/Aldatu amaitu
             if (z1 == 0)
             {
@@ -282,15 +286,14 @@ namespace InbentarioaUnmi.Formularioak
             {
                 Aktibatu(5);
             }
-
-            IdakKargatu();
-
             if (cbAldatu.Text == "Gorde")
             {
+                IdakKargatu();
                 Aktibatu(2);
             }
             else if (cbEzabatu.Text == "Bai")
             {
+                IdakKargatu();
                 Aktibatu(3);
             }
             else if(cbGehitu.Text == "Gorde")
@@ -302,30 +305,24 @@ namespace InbentarioaUnmi.Formularioak
         private void cmbId_SelectedValueChanged(object sender, EventArgs e)
         {
             string id;
-            if (cmbId.SelectedValue == null)
+            
+            id = cmbId.Text;
+            foreach (var g in LisInb)
             {
-                return;
-            }
-            else
-            {
-                id = cmbId.SelectedValue.ToString();
-                foreach (var g in LisInb)
+                if (g.Id == id)
                 {
-                    if (g.Id == id)
+                    txtMarka.Text = g.Marka;
+                    txtKokalekua.Text = g.Kokalekua;
+                    dtpErosteData.Value = g.ErosteData.ToDateTime(TimeOnly.MinValue);
+                    cmbMintegia.Text = g.Mintegia.Id;
+                    if (g is Ordenagailuak o)
                     {
-                        txtMarka.Text = g.Marka;
-                        txtKokalekua.Text = g.Kokalekua;
-                        dtpErosteData.Value = g.ErosteData.ToDateTime(TimeOnly.MinValue);
-                        cmbMintegia.SelectedItem = g.Mintegia;
-                        if (g is Ordenagailuak o)
-                        {
-                            txtCpu.Text = o.Cpu;
-                            txtRam.Text = o.Ram;
-                        }
-                        else if (g is Inprimagailuak i)
-                        {
-                            chbBai.Checked = i.Koloretakoa;
-                        }
+                        txtCpu.Text = o.Cpu;
+                        txtRam.Text = o.Ram;
+                    }
+                    else if (g is Inprimagailuak i)
+                    {
+                        chbBai.Checked = i.Koloretakoa;
                     }
                 }
             }
@@ -335,6 +332,7 @@ namespace InbentarioaUnmi.Formularioak
         {
             if (cbAldatu.Text == "Gorde")
             {
+                cmbId.Enabled = false;
                 txtMarka.Enabled = true;
                 txtKokalekua.Enabled = true;
                 cmbMintegia.Enabled = true;
@@ -342,6 +340,7 @@ namespace InbentarioaUnmi.Formularioak
                 txtCpu.Enabled = true;
                 txtRam.Enabled = true;
                 chbBai.Enabled = true;
+                txtMarka.Focus();
             }
             else
             {
@@ -463,22 +462,35 @@ namespace InbentarioaUnmi.Formularioak
 
         private Gailuak GailuaSortu()
         {
-            string id, marka, kokalekua;
-            Mintegiak mintegia;
+            string id, marka, kokalekua, mid;
+            Mintegiak mintegia = null;
             DateOnly data;
 
             id = cmbId.Text;
             marka = txtMarka.Text;
             kokalekua = txtKokalekua.Text;
-            mintegia = (Mintegiak)cmbMintegia.SelectedItem;
-            data = DateOnly.FromDateTime(dtpErosteData.Value);
-
-            if (cmbGailuMota.Text == "Ordenagailua")
+            mid = cmbMintegia.Text;
+            foreach(var m in LisMin)
             {
-                return new Ordenagailuak(id, marka, kokalekua, data, mintegia, txtCpu.Text, txtRam.Text);
+                if(m.Id == mid)
+                {
+                    mintegia = m;
+                }
             }
+            data = DateOnly.FromDateTime(dtpErosteData.Value);
+            if (mintegia != null)
+            {
+                if (cmbGailuMota.Text == "Ordenagailua")
+                {
+                    return new Ordenagailuak(id, marka, kokalekua, data, mintegia, txtCpu.Text, txtRam.Text);
+                }
 
-            return new Inprimagailuak(id, marka, kokalekua, data, mintegia, chbBai.Checked);
+                return new Inprimagailuak(id, marka, kokalekua, data, mintegia, chbBai.Checked);
+            }
+            else
+            {
+                return null;
+            }
         }
 
         private void IdakKargatu()
@@ -493,6 +505,7 @@ namespace InbentarioaUnmi.Formularioak
 
             cmbId.DisplayMember = "Id";
             cmbId.ValueMember = "Id";
+            cmbId.SelectedIndex = -1;
         }
 
     }

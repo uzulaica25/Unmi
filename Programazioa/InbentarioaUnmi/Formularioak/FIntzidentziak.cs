@@ -76,10 +76,10 @@ namespace InbentarioaUnmi.Formularioak
         private void cbAldatu_Click(object sender, EventArgs e)
         {
             List<Gailuak> LisGai = new List<Gailuak>();
-            Gailuak g;
+            Gailuak g = null;
             Intzidentziak intz, intzidentzia;
             DateOnly data;
-            string mezua;
+            string mezua, id;
             int eran;
 
             Desaktibatu();
@@ -87,15 +87,22 @@ namespace InbentarioaUnmi.Formularioak
             {
                 cbAldatu.Text = "Gorde";
                 Aktibatu(2);
-                LisGai = InbentarioaDB.GailuakListaratu(era);
-                cmbGailua.DataSource = LisGai;
             }
             else
             {
                 intzidentzia = (Intzidentziak)cmbId.SelectedItem;
-                g = (Gailuak)cmbGailua.SelectedItem;
+                id = cmbGailua.SelectedValue.ToString();
+                foreach (Gailuak g1 in cmbGailua.Items)
+                {
+                    if (g1.Id == id)
+                    {
+                        g = g1;
+                        break;
+                    }
+                }
                 data = DateOnly.FromDateTime(dtpData.Value);
                 mezua = txtMezua.Text;
+
                 intz = new Intzidentziak(cmbId.Text, g, " ", data, mezua);
 
                 eran = intzidentziakDB.IntzidentziaAldatu(intz, intzidentzia);
@@ -247,6 +254,10 @@ namespace InbentarioaUnmi.Formularioak
             {
                 lblGailua.Visible = true;
                 cmbGailua.Visible = true;
+                LisGai = InbentarioaDB.GailuakListaratu(era);
+                cmbGailua.DataSource = LisGai;
+                cmbGailua.DisplayMember = "Id";
+                cmbGailua.SelectedIndex = -1;
                 cbAurkitu.Visible = true;
             }
             else if (z1 == 10)
@@ -292,7 +303,7 @@ namespace InbentarioaUnmi.Formularioak
             {
                 txtMezua.Text = intzidentziak.Mezua;
                 dtpData.Value = intzidentziak.Data.ToDateTime(new TimeOnly(0, 0));
-                cmbGailua.SelectedItem = intzidentziak.Gailua;
+                cmbGailua.Text = intzidentziak.Gailua.Id;
             }
         }
     }

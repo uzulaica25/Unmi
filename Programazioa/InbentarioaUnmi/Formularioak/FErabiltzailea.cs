@@ -102,6 +102,17 @@ namespace InbentarioaUnmi.Formularioak
                 rola = cmbRola.Text;
                 min = cmbMintegia.Text;
                 mintegia = MintegiaDB.MintegiaBilatu(min);
+                if (rola == "MintegiBurua")
+                {
+                    foreach(var usu in LisEra)
+                    {
+                        if (usu.Rola == rola && usu.Mintegia.Id == min)
+                        {
+                            MessageBox.Show("Mintegi horrek jada badu mintegi burua");
+                            return;
+                        }
+                    }
+                }
                 er = new Erabiltzaileak(Id, erab, pas, mintegia, rola);
                 erantzuna = ErabiltzaileaDB.ErabiltzaileaAldatu(er);
                 if (erantzuna == 1)
@@ -114,6 +125,7 @@ namespace InbentarioaUnmi.Formularioak
                     MessageBox.Show("Erabiltzailea ez da aldatu. Mesedez, saiatu berriro.");
                     cbAldatu_Click(sender, e);
                 }
+                cbAldatu.Text = "Aldatu";
             }
         }
 
@@ -291,7 +303,6 @@ namespace InbentarioaUnmi.Formularioak
                 }
                 else
                 {
-                    txtErabiltzailea.Enabled = false;
                     txtPasahitza.Enabled = true;
                     txtPasahitza.Focus();
                 }
@@ -312,7 +323,6 @@ namespace InbentarioaUnmi.Formularioak
                 }
                 else
                 {
-                    txtPasahitza.Enabled = false;
                     cmbRola.Enabled = true;
                     cmbRola.Focus();
                 }
@@ -323,7 +333,6 @@ namespace InbentarioaUnmi.Formularioak
         {
             if (!string.IsNullOrWhiteSpace(cmbRola.Text))
             {
-                cmbRola.Enabled = false;
                 cmbMintegia.Enabled = true;
                 cmbMintegia.Focus();
             }
@@ -333,7 +342,6 @@ namespace InbentarioaUnmi.Formularioak
         {
             if (!string.IsNullOrWhiteSpace(cmbMintegia.Text))
             {
-                cmbMintegia.Enabled = false;
                 cbGehitu.Enabled = true;
                 cbGehitu.Focus();
             }

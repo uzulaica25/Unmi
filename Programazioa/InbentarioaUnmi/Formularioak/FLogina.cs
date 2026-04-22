@@ -119,6 +119,7 @@ namespace InbentarioaUnmi
         private void txtErabiltzailea_MouseMove(object sender, MouseEventArgs e)
         {
             this.txi = false;
+            txtErabiltzailea.Focus();
         }
     }
 }

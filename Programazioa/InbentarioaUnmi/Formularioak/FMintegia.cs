@@ -121,6 +121,8 @@ namespace InbentarioaUnmi.Formularioak
             int erantzuna;
             string Mizena, id;
             Mintegiak mi;
+            List<Gailuak> LisGai = new List<Gailuak>();
+            Erabiltzaileak erabiltzaiela;
 
             if (cbEzabatu.Text == "Ezabatu")
             {
@@ -135,6 +137,12 @@ namespace InbentarioaUnmi.Formularioak
                 DialogResult result = MessageBox.Show("Ziur zaude " + mi.Izena + " mintegia ezabatu nahi duzula? Mintegiarekin batera mintegiaren erabiltzaile eta gailuak ezabatuko dira.", "Berretsi", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (result == DialogResult.Yes)
                 {
+                    erabiltzaiela = new Erabiltzaileak("", "", mi, "Irakaslea");
+                    LisGai = InbentarioaDB.GailuakListaratu(erabiltzaiela);
+                    foreach (Gailuak g in LisGai)
+                    {
+                        InbentarioaDB.EzabatutakoGailuak(g);
+                    }
                     erantzuna = MintegiaDB.MintegiakEzabatu(mi);
                     if (erantzuna == 1)
                     {
