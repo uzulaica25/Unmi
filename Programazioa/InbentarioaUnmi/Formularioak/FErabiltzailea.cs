@@ -145,11 +145,16 @@ namespace InbentarioaUnmi.Formularioak
                 Eid = cmbId.Text;
                 if (Eid == era.Id)
                 {
-                    MessageBox.Show("Ezin duzu zure erabiltzailea ezabatu. Mesedez, sartu beste bat.");
+                    MessageBox.Show("Ezin duzu zure erabiltzailea ezabatu. Mesedez, sartu beste ID bat.");
                     cmbId.Focus();
                     return;
                 }
-                else
+                else if(cmbRola.Text == "IKTArduraduna")
+                {
+                    MessageBox.Show("Ezin duzu IKT arduradun bat ezabatu. Mesedez, sartu beste ID bat.");
+                    cmbId.Focus();
+                    return;
+                } else
                 {
 
                     foreach (var item in LisEra)

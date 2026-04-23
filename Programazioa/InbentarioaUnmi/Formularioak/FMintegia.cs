@@ -149,6 +149,11 @@ namespace InbentarioaUnmi.Formularioak
                         MessageBox.Show("Mintegia ezabatu da.");
                         Aktibatu(10);
                     }
+                    else if( erantzuna == 1451)
+                    {
+                        MessageBox.Show("Mintegia ez da ezabatu. IKT arduradun bat dago mintegiarekin lotutako . Mesedez, saiatu berriro.");
+                        cbEzabatu_Click_1(sender, e);
+                    }
                     else
                     {
                         MessageBox.Show("Mintegia ez da ezabatu. Mesedez, egiaztatu ID-a zuzena dela eta saiatu berriro.");
