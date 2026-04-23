@@ -24,12 +24,14 @@ namespace InbentarioaUnmi.Formularioak
             txtMintegia.Text = era.Mintegia.Izena;
             txtIzena.Enabled = false;
             txtMintegia.Enabled = false;
+            txtRola.Enabled = false;
             if (era.Rola == "Irakaslea")
             {
                 cbInbentarioa.Enabled = true;
                 cbIntzidentziak.Enabled = true;
                 cbMintegia.Visible = false;
                 cbErabiltzailea.Visible = false;
+                txtRola.Text = era.Rola;
             }
             else if (era.Rola == "MintegiBurua")
             {
@@ -38,6 +40,7 @@ namespace InbentarioaUnmi.Formularioak
                 cbMintegia.Visible = false;
                 cbErabiltzailea.Enabled = true;
                 cbErabiltzailea.Visible = true;
+                txtRola.Text = "Mintegi burua";
             }
             else if (era.Rola == "IKTArduraduna")
             {
@@ -49,6 +52,7 @@ namespace InbentarioaUnmi.Formularioak
                 cbIntzidentziak.Visible = true;
                 cbMintegia.Visible = true;
                 cbErabiltzailea.Visible = true;
+                txtRola.Text = "IKT arduraduna";
             }
         }
         private void label1_Click(object sender, EventArgs e)
@@ -74,7 +78,7 @@ namespace InbentarioaUnmi.Formularioak
             panela.Controls.Add(fi);
             fi.BringToFront();
             fi.Show();
-            
+
         }
 
         private void cbIntzidentziak_Click(object sender, EventArgs e)
@@ -106,5 +110,6 @@ namespace InbentarioaUnmi.Formularioak
             fe.BringToFront();
             fe.Show();
         }
+
     }
 }

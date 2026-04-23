@@ -31,6 +31,11 @@
             components = new System.ComponentModel.Container();
             cbIrten = new Button();
             dgvIntzidentziak = new DataGridView();
+            Column1 = new DataGridViewTextBoxColumn();
+            gailuaDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            dataDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            GailuMota = new DataGridViewTextBoxColumn();
+            mezuaDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             intzidentziakBindingSource2 = new BindingSource(components);
             intzidentziakBindingSource1 = new BindingSource(components);
             intzidentziakBindingSource = new BindingSource(components);
@@ -48,11 +53,6 @@
             cbEzabatu = new Button();
             inprimagailuakBindingSource = new BindingSource(components);
             cbAurkitu = new Button();
-            Column1 = new DataGridViewTextBoxColumn();
-            gailuaDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            dataDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            GailuMota = new DataGridViewTextBoxColumn();
-            mezuaDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)dgvIntzidentziak).BeginInit();
             ((System.ComponentModel.ISupportInitialize)intzidentziakBindingSource2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)intzidentziakBindingSource1).BeginInit();
@@ -63,6 +63,7 @@
             // 
             // cbIrten
             // 
+            cbIrten.Cursor = Cursors.Hand;
             cbIrten.Font = new Font("Times New Roman", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             cbIrten.Location = new Point(682, 365);
             cbIrten.Name = "cbIrten";
@@ -88,6 +89,51 @@
             dgvIntzidentziak.RowHeadersWidth = 51;
             dgvIntzidentziak.Size = new Size(653, 339);
             dgvIntzidentziak.TabIndex = 0;
+            // 
+            // Column1
+            // 
+            Column1.DataPropertyName = "Id";
+            Column1.HeaderText = "ID";
+            Column1.MinimumWidth = 6;
+            Column1.Name = "Column1";
+            Column1.ReadOnly = true;
+            Column1.Width = 70;
+            // 
+            // gailuaDataGridViewTextBoxColumn
+            // 
+            gailuaDataGridViewTextBoxColumn.DataPropertyName = "IDGailua";
+            gailuaDataGridViewTextBoxColumn.HeaderText = "Gailua";
+            gailuaDataGridViewTextBoxColumn.MinimumWidth = 6;
+            gailuaDataGridViewTextBoxColumn.Name = "gailuaDataGridViewTextBoxColumn";
+            gailuaDataGridViewTextBoxColumn.ReadOnly = true;
+            gailuaDataGridViewTextBoxColumn.Width = 70;
+            // 
+            // dataDataGridViewTextBoxColumn
+            // 
+            dataDataGridViewTextBoxColumn.DataPropertyName = "Data";
+            dataDataGridViewTextBoxColumn.HeaderText = "Data";
+            dataDataGridViewTextBoxColumn.MinimumWidth = 6;
+            dataDataGridViewTextBoxColumn.Name = "dataDataGridViewTextBoxColumn";
+            dataDataGridViewTextBoxColumn.ReadOnly = true;
+            dataDataGridViewTextBoxColumn.Width = 125;
+            // 
+            // GailuMota
+            // 
+            GailuMota.DataPropertyName = "GailuMota";
+            GailuMota.HeaderText = "GailuMota";
+            GailuMota.MinimumWidth = 6;
+            GailuMota.Name = "GailuMota";
+            GailuMota.ReadOnly = true;
+            GailuMota.Width = 125;
+            // 
+            // mezuaDataGridViewTextBoxColumn
+            // 
+            mezuaDataGridViewTextBoxColumn.DataPropertyName = "Mezua";
+            mezuaDataGridViewTextBoxColumn.HeaderText = "Mezua";
+            mezuaDataGridViewTextBoxColumn.MinimumWidth = 6;
+            mezuaDataGridViewTextBoxColumn.Name = "mezuaDataGridViewTextBoxColumn";
+            mezuaDataGridViewTextBoxColumn.ReadOnly = true;
+            mezuaDataGridViewTextBoxColumn.Width = 200;
             // 
             // intzidentziakBindingSource2
             // 
@@ -177,6 +223,7 @@
             // 
             // txtMezua
             // 
+            txtMezua.Cursor = Cursors.IBeam;
             txtMezua.Font = new Font("Times New Roman", 10.2F);
             txtMezua.Location = new Point(201, 218);
             txtMezua.Name = "txtMezua";
@@ -209,6 +256,7 @@
             // 
             // cbGehitu
             // 
+            cbGehitu.Cursor = Cursors.Hand;
             cbGehitu.Font = new Font("Times New Roman", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             cbGehitu.Location = new Point(682, 55);
             cbGehitu.Name = "cbGehitu";
@@ -220,6 +268,7 @@
             // 
             // cbAldatu
             // 
+            cbAldatu.Cursor = Cursors.Hand;
             cbAldatu.Font = new Font("Times New Roman", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             cbAldatu.Location = new Point(682, 103);
             cbAldatu.Name = "cbAldatu";
@@ -231,6 +280,7 @@
             // 
             // cbEzabatu
             // 
+            cbEzabatu.Cursor = Cursors.Hand;
             cbEzabatu.Font = new Font("Times New Roman", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             cbEzabatu.Location = new Point(682, 151);
             cbEzabatu.Name = "cbEzabatu";
@@ -246,6 +296,7 @@
             // 
             // cbAurkitu
             // 
+            cbAurkitu.Cursor = Cursors.Hand;
             cbAurkitu.Font = new Font("Times New Roman", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             cbAurkitu.Location = new Point(682, 195);
             cbAurkitu.Name = "cbAurkitu";
@@ -254,51 +305,6 @@
             cbAurkitu.Text = "Aurkitu";
             cbAurkitu.UseVisualStyleBackColor = true;
             cbAurkitu.Click += cbAurkitu_Click;
-            // 
-            // Column1
-            // 
-            Column1.DataPropertyName = "Id";
-            Column1.HeaderText = "ID";
-            Column1.MinimumWidth = 6;
-            Column1.Name = "Column1";
-            Column1.ReadOnly = true;
-            Column1.Width = 70;
-            // 
-            // gailuaDataGridViewTextBoxColumn
-            // 
-            gailuaDataGridViewTextBoxColumn.DataPropertyName = "IDGailua";
-            gailuaDataGridViewTextBoxColumn.HeaderText = "Gailua";
-            gailuaDataGridViewTextBoxColumn.MinimumWidth = 6;
-            gailuaDataGridViewTextBoxColumn.Name = "gailuaDataGridViewTextBoxColumn";
-            gailuaDataGridViewTextBoxColumn.ReadOnly = true;
-            gailuaDataGridViewTextBoxColumn.Width = 70;
-            // 
-            // dataDataGridViewTextBoxColumn
-            // 
-            dataDataGridViewTextBoxColumn.DataPropertyName = "Data";
-            dataDataGridViewTextBoxColumn.HeaderText = "Data";
-            dataDataGridViewTextBoxColumn.MinimumWidth = 6;
-            dataDataGridViewTextBoxColumn.Name = "dataDataGridViewTextBoxColumn";
-            dataDataGridViewTextBoxColumn.ReadOnly = true;
-            dataDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // GailuMota
-            // 
-            GailuMota.DataPropertyName = "GailuMota";
-            GailuMota.HeaderText = "GailuMota";
-            GailuMota.MinimumWidth = 6;
-            GailuMota.Name = "GailuMota";
-            GailuMota.ReadOnly = true;
-            GailuMota.Width = 125;
-            // 
-            // mezuaDataGridViewTextBoxColumn
-            // 
-            mezuaDataGridViewTextBoxColumn.DataPropertyName = "Mezua";
-            mezuaDataGridViewTextBoxColumn.HeaderText = "Mezua";
-            mezuaDataGridViewTextBoxColumn.MinimumWidth = 6;
-            mezuaDataGridViewTextBoxColumn.Name = "mezuaDataGridViewTextBoxColumn";
-            mezuaDataGridViewTextBoxColumn.ReadOnly = true;
-            mezuaDataGridViewTextBoxColumn.Width = 200;
             // 
             // FIntzidentziak
             // 

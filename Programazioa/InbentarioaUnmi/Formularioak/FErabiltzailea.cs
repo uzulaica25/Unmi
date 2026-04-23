@@ -228,7 +228,6 @@ namespace InbentarioaUnmi.Formularioak
                 cmbMintegia.Visible = true;
                 cmbMintegia.Enabled = false;
                 MintegiakKargatu();
-                cmbMintegia.SelectedIndex = -1;
 
                 if (z1 == 2)
                 {

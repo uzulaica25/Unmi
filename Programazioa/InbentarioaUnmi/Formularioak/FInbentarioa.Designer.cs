@@ -106,6 +106,7 @@
             // 
             // cmbId
             // 
+            cmbId.Anchor = AnchorStyles.None;
             cmbId.Font = new Font("Times New Roman", 10.2F);
             cmbId.FormattingEnabled = true;
             cmbId.Location = new Point(123, -3);
@@ -119,6 +120,7 @@
             // 
             // chbBai
             // 
+            chbBai.Anchor = AnchorStyles.None;
             chbBai.AutoSize = true;
             chbBai.Font = new Font("Times New Roman", 10.2F);
             chbBai.Location = new Point(498, 5);
@@ -132,6 +134,7 @@
             // 
             // cmbMintegia
             // 
+            cmbMintegia.Anchor = AnchorStyles.None;
             cmbMintegia.Font = new Font("Times New Roman", 10.2F);
             cmbMintegia.FormattingEnabled = true;
             cmbMintegia.Location = new Point(123, 147);
@@ -144,6 +147,7 @@
             // 
             // lblMintegia
             // 
+            lblMintegia.Anchor = AnchorStyles.None;
             lblMintegia.AutoSize = true;
             lblMintegia.Font = new Font("Times New Roman", 10.2F);
             lblMintegia.Location = new Point(27, 149);
@@ -155,6 +159,7 @@
             // 
             // lblGailuMota
             // 
+            lblGailuMota.Anchor = AnchorStyles.None;
             lblGailuMota.AutoSize = true;
             lblGailuMota.Font = new Font("Times New Roman", 10.2F);
             lblGailuMota.Location = new Point(245, 128);
@@ -174,6 +179,8 @@
             // 
             // txtRam
             // 
+            txtRam.Anchor = AnchorStyles.None;
+            txtRam.Cursor = Cursors.IBeam;
             txtRam.Font = new Font("Times New Roman", 10.2F);
             txtRam.Location = new Point(498, 95);
             txtRam.Name = "txtRam";
@@ -184,6 +191,7 @@
             // 
             // cmbGailuMota
             // 
+            cmbGailuMota.Anchor = AnchorStyles.None;
             cmbGailuMota.Font = new Font("Times New Roman", 10.2F);
             cmbGailuMota.FormattingEnabled = true;
             cmbGailuMota.Items.AddRange(new object[] { "Ordenagailua", "Inprimagailua" });
@@ -197,6 +205,7 @@
             // 
             // lblKoloretakoa
             // 
+            lblKoloretakoa.Anchor = AnchorStyles.None;
             lblKoloretakoa.AutoSize = true;
             lblKoloretakoa.Font = new Font("Times New Roman", 10.2F);
             lblKoloretakoa.Location = new Point(384, 9);
@@ -208,6 +217,7 @@
             // 
             // lblRam
             // 
+            lblRam.Anchor = AnchorStyles.None;
             lblRam.AutoSize = true;
             lblRam.Font = new Font("Times New Roman", 10.2F);
             lblRam.Location = new Point(384, 101);
@@ -219,6 +229,7 @@
             // 
             // lblId
             // 
+            lblId.Anchor = AnchorStyles.None;
             lblId.AutoSize = true;
             lblId.Font = new Font("Times New Roman", 10.2F);
             lblId.Location = new Point(27, 5);
@@ -230,6 +241,8 @@
             // 
             // txtCpu
             // 
+            txtCpu.Anchor = AnchorStyles.None;
+            txtCpu.Cursor = Cursors.IBeam;
             txtCpu.Font = new Font("Times New Roman", 10.2F);
             txtCpu.Location = new Point(498, 51);
             txtCpu.Name = "txtCpu";
@@ -240,6 +253,7 @@
             // 
             // lblCpu
             // 
+            lblCpu.Anchor = AnchorStyles.None;
             lblCpu.AutoSize = true;
             lblCpu.Font = new Font("Times New Roman", 10.2F);
             lblCpu.Location = new Point(384, 57);
@@ -251,6 +265,8 @@
             // 
             // txtKokalekua
             // 
+            txtKokalekua.Anchor = AnchorStyles.None;
+            txtKokalekua.Cursor = Cursors.IBeam;
             txtKokalekua.Font = new Font("Times New Roman", 10.2F);
             txtKokalekua.Location = new Point(123, 100);
             txtKokalekua.Name = "txtKokalekua";
@@ -261,6 +277,7 @@
             // 
             // lblKokalekua
             // 
+            lblKokalekua.Anchor = AnchorStyles.None;
             lblKokalekua.AutoSize = true;
             lblKokalekua.Font = new Font("Times New Roman", 10.2F);
             lblKokalekua.Location = new Point(27, 107);
@@ -272,6 +289,8 @@
             // 
             // txtMarka
             // 
+            txtMarka.Anchor = AnchorStyles.None;
+            txtMarka.Cursor = Cursors.IBeam;
             txtMarka.Font = new Font("Times New Roman", 10.2F);
             txtMarka.Location = new Point(123, 48);
             txtMarka.Name = "txtMarka";
@@ -282,6 +301,7 @@
             // 
             // lblMarka
             // 
+            lblMarka.Anchor = AnchorStyles.None;
             lblMarka.AutoSize = true;
             lblMarka.Font = new Font("Times New Roman", 10.2F);
             lblMarka.Location = new Point(27, 53);
@@ -297,12 +317,12 @@
             dgvOrdenagailua.AllowUserToDeleteRows = false;
             dgvOrdenagailua.AllowUserToResizeColumns = false;
             dgvOrdenagailua.AllowUserToResizeRows = false;
+            dgvOrdenagailua.Anchor = AnchorStyles.None;
             dgvOrdenagailua.AutoGenerateColumns = false;
             dgvOrdenagailua.BackgroundColor = Color.FromArgb(192, 192, 255);
             dgvOrdenagailua.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvOrdenagailua.Columns.AddRange(new DataGridViewColumn[] { idDataGridViewTextBoxColumn, markaDataGridViewTextBoxColumn, kokalekuaDataGridViewTextBoxColumn, erosteDataDataGridViewTextBoxColumn, MintegiaIzena, Cpu, Ram });
             dgvOrdenagailua.DataSource = ordenagailuakBindingSource;
-            dgvOrdenagailua.Dock = DockStyle.Fill;
             dgvOrdenagailua.Location = new Point(0, 0);
             dgvOrdenagailua.Name = "dgvOrdenagailua";
             dgvOrdenagailua.ReadOnly = true;
@@ -379,6 +399,7 @@
             // 
             // lblErosteData
             // 
+            lblErosteData.Anchor = AnchorStyles.None;
             lblErosteData.AutoSize = true;
             lblErosteData.Font = new Font("Times New Roman", 10.2F);
             lblErosteData.Location = new Point(27, 20);
@@ -390,6 +411,8 @@
             // 
             // cbEzabatu
             // 
+            cbEzabatu.Anchor = AnchorStyles.None;
+            cbEzabatu.Cursor = Cursors.Hand;
             cbEzabatu.Font = new Font("Times New Roman", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             cbEzabatu.Location = new Point(694, 152);
             cbEzabatu.Name = "cbEzabatu";
@@ -401,6 +424,8 @@
             // 
             // cbAldatu
             // 
+            cbAldatu.Anchor = AnchorStyles.None;
+            cbAldatu.Cursor = Cursors.Hand;
             cbAldatu.Font = new Font("Times New Roman", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             cbAldatu.Location = new Point(694, 104);
             cbAldatu.Name = "cbAldatu";
@@ -412,6 +437,8 @@
             // 
             // cbGehitu
             // 
+            cbGehitu.Anchor = AnchorStyles.None;
+            cbGehitu.Cursor = Cursors.Hand;
             cbGehitu.Font = new Font("Times New Roman", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             cbGehitu.Location = new Point(694, 56);
             cbGehitu.Name = "cbGehitu";
@@ -423,6 +450,8 @@
             // 
             // cbIrten
             // 
+            cbIrten.Anchor = AnchorStyles.None;
+            cbIrten.Cursor = Cursors.Hand;
             cbIrten.Font = new Font("Times New Roman", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             cbIrten.Location = new Point(694, 368);
             cbIrten.Name = "cbIrten";
@@ -448,6 +477,7 @@
             // 
             // dtpErosteData
             // 
+            dtpErosteData.Anchor = AnchorStyles.None;
             dtpErosteData.CalendarFont = new Font("Times New Roman", 10.2F);
             dtpErosteData.Font = new Font("Times New Roman", 10.2F);
             dtpErosteData.Format = DateTimePickerFormat.Short;
@@ -463,12 +493,12 @@
             // 
             dgvInprimagailua.AllowUserToAddRows = false;
             dgvInprimagailua.AllowUserToDeleteRows = false;
+            dgvInprimagailua.Anchor = AnchorStyles.None;
             dgvInprimagailua.AutoGenerateColumns = false;
             dgvInprimagailua.BackgroundColor = Color.FromArgb(192, 192, 255);
             dgvInprimagailua.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvInprimagailua.Columns.AddRange(new DataGridViewColumn[] { dataGridViewTextBoxColumn1, dataGridViewTextBoxColumn2, dataGridViewTextBoxColumn3, dataGridViewTextBoxColumn4, dataGridViewTextBoxColumn5, Koloretakoa });
             dgvInprimagailua.DataSource = inprimagailuakBindingSource;
-            dgvInprimagailua.Dock = DockStyle.Fill;
             dgvInprimagailua.Location = new Point(0, 0);
             dgvInprimagailua.Name = "dgvInprimagailua";
             dgvInprimagailua.RowHeadersWidth = 51;

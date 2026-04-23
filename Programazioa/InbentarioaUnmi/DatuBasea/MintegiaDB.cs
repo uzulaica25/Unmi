@@ -105,8 +105,8 @@ namespace InbentarioaUnmi.DatuBasea
         public static Mintegiak MintegiaBilatu(string i)
         {
             Mintegiak min = null;
-            string select, izena;
-            select = @"SELECT * FROM Inbentarioa.Mintegiak WHERE ID = @id;";
+            string select, id;
+            select = @"SELECT * FROM Inbentarioa.Mintegiak WHERE izena = @id;";
 
             using (MySqlCommand komandua = new MySqlCommand(select, DBKonexioa.Konektatu()))
             {
@@ -116,8 +116,8 @@ namespace InbentarioaUnmi.DatuBasea
                 {
                     if (reader.Read())
                     {
-                        izena = reader.GetString("izena");
-                        min = new Mintegiak(i, izena);
+                        id = reader.GetString("ID");
+                        min = new Mintegiak(id, i);
                     }
                 }
             }

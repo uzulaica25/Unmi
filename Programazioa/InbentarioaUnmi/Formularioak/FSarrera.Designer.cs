@@ -39,11 +39,14 @@
             cbMintegia = new Button();
             cbIntzidentziak = new Button();
             cbErabiltzailea = new Button();
+            lblRola = new Label();
+            txtRola = new TextBox();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // pictureBox1
             // 
+            pictureBox1.Anchor = AnchorStyles.None;
             pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
             pictureBox1.Location = new Point(25, 28);
             pictureBox1.Name = "pictureBox1";
@@ -54,6 +57,7 @@
             // 
             // txtIzena
             // 
+            txtIzena.Anchor = AnchorStyles.None;
             txtIzena.Font = new Font("Times New Roman", 10.2F);
             txtIzena.Location = new Point(142, 74);
             txtIzena.Name = "txtIzena";
@@ -62,6 +66,8 @@
             // 
             // cbIrten
             // 
+            cbIrten.Anchor = AnchorStyles.Bottom;
+            cbIrten.Cursor = Cursors.Hand;
             cbIrten.Font = new Font("Times New Roman", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             cbIrten.Location = new Point(305, 336);
             cbIrten.Name = "cbIrten";
@@ -73,6 +79,7 @@
             // 
             // txtMintegia
             // 
+            txtMintegia.Anchor = AnchorStyles.None;
             txtMintegia.Font = new Font("Times New Roman", 10.2F);
             txtMintegia.Location = new Point(142, 133);
             txtMintegia.Name = "txtMintegia";
@@ -81,6 +88,7 @@
             // 
             // lblIrakaslea
             // 
+            lblIrakaslea.Anchor = AnchorStyles.None;
             lblIrakaslea.AutoSize = true;
             lblIrakaslea.Font = new Font("Times New Roman", 10.2F);
             lblIrakaslea.Location = new Point(142, 52);
@@ -92,6 +100,7 @@
             // 
             // lblMintegia
             // 
+            lblMintegia.Anchor = AnchorStyles.None;
             lblMintegia.AutoSize = true;
             lblMintegia.Font = new Font("Times New Roman", 10.2F);
             lblMintegia.Location = new Point(142, 111);
@@ -102,6 +111,7 @@
             // 
             // cbInbentarioa
             // 
+            cbInbentarioa.Cursor = Cursors.Hand;
             cbInbentarioa.Font = new Font("Times New Roman", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             cbInbentarioa.Location = new Point(614, 28);
             cbInbentarioa.Name = "cbInbentarioa";
@@ -113,6 +123,8 @@
             // 
             // cbMintegia
             // 
+            cbMintegia.Anchor = AnchorStyles.Right;
+            cbMintegia.Cursor = Cursors.Hand;
             cbMintegia.Font = new Font("Times New Roman", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             cbMintegia.Location = new Point(614, 155);
             cbMintegia.Name = "cbMintegia";
@@ -124,6 +136,8 @@
             // 
             // cbIntzidentziak
             // 
+            cbIntzidentziak.Anchor = AnchorStyles.Right;
+            cbIntzidentziak.Cursor = Cursors.Hand;
             cbIntzidentziak.Font = new Font("Times New Roman", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             cbIntzidentziak.Location = new Point(614, 74);
             cbIntzidentziak.Name = "cbIntzidentziak";
@@ -135,6 +149,8 @@
             // 
             // cbErabiltzailea
             // 
+            cbErabiltzailea.Anchor = AnchorStyles.Right;
+            cbErabiltzailea.Cursor = Cursors.Hand;
             cbErabiltzailea.Font = new Font("Times New Roman", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             cbErabiltzailea.Location = new Point(614, 115);
             cbErabiltzailea.Name = "cbErabiltzailea";
@@ -144,12 +160,34 @@
             cbErabiltzailea.UseVisualStyleBackColor = true;
             cbErabiltzailea.Click += cbErabiltzailea_Click;
             // 
+            // lblRola
+            // 
+            lblRola.Anchor = AnchorStyles.None;
+            lblRola.AutoSize = true;
+            lblRola.Font = new Font("Times New Roman", 10.2F);
+            lblRola.Location = new Point(305, 52);
+            lblRola.Name = "lblRola";
+            lblRola.Size = new Size(46, 19);
+            lblRola.TabIndex = 15;
+            lblRola.Text = "Rola:";
+            // 
+            // txtRola
+            // 
+            txtRola.Anchor = AnchorStyles.None;
+            txtRola.Font = new Font("Times New Roman", 10.2F);
+            txtRola.Location = new Point(305, 74);
+            txtRola.Name = "txtRola";
+            txtRola.Size = new Size(125, 27);
+            txtRola.TabIndex = 14;
+            // 
             // FSarrera
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(192, 192, 255);
             ClientSize = new Size(800, 450);
+            Controls.Add(lblRola);
+            Controls.Add(txtRola);
             Controls.Add(cbErabiltzailea);
             Controls.Add(cbIntzidentziak);
             Controls.Add(cbMintegia);
@@ -181,5 +219,7 @@
         private Button cbMintegia;
         private Button cbIntzidentziak;
         private Button cbErabiltzailea;
+        private Label lblRola;
+        private TextBox txtRola;
     }
 }

@@ -169,6 +169,7 @@
             // 
             // txtIzena
             // 
+            txtIzena.Cursor = Cursors.IBeam;
             txtIzena.Font = new Font("Times New Roman", 10.2F);
             txtIzena.Location = new Point(294, 101);
             txtIzena.Name = "txtIzena";

@@ -107,6 +107,7 @@
             // 
             // cbSartu
             // 
+            cbSartu.Anchor = AnchorStyles.None;
             cbSartu.Enabled = false;
             cbSartu.Font = new Font("Times New Roman", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             cbSartu.Location = new Point(318, 193);
@@ -119,6 +120,7 @@
             // 
             // cbIrten
             // 
+            cbIrten.Anchor = AnchorStyles.None;
             cbIrten.Font = new Font("Times New Roman", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             cbIrten.Location = new Point(468, 193);
             cbIrten.Name = "cbIrten";
@@ -131,6 +133,7 @@
             // 
             // txtPasahitza
             // 
+            txtPasahitza.Anchor = AnchorStyles.None;
             txtPasahitza.Enabled = false;
             txtPasahitza.Font = new Font("Times New Roman", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtPasahitza.Location = new Point(318, 141);
@@ -141,6 +144,7 @@
             // 
             // lblPasahitza
             // 
+            lblPasahitza.Anchor = AnchorStyles.None;
             lblPasahitza.AutoSize = true;
             lblPasahitza.Font = new Font("Times New Roman", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblPasahitza.Location = new Point(165, 145);
@@ -151,6 +155,7 @@
             // 
             // txtErabiltzailea
             // 
+            txtErabiltzailea.Anchor = AnchorStyles.None;
             txtErabiltzailea.Font = new Font("Times New Roman", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtErabiltzailea.Location = new Point(318, 86);
             txtErabiltzailea.Name = "txtErabiltzailea";
@@ -161,6 +166,8 @@
             // 
             // lblErabiltzailea
             // 
+            lblErabiltzailea.Anchor = AnchorStyles.None;
+            lblErabiltzailea.AutoEllipsis = true;
             lblErabiltzailea.AutoSize = true;
             lblErabiltzailea.Font = new Font("Times New Roman", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblErabiltzailea.Location = new Point(165, 90);

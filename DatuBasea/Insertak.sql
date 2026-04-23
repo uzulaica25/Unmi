@@ -89,7 +89,7 @@ INSERT INTO Inprimagailuak VALUES
 ('G22', 'Lenovo', 'Bulegoa2', '2021-05-06', 'M06', 'Bai');
 
 INSERT INTO Intzidentziak VALUES
-('I01', '2024-02-10', 'Pantaila ez dabil', 'G01'),
+('I01', '2024-02-10', 'Pantaila ez dabil', 'G05'),
 ('I02', '2024-03-01', 'Paper falta', 'G19'),
 ('I03', '2024-03-15', 'Oso motel doa', 'G18');
 
