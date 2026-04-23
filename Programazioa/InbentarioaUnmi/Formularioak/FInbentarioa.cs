@@ -26,8 +26,18 @@ namespace InbentarioaUnmi.Formularioak
         }
         private void FInbentarioa_Load(object sender, EventArgs e)
         {
-            cbGehitu.Focus();
             DatuakKargatu();
+            if (era.Rola == "Irakaslea")
+            {
+                cbGehitu.Visible = false;
+                cbAldatu.Visible = false;
+                cbEzabatu.Visible = false;
+                cbIrten.Focus();
+            }
+            else
+            {
+                cbGehitu.Focus();
+            }
         }
 
         private void cbIrten_Click_1(object sender, EventArgs e)
@@ -52,7 +62,7 @@ namespace InbentarioaUnmi.Formularioak
             {
                 MessageBox.Show("Gailua gehitu da.");
                 cbGehitu.Text = "Gehitu";
-                Aktibatu(10);
+                this.Close();
             }
             else
             {
@@ -95,7 +105,7 @@ namespace InbentarioaUnmi.Formularioak
             {
                 MessageBox.Show("Gailua aldatu da.");
                 cbAldatu.Text = "Aldatu";
-                Aktibatu(10);
+                this.Close();
             }
             else
             {
@@ -154,7 +164,7 @@ namespace InbentarioaUnmi.Formularioak
                 }
             }
             cbEzabatu.Text = "Ezabatu";
-            Aktibatu(10);
+            this.Close();
         }
 
         private void Desaktibatu()
@@ -217,10 +227,18 @@ namespace InbentarioaUnmi.Formularioak
                 dtpErosteData.Enabled = true;
                 lblMintegia.Visible = true;
                 cmbMintegia.Visible = true;
-                cmbMintegia.Enabled = true;
-                cmbMintegia.DataSource = LisMin;
-                cmbMintegia.DisplayMember = "Izena";
-                cmbMintegia.SelectedIndex = -1;
+                if (era.Rola == "MintegiBurua")
+                {
+                    cmbMintegia.Text = era.Mintegia.Izena;
+                    cmbMintegia.Enabled = false;
+                }
+                else
+                {
+                    cmbMintegia.Enabled = true;
+                    cmbMintegia.DataSource = LisMin;
+                    cmbMintegia.DisplayMember = "Izena";
+                    cmbMintegia.SelectedIndex = -1;
+                }
 
                 if (z1 == 2)
                 {
@@ -266,7 +284,6 @@ namespace InbentarioaUnmi.Formularioak
             }
             else if (z1 == 10)
             {
-                Desaktibatu();
                 DatuakKargatu();
                 cbGehitu.Visible = true;
                 cbAldatu.Visible = true;
@@ -314,7 +331,7 @@ namespace InbentarioaUnmi.Formularioak
                     txtMarka.Text = g.Marka;
                     txtKokalekua.Text = g.Kokalekua;
                     dtpErosteData.Value = g.ErosteData.ToDateTime(TimeOnly.MinValue);
-                    cmbMintegia.Text = g.Mintegia.Id;
+                    cmbMintegia.Text = g.Mintegia.Izena;
                     if (g is Ordenagailuak o)
                     {
                         txtCpu.Text = o.Cpu;
@@ -366,8 +383,14 @@ namespace InbentarioaUnmi.Formularioak
         {
             if (!string.IsNullOrWhiteSpace(txtKokalekua.Text))
             {
-                cmbMintegia.Enabled = true;
-                cmbMintegia.Focus();
+                if (era.Rola == "MintegiBurua")
+                {
+                    dtpErosteData.Focus();
+                }
+                else
+                {
+                    cmbMintegia.Focus();
+                }
             }
             else
             {
@@ -469,14 +492,22 @@ namespace InbentarioaUnmi.Formularioak
             id = cmbId.Text;
             marka = txtMarka.Text;
             kokalekua = txtKokalekua.Text;
-            mid = cmbMintegia.Text;
-            foreach(var m in LisMin)
+            if(era.Rola == "MintegiBurua")
             {
-                if(m.Id == mid)
-                {
-                    mintegia = m;
-                }
+                mintegia = era.Mintegia;
             }
+            else
+            {
+                mid = cmbMintegia.Text;
+                foreach (var m in LisMin)
+                {
+                    if (m.Id == mid)
+                    {
+                        mintegia = m;
+                    }
+                }
+            }  
+            
             data = DateOnly.FromDateTime(dtpErosteData.Value);
             if (mintegia != null)
             {

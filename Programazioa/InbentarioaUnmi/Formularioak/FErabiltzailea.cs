@@ -31,6 +31,7 @@ namespace InbentarioaUnmi.Formularioak
 
         private void FErabiltzailea_Load(object sender, EventArgs e)
         {
+            Aktibatu(10);
             cbGehitu.Focus();
             LisEra.Clear();
             LisEra = ErabiltzaileaDB.ErabiltzaileaZerrendatu();
@@ -72,7 +73,7 @@ namespace InbentarioaUnmi.Formularioak
                 if (eragiketa == 1)
                 {
                     MessageBox.Show(Eizena + " erabiltzailea gehitu da.");
-                    Aktibatu(10);
+                    this.Close();
                 }
                 else
                 {
@@ -118,7 +119,7 @@ namespace InbentarioaUnmi.Formularioak
                 if (erantzuna == 1)
                 {
                     MessageBox.Show(er.Izena + " erabiltzailearen datuak aldatu dira.");
-                    Aktibatu(10);
+                    this.Close();
                 }
                 else
                 {
@@ -163,7 +164,7 @@ namespace InbentarioaUnmi.Formularioak
                     if (erantzuna == 1)
                     {
                         MessageBox.Show("Erabiltzailea ezabatu da.");
-                        Aktibatu(10);
+                        this.Close();
                     }
                     else
                     {
@@ -208,7 +209,19 @@ namespace InbentarioaUnmi.Formularioak
                 lblId.Visible = true;
                 cmbId.Visible = true;
                 cmbId.Enabled = true;
-                cmbId.DataSource = LisEra;
+                if (era.Rola == "MintegiBurua")
+                {
+                    cmbRola.Text = "Irakaslea";
+                    cmbMintegia.Text = era.Mintegia.Izena;
+                    var MintEra = LisEra.Where(x => x.Mintegia.Id == era.Mintegia.Id).ToList();
+                    cmbId.DataSource = MintEra;
+                }
+                else
+                {
+                    cmbId.DataSource = LisEra;
+                    cmbRola.SelectedIndex = -1;
+                    MintegiakKargatu();
+                }
                 cmbId.DisplayMember = "Id";
                 cmbId.ValueMember = "Id";
                 cmbId.SelectedIndex = -1;
@@ -223,11 +236,10 @@ namespace InbentarioaUnmi.Formularioak
                 lblRola.Visible = true;
                 cmbRola.Visible = true;
                 cmbRola.Enabled = false;
-                cmbRola.SelectedIndex = -1;
                 lblMintegia.Visible = true;
                 cmbMintegia.Visible = true;
                 cmbMintegia.Enabled = false;
-                MintegiakKargatu();
+               
 
                 if (z1 == 2)
                 {
@@ -242,13 +254,15 @@ namespace InbentarioaUnmi.Formularioak
                 {
                     txtErabiltzailea.Enabled = true;
                     txtPasahitza.Enabled = true;
-                    cmbRola.Enabled = true;
-                    cmbMintegia.Enabled = true;
+                    if(era.Rola == "IKTArduraduna")
+                    {
+                        cmbRola.Enabled = true;
+                        cmbMintegia.Enabled = true;
+                    }
                     cmbId.Enabled = false;
                     cbGehitu.Visible = true;
                     cbGehitu.Enabled = false;
                 }
-                
             }
             else if (z1 == 10)
             {
@@ -256,7 +270,6 @@ namespace InbentarioaUnmi.Formularioak
                 cbAldatu.Visible = true;
                 cbEzabatu.Visible = true;
                 dgvErabiltzaileak.Visible = true;
-                FErabiltzailea_Load(null, null);
             }
         }
 
@@ -271,8 +284,16 @@ namespace InbentarioaUnmi.Formularioak
                 {
                     txtErabiltzailea.Text = item.Izena;
                     txtPasahitza.Text = item.Pasahitza;
-                    cmbRola.Text = item.Rola;
-                    cmbMintegia.Text = item.Mintegia.Id;
+                    if (era.Rola == "MintegiBurua")
+                    {
+                        cmbMintegia.Text = era.Mintegia.Izena;
+                        cmbRola.Text = item.Rola;
+                    }
+                    else
+                    {
+                        cmbMintegia.Text = item.Mintegia.Izena;
+                        cmbRola.Text = item.Rola;
+                    }
                     break;
                 }
             }
@@ -322,8 +343,17 @@ namespace InbentarioaUnmi.Formularioak
                 }
                 else
                 {
-                    cmbRola.Enabled = true;
-                    cmbRola.Focus();
+                    if (era.Rola == "IKTArduraduna")
+                    {
+                        cmbRola.Enabled = true;
+                        cmbRola.Focus();
+                    }
+                    else
+                    {
+                        cbGehitu.Focus();
+                        cbGehitu.Enabled = true;
+                    }
+                    
                 }
             }
         }
@@ -332,8 +362,24 @@ namespace InbentarioaUnmi.Formularioak
         {
             if (!string.IsNullOrWhiteSpace(cmbRola.Text))
             {
-                cmbMintegia.Enabled = true;
-                cmbMintegia.Focus();
+                if (cmbRola.Text == "MintegiBurua")
+                {
+                    foreach (var usu in LisEra)
+                    {
+                        if (usu.Rola == cmbRola.Text && usu.Mintegia.Id == era.Mintegia.Id)
+                        {
+                            MessageBox.Show("Mintegi horrek jada badu mintegi burua");
+                            cmbRola.Text = "";
+                            cmbRola.Focus();
+                            return;
+                        }
+                    }
+                }
+                else
+                {
+                    cmbMintegia.Enabled = true;
+                    cmbMintegia.Focus();
+                }
             }
         }
 
@@ -353,8 +399,11 @@ namespace InbentarioaUnmi.Formularioak
             {
                 txtErabiltzailea.Enabled = true;
                 txtPasahitza.Enabled = true;
-                cmbRola.Enabled = true;
-                cmbMintegia.Enabled = true;
+                if(era.Rola == "IKTArduraduna")
+                {
+                    cmbRola.Enabled = true;
+                    cmbMintegia.Enabled = true;
+                }
                 txtErabiltzailea.Focus();
             }
             else

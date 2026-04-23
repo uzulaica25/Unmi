@@ -30,6 +30,15 @@ namespace InbentarioaUnmi.Formularioak
 
         private void FIntzidentziak_Load(object sender, EventArgs e)
         {
+            if(era.Rola == "Irakaslea")
+            {
+                cbGehitu.Visible = false;
+                cbAldatu.Visible = false;
+                cbEzabatu.Visible = false;
+                cbAurkitu.Visible = false;
+                cbIrten.Visible = true;
+                cbIrten.Focus();
+            }
             cbGehitu.Focus();
             LisInt = intzidentziakDB.IntzidentziakZerrendatu(era);
             dgvIntzidentziak.DataSource = LisInt;
@@ -109,7 +118,7 @@ namespace InbentarioaUnmi.Formularioak
                 if (eran == 1)
                 {
                     MessageBox.Show("Intzidentzia eguneratu da.");
-                    Aktibatu(10);
+                    this.Close();
                     cbAldatu.Text = "Aldatu";
                 }
                 else
@@ -139,7 +148,7 @@ namespace InbentarioaUnmi.Formularioak
                 if (eran == 1)
                 {
                     MessageBox.Show("Intzidentzia ezabatu da.");
-                    Aktibatu(10);
+                    this.Close();
                     cbEzabatu.Text = "Ezabatu";
                 }
                 else
@@ -171,7 +180,7 @@ namespace InbentarioaUnmi.Formularioak
                 if (Intzi.Count == 0)
                 {
                     MessageBox.Show("Ez da intzidentzia aurkitu.");
-                    Aktibatu(10);
+                    this.Close();
                     return;
                 }
                 else
@@ -268,7 +277,6 @@ namespace InbentarioaUnmi.Formularioak
                 cbEzabatu.Visible = true;
                 cbAurkitu.Visible = true;
                 dgvIntzidentziak.Visible = true;
-                FIntzidentziak_Load(null, null);
             }
         }
 
