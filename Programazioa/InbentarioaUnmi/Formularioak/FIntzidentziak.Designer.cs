@@ -97,7 +97,6 @@
             dgvIntzidentziak.RowHeadersWidth = 51;
             dgvIntzidentziak.Size = new Size(1329, 848);
             dgvIntzidentziak.TabIndex = 0;
-            dgvIntzidentziak.CellContentClick += dgvIntzidentziak_CellContentClick;
             // 
             // Column1
             // 

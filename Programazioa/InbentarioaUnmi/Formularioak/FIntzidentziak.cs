@@ -305,11 +305,20 @@ namespace InbentarioaUnmi.Formularioak
                 cbAurkitu.Visible = true;
             }
         }
-
+        /// <summary>
+        /// ID konbinazio-koadroaren aukeraketa aldaketaren gertakaria.
+        /// (Momentuz funtzionalitaterik gabe)
+        /// </summary>
+        /// <param name="sender">Jatorrizko objektua</param>
+        /// <param name="e">Event argudioak</param>
         private void cmbId_SelectedIndexChanged(object sender, EventArgs e)
         {
         }
-
+        /// <summary>
+        /// ID eremutik irtetean balidazioa egiten du eta beste kontrol batzuk aktibatzen ditu.
+        /// </summary>
+        /// <param name="sender">Jatorrizko objektua</param>
+        /// <param name="e">Event argudioak</param>
         private void cmbId_Leave(object sender, EventArgs e)
         {
             if (cbEzabatu.Text == "Bai")
@@ -328,7 +337,11 @@ namespace InbentarioaUnmi.Formularioak
                 }
             }
         }
-
+        /// <summary>
+        /// Aukeratutako intzidentziaren datuak formularioan kargatzen ditu.
+        /// </summary>
+        /// <param name="sender">Jatorrizko objektua</param>
+        /// <param name="e">Event argudioak</param>
         private void cmbId_SelectedValueChanged(object sender, EventArgs e)
         {
             Intzidentziak intzidentziak = null;
@@ -339,11 +352,6 @@ namespace InbentarioaUnmi.Formularioak
                 dtpData.Value = intzidentziak.Data.ToDateTime(new TimeOnly(0, 0));
                 cmbGailua.Text = intzidentziak.Gailua.Id;
             }
-        }
-
-        private void dgvIntzidentziak_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
         }
     }
 }
