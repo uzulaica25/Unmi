@@ -141,6 +141,7 @@ namespace InbentarioaUnmi.Formularioak
                     LisGai = InbentarioaDB.GailuakListaratu(erabiltzaiela);
                     foreach (Gailuak g in LisGai)
                     {
+                        // MessageBox.Show(""+LisGai.Count());
                         InbentarioaDB.EzabatutakoGailuak(g);
                     }
                     erantzuna = MintegiaDB.MintegiakEzabatu(mi);

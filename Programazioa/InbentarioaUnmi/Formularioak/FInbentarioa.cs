@@ -501,7 +501,7 @@ namespace InbentarioaUnmi.Formularioak
                 mid = cmbMintegia.Text;
                 foreach (var m in LisMin)
                 {
-                    if (m.Id == mid)
+                    if (m.Izena == mid)
                     {
                         mintegia = m;
                     }
