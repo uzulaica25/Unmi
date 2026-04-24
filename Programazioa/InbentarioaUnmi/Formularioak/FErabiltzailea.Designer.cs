@@ -42,14 +42,14 @@
             txtErabiltzailea = new TextBox();
             lblErabiltzailea = new Label();
             dgvErabiltzaileak = new DataGridView();
-            izenaDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            pasahitzaDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            mintegiaIzenaDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            rolaDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             erabiltzaileakBindingSource = new BindingSource(components);
             cbEzabatu = new Button();
             cbAldatu = new Button();
             cbGehitu = new Button();
+            Izena = new DataGridViewTextBoxColumn();
+            Pasahitza = new DataGridViewTextBoxColumn();
+            MintegiIzena = new DataGridViewTextBoxColumn();
+            Rola = new DataGridViewTextBoxColumn();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvErabiltzaileak).BeginInit();
             ((System.ComponentModel.ISupportInitialize)erabiltzaileakBindingSource).BeginInit();
@@ -111,7 +111,6 @@
             cmbMintegia.TabIndex = 31;
             cmbMintegia.UseWaitCursor = true;
             cmbMintegia.Visible = false;
-            cmbMintegia.SelectedIndexChanged += cmbMintegia_SelectedIndexChanged;
             cmbMintegia.Leave += cmbMintegia_Leave;
             // 
             // lblMintegia
@@ -217,7 +216,7 @@
             dgvErabiltzaileak.AutoGenerateColumns = false;
             dgvErabiltzaileak.BackgroundColor = Color.FromArgb(192, 192, 255);
             dgvErabiltzaileak.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvErabiltzaileak.Columns.AddRange(new DataGridViewColumn[] { izenaDataGridViewTextBoxColumn, pasahitzaDataGridViewTextBoxColumn, mintegiaIzenaDataGridViewTextBoxColumn, rolaDataGridViewTextBoxColumn });
+            dgvErabiltzaileak.Columns.AddRange(new DataGridViewColumn[] { Izena, Pasahitza, MintegiIzena, Rola });
             dgvErabiltzaileak.DataSource = erabiltzaileakBindingSource;
             dgvErabiltzaileak.Dock = DockStyle.Fill;
             dgvErabiltzaileak.Location = new Point(0, 0);
@@ -226,46 +225,7 @@
             dgvErabiltzaileak.RowHeadersWidth = 51;
             dgvErabiltzaileak.Size = new Size(1179, 850);
             dgvErabiltzaileak.TabIndex = 0;
-            // 
-            // izenaDataGridViewTextBoxColumn
-            // 
-            izenaDataGridViewTextBoxColumn.DataPropertyName = "Izena";
-            izenaDataGridViewTextBoxColumn.HeaderText = "Izena";
-            izenaDataGridViewTextBoxColumn.MinimumWidth = 6;
-            izenaDataGridViewTextBoxColumn.Name = "izenaDataGridViewTextBoxColumn";
-            izenaDataGridViewTextBoxColumn.ReadOnly = true;
-            izenaDataGridViewTextBoxColumn.SortMode = DataGridViewColumnSortMode.NotSortable;
-            izenaDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // pasahitzaDataGridViewTextBoxColumn
-            // 
-            pasahitzaDataGridViewTextBoxColumn.DataPropertyName = "Pasahitza";
-            pasahitzaDataGridViewTextBoxColumn.HeaderText = "Pasahitza";
-            pasahitzaDataGridViewTextBoxColumn.MinimumWidth = 6;
-            pasahitzaDataGridViewTextBoxColumn.Name = "pasahitzaDataGridViewTextBoxColumn";
-            pasahitzaDataGridViewTextBoxColumn.ReadOnly = true;
-            pasahitzaDataGridViewTextBoxColumn.SortMode = DataGridViewColumnSortMode.NotSortable;
-            pasahitzaDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // mintegiaIzenaDataGridViewTextBoxColumn
-            // 
-            mintegiaIzenaDataGridViewTextBoxColumn.DataPropertyName = "MintegiaIzena";
-            mintegiaIzenaDataGridViewTextBoxColumn.HeaderText = "MintegiaIzena";
-            mintegiaIzenaDataGridViewTextBoxColumn.MinimumWidth = 6;
-            mintegiaIzenaDataGridViewTextBoxColumn.Name = "mintegiaIzenaDataGridViewTextBoxColumn";
-            mintegiaIzenaDataGridViewTextBoxColumn.ReadOnly = true;
-            mintegiaIzenaDataGridViewTextBoxColumn.SortMode = DataGridViewColumnSortMode.NotSortable;
-            mintegiaIzenaDataGridViewTextBoxColumn.Width = 140;
-            // 
-            // rolaDataGridViewTextBoxColumn
-            // 
-            rolaDataGridViewTextBoxColumn.DataPropertyName = "Rola";
-            rolaDataGridViewTextBoxColumn.HeaderText = "Rola";
-            rolaDataGridViewTextBoxColumn.MinimumWidth = 6;
-            rolaDataGridViewTextBoxColumn.Name = "rolaDataGridViewTextBoxColumn";
-            rolaDataGridViewTextBoxColumn.ReadOnly = true;
-            rolaDataGridViewTextBoxColumn.SortMode = DataGridViewColumnSortMode.NotSortable;
-            rolaDataGridViewTextBoxColumn.Width = 130;
+            dgvErabiltzaileak.CellFormatting += dgvErabiltzaileak_CellFormatting;
             // 
             // erabiltzaileakBindingSource
             // 
@@ -306,6 +266,46 @@
             cbGehitu.Text = "Gehitu";
             cbGehitu.UseVisualStyleBackColor = true;
             cbGehitu.Click += cbGehitu_Click;
+            // 
+            // Izena
+            // 
+            Izena.DataPropertyName = "Izena";
+            Izena.HeaderText = "Izena";
+            Izena.MinimumWidth = 6;
+            Izena.Name = "Izena";
+            Izena.ReadOnly = true;
+            Izena.SortMode = DataGridViewColumnSortMode.NotSortable;
+            Izena.Width = 125;
+            // 
+            // Pasahitza
+            // 
+            Pasahitza.DataPropertyName = "Pasahitza";
+            Pasahitza.HeaderText = "Pasahitza";
+            Pasahitza.MinimumWidth = 6;
+            Pasahitza.Name = "Pasahitza";
+            Pasahitza.ReadOnly = true;
+            Pasahitza.SortMode = DataGridViewColumnSortMode.NotSortable;
+            Pasahitza.Width = 125;
+            // 
+            // MintegiIzena
+            // 
+            MintegiIzena.DataPropertyName = "MintegiaIzena";
+            MintegiIzena.HeaderText = "Mintegiaren izena";
+            MintegiIzena.MinimumWidth = 6;
+            MintegiIzena.Name = "MintegiIzena";
+            MintegiIzena.ReadOnly = true;
+            MintegiIzena.SortMode = DataGridViewColumnSortMode.NotSortable;
+            MintegiIzena.Width = 140;
+            // 
+            // Rola
+            // 
+            Rola.DataPropertyName = "Rola";
+            Rola.HeaderText = "Rola";
+            Rola.MinimumWidth = 6;
+            Rola.Name = "Rola";
+            Rola.ReadOnly = true;
+            Rola.SortMode = DataGridViewColumnSortMode.NotSortable;
+            Rola.Width = 130;
             // 
             // FErabiltzailea
             // 
@@ -348,9 +348,9 @@
         private Label lblPasahitza;
         private TextBox txtErabiltzailea;
         private Label lblErabiltzailea;
-        private DataGridViewTextBoxColumn izenaDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn pasahitzaDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn mintegiaIzenaDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn rolaDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn Izena;
+        private DataGridViewTextBoxColumn Pasahitza;
+        private DataGridViewTextBoxColumn MintegiIzena;
+        private DataGridViewTextBoxColumn Rola;
     }
 }

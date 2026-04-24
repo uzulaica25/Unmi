@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             cbIrten = new Button();
             dgvIntzidentziak = new DataGridView();
             Column1 = new DataGridViewTextBoxColumn();
@@ -78,6 +79,12 @@
             // 
             dgvIntzidentziak.AllowUserToAddRows = false;
             dgvIntzidentziak.AllowUserToDeleteRows = false;
+            dataGridViewCellStyle1.BackColor = Color.White;
+            dataGridViewCellStyle1.Font = new Font("Times New Roman", 12F);
+            dataGridViewCellStyle1.ForeColor = Color.FromArgb(192, 192, 0);
+            dataGridViewCellStyle1.SelectionBackColor = SystemColors.ActiveCaption;
+            dataGridViewCellStyle1.SelectionForeColor = Color.White;
+            dgvIntzidentziak.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             dgvIntzidentziak.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dgvIntzidentziak.AutoGenerateColumns = false;
             dgvIntzidentziak.BackgroundColor = Color.FromArgb(192, 192, 255);

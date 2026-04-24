@@ -105,7 +105,7 @@ namespace InbentarioaUnmi.Formularioak
                 mintegia = MintegiaDB.MintegiaBilatu(min);
                 if (rola == "MintegiBurua")
                 {
-                    foreach(var usu in LisEra)
+                    foreach (var usu in LisEra)
                     {
                         if (usu.Rola == rola && usu.Mintegia.Izena == min)
                         {
@@ -149,12 +149,13 @@ namespace InbentarioaUnmi.Formularioak
                     cmbId.Focus();
                     return;
                 }
-                else if(cmbRola.Text == "IKTArduraduna")
+                else if (cmbRola.Text == "IKTArduraduna")
                 {
                     MessageBox.Show("Ezin duzu IKT arduradun bat ezabatu. Mesedez, sartu beste ID bat.");
                     cmbId.Focus();
                     return;
-                } else
+                }
+                else
                 {
 
                     foreach (var item in LisEra)
@@ -178,11 +179,6 @@ namespace InbentarioaUnmi.Formularioak
                     }
                 }
             }
-        }
-
-        private void cmbMintegia_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
         }
         private void Desaktibatu()
         {
@@ -209,7 +205,7 @@ namespace InbentarioaUnmi.Formularioak
         {
             Desaktibatu();
             // z1 1=Gehitu, 2=Aldatu, 3=Ezabatu, 10=Hasiera panela
-            if (z1 == 1 ||z1 == 2 || z1 == 3)
+            if (z1 == 1 || z1 == 2 || z1 == 3)
             {
                 lblId.Visible = true;
                 cmbId.Visible = true;
@@ -244,7 +240,7 @@ namespace InbentarioaUnmi.Formularioak
                 lblMintegia.Visible = true;
                 cmbMintegia.Visible = true;
                 cmbMintegia.Enabled = false;
-               
+
 
                 if (z1 == 2)
                 {
@@ -255,11 +251,12 @@ namespace InbentarioaUnmi.Formularioak
                 {
                     cbEzabatu.Visible = true;
                     cmbId.Focus();
-                }else
+                }
+                else
                 {
                     txtErabiltzailea.Enabled = true;
                     txtPasahitza.Enabled = true;
-                    if(era.Rola == "IKTArduraduna")
+                    if (era.Rola == "IKTArduraduna")
                     {
                         cmbRola.Enabled = true;
                         cmbMintegia.Enabled = true;
@@ -287,7 +284,15 @@ namespace InbentarioaUnmi.Formularioak
             {
                 if (item.Id == id)
                 {
-                    txtErabiltzailea.Text = item.Izena;
+                    if (era.Rola == "MintegiBurua" && item.Rola == "IKTArduraduna")
+                    {
+                        txtPasahitza.Enabled = false;
+                    }
+                    else
+                    {
+                        txtPasahitza.Enabled = true;
+                    }
+                        txtErabiltzailea.Text = item.Izena;
                     txtPasahitza.Text = item.Pasahitza;
                     if (era.Rola == "MintegiBurua")
                     {
@@ -358,7 +363,7 @@ namespace InbentarioaUnmi.Formularioak
                         cbGehitu.Focus();
                         cbGehitu.Enabled = true;
                     }
-                    
+
                 }
             }
         }
@@ -387,9 +392,9 @@ namespace InbentarioaUnmi.Formularioak
             if (cbAldatu.Text == "Gorde")
             {
                 txtErabiltzailea.Enabled = true;
-                txtPasahitza.Enabled = true;
-                if(era.Rola == "IKTArduraduna")
+                if (era.Rola == "IKTArduraduna")
                 {
+                    txtPasahitza.Enabled = true;
                     cmbRola.Enabled = true;
                     cmbMintegia.Enabled = true;
                 }
@@ -408,6 +413,20 @@ namespace InbentarioaUnmi.Formularioak
             cmbMintegia.DisplayMember = "Izena";
             cmbMintegia.ValueMember = "Id";
             cmbMintegia.SelectedIndex = -1;
+        }
+
+        private void dgvErabiltzaileak_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if(era.Rola == "MintegiBurua")
+            {
+                if (dgvErabiltzaileak.Columns[e.ColumnIndex].Name == "Pasahitza")
+                {
+                    if (e.Value != null)
+                    {
+                        e.Value = new string('*', e.Value.ToString().Length);
+                    }
+                }
+            }
         }
     }
 }
