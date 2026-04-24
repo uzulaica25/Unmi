@@ -14,10 +14,18 @@ using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace InbentarioaUnmi.Formularioak
 {
+    /// <summary>
+    /// Erabiltzaileen kudeaketarako erabiltzen den Windows Form-a.
+    /// CRUD eragiketak (sortu, aldatu, ezabatu eta bistaratzea) kudeatzen ditu.
+    /// </summary>
     public partial class FErabiltzailea : Form
     {
         public List<Erabiltzaileak> LisEra = new List<Erabiltzaileak>();
         public Erabiltzaileak era;
+        /// <summary>
+        /// FErabiltzailea formularioa hasieratzen du eta uneko erabiltzailea ezartzen du.
+        /// </summary>
+        /// <param name="era">Saioa hasi duen erabiltzailea</param>
         public FErabiltzailea(Erabiltzaileak era)
         {
             InitializeComponent();
@@ -28,7 +36,10 @@ namespace InbentarioaUnmi.Formularioak
         {
             this.Close();
         }
-
+        /// <summary>
+        /// Formularioa kargatzean hasierako datuak eta ikuspegia prestatzen ditu.
+        /// Erabiltzaileen zerrenda kargatu eta rolearen arabera iragazten du.
+        /// </summary>
         private void FErabiltzailea_Load(object sender, EventArgs e)
         {
             Aktibatu(10);
@@ -48,7 +59,12 @@ namespace InbentarioaUnmi.Formularioak
             }
             dgvErabiltzaileak.ReadOnly = true;
         }
-
+        /// <summary>
+        /// Erabiltzaile berria gehitzeko prozesua kudeatzen du.
+        /// Sarrera datuak balidatu eta datu-basean gordetzen ditu.
+        /// </summary>
+        /// <param name="sender">Ekitaldiaren iturburua</param>
+        /// <param name="e">Ekitaldiaren datuak</param>
         private void cbGehitu_Click(object sender, EventArgs e)
         {
             int eragiketa;
@@ -82,7 +98,12 @@ namespace InbentarioaUnmi.Formularioak
                 }
             }
         }
-
+        /// <summary>
+        /// Aukeratutako erabiltzailearen datuak eguneratzen ditu.
+        /// Rolaren eta mintegiaren arabera balidazio gehigarriak aplikatzen ditu.
+        /// </summary>
+        /// <param name="sender">Ekitaldiaren iturburua</param>
+        /// <param name="e">Ekitaldiaren datuak</param>
         private void cbAldatu_Click(object sender, EventArgs e)
         {
             int erantzuna;
@@ -129,7 +150,12 @@ namespace InbentarioaUnmi.Formularioak
                 cbAldatu.Text = "Aldatu";
             }
         }
-
+        /// <summary>
+        /// Aukeratutako erabiltzailea datu-basetik ezabatzen du.
+        /// Segurtasun balidazioak aplikatzen ditu (bere burua edo rol kritikoak ez ezabatzeko).
+        /// </summary>
+        /// <param name="sender">Ekitaldiaren iturburua</param>
+        /// <param name="e">Ekitaldiaren datuak</param>
         private void cbEzabatu_Click(object sender, EventArgs e)
         {
             int erantzuna;
@@ -180,6 +206,9 @@ namespace InbentarioaUnmi.Formularioak
                 }
             }
         }
+        /// <summary>
+        /// Formularioaren elementuen ikusgarritasuna eta egoera kudeatzen ditu.
+        /// </summary>
         private void Desaktibatu()
         {
             // Formularioko elementuak ezkutatzen ditu.
@@ -200,7 +229,10 @@ namespace InbentarioaUnmi.Formularioak
             cmbMintegia.Visible = false;
             lblMintegia.Visible = false;
         }
-
+        /// <summary>
+        /// Formularioaren elementuen ikusgarritasuna eta egoera kudeatzen ditu.
+        /// Eragiketa motaren arabera (gehitu, aldatu, ezabatu) interfazea egokitzen du.
+        /// </summary>
         private void Aktibatu(int z1)
         {
             Desaktibatu();
@@ -274,7 +306,11 @@ namespace InbentarioaUnmi.Formularioak
                 dgvErabiltzaileak.Visible = true;
             }
         }
-
+        /// <summary>
+        /// Aukeratutako erabiltzailearen datuak interfazean kargatzen ditu.
+        /// </summary>
+        /// <param name="sender">Ekitaldiaren iturburua</param>
+        /// <param name="e">Ekitaldiaren datuak</param>
         private void cmbId_SelectedIndexChanged(object sender, EventArgs e)
         {
             string id;
@@ -308,7 +344,12 @@ namespace InbentarioaUnmi.Formularioak
                 }
             }
         }
-
+        /// <summary>
+        /// Erabiltzaile izenaren balidazioa egiten du.
+        /// Izen bikoiztuak saihesten ditu.
+        /// </summary>
+        /// <param name="sender">Ekitaldiaren iturburua</param>
+        /// <param name="e">Ekitaldiaren datuak</param>
         private void txtErabiltzailea_Leave(object sender, EventArgs e)
         {
             string t;
@@ -338,7 +379,12 @@ namespace InbentarioaUnmi.Formularioak
                 }
             }
         }
-
+        /// <summary>
+        /// Pasahitzaren luzera eta segurtasuna balidatzen ditu.
+        /// Gutxienez 8 karaktere behar ditu.
+        /// </summary>
+        /// <param name="sender">Ekitaldiaren iturburua</param>
+        /// <param name="e">Ekitaldiaren datuak</param>
         private void txtPasahitza_Leave(object sender, EventArgs e)
         {
             string t;
@@ -367,7 +413,11 @@ namespace InbentarioaUnmi.Formularioak
                 }
             }
         }
-
+        /// <summary>
+        /// Erabiltzailearen rola aukeratzean, hurrengo eremua (mintegia) aktibatzen du.
+        /// </summary>
+        /// <param name="sender">Ekitaldiaren iturburua</param>
+        /// <param name="e">Ekitaldiaren datuak</param>
         private void cmbRola_Leave(object sender, EventArgs e)
         {
             if (!string.IsNullOrWhiteSpace(cmbRola.Text))
@@ -376,7 +426,11 @@ namespace InbentarioaUnmi.Formularioak
                 cmbMintegia.Focus();
             }
         }
-
+        /// <summary>
+        /// Mintegia aukeratzean, gehitu botoia aktibatzen du eta fokua bertara pasatzen du.
+        /// </summary>
+        /// <param name="sender">Ekitaldiaren iturburua</param>
+        /// <param name="e">Ekitaldiaren datuak</param>
         private void cmbMintegia_Leave(object sender, EventArgs e)
         {
             if (!string.IsNullOrWhiteSpace(cmbMintegia.Text))
@@ -385,7 +439,12 @@ namespace InbentarioaUnmi.Formularioak
                 cbGehitu.Focus();
             }
         }
-
+        /// <summary>
+        /// Erabiltzaile ID bat aukeratzean, formularioaren eremuak egokitzen ditu
+        /// aldaketa edo ezabaketa moduan lan egiteko.
+        /// </summary>
+        /// <param name="sender">Ekitaldiaren iturburua</param>
+        /// <param name="e">Ekitaldiaren datuak</param>
         private void cmbId_Leave(object sender, EventArgs e)
         {
             cmbId.Enabled = false;
@@ -405,7 +464,12 @@ namespace InbentarioaUnmi.Formularioak
                 cbEzabatu.Focus();
             }
         }
-
+        /// <summary>
+        /// Mintegi zerrenda datu-basetik kargatzen du eta ComboBox-ean erakusten du.
+        /// </summary>
+        /// <remarks>
+        /// Mintegiak datu-iturritik eskuratu eta interfazean aukeraketa gisa bistaratzen ditu.
+        /// </remarks>
         private void MintegiakKargatu()
         {
             var lisMin = MintegiaDB.MintegiakListaratu();
@@ -414,7 +478,12 @@ namespace InbentarioaUnmi.Formularioak
             cmbMintegia.ValueMember = "Id";
             cmbMintegia.SelectedIndex = -1;
         }
-
+        /// <summary>
+        /// Datu-taulan pasahitzak ezkutatzen ditu segurtasuna mantentzeko.
+        /// MintegiBurua rolarentzat soilik aplikatzen da.
+        /// </summary>
+        /// <param name="sender">Ekitaldiaren iturburua</param>
+        /// <param name="e">Formateo ekitaldiaren datuak</param>
         private void dgvErabiltzaileak_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
             if(era.Rola == "MintegiBurua")
