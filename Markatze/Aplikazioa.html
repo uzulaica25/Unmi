@@ -2,10 +2,9 @@
 <html lang="eu">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Unmi - Inbentarioa</title>
 
-  <title>Unmi- Inbentarioa</title>
-
-  <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
   <style>
@@ -13,21 +12,103 @@
       font-weight: bold;
       font-size: 1.5rem;
     }
+
+    .navbar-brand img {
+      width: 70px;
+      height: 70px;
+    }
+
+    @media (max-width: 576px) {
+      .navbar-brand img {
+        width: 50px;
+        height: 50px;
+      }
+    }
+
     .nav-link {
       margin-right: 15px;
       transition: 0.3s;
     }
+
     .nav-link:hover {
       color: #0d6efd !important;
     }
 
-      #map { height: 400px; }
-  
+    /* HERO RESPONSIVE */
+    .hero {
+      min-height: 30vh;
+      height: auto;
+      padding: 80px 20px;
+      background-image: url(Inbentarioa.jpg);
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      text-align: center;
+      position: relative;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.4);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-title {
+      font-size: clamp(1.8rem, 5vw, 3rem);
+      font-weight: 800;
+    }
+
+    .highlight {
+      color: #111338;
+      font-weight: bold;
+    }
+
+    .box-green {
+      background-color: #111338;
+      padding: 20px;
+      text-align: center;
+      color: white;
+      border-radius: 15px;
+    }
+
+    .box-green img {
+      width: 100%;
+      height: auto;
+      border-radius: 10px;
+    }
+
+    .card {
+      border-radius: 20px;
+      overflow: hidden;
+      transition: transform 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+    }
+
+    h3 {
+      font-size: 1.4rem;
+    }
+
+    @media (max-width: 768px) {
+      .nav-link {
+        margin-right: 0;
+      }
+    }
   </style>
 </head>
 
-<body>
-  <body class="bg-dark">
+<body class="bg-dark">
 
 <!-- NAVBAR -->
 <nav class="navbar navbar-expand-lg navbar-light bg-white">
@@ -35,87 +116,118 @@
 
     <a class="navbar-brand d-flex align-items-center" href="index.html">
       <img src="UNMI.png" alt="logo" width="125" height="125" class="me-2">
-      
     </a>
-   
-
-  
-  <title>Unmi</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-</head>
-<body class="bg-dark"> 
-
-
-<nav class="navbar navbar-expand-lg navbar-light bg-white">
-  <div class="container">
-
-    
-
-    
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menua">
       <span class="navbar-toggler-icon"></span>
     </button>
 
-
-  
-
     <div class="collapse navbar-collapse" id="menua">
       <ul class="navbar-nav ms-auto">
-
-        <li class="nav-item">
-          <a class="nav-link active" href="index.html">Hasiera</a>
-        </li>
-
-
-          <li class="nav-item">
-          <a class="nav-link active" href="Nor.html">Nor gara?</a>
-        </li>
-
-        <li class="nav-item">
-          <a class="nav-link" href="Aplikazioa.html">Inbentarioa</a>
-        </li>
-
-        
-
-
-        <li class="nav-item">
-          <a class="nav-link" href="Kontaktua.html">Kontaktua</a>
-        </li>
-
-
-        <li class="nav-item">
-          <a class="btn btn-outline-dark ms-3" href="Erregistratu.html">Erregistratu</a>
-        </li>
-
-
-
+        <li class="nav-item"><a class="nav-link active" href="index.html">Hasiera</a></li>
+        <li class="nav-item"><a class="nav-link" href="Nor.html">Nor gara?</a></li>
+        <li class="nav-item"><a class="nav-link" href="Aplikazioa.html">Inbentarioa</a></li>
+        <li class="nav-item"><a class="nav-link" href="Kontaktua.html">Kontaktua</a></li>
+        <li class="nav-item"><a class="btn btn-dark ms-3" href="Erregistratu.html">Erregistratu</a></li>
       </ul>
     </div>
 
   </div>
 </nav>
 
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <h2 class="hero-title">INBENTARIOA</h2>
+  </div>
+</section>
 
-</nav>
+<!-- DESKRIBAPENA -->
+<section class="py-5 bg-light">
+  <div class="container">
+    <div class="row align-items-center g-4">
 
+      <div class="col-12 col-md-6">
+        <h6>INBENTARIOA</h6>
 
+        <h4 class="mt-3">
+          Proiektu hau Izarraitz Lanbide Heziketa eskolaren eskaeraz dator,
+          ikastetxeak bere <span class="highlight">gailu elektronikoak kudeatzeko</span> aplikazioa eskatu zigun.
+        </h4>
 
+        <p class="mt-3 text-muted">
+          Datu-base batera konektatuta dago, gailuen mugimendu guztiak gordetzeko eta ikusteko.
+        </p>
+      </div>
 
+      <div class="col-12 col-md-6">
+        <div class="box-green">
+          <img src="Izarraitz.png" alt="Irudia">
+        </div>
+      </div>
 
+    </div>
+  </div>
+</section>
 
+<!-- CARD SECTION -->
+<div class="container mt-5">
 
-<!-- Bootstrap JS -->
+  <div class="card shadow-sm border-0 mb-4">
+    <div class="row g-0 align-items-center">
 
+      <div class="col-12 col-md-6 p-4">
+        <h3 class="text-primary fw-bold">Logina</h3>
+        <p class="text-muted">Erabiltzailea eta pasahitza eskatzen ditu sistemara sartzeko.</p>
+      </div>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-<footer class="bg-white text-dark py-5 mt-5 border-top">
+      <div class="col-12 col-md-6">
+        <img src="Logina.png" class="img-fluid w-100" alt="Login">
+      </div>
+
+    </div>
+  </div>
+
+  <div class="card shadow-sm border-0 mb-4">
+    <div class="row g-0 align-items-center flex-md-row-reverse">
+
+      <div class="col-12 col-md-6 p-4">
+        <h3 class="text-primary fw-bold">Erabiltzaile Kudeaketa</h3>
+        <p class="text-muted">Erabiltzaile desberdinak sortu eta kudeatu daitezke.</p>
+      </div>
+
+      <div class="col-12 col-md-6">
+        <img src="https://via.placeholder.com/600x400" class="img-fluid w-100" alt="Erabiltzaileak">
+      </div>
+
+    </div>
+  </div>
+
+  <div class="card shadow-sm border-0 mb-4">
+    <div class="row g-0 align-items-center">
+
+      <div class="col-12 col-md-6 p-4">
+        <h3 class="text-primary fw-bold">Txostenak eta Analisiak</h3>
+        <p class="text-muted">Datuen analisia eta txosten automatikoak.</p>
+      </div>
+
+      <div class="col-12 col-md-6">
+        <img src="https://via.placeholder.com/600x400" class="img-fluid w-100" alt="Analisiak">
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<footer class="bg-white text-dark py-5 border-top">
   <div class="container">
 
-    <div class="row g-4">
+    <div class="row g-4 text-center text-md-start">
 
       <!-- Brand -->
-      <div class="col-md-4">
+      <div class="col-12 col-md-4">
         <h5 class="fw-bold">UNMI</h5>
         <p class="text-secondary">
           Teknologia eta software irtenbideetan espezializatutako enpresa gara. 
@@ -124,24 +236,25 @@
       </div>
 
       <!-- Links -->
-      <div class="col-md-4">
+      <div class="col-12 col-md-4">
         <h6 class="fw-semibold">Atalak</h6>
         <ul class="list-unstyled">
-          <li><a href="index.html" class="text-decoration-none text-dark">Hasiera</a></li>
-          <li><a href="Nor.html" class="text-decoration-none text-dark">Nor gara</a></li>
-          <li><a href="Aplikazioa.html" class="text-decoration-none text-dark">Inbentarioa</a></li>
-          <li><a href="Kontaktua.html" class="text-decoration-none text-dark">Kontaktua</a></li>
+          <li><a href="index.html" class="text-decoration-none text-dark d-block py-1">Hasiera</a></li>
+          <li><a href="Nor.html" class="text-decoration-none text-dark d-block py-1">Nor gara</a></li>
+          <li><a href="Aplikazioa.html" class="text-decoration-none text-dark d-block py-1">Inbentarioa</a></li>
+          <li><a href="Kontaktua.html" class="text-decoration-none text-dark d-block py-1">Kontaktua</a></li>
         </ul>
       </div>
 
       <!-- Contact -->
-      <div class="col-md-4">
+      <div class="col-12 col-md-4">
         <h6 class="fw-semibold">Kontaktua</h6>
+
         <p class="text-secondary mb-1">📍 Gipuzkoa, Euskadi</p>
         <p class="text-secondary mb-1">📧 unmi@gmail.com</p>
-        <p class="text-secondary">📞 +34 688 123 456</p>
+        <p class="text-secondary mb-3">📞 +34 688 123 456</p>
 
-        <a href="Kontaktua.html" class="btn btn-outline-dark btn-sm mt-2">
+        <a href="Kontaktua.html" class="btn btn-outline-dark btn-sm">
           Kontaktura joan
         </a>
       </div>
@@ -151,10 +264,13 @@
     <hr class="my-4">
 
     <div class="text-center text-secondary small">
-      © 2026 UNMI
+      © 2026 UNMI - Eskubide guztiak erreserbatuta
     </div>
 
   </div>
 </footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
 </body>
 </html>
