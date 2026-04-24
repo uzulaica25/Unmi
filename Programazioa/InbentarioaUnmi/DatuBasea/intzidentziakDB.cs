@@ -11,15 +11,17 @@ using System.Threading.Tasks;
 namespace InbentarioaUnmi.DatuBasea
 {
     /// <summary>
-    /// 
+    /// Intzidentzien kudeaketa datu-basean egiten duen klase estatikoa.
+    /// Gailuekin lotutako akats edo gertakarien CRUD eragiketak kudeatzen ditu.
     /// </summary>
     public static class intzidentziakDB
     {
         /// <summary>
-        /// Intzidentziaks the zerrendatu.
+        /// Erabiltzailearen rolaren arabera gailuen intzidentzia guztiak edo mintegi jakin batekoak zerrendatzen ditu.
+        /// Ordenagailuak eta inprimagailuak bereizita kargatzen dira.
         /// </summary>
-        /// <param name="erab">The erab.</param>
-        /// <returns></returns>
+        /// <param name="erab">Saioa hasi duen erabiltzailea</param>
+        /// <returns>Intzidentzien zerrenda</returns>
         public static List<Intzidentziak> IntzidentziakZerrendatu(Erabiltzaileak erab)
         {
             string selecto, selecti, mezua, id, mar, kok, ize, ram, cpu, idmin, idIntz;
@@ -111,10 +113,11 @@ namespace InbentarioaUnmi.DatuBasea
             return LisInz;
         }
         /// <summary>
-        /// Intzidentzias the gehitu.
+        /// Intzidentzia berri bat gehitzen du datu-basean.
+        /// Data automatikoa sistemaren unekoa da.
         /// </summary>
-        /// <param name="k">The k.</param>
-        /// <returns></returns>
+        /// <param name="k">Gehitu nahi den intzidentzia</param>
+        /// <returns>1 ondo joan bada; bestela MySQL errore kodea</returns>
         public static int IntzidentziaGehitu(Intzidentziak k)
         {
             string insert, queryID, idb;
@@ -148,11 +151,11 @@ namespace InbentarioaUnmi.DatuBasea
             }
         }
         /// <summary>
-        /// Intzidentzias the aldatu.
+        /// Lehendik dagoen intzidentzia baten datuak eguneratzen ditu.
         /// </summary>
-        /// <param name="berria">The berria.</param>
-        /// <param name="intzi">The intzi.</param>
-        /// <returns></returns>
+        /// <param name="berria">Datu berriak dituen intzidentzia</param>
+        /// <param name="intzi">Aldatu nahi den intzidentzia zaharra</param>
+        /// <returns>1 ondo joan bada; bestela MySQL errore kodea</returns>
         public static int IntzidentziaAldatu(Intzidentziak berria, Intzidentziak intzi)
         {
             string update;
@@ -180,10 +183,10 @@ namespace InbentarioaUnmi.DatuBasea
             }
         }
         /// <summary>
-        /// Intzidentzias the aurkitu.
+        /// Gailu jakin bati lotutako intzidentzia guztiak bilatzen ditu.
         /// </summary>
-        /// <param name="gail">The gail.</param>
-        /// <returns></returns>
+        /// <param name="gail">Intzidentziak bilatu nahi zaizkion gailua</param>
+        /// <returns>Intzidentzien zerrenda</returns>
         public static List<Intzidentziak> IntzidentziaAurkitu(Gailuak gail)
         {
             Intzidentziak Inz;
@@ -219,10 +222,10 @@ namespace InbentarioaUnmi.DatuBasea
             return LisInz;
         }
         /// <summary>
-        /// Intzidentzias the ezabatu.
+        /// Intzidentzia bat ezabatzen du datu-basetik.
         /// </summary>
-        /// <param name="intzi">The intzi.</param>
-        /// <returns></returns>
+        /// <param name="intzi">Ezabatu nahi den intzidentzia</param>
+        /// <returns>1 ondo joan bada; bestela MySQL errore kodea</returns>
         public static int IntzidentziaEzabatu(Intzidentziak intzi)
         {
             string delete;
