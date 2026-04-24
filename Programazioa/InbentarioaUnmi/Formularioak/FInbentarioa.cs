@@ -12,6 +12,11 @@ using System.Windows.Forms;
 
 namespace InbentarioaUnmi.Formularioak
 {
+    /// <summary>
+    /// Inbentarioaren kudeaketarako erabiltzen den formulario nagusia.
+    /// Gailuak gehitu, aldatu, ezabatu eta bistaratzea kudeatzen du.
+    /// Ordenagailuak eta inprimagailuak bereizten ditu.
+    /// </summary>
     public partial class FInbentarioa : Form
     {
         public List<Gailuak> LisInb = new List<Gailuak>();
@@ -19,11 +24,20 @@ namespace InbentarioaUnmi.Formularioak
         public BindingList<Ordenagailuak> LisOrd = new BindingList<Ordenagailuak>();
         public List<Mintegiak> LisMin = new List<Mintegiak>();
         public Erabiltzaileak era;
+        /// <summary>
+        /// FInbentarioa formularioa hasieratzen du eta erabiltzailearen datuak gordetzen ditu.
+        /// </summary>
+        /// <param name="era">Saioa hasita duen erabiltzailea</param>
         public FInbentarioa(Erabiltzaileak era)
         {
             InitializeComponent();
             this.era = era;
         }
+        /// <summary>
+        /// Formularioa kargatzean datuak kargatu eta erabiltzailearen rolaren arabera interfazea egokitzen du.
+        /// </summary>
+        /// <param name="sender">Ekitaldiaren iturburua</param>
+        /// <param name="e">Ekitaldiaren datuak</param>
         private void FInbentarioa_Load(object sender, EventArgs e)
         {
             DatuakKargatu();
@@ -39,12 +53,17 @@ namespace InbentarioaUnmi.Formularioak
                 cbGehitu.Focus();
             }
         }
-
+        
         private void cbIrten_Click_1(object sender, EventArgs e)
         {
             this.Close();
         }
-
+        /// <summary>
+        /// Gailu berri bat inbentarioan gehitzen du.
+        /// Gehitu/Gorde logika erabiltzen du erabiltzailearen ekintzaren arabera.
+        /// </summary>
+        /// <param name="sender">Ekitaldiaren iturburua</param>
+        /// <param name="e">Ekitaldiaren datuak</param>
         private void cbGehitu_Click(object sender, EventArgs e)
         {
             Gailuak g;
@@ -69,7 +88,11 @@ namespace InbentarioaUnmi.Formularioak
                 MessageBox.Show("Errorea gailua gehitzean.");
             }
         }
-
+        /// <summary>
+        /// Aukeratutako gailuaren datuak eguneratzen ditu datu-basean.
+        /// </summary>
+        /// <param name="sender">Ekitaldiaren iturburua</param>
+        /// <param name="e">Ekitaldiaren datuak</param>
         private void cbAldatu_Click(object sender, EventArgs e)
         {
             string Id;
@@ -112,7 +135,12 @@ namespace InbentarioaUnmi.Formularioak
                 MessageBox.Show("Errorea gailua aldatzean.");
             }
         }
-
+        /// <summary>
+        /// Aukeratutako gailua inbentariotik ezabatzen du.
+        /// Gailuarekin lotutako datuak ere ezabatzen dira (intzidentziak eta historikoa).
+        /// </summary>
+        /// <param name="sender">Ekitaldiaren iturburua</param>
+        /// <param name="e">Ekitaldiaren datuak</param>
         private void cbEzabatu_Click(object sender, EventArgs e)
         {
             string id;
@@ -166,7 +194,10 @@ namespace InbentarioaUnmi.Formularioak
             cbEzabatu.Text = "Ezabatu";
             this.Close();
         }
-
+        /// <summary>
+        /// Formularioaren osagai guztiak ezkutatzen ditu.
+        /// Eragiketa berria hasteko interfazea garbitzen du.
+        /// </summary>
         private void Desaktibatu()
         {
             // Formularioko elementuak ezkutatzen ditu.
@@ -197,7 +228,11 @@ namespace InbentarioaUnmi.Formularioak
             lblGailuMota.Visible = false;
             cmbGailuMota.Visible = false;
         }
-
+        /// <summary>
+        /// Interfazearen osagaiak aktibatzen ditu aukeratutako eragiketaren arabera.
+        /// Gailu mota eta erabiltzaile rola kontuan hartzen ditu.
+        /// </summary>
+        /// <param name="z1">Eragiketa mota (gehitu, aldatu, ezabatu, mota aukeraketa...)</param>
         private void Aktibatu(int z1)
         {
             this.LisMin = MintegiaDB.MintegiakListaratu();
@@ -293,7 +328,11 @@ namespace InbentarioaUnmi.Formularioak
                 dgvOrdenagailua.Visible = true;
             }
         }
-
+        /// <summary>
+        /// Gailu mota aldatzean (ordenagailua edo inprimagailua) interfazea egokitzen du.
+        /// </summary>
+        /// <param name="sender">Ekitaldiaren iturburua</param>
+        /// <param name="e">Ekitaldiaren datuak</param>
         private void cmbGailuMota_SelectedValueChanged(object sender, EventArgs e)
         {
             if (cmbGailuMota.Text == "Ordenagailua")
@@ -319,7 +358,11 @@ namespace InbentarioaUnmi.Formularioak
                 Aktibatu(1);
             }
         }
-
+        /// <summary>
+        /// Aukeratutako gailuaren datuak formularioan kargatzen ditu.
+        /// </summary>
+        /// <param name="sender">Ekitaldiaren iturburua</param>
+        /// <param name="e">Ekitaldiaren datuak</param>
         private void cmbId_SelectedValueChanged(object sender, EventArgs e)
         {
             string id;
@@ -345,7 +388,12 @@ namespace InbentarioaUnmi.Formularioak
                 }
             }
         }
-
+        /// <summary>
+        /// Formularioaren eremuen balidazioa kudeatzen du.
+        /// Datu zuzenak sartzeko fluxua kontrolatzen du.
+        /// </summary>
+        /// <param name="sender">Ekitaldiaren iturburua</param>
+        /// <param name="e">Ekitaldiaren datuak</param>
         private void cmbId_Leave(object sender, EventArgs e)
         {
             if (cbAldatu.Text == "Gorde")
@@ -366,7 +414,12 @@ namespace InbentarioaUnmi.Formularioak
                 cbEzabatu.Focus();
             }
         }
-
+        /// <summary>
+        /// Formularioaren eremuen balidazioa kudeatzen du.
+        /// Datu zuzenak sartzeko fluxua kontrolatzen du.
+        /// </summary>
+        /// <param name="sender">Ekitaldiaren iturburua</param>
+        /// <param name="e">Ekitaldiaren datuak</param>
         private void txtMarka_Leave(object sender, EventArgs e)
         {
             if (!string.IsNullOrWhiteSpace(txtMarka.Text))
@@ -379,7 +432,12 @@ namespace InbentarioaUnmi.Formularioak
                 txtMarka.Focus();
             }
         }
-
+        /// <summary>
+        /// Formularioaren eremuen balidazioa kudeatzen du.
+        /// Datu zuzenak sartzeko fluxua kontrolatzen du.
+        /// </summary>
+        /// <param name="sender">Ekitaldiaren iturburua</param>
+        /// <param name="e">Ekitaldiaren datuak</param>
         private void txtKokalekua_Leave(object sender, EventArgs e)
         {
             if (!string.IsNullOrWhiteSpace(txtKokalekua.Text))
@@ -398,7 +456,12 @@ namespace InbentarioaUnmi.Formularioak
                 txtKokalekua.Focus();
             }
         }
-
+        /// <summary>
+        /// Formularioaren eremuen balidazioa kudeatzen du.
+        /// Datu zuzenak sartzeko fluxua kontrolatzen du.
+        /// </summary>
+        /// <param name="sender">Ekitaldiaren iturburua</param>
+        /// <param name="e">Ekitaldiaren datuak</param>
         private void cmbMintegia_Leave(object sender, EventArgs e)
         {
             if (!string.IsNullOrWhiteSpace(cmbMintegia.Text))
@@ -411,7 +474,12 @@ namespace InbentarioaUnmi.Formularioak
                 cmbMintegia.Focus();
             }
         }
-
+        /// <summary>
+        /// Formularioaren eremuen balidazioa kudeatzen du.
+        /// Datu zuzenak sartzeko fluxua kontrolatzen du.
+        /// </summary>
+        /// <param name="sender">Ekitaldiaren iturburua</param>
+        /// <param name="e">Ekitaldiaren datuak</param>
         private void dtpErosteData_Leave(object sender, EventArgs e)
         {
             if (!string.IsNullOrWhiteSpace(dtpErosteData.Text))
@@ -432,7 +500,12 @@ namespace InbentarioaUnmi.Formularioak
                 dtpErosteData.Focus();
             }
         }
-
+        /// <summary>
+        /// Formularioaren eremuen balidazioa kudeatzen du.
+        /// Datu zuzenak sartzeko fluxua kontrolatzen du.
+        /// </summary>
+        /// <param name="sender">Ekitaldiaren iturburua</param>
+        /// <param name="e">Ekitaldiaren datuak</param>
         private void txtCpu_Leave(object sender, EventArgs e)
         {
             if (!string.IsNullOrWhiteSpace(txtCpu.Text))
@@ -445,13 +518,23 @@ namespace InbentarioaUnmi.Formularioak
                 txtCpu.Focus();
             }
         }
-
+        /// <summary>
+        /// Formularioaren eremuen balidazioa kudeatzen du.
+        /// Datu zuzenak sartzeko fluxua kontrolatzen du.
+        /// </summary>
+        /// <param name="sender">Ekitaldiaren iturburua</param>
+        /// <param name="e">Ekitaldiaren datuak</param>
         private void chbBai_Leave(object sender, EventArgs e)
         {
             cbGehitu.Enabled = true;
             cbAldatu.Enabled = true;
         }
-
+        /// <summary>
+        /// Formularioaren eremuen balidazioa kudeatzen du.
+        /// Datu zuzenak sartzeko fluxua kontrolatzen du.
+        /// </summary>
+        /// <param name="sender">Ekitaldiaren iturburua</param>
+        /// <param name="e">Ekitaldiaren datuak</param>
         private void txtRam_Leave(object sender, EventArgs e)
         {
             if (!string.IsNullOrWhiteSpace(txtRam.Text))
@@ -460,7 +543,9 @@ namespace InbentarioaUnmi.Formularioak
                 cbGehitu.Enabled = true;
             }
         }
-
+        /// <summary>
+        /// Inbentarioko gailuak datu-basetik kargatzen ditu eta ordenagailu eta inprimagailuetan banatzen ditu.
+        /// </summary>
         private void DatuakKargatu()
         {
             LisInb = InbentarioaDB.GailuakListaratu(era);
@@ -483,7 +568,11 @@ namespace InbentarioaUnmi.Formularioak
             dgvInprimagailua.ReadOnly = true;
             dgvOrdenagailua.ReadOnly = true;
         }
-
+        /// <summary>
+        /// Formularioko datuetatik Gailu objektu bat sortzen du.
+        /// Gailu mota (ordenagailua edo inprimagailua) kontuan hartzen du.
+        /// </summary>
+        /// <returns>Sortutako Gailu objektua edo null errore kasuan</returns>
         private Gailuak GailuaSortu()
         {
             string id, marka, kokalekua, mid;
@@ -524,7 +613,9 @@ namespace InbentarioaUnmi.Formularioak
                 return null;
             }
         }
-
+        /// <summary>
+        /// Aukeratutako gailu motaren arabera ID zerrenda ComboBox-ean kargatzen du.
+        /// </summary>
         private void IdakKargatu()
         {
             cmbId.DataSource = null;
@@ -539,6 +630,5 @@ namespace InbentarioaUnmi.Formularioak
             cmbId.ValueMember = "Id";
             cmbId.SelectedIndex = -1;
         }
-
     }
 }
