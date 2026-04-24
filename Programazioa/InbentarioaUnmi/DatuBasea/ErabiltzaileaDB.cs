@@ -13,14 +13,16 @@ using static System.ComponentModel.Design.ObjectSelectorEditor;
 namespace InbentarioaUnmi.DatuBasea
 {
     /// <summary>
-    /// 
+    /// Erabiltzaileen kudeaketa datu-basean egiten duen klase estatikoa.
+    /// Erabiltzaileak sortu, aldatu, ezabatu eta bilatzeko funtzionalitateak eskaintzen ditu.
+    /// Gainera, rol ezberdinak (Irakaslea, MintegiBurua, IKTArduraduna) kudeatzen ditu.
     /// </summary>
     public static class ErabiltzaileaDB
     {
         /// <summary>
-        /// Erabiltzaileas the zerrendatu.
+        /// Datu-basean dauden erabiltzaile guztiak zerrendatzen ditu, rolaren arabera sailkatuta.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Erabiltzaileen zerrenda</returns>
         public static List<Erabiltzaileak> ErabiltzaileaZerrendatu()
         {
             string id, select, Izena, Pas, minte, IDmin;
@@ -96,10 +98,11 @@ namespace InbentarioaUnmi.DatuBasea
         }
 
         /// <summary>
-        /// Erabiltzaileas the gehitu.
+        /// Erabiltzaile berri bat gehitzen du datu-basean.
+        /// ID automatikoa sortzen da eta dagokion rol taulan erregistratzen da.
         /// </summary>
-        /// <param name="e">The e.</param>
-        /// <returns></returns>
+        /// <param name="e">Gehitu nahi den erabiltzailea</param>
+        /// <returns>1 ondo joan bada; bestela MySQL errore kodea</returns>
         public static int ErabiltzaileaGehitu(Erabiltzaileak e)
         {
             string insert, idberria, queryID;
@@ -152,10 +155,10 @@ namespace InbentarioaUnmi.DatuBasea
         }
 
         /// <summary>
-        /// Erabiltzaileas the aldatu.
+        /// Existitzen den erabiltzaile baten datuak eguneratzen ditu.
         /// </summary>
-        /// <param name="e">The e.</param>
-        /// <returns></returns>
+        /// <param name="e">Eguneratu nahi den erabiltzailea</param>
+        /// <returns>1 ondo joan bada; bestela MySQL errore kodea</returns>
         public static int ErabiltzaileaAldatu(Erabiltzaileak e)
         {
             string update;
@@ -183,10 +186,10 @@ namespace InbentarioaUnmi.DatuBasea
         }
 
         /// <summary>
-        /// Erabiltzaileas the ezabatu.
+        /// Erabiltzaile bat ezabatzen du datu-basetik.
         /// </summary>
-        /// <param name="e">The e.</param>
-        /// <returns></returns>
+        /// <param name="e">Ezabatu nahi den erabiltzailea</param>
+        /// <returns>1 ondo joan bada; bestela MySQL errore kodea</returns>
         public static int ErabiltzaileaEzabatu(Erabiltzaileak e)
         {
             string delete;
@@ -211,11 +214,12 @@ namespace InbentarioaUnmi.DatuBasea
         }
 
         /// <summary>
-        /// Erabiltzaileas the bilatu.
+        /// Erabiltzaile bat bilatzen du izena eta pasahitzaren arabera.
+        /// Rolaren arabera (Irakaslea, MintegiBurua, IKTArduraduna) egiaztatzen du.
         /// </summary>
-        /// <param name="i">The i.</param>
-        /// <param name="p">The p.</param>
-        /// <returns></returns>
+        /// <param name="i">Erabiltzailearen izena</param>
+        /// <param name="p">Pasahitza</param>
+        /// <returns>Aurkitutako erabiltzailea; bestela null</returns>
         public static Erabiltzaileak ErabiltzaileaBilatu(string i, string p)
         {
             string id, select, Izena, Pas, minte, mizena;
