@@ -13,10 +13,19 @@ using System.Windows.Forms;
 
 namespace InbentarioaUnmi.Formularioak
 {
+    /// <summary>
+    /// Intzidentzien kudeaketarako Windows Forms interfazea.
+    /// Intzidentziak gehitu, aldatu, ezabatu eta bilatzeko funtzionalitatea eskaintzen du.
+    /// </summary>
     public partial class FIntzidentziak : Form
     {
         public List<Intzidentziak> LisInt = new List<Intzidentziak>();
         public Erabiltzaileak era;
+
+        /// <summary>
+        /// Intzidentzien formulario berria sortzen du erabiltzailearen informazioarekin.
+        /// </summary>
+        /// <param name="era">Saioa hasi duen erabiltzailea</param>
         public FIntzidentziak(Erabiltzaileak era)
         {
             InitializeComponent();
@@ -27,7 +36,12 @@ namespace InbentarioaUnmi.Formularioak
         {
             this.Close();
         }
-
+        /// <summary>
+        /// Formularioa kargatzean hasierako datuak eta baimenak konfiguratzen ditu.
+        /// Erabiltzailearen rolaren arabera aukerak mugatzen ditu.
+        /// </summary>
+        /// <param name="sender">Jatorrizko objektua</param>
+        /// <param name="e">Event argudioak</param>
         private void FIntzidentziak_Load(object sender, EventArgs e)
         {
             if (era.Rola == "Irakaslea")
@@ -43,7 +57,11 @@ namespace InbentarioaUnmi.Formularioak
             LisInt = intzidentziakDB.IntzidentziakZerrendatu(era);
             dgvIntzidentziak.DataSource = LisInt;
         }
-
+        /// <summary>
+        /// Intzidentzia berri bat gehitzen du edo gehitzeko modua aktibatzen du.
+        /// </summary>
+        /// <param name="sender">Jatorrizko objektua</param>
+        /// <param name="e">Event argudioak</param>
         private void cbGehitu_Click(object sender, EventArgs e)
         {
             Intzidentziak intz;
@@ -81,7 +99,11 @@ namespace InbentarioaUnmi.Formularioak
                 cbGehitu.Text = "Gehitu";
             }
         }
-
+        /// <summary>
+        /// Hautatutako intzidentzia bat eguneratzen du edo edizio modua aktibatzen du.
+        /// </summary>
+        /// <param name="sender">Jatorrizko objektua</param>
+        /// <param name="e">Event argudioak</param>
         private void cbAldatu_Click(object sender, EventArgs e)
         {
             List<Gailuak> LisGai = new List<Gailuak>();
@@ -129,7 +151,11 @@ namespace InbentarioaUnmi.Formularioak
                 }
             }
         }
-
+        /// <summary>
+        /// Hautatutako intzidentzia bat ezabatzen du edo ezabatzeko baieztapena eskatzen du.
+        /// </summary>
+        /// <param name="sender">Jatorrizko objektua</param>
+        /// <param name="e">Event argudioak</param>
         private void cbEzabatu_Click(object sender, EventArgs e)
         {
             Intzidentziak intzidentzia;
@@ -157,7 +183,11 @@ namespace InbentarioaUnmi.Formularioak
                 }
             }
         }
-
+        /// <summary>
+        /// Gailu baten arabera intzidentziak bilatzen ditu eta datu-taulan erakusten ditu.
+        /// </summary>
+        /// <param name="sender">Jatorrizko objektua</param>
+        /// <param name="e">Event argudioak</param>
         private void cbAurkitu_Click(object sender, EventArgs e)
         {
             List<Gailuak> LisGai = new List<Gailuak>();
@@ -191,7 +221,9 @@ namespace InbentarioaUnmi.Formularioak
                 }
             }
         }
-
+        /// <summary>
+        /// Formularioaren kontrol guztiak ezkutatu edo desaktibatzen ditu.
+        /// </summary>
         private void Desaktibatu()
         {
             // Formularioko elementuak ezkutatzen ditu.
@@ -211,7 +243,10 @@ namespace InbentarioaUnmi.Formularioak
             lblGailua.Visible = false;
             cmbGailua.Visible = false;
         }
-
+        /// <summary>
+        /// Formularioaren kontrolak aktibatzen ditu aukeratutako ekintzaren arabera.
+        /// </summary>
+        /// <param name="z1">Eragiketa mota (1=gehitu, 2=aldatu, 3=ezabatu, 4=bilatu)</param>
         private void Aktibatu(int z1)
         {
             List<Gailuak> LisGai = new List<Gailuak>();
