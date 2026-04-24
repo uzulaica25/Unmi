@@ -5,24 +5,46 @@ using InbentarioaUnmi.Formularioak;
 
 namespace InbentarioaUnmi
 {
+    /// <summary>
+    /// Sistemako saio-hasierako (login) interfazea.
+    /// Erabiltzailearen autentifikazioa kudeatzen du eta aplikazio nagusira sarbidea ematen du.
+    /// </summary>
     public partial class FLogina : Form
     {
         private Erabiltzaileak era;
         private bool txi = false;
+        /// <summary>
+        /// Login formularioa hasieratzen du.
+        /// </summary>
         public FLogina()
         {
             InitializeComponent();
         }
+        /// <summary>
+        /// Formularioa kargatzean hasierako egoera ezartzen du (kontrolak desgaituta).
+        /// </summary>
+        /// <param name="sender">Jatorrizko objektua</param>
+        /// <param name="e">Event argudioak</param>
         private void FLogina_Load(object sender, EventArgs e)
         {
             txtPasahitza.Enabled = false;
             cbSartu.Enabled = false;
             txtErabiltzailea.Focus();
         }
+        /// <summary>
+        /// Aplikazioa ixten du.
+        /// </summary>
+        /// <param name="sender">Jatorrizko objektua</param>
+        /// <param name="e">Event argudioak</param>
         private void cbIrten_Click_1(object sender, EventArgs e)
         {
             this.Close();
         }
+        /// <summary>
+        /// Erabiltzaile izena sartuta dagoela egiaztatzen du eta pasahitz eremua aktibatzen du.
+        /// </summary>
+        /// <param name="sender">Jatorrizko objektua</param>
+        /// <param name="e">Event argudioak</param>
         private void txtErabiltzailea_Leave(object sender, EventArgs e)
         {
             if (txi)
@@ -43,6 +65,11 @@ namespace InbentarioaUnmi
                 }
             }
         }
+        /// <summary>
+        /// Pasahitza sartuta dagoela egiaztatzen du eta saioa hasteko botoia aktibatzen du.
+        /// </summary>
+        /// <param name="sender">Jatorrizko objektua</param>
+        /// <param name="e">Event argudioak</param>
         private void txtPasahitza_Leave(object sender, EventArgs e)
         {
             if (txi)
@@ -64,6 +91,12 @@ namespace InbentarioaUnmi
             }
 
         }
+        /// <summary>
+        /// Erabiltzailea autentifikatzen du eta saioa hasten du baliozko kredentzialak baditu.
+        /// Bestela errore mezua erakusten du.
+        /// </summary>
+        /// <param name="sender">Jatorrizko objektua</param>
+        /// <param name="e">Event argudioak</param>
         private void cbSartu_Click_1(object sender, EventArgs e)
         {
             Erabiltzaileak era;
@@ -111,11 +144,20 @@ namespace InbentarioaUnmi
                 txtErabiltzailea.Focus();
             }
         }
+        /// <summary>
+        /// Irten botoiaren gainean sagua dagoenean kontrol-fluxua aktibatzen du.
+        /// </summary>
+        /// <param name="sender">Jatorrizko objektua</param>
+        /// <param name="e">Saguaren event argudioak</param>
         private void cbIrten_MouseMove(object sender, MouseEventArgs e)
         {
             this.txi = true;
         }
-
+        /// <summary>
+        /// Erabiltzaile eremua aktibatzen du eta kontrol-fluxua berrezartzen du.
+        /// </summary>
+        /// <param name="sender">Jatorrizko objektua</param>
+        /// <param name="e">Saguaren event argudioak</param>
         private void txtErabiltzailea_MouseMove(object sender, MouseEventArgs e)
         {
             this.txi = false;
