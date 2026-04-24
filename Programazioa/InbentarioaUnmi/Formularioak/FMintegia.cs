@@ -12,21 +12,37 @@ using System.Windows.Forms;
 
 namespace InbentarioaUnmi.Formularioak
 {
+    /// <summary>
+    /// Mintegiak kudeatzeko formularioa.
+    /// Mintegiak gehitu, aldatu, ezabatu eta bistaratzea ahalbidetzen du.
+    /// </summary>
     public partial class FMintegia : Form
     {
         public Erabiltzaileak era;
         public List<Mintegiak> LisMin = new List<Mintegiak>();
+        /// <summary>
+        /// FMintegia formularioa hasieratzen du eta erabiltzailea gordetzen du.
+        /// </summary>
+        /// <param name="era">Saioa hasita duen erabiltzailea</param>
         public FMintegia(Erabiltzaileak era)
         {
             this.era = era;
             InitializeComponent();
         }
-
+        /// <summary>
+        /// Formulariotik irteten da.
+        /// </summary>
+        /// <param name="sender">Jatorrizko objektua</param>
+        /// <param name="e">Event argudioak</param>
         private void cbIrten_Click(object sender, EventArgs e)
         {
             this.Close();
         }
-
+        /// <summary>
+        /// Formularioa kargatzean mintegi guztiak kargatzen ditu eta DataGridView-ean bistaratzen ditu.
+        /// </summary>
+        /// <param name="sender">Jatorrizko objektua</param>
+        /// <param name="e">Event argudioak</param>
         private void FMintegia_Load(object sender, EventArgs e)
         {
             cbGehitu.Focus();
@@ -36,7 +52,12 @@ namespace InbentarioaUnmi.Formularioak
             dgvMintegiak.DataSource = LisMin;
             dgvMintegiak.ReadOnly = true;
         }
-
+        /// <summary>
+        /// Mintegi berria gehitzeko prozesua kudeatzen du.
+        /// Gehitu eta gorde egoeren artean aldatzen da.
+        /// </summary>
+        /// <param name="sender">Jatorrizko objektua</param>
+        /// <param name="e">Event argudioak</param>
         private void cbGehitu_Click(object sender, EventArgs e)
         {
             int erantzuna;
@@ -77,7 +98,11 @@ namespace InbentarioaUnmi.Formularioak
                 cbGehitu.Text = "Gehitu";
             }
         }
-
+        /// <summary>
+        /// Aukeratutako mintegia aldatzeko prozesua kudeatzen du.
+        /// </summary>
+        /// <param name="sender">Jatorrizko objektua</param>
+        /// <param name="e">Event argudioak</param>
         private void cbAldatu_Click_1(object sender, EventArgs e)
         {
             int erantzuna;
@@ -115,7 +140,12 @@ namespace InbentarioaUnmi.Formularioak
                 cbAldatu.Text = "Aldatu";
             }
         }
-
+        /// <summary>
+        /// Mintegia ezabatzeko prozesua kudeatzen du.
+        /// Ezabatzean lotutako gailuak eta erabiltzaileak ere kontuan hartzen ditu.
+        /// </summary>
+        /// <param name="sender">Jatorrizko objektua</param>
+        /// <param name="e">Event argudioak</param>
         private void cbEzabatu_Click_1(object sender, EventArgs e)
         {
             int erantzuna;
@@ -168,7 +198,9 @@ namespace InbentarioaUnmi.Formularioak
                 cbEzabatu.Text = "Ezabatu";
             }
         }
-
+        /// <summary>
+        /// Formularioko kontrol guztiak ezkutatzen ditu.
+        /// </summary>
         private void Desaktibatu()
         {
             // Formularioko elementuak ezkutatzen ditu.
@@ -183,7 +215,10 @@ namespace InbentarioaUnmi.Formularioak
             lblIzena.Visible = false;
             txtIzena.Visible = false;
         }
-
+        /// <summary>
+        /// Formularioko kontrolak aktibatzen ditu ekintza motaren arabera (gehitu, aldatu edo ezabatu).
+        /// </summary>
+        /// <param name="z1">Ekintza mota (1=gehitu, 2=aldatu, 3=ezabatu, 10=reset)</param>
         private void Aktibatu(int z1)
         {
             Desaktibatu();
@@ -227,7 +262,11 @@ namespace InbentarioaUnmi.Formularioak
                 FMintegia_Load(null, null);
             }
         }
-
+        /// <summary>
+        /// Mintegi izenaren balidazioa egiten du (hutsik edo errepikatuta ez egotea).
+        /// </summary>
+        /// <param name="sender">Jatorrizko objektua</param>
+        /// <param name="e">Event argudioak</param>
         private void txtIzena_Leave(object sender, EventArgs e)
         {
             bool txi = false;
@@ -270,7 +309,11 @@ namespace InbentarioaUnmi.Formularioak
                 }
             }
         }
-
+        /// <summary>
+        /// Mintegi ID aukeraketa utzitzean kontrolen egoera eguneratzen du.
+        /// </summary>
+        /// <param name="sender">Jatorrizko objektua</param>
+        /// <param name="e">Event argudioak</param>
         private void cmbId_Leave(object sender, EventArgs e)
         {
             if (cbAldatu.Text == "Gorde")
@@ -287,7 +330,11 @@ namespace InbentarioaUnmi.Formularioak
                 cbEzabatu.Focus();
             }
         }
-
+        /// <summary>
+        /// Aukeratutako mintegiaren datuak formularioan kargatzen ditu.
+        /// </summary>
+        /// <param name="sender">Jatorrizko objektua</param>
+        /// <param name="e">Event argudioak</param>
         private void cmbId_SelectedIndexChanged(object sender, EventArgs e)
         {
             string Id;
@@ -312,7 +359,11 @@ namespace InbentarioaUnmi.Formularioak
                 }
             }
         }
-
+        /// <summary>
+        /// Irten botoiaren gainean sagua mugitzean interfazearen egoera berrezartzen du.
+        /// </summary>
+        /// <param name="sender">Jatorrizko objektua</param>
+        /// <param name="e">Saguaren event argudioak</param>
         private void cbIrten_MouseMove(object sender, MouseEventArgs e)
         {
             cbGehitu.Text = "Gehitu";
