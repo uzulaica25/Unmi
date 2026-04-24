@@ -111,5 +111,9 @@ namespace InbentarioaUnmi.Formularioak
             fe.Show();
         }
 
+        private void txtMintegia_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

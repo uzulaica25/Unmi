@@ -107,7 +107,7 @@ namespace InbentarioaUnmi.Formularioak
                 {
                     foreach(var usu in LisEra)
                     {
-                        if (usu.Rola == rola && usu.Mintegia.Id == min)
+                        if (usu.Rola == rola && usu.Mintegia.Izena == min)
                         {
                             MessageBox.Show("Mintegi horrek jada badu mintegi burua");
                             return;
@@ -367,24 +367,8 @@ namespace InbentarioaUnmi.Formularioak
         {
             if (!string.IsNullOrWhiteSpace(cmbRola.Text))
             {
-                if (cmbRola.Text == "MintegiBurua")
-                {
-                    foreach (var usu in LisEra)
-                    {
-                        if (usu.Rola == cmbRola.Text && usu.Mintegia.Id == era.Mintegia.Id)
-                        {
-                            MessageBox.Show("Mintegi horrek jada badu mintegi burua");
-                            cmbRola.Text = "";
-                            cmbRola.Focus();
-                            return;
-                        }
-                    }
-                }
-                else
-                {
-                    cmbMintegia.Enabled = true;
-                    cmbMintegia.Focus();
-                }
+                cmbMintegia.Enabled = true;
+                cmbMintegia.Focus();
             }
         }
 

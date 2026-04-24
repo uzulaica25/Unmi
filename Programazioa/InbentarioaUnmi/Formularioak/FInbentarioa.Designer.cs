@@ -29,13 +29,15 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             panel1 = new Panel();
+            dtpErosteData = new DateTimePicker();
+            lblErosteData = new Label();
             cmbId = new ComboBox();
             chbBai = new CheckBox();
             cmbMintegia = new ComboBox();
             lblMintegia = new Label();
             lblGailuMota = new Label();
-            comboBox1 = new ComboBox();
             txtRam = new TextBox();
             cmbGailuMota = new ComboBox();
             lblKoloretakoa = new Label();
@@ -56,14 +58,12 @@
             Cpu = new DataGridViewTextBoxColumn();
             Ram = new DataGridViewTextBoxColumn();
             ordenagailuakBindingSource = new BindingSource(components);
-            lblErosteData = new Label();
             cbEzabatu = new Button();
             cbAldatu = new Button();
             cbGehitu = new Button();
             cbIrten = new Button();
             inprimagailuakBindingSource = new BindingSource(components);
             panel2 = new Panel();
-            dtpErosteData = new DateTimePicker();
             dgvInprimagailua = new DataGridView();
             dataGridViewTextBoxColumn1 = new DataGridViewTextBoxColumn();
             dataGridViewTextBoxColumn2 = new DataGridViewTextBoxColumn();
@@ -71,6 +71,8 @@
             dataGridViewTextBoxColumn4 = new DataGridViewTextBoxColumn();
             dataGridViewTextBoxColumn5 = new DataGridViewTextBoxColumn();
             Koloretakoa = new DataGridViewCheckBoxColumn();
+            lblOrdenagailua = new Label();
+            lblInprimagailua = new Label();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvOrdenagailua).BeginInit();
             ((System.ComponentModel.ISupportInitialize)ordenagailuakBindingSource).BeginInit();
@@ -81,12 +83,14 @@
             // 
             // panel1
             // 
+            panel1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            panel1.Controls.Add(dtpErosteData);
+            panel1.Controls.Add(lblErosteData);
             panel1.Controls.Add(cmbId);
             panel1.Controls.Add(chbBai);
             panel1.Controls.Add(cmbMintegia);
             panel1.Controls.Add(lblMintegia);
             panel1.Controls.Add(lblGailuMota);
-            panel1.Controls.Add(comboBox1);
             panel1.Controls.Add(txtRam);
             panel1.Controls.Add(cmbGailuMota);
             panel1.Controls.Add(lblKoloretakoa);
@@ -101,17 +105,43 @@
             panel1.Controls.Add(dgvOrdenagailua);
             panel1.Location = new Point(11, 56);
             panel1.Name = "panel1";
-            panel1.Size = new Size(677, 177);
+            panel1.Size = new Size(1400, 374);
             panel1.TabIndex = 14;
+            // 
+            // dtpErosteData
+            // 
+            dtpErosteData.Anchor = AnchorStyles.None;
+            dtpErosteData.CalendarFont = new Font("Times New Roman", 10.2F);
+            dtpErosteData.Font = new Font("Times New Roman", 12F);
+            dtpErosteData.Format = DateTimePickerFormat.Short;
+            dtpErosteData.Location = new Point(606, 356);
+            dtpErosteData.Name = "dtpErosteData";
+            dtpErosteData.Size = new Size(119, 30);
+            dtpErosteData.TabIndex = 17;
+            dtpErosteData.Value = new DateTime(2026, 4, 17, 19, 5, 51, 0);
+            dtpErosteData.Visible = false;
+            dtpErosteData.Leave += dtpErosteData_Leave;
+            // 
+            // lblErosteData
+            // 
+            lblErosteData.Anchor = AnchorStyles.None;
+            lblErosteData.AutoSize = true;
+            lblErosteData.Font = new Font("Times New Roman", 12F);
+            lblErosteData.Location = new Point(500, 362);
+            lblErosteData.Name = "lblErosteData";
+            lblErosteData.Size = new Size(104, 22);
+            lblErosteData.TabIndex = 22;
+            lblErosteData.Text = "ErosteData:";
+            lblErosteData.Visible = false;
             // 
             // cmbId
             // 
             cmbId.Anchor = AnchorStyles.None;
-            cmbId.Font = new Font("Times New Roman", 10.2F);
+            cmbId.Font = new Font("Times New Roman", 12F);
             cmbId.FormattingEnabled = true;
-            cmbId.Location = new Point(123, -3);
+            cmbId.Location = new Point(606, 136);
             cmbId.Name = "cmbId";
-            cmbId.Size = new Size(125, 27);
+            cmbId.Size = new Size(119, 30);
             cmbId.TabIndex = 28;
             cmbId.UseWaitCursor = true;
             cmbId.Visible = false;
@@ -122,10 +152,10 @@
             // 
             chbBai.Anchor = AnchorStyles.None;
             chbBai.AutoSize = true;
-            chbBai.Font = new Font("Times New Roman", 10.2F);
-            chbBai.Location = new Point(498, 5);
+            chbBai.Font = new Font("Times New Roman", 12F);
+            chbBai.Location = new Point(990, 129);
             chbBai.Name = "chbBai";
-            chbBai.Size = new Size(54, 23);
+            chbBai.Size = new Size(60, 26);
             chbBai.TabIndex = 18;
             chbBai.Text = "Bai";
             chbBai.UseVisualStyleBackColor = true;
@@ -135,11 +165,11 @@
             // cmbMintegia
             // 
             cmbMintegia.Anchor = AnchorStyles.None;
-            cmbMintegia.Font = new Font("Times New Roman", 10.2F);
+            cmbMintegia.Font = new Font("Times New Roman", 12F);
             cmbMintegia.FormattingEnabled = true;
-            cmbMintegia.Location = new Point(123, 147);
+            cmbMintegia.Location = new Point(606, 306);
             cmbMintegia.Name = "cmbMintegia";
-            cmbMintegia.Size = new Size(125, 27);
+            cmbMintegia.Size = new Size(119, 30);
             cmbMintegia.TabIndex = 16;
             cmbMintegia.UseWaitCursor = true;
             cmbMintegia.Visible = false;
@@ -149,10 +179,10 @@
             // 
             lblMintegia.Anchor = AnchorStyles.None;
             lblMintegia.AutoSize = true;
-            lblMintegia.Font = new Font("Times New Roman", 10.2F);
-            lblMintegia.Location = new Point(27, 149);
+            lblMintegia.Font = new Font("Times New Roman", 12F);
+            lblMintegia.Location = new Point(500, 307);
             lblMintegia.Name = "lblMintegia";
-            lblMintegia.Size = new Size(75, 19);
+            lblMintegia.Size = new Size(86, 22);
             lblMintegia.TabIndex = 18;
             lblMintegia.Text = "Mintegia:";
             lblMintegia.Visible = false;
@@ -161,30 +191,22 @@
             // 
             lblGailuMota.Anchor = AnchorStyles.None;
             lblGailuMota.AutoSize = true;
-            lblGailuMota.Font = new Font("Times New Roman", 10.2F);
-            lblGailuMota.Location = new Point(245, 128);
+            lblGailuMota.Font = new Font("Times New Roman", 12F);
+            lblGailuMota.Location = new Point(622, 281);
             lblGailuMota.Name = "lblGailuMota";
-            lblGailuMota.Size = new Size(89, 19);
+            lblGailuMota.Size = new Size(103, 22);
             lblGailuMota.TabIndex = 27;
             lblGailuMota.Text = "Gailu mota:";
             lblGailuMota.Visible = false;
-            // 
-            // comboBox1
-            // 
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(637, 253);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(151, 28);
-            comboBox1.TabIndex = 26;
             // 
             // txtRam
             // 
             txtRam.Anchor = AnchorStyles.None;
             txtRam.Cursor = Cursors.IBeam;
-            txtRam.Font = new Font("Times New Roman", 10.2F);
-            txtRam.Location = new Point(498, 95);
+            txtRam.Font = new Font("Times New Roman", 12F);
+            txtRam.Location = new Point(976, 222);
             txtRam.Name = "txtRam";
-            txtRam.Size = new Size(125, 27);
+            txtRam.Size = new Size(119, 30);
             txtRam.TabIndex = 20;
             txtRam.Visible = false;
             txtRam.Leave += txtRam_Leave;
@@ -192,12 +214,12 @@
             // cmbGailuMota
             // 
             cmbGailuMota.Anchor = AnchorStyles.None;
-            cmbGailuMota.Font = new Font("Times New Roman", 10.2F);
+            cmbGailuMota.Font = new Font("Times New Roman", 12F);
             cmbGailuMota.FormattingEnabled = true;
             cmbGailuMota.Items.AddRange(new object[] { "Ordenagailua", "Inprimagailua" });
-            cmbGailuMota.Location = new Point(341, 124);
+            cmbGailuMota.Location = new Point(742, 278);
             cmbGailuMota.Name = "cmbGailuMota";
-            cmbGailuMota.Size = new Size(125, 27);
+            cmbGailuMota.Size = new Size(119, 30);
             cmbGailuMota.TabIndex = 16;
             cmbGailuMota.UseWaitCursor = true;
             cmbGailuMota.Visible = false;
@@ -207,10 +229,10 @@
             // 
             lblKoloretakoa.Anchor = AnchorStyles.None;
             lblKoloretakoa.AutoSize = true;
-            lblKoloretakoa.Font = new Font("Times New Roman", 10.2F);
-            lblKoloretakoa.Location = new Point(384, 9);
+            lblKoloretakoa.Font = new Font("Times New Roman", 12F);
+            lblKoloretakoa.Location = new Point(870, 133);
             lblKoloretakoa.Name = "lblKoloretakoa";
-            lblKoloretakoa.Size = new Size(99, 19);
+            lblKoloretakoa.Size = new Size(114, 22);
             lblKoloretakoa.TabIndex = 24;
             lblKoloretakoa.Text = "Koloretakoa:";
             lblKoloretakoa.Visible = false;
@@ -219,10 +241,10 @@
             // 
             lblRam.Anchor = AnchorStyles.None;
             lblRam.AutoSize = true;
-            lblRam.Font = new Font("Times New Roman", 10.2F);
-            lblRam.Location = new Point(384, 101);
+            lblRam.Font = new Font("Times New Roman", 12F);
+            lblRam.Location = new Point(870, 225);
             lblRam.Name = "lblRam";
-            lblRam.Size = new Size(51, 19);
+            lblRam.Size = new Size(60, 22);
             lblRam.TabIndex = 22;
             lblRam.Text = "RAM:";
             lblRam.Visible = false;
@@ -231,10 +253,10 @@
             // 
             lblId.Anchor = AnchorStyles.None;
             lblId.AutoSize = true;
-            lblId.Font = new Font("Times New Roman", 10.2F);
-            lblId.Location = new Point(27, 5);
+            lblId.Font = new Font("Times New Roman", 12F);
+            lblId.Location = new Point(500, 144);
             lblId.Name = "lblId";
-            lblId.Size = new Size(27, 19);
+            lblId.Size = new Size(32, 22);
             lblId.TabIndex = 16;
             lblId.Text = "Id:";
             lblId.Visible = false;
@@ -243,10 +265,10 @@
             // 
             txtCpu.Anchor = AnchorStyles.None;
             txtCpu.Cursor = Cursors.IBeam;
-            txtCpu.Font = new Font("Times New Roman", 10.2F);
-            txtCpu.Location = new Point(498, 51);
+            txtCpu.Font = new Font("Times New Roman", 12F);
+            txtCpu.Location = new Point(976, 176);
             txtCpu.Name = "txtCpu";
-            txtCpu.Size = new Size(125, 27);
+            txtCpu.Size = new Size(119, 30);
             txtCpu.TabIndex = 19;
             txtCpu.Visible = false;
             txtCpu.Leave += txtCpu_Leave;
@@ -255,10 +277,10 @@
             // 
             lblCpu.Anchor = AnchorStyles.None;
             lblCpu.AutoSize = true;
-            lblCpu.Font = new Font("Times New Roman", 10.2F);
-            lblCpu.Location = new Point(384, 57);
+            lblCpu.Font = new Font("Times New Roman", 12F);
+            lblCpu.Location = new Point(870, 182);
             lblCpu.Name = "lblCpu";
-            lblCpu.Size = new Size(47, 19);
+            lblCpu.Size = new Size(53, 22);
             lblCpu.TabIndex = 20;
             lblCpu.Text = "CPU:";
             lblCpu.Visible = false;
@@ -267,10 +289,10 @@
             // 
             txtKokalekua.Anchor = AnchorStyles.None;
             txtKokalekua.Cursor = Cursors.IBeam;
-            txtKokalekua.Font = new Font("Times New Roman", 10.2F);
-            txtKokalekua.Location = new Point(123, 100);
+            txtKokalekua.Font = new Font("Times New Roman", 12F);
+            txtKokalekua.Location = new Point(606, 253);
             txtKokalekua.Name = "txtKokalekua";
-            txtKokalekua.Size = new Size(125, 27);
+            txtKokalekua.Size = new Size(119, 30);
             txtKokalekua.TabIndex = 15;
             txtKokalekua.Visible = false;
             txtKokalekua.Leave += txtKokalekua_Leave;
@@ -279,10 +301,10 @@
             // 
             lblKokalekua.Anchor = AnchorStyles.None;
             lblKokalekua.AutoSize = true;
-            lblKokalekua.Font = new Font("Times New Roman", 10.2F);
-            lblKokalekua.Location = new Point(27, 107);
+            lblKokalekua.Font = new Font("Times New Roman", 12F);
+            lblKokalekua.Location = new Point(500, 256);
             lblKokalekua.Name = "lblKokalekua";
-            lblKokalekua.Size = new Size(86, 19);
+            lblKokalekua.Size = new Size(100, 22);
             lblKokalekua.TabIndex = 20;
             lblKokalekua.Text = "Kokalekua:";
             lblKokalekua.Visible = false;
@@ -291,10 +313,10 @@
             // 
             txtMarka.Anchor = AnchorStyles.None;
             txtMarka.Cursor = Cursors.IBeam;
-            txtMarka.Font = new Font("Times New Roman", 10.2F);
-            txtMarka.Location = new Point(123, 48);
+            txtMarka.Font = new Font("Times New Roman", 12F);
+            txtMarka.Location = new Point(606, 201);
             txtMarka.Name = "txtMarka";
-            txtMarka.Size = new Size(125, 27);
+            txtMarka.Size = new Size(119, 30);
             txtMarka.TabIndex = 14;
             txtMarka.Visible = false;
             txtMarka.Leave += txtMarka_Leave;
@@ -303,10 +325,10 @@
             // 
             lblMarka.Anchor = AnchorStyles.None;
             lblMarka.AutoSize = true;
-            lblMarka.Font = new Font("Times New Roman", 10.2F);
-            lblMarka.Location = new Point(27, 53);
+            lblMarka.Font = new Font("Times New Roman", 12F);
+            lblMarka.Location = new Point(500, 206);
             lblMarka.Name = "lblMarka";
-            lblMarka.Size = new Size(57, 19);
+            lblMarka.Size = new Size(67, 22);
             lblMarka.TabIndex = 18;
             lblMarka.Text = "Marka:";
             lblMarka.Visible = false;
@@ -317,9 +339,17 @@
             dgvOrdenagailua.AllowUserToDeleteRows = false;
             dgvOrdenagailua.AllowUserToResizeColumns = false;
             dgvOrdenagailua.AllowUserToResizeRows = false;
-            dgvOrdenagailua.Anchor = AnchorStyles.None;
+            dgvOrdenagailua.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dgvOrdenagailua.AutoGenerateColumns = false;
             dgvOrdenagailua.BackgroundColor = Color.FromArgb(192, 192, 255);
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.TopLeft;
+            dataGridViewCellStyle1.BackColor = SystemColors.Control;
+            dataGridViewCellStyle1.Font = new Font("Times New Roman", 12F);
+            dataGridViewCellStyle1.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = SystemColors.InactiveCaption;
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            dgvOrdenagailua.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dgvOrdenagailua.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvOrdenagailua.Columns.AddRange(new DataGridViewColumn[] { idDataGridViewTextBoxColumn, markaDataGridViewTextBoxColumn, kokalekuaDataGridViewTextBoxColumn, erosteDataDataGridViewTextBoxColumn, MintegiaIzena, Cpu, Ram });
             dgvOrdenagailua.DataSource = ordenagailuakBindingSource;
@@ -327,7 +357,7 @@
             dgvOrdenagailua.Name = "dgvOrdenagailua";
             dgvOrdenagailua.ReadOnly = true;
             dgvOrdenagailua.RowHeadersWidth = 51;
-            dgvOrdenagailua.Size = new Size(677, 177);
+            dgvOrdenagailua.Size = new Size(1400, 374);
             dgvOrdenagailua.TabIndex = 0;
             // 
             // idDataGridViewTextBoxColumn
@@ -397,26 +427,14 @@
             // 
             ordenagailuakBindingSource.DataSource = typeof(DatuModeloak.Ordenagailuak);
             // 
-            // lblErosteData
-            // 
-            lblErosteData.Anchor = AnchorStyles.None;
-            lblErosteData.AutoSize = true;
-            lblErosteData.Font = new Font("Times New Roman", 10.2F);
-            lblErosteData.Location = new Point(27, 20);
-            lblErosteData.Name = "lblErosteData";
-            lblErosteData.Size = new Size(90, 19);
-            lblErosteData.TabIndex = 22;
-            lblErosteData.Text = "ErosteData:";
-            lblErosteData.Visible = false;
-            // 
             // cbEzabatu
             // 
-            cbEzabatu.Anchor = AnchorStyles.None;
+            cbEzabatu.Anchor = AnchorStyles.Right;
             cbEzabatu.Cursor = Cursors.Hand;
-            cbEzabatu.Font = new Font("Times New Roman", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            cbEzabatu.Location = new Point(694, 152);
+            cbEzabatu.Font = new Font("Times New Roman", 12F);
+            cbEzabatu.Location = new Point(1450, 155);
             cbEzabatu.Name = "cbEzabatu";
-            cbEzabatu.Size = new Size(94, 29);
+            cbEzabatu.Size = new Size(119, 35);
             cbEzabatu.TabIndex = 23;
             cbEzabatu.Text = "Ezabatu";
             cbEzabatu.UseVisualStyleBackColor = true;
@@ -424,12 +442,12 @@
             // 
             // cbAldatu
             // 
-            cbAldatu.Anchor = AnchorStyles.None;
+            cbAldatu.Anchor = AnchorStyles.Right;
             cbAldatu.Cursor = Cursors.Hand;
-            cbAldatu.Font = new Font("Times New Roman", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            cbAldatu.Location = new Point(694, 104);
+            cbAldatu.Font = new Font("Times New Roman", 12F);
+            cbAldatu.Location = new Point(1450, 106);
             cbAldatu.Name = "cbAldatu";
-            cbAldatu.Size = new Size(94, 29);
+            cbAldatu.Size = new Size(119, 35);
             cbAldatu.TabIndex = 22;
             cbAldatu.Text = "Aldatu";
             cbAldatu.UseVisualStyleBackColor = true;
@@ -437,12 +455,12 @@
             // 
             // cbGehitu
             // 
-            cbGehitu.Anchor = AnchorStyles.None;
+            cbGehitu.Anchor = AnchorStyles.Right;
             cbGehitu.Cursor = Cursors.Hand;
-            cbGehitu.Font = new Font("Times New Roman", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            cbGehitu.Location = new Point(694, 56);
+            cbGehitu.Font = new Font("Times New Roman", 12F);
+            cbGehitu.Location = new Point(1450, 56);
             cbGehitu.Name = "cbGehitu";
-            cbGehitu.Size = new Size(94, 29);
+            cbGehitu.Size = new Size(119, 35);
             cbGehitu.TabIndex = 21;
             cbGehitu.Text = "Gehitu";
             cbGehitu.UseVisualStyleBackColor = true;
@@ -450,12 +468,12 @@
             // 
             // cbIrten
             // 
-            cbIrten.Anchor = AnchorStyles.None;
+            cbIrten.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             cbIrten.Cursor = Cursors.Hand;
-            cbIrten.Font = new Font("Times New Roman", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            cbIrten.Location = new Point(694, 368);
+            cbIrten.Font = new Font("Times New Roman", 12F);
+            cbIrten.Location = new Point(1450, 794);
             cbIrten.Name = "cbIrten";
-            cbIrten.Size = new Size(94, 29);
+            cbIrten.Size = new Size(119, 35);
             cbIrten.TabIndex = 50;
             cbIrten.Text = "Irten";
             cbIrten.UseVisualStyleBackColor = true;
@@ -467,33 +485,18 @@
             // 
             // panel2
             // 
-            panel2.Controls.Add(dtpErosteData);
-            panel2.Controls.Add(lblErosteData);
+            panel2.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             panel2.Controls.Add(dgvInprimagailua);
-            panel2.Location = new Point(11, 239);
+            panel2.Location = new Point(12, 511);
             panel2.Name = "panel2";
-            panel2.Size = new Size(677, 157);
+            panel2.Size = new Size(1400, 318);
             panel2.TabIndex = 15;
-            // 
-            // dtpErosteData
-            // 
-            dtpErosteData.Anchor = AnchorStyles.None;
-            dtpErosteData.CalendarFont = new Font("Times New Roman", 10.2F);
-            dtpErosteData.Font = new Font("Times New Roman", 10.2F);
-            dtpErosteData.Format = DateTimePickerFormat.Short;
-            dtpErosteData.Location = new Point(123, 13);
-            dtpErosteData.Name = "dtpErosteData";
-            dtpErosteData.Size = new Size(125, 27);
-            dtpErosteData.TabIndex = 17;
-            dtpErosteData.Value = new DateTime(2026, 4, 17, 19, 5, 51, 0);
-            dtpErosteData.Visible = false;
-            dtpErosteData.Leave += dtpErosteData_Leave;
             // 
             // dgvInprimagailua
             // 
             dgvInprimagailua.AllowUserToAddRows = false;
             dgvInprimagailua.AllowUserToDeleteRows = false;
-            dgvInprimagailua.Anchor = AnchorStyles.None;
+            dgvInprimagailua.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dgvInprimagailua.AutoGenerateColumns = false;
             dgvInprimagailua.BackgroundColor = Color.FromArgb(192, 192, 255);
             dgvInprimagailua.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -502,7 +505,7 @@
             dgvInprimagailua.Location = new Point(0, 0);
             dgvInprimagailua.Name = "dgvInprimagailua";
             dgvInprimagailua.RowHeadersWidth = 51;
-            dgvInprimagailua.Size = new Size(677, 157);
+            dgvInprimagailua.Size = new Size(1400, 318);
             dgvInprimagailua.TabIndex = 0;
             // 
             // dataGridViewTextBoxColumn1
@@ -554,12 +557,36 @@
             Koloretakoa.Name = "Koloretakoa";
             Koloretakoa.Width = 125;
             // 
+            // lblOrdenagailua
+            // 
+            lblOrdenagailua.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            lblOrdenagailua.AutoSize = true;
+            lblOrdenagailua.Font = new Font("Times New Roman", 12F);
+            lblOrdenagailua.Location = new Point(12, 34);
+            lblOrdenagailua.Name = "lblOrdenagailua";
+            lblOrdenagailua.Size = new Size(122, 22);
+            lblOrdenagailua.TabIndex = 29;
+            lblOrdenagailua.Text = "Ordenagailua:";
+            // 
+            // lblInprimagailua
+            // 
+            lblInprimagailua.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            lblInprimagailua.AutoSize = true;
+            lblInprimagailua.Font = new Font("Times New Roman", 12F);
+            lblInprimagailua.Location = new Point(12, 486);
+            lblInprimagailua.Name = "lblInprimagailua";
+            lblInprimagailua.Size = new Size(125, 22);
+            lblInprimagailua.TabIndex = 23;
+            lblInprimagailua.Text = "Inprimagailua:";
+            // 
             // FInbentarioa
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(192, 192, 255);
-            ClientSize = new Size(800, 451);
+            ClientSize = new Size(1652, 885);
+            Controls.Add(lblInprimagailua);
+            Controls.Add(lblOrdenagailua);
             Controls.Add(panel2);
             Controls.Add(panel1);
             Controls.Add(cbEzabatu);
@@ -576,9 +603,9 @@
             ((System.ComponentModel.ISupportInitialize)ordenagailuakBindingSource).EndInit();
             ((System.ComponentModel.ISupportInitialize)inprimagailuakBindingSource).EndInit();
             panel2.ResumeLayout(false);
-            panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dgvInprimagailua).EndInit();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -619,12 +646,13 @@
         private Label lblCpu;
         private Label lblMintegia;
         private Label lblKoloretakoa;
-        private ComboBox comboBox1;
         private ComboBox cmbGailuMota;
         private Label lblGailuMota;
         private ComboBox cmbMintegia;
         private CheckBox chbBai;
         private DateTimePicker dtpErosteData;
         private ComboBox cmbId;
+        private Label lblOrdenagailua;
+        private Label lblInprimagailua;
     }
 }

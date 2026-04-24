@@ -95,13 +95,13 @@
             toolStripContainer2.ContentPanel.Controls.Add(txtErabiltzailea);
             toolStripContainer2.ContentPanel.Controls.Add(lblErabiltzailea);
             toolStripContainer2.ContentPanel.Controls.Add(panelak);
-            toolStripContainer2.ContentPanel.Size = new Size(800, 425);
+            toolStripContainer2.ContentPanel.Size = new Size(1716, 894);
             toolStripContainer2.Dock = DockStyle.Fill;
             toolStripContainer2.LeftToolStripPanelVisible = false;
             toolStripContainer2.Location = new Point(0, 0);
             toolStripContainer2.Name = "toolStripContainer2";
             toolStripContainer2.RightToolStripPanelVisible = false;
-            toolStripContainer2.Size = new Size(800, 450);
+            toolStripContainer2.Size = new Size(1716, 919);
             toolStripContainer2.TabIndex = 2;
             toolStripContainer2.Text = "toolStripContainer2";
             // 
@@ -109,10 +109,10 @@
             // 
             cbSartu.Anchor = AnchorStyles.None;
             cbSartu.Enabled = false;
-            cbSartu.Font = new Font("Times New Roman", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            cbSartu.Location = new Point(318, 193);
+            cbSartu.Font = new Font("Times New Roman", 12F);
+            cbSartu.Location = new Point(776, 428);
             cbSartu.Name = "cbSartu";
-            cbSartu.Size = new Size(94, 29);
+            cbSartu.Size = new Size(119, 30);
             cbSartu.TabIndex = 2;
             cbSartu.Text = "Sartu";
             cbSartu.UseVisualStyleBackColor = true;
@@ -121,10 +121,10 @@
             // cbIrten
             // 
             cbIrten.Anchor = AnchorStyles.None;
-            cbIrten.Font = new Font("Times New Roman", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            cbIrten.Location = new Point(468, 193);
+            cbIrten.Font = new Font("Times New Roman", 12F);
+            cbIrten.Location = new Point(926, 428);
             cbIrten.Name = "cbIrten";
-            cbIrten.Size = new Size(94, 29);
+            cbIrten.Size = new Size(119, 30);
             cbIrten.TabIndex = 3;
             cbIrten.Text = "Irten";
             cbIrten.UseVisualStyleBackColor = true;
@@ -135,31 +135,32 @@
             // 
             txtPasahitza.Anchor = AnchorStyles.None;
             txtPasahitza.Enabled = false;
-            txtPasahitza.Font = new Font("Times New Roman", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtPasahitza.Location = new Point(318, 141);
+            txtPasahitza.Font = new Font("Times New Roman", 12F);
+            txtPasahitza.Location = new Point(776, 376);
             txtPasahitza.Name = "txtPasahitza";
-            txtPasahitza.Size = new Size(244, 27);
+            txtPasahitza.Size = new Size(269, 30);
             txtPasahitza.TabIndex = 1;
+            txtPasahitza.UseSystemPasswordChar = true;
             txtPasahitza.Leave += txtPasahitza_Leave;
             // 
             // lblPasahitza
             // 
             lblPasahitza.Anchor = AnchorStyles.None;
             lblPasahitza.AutoSize = true;
-            lblPasahitza.Font = new Font("Times New Roman", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblPasahitza.Location = new Point(165, 145);
+            lblPasahitza.Font = new Font("Times New Roman", 12F);
+            lblPasahitza.Location = new Point(623, 380);
             lblPasahitza.Name = "lblPasahitza";
-            lblPasahitza.Size = new Size(77, 19);
+            lblPasahitza.Size = new Size(90, 22);
             lblPasahitza.TabIndex = 20;
             lblPasahitza.Text = "Pasahitza:";
             // 
             // txtErabiltzailea
             // 
             txtErabiltzailea.Anchor = AnchorStyles.None;
-            txtErabiltzailea.Font = new Font("Times New Roman", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtErabiltzailea.Location = new Point(318, 86);
+            txtErabiltzailea.Font = new Font("Times New Roman", 12F);
+            txtErabiltzailea.Location = new Point(776, 321);
             txtErabiltzailea.Name = "txtErabiltzailea";
-            txtErabiltzailea.Size = new Size(244, 27);
+            txtErabiltzailea.Size = new Size(269, 30);
             txtErabiltzailea.TabIndex = 0;
             txtErabiltzailea.Leave += txtErabiltzailea_Leave;
             txtErabiltzailea.MouseMove += txtErabiltzailea_MouseMove;
@@ -169,18 +170,19 @@
             lblErabiltzailea.Anchor = AnchorStyles.None;
             lblErabiltzailea.AutoEllipsis = true;
             lblErabiltzailea.AutoSize = true;
-            lblErabiltzailea.Font = new Font("Times New Roman", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblErabiltzailea.Location = new Point(165, 90);
+            lblErabiltzailea.Font = new Font("Times New Roman", 12F);
+            lblErabiltzailea.Location = new Point(623, 325);
             lblErabiltzailea.Name = "lblErabiltzailea";
-            lblErabiltzailea.Size = new Size(99, 19);
+            lblErabiltzailea.Size = new Size(118, 22);
             lblErabiltzailea.TabIndex = 19;
             lblErabiltzailea.Text = "Erabiltzailea:";
             // 
             // panelak
             // 
+            panelak.Dock = DockStyle.Fill;
             panelak.Location = new Point(0, 0);
             panelak.Name = "panelak";
-            panelak.Size = new Size(800, 422);
+            panelak.Size = new Size(1716, 894);
             panelak.TabIndex = 21;
             // 
             // FLogina
@@ -188,11 +190,12 @@
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(192, 192, 255);
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(1716, 919);
             Controls.Add(toolStripContainer2);
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "FLogina";
             Text = "Inbentarioa";
+            WindowState = FormWindowState.Maximized;
             Load += FLogina_Load;
             toolStripContainer2.ContentPanel.ResumeLayout(false);
             toolStripContainer2.ContentPanel.PerformLayout();

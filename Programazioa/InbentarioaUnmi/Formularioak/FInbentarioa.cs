@@ -83,7 +83,7 @@ namespace InbentarioaUnmi.Formularioak
             }
 
             gberria = GailuaSortu();
-            if(gberria == null)
+            if (gberria == null)
             {
                 MessageBox.Show("Errorea");
                 return;
@@ -170,7 +170,8 @@ namespace InbentarioaUnmi.Formularioak
         private void Desaktibatu()
         {
             // Formularioko elementuak ezkutatzen ditu.
-
+            lblOrdenagailua.Visible = false;
+            lblInprimagailua.Visible = false;
             dgvInprimagailua.Visible = false;
             dgvOrdenagailua.Visible = false;
             cbGehitu.Visible = false;
@@ -313,7 +314,7 @@ namespace InbentarioaUnmi.Formularioak
                 IdakKargatu();
                 Aktibatu(3);
             }
-            else if(cbGehitu.Text == "Gorde")
+            else if (cbGehitu.Text == "Gorde")
             {
                 Aktibatu(1);
             }
@@ -322,7 +323,7 @@ namespace InbentarioaUnmi.Formularioak
         private void cmbId_SelectedValueChanged(object sender, EventArgs e)
         {
             string id;
-            
+
             id = cmbId.Text;
             foreach (var g in LisInb)
             {
@@ -492,7 +493,7 @@ namespace InbentarioaUnmi.Formularioak
             id = cmbId.Text;
             marka = txtMarka.Text;
             kokalekua = txtKokalekua.Text;
-            if(era.Rola == "MintegiBurua")
+            if (era.Rola == "MintegiBurua")
             {
                 mintegia = era.Mintegia;
             }
@@ -506,8 +507,8 @@ namespace InbentarioaUnmi.Formularioak
                         mintegia = m;
                     }
                 }
-            }  
-            
+            }
+
             data = DateOnly.FromDateTime(dtpErosteData.Value);
             if (mintegia != null)
             {

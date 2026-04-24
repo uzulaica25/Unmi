@@ -49,10 +49,11 @@
             // 
             // cbIrten
             // 
-            cbIrten.Font = new Font("Times New Roman", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            cbIrten.Location = new Point(660, 371);
+            cbIrten.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            cbIrten.Font = new Font("Times New Roman", 12F);
+            cbIrten.Location = new Point(1241, 799);
             cbIrten.Name = "cbIrten";
-            cbIrten.Size = new Size(94, 29);
+            cbIrten.Size = new Size(119, 30);
             cbIrten.TabIndex = 3;
             cbIrten.Text = "Irten";
             cbIrten.UseVisualStyleBackColor = true;
@@ -61,10 +62,11 @@
             // 
             // cbGehitu
             // 
-            cbGehitu.Font = new Font("Times New Roman", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            cbGehitu.Location = new Point(660, 54);
+            cbGehitu.Anchor = AnchorStyles.Right;
+            cbGehitu.Font = new Font("Times New Roman", 12F);
+            cbGehitu.Location = new Point(1241, 54);
             cbGehitu.Name = "cbGehitu";
-            cbGehitu.Size = new Size(94, 29);
+            cbGehitu.Size = new Size(119, 30);
             cbGehitu.TabIndex = 0;
             cbGehitu.Text = "Gehitu";
             cbGehitu.UseVisualStyleBackColor = true;
@@ -72,10 +74,11 @@
             // 
             // cbAldatu
             // 
-            cbAldatu.Font = new Font("Times New Roman", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            cbAldatu.Location = new Point(660, 102);
+            cbAldatu.Anchor = AnchorStyles.Right;
+            cbAldatu.Font = new Font("Times New Roman", 12F);
+            cbAldatu.Location = new Point(1241, 102);
             cbAldatu.Name = "cbAldatu";
-            cbAldatu.Size = new Size(94, 29);
+            cbAldatu.Size = new Size(119, 30);
             cbAldatu.TabIndex = 1;
             cbAldatu.Text = "Aldatu";
             cbAldatu.UseVisualStyleBackColor = true;
@@ -83,10 +86,11 @@
             // 
             // cbEzabatu
             // 
-            cbEzabatu.Font = new Font("Times New Roman", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            cbEzabatu.Location = new Point(660, 150);
+            cbEzabatu.Anchor = AnchorStyles.Right;
+            cbEzabatu.Font = new Font("Times New Roman", 12F);
+            cbEzabatu.Location = new Point(1241, 150);
             cbEzabatu.Name = "cbEzabatu";
-            cbEzabatu.Size = new Size(94, 29);
+            cbEzabatu.Size = new Size(119, 30);
             cbEzabatu.TabIndex = 2;
             cbEzabatu.Text = "Ezabatu";
             cbEzabatu.UseVisualStyleBackColor = true;
@@ -106,7 +110,7 @@
             dgvMintegiak.Name = "dgvMintegiak";
             dgvMintegiak.ReadOnly = true;
             dgvMintegiak.RowHeadersWidth = 51;
-            dgvMintegiak.Size = new Size(629, 346);
+            dgvMintegiak.Size = new Size(1174, 775);
             dgvMintegiak.TabIndex = 0;
             // 
             // idDataGridViewTextBoxColumn
@@ -133,23 +137,25 @@
             // 
             // panel1
             // 
+            panel1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             panel1.Controls.Add(cmbId);
             panel1.Controls.Add(lblId);
             panel1.Controls.Add(txtIzena);
             panel1.Controls.Add(lblIzena);
             panel1.Controls.Add(dgvMintegiak);
-            panel1.Location = new Point(12, 54);
+            panel1.Location = new Point(43, 54);
             panel1.Name = "panel1";
-            panel1.Size = new Size(629, 346);
+            panel1.Size = new Size(1174, 775);
             panel1.TabIndex = 9;
             // 
             // cmbId
             // 
-            cmbId.Font = new Font("Times New Roman", 10.2F);
+            cmbId.Anchor = AnchorStyles.None;
+            cmbId.Font = new Font("Times New Roman", 12F);
             cmbId.FormattingEnabled = true;
-            cmbId.Location = new Point(294, 50);
+            cmbId.Location = new Point(550, 230);
             cmbId.Name = "cmbId";
-            cmbId.Size = new Size(125, 27);
+            cmbId.Size = new Size(119, 30);
             cmbId.TabIndex = 42;
             cmbId.UseWaitCursor = true;
             cmbId.Visible = false;
@@ -158,33 +164,36 @@
             // 
             // lblId
             // 
+            lblId.Anchor = AnchorStyles.None;
             lblId.AutoSize = true;
-            lblId.Font = new Font("Times New Roman", 10.2F);
-            lblId.Location = new Point(198, 58);
+            lblId.Font = new Font("Times New Roman", 12F);
+            lblId.Location = new Point(454, 238);
             lblId.Name = "lblId";
-            lblId.Size = new Size(27, 19);
+            lblId.Size = new Size(32, 22);
             lblId.TabIndex = 40;
             lblId.Text = "Id:";
             lblId.Visible = false;
             // 
             // txtIzena
             // 
+            txtIzena.Anchor = AnchorStyles.None;
             txtIzena.Cursor = Cursors.IBeam;
-            txtIzena.Font = new Font("Times New Roman", 10.2F);
-            txtIzena.Location = new Point(294, 101);
+            txtIzena.Font = new Font("Times New Roman", 12F);
+            txtIzena.Location = new Point(550, 281);
             txtIzena.Name = "txtIzena";
-            txtIzena.Size = new Size(125, 27);
+            txtIzena.Size = new Size(119, 30);
             txtIzena.TabIndex = 39;
             txtIzena.Visible = false;
             txtIzena.Leave += txtIzena_Leave;
             // 
             // lblIzena
             // 
+            lblIzena.Anchor = AnchorStyles.None;
             lblIzena.AutoSize = true;
-            lblIzena.Font = new Font("Times New Roman", 10.2F);
-            lblIzena.Location = new Point(198, 106);
+            lblIzena.Font = new Font("Times New Roman", 12F);
+            lblIzena.Location = new Point(454, 286);
             lblIzena.Name = "lblIzena";
-            lblIzena.Size = new Size(49, 19);
+            lblIzena.Size = new Size(57, 22);
             lblIzena.TabIndex = 41;
             lblIzena.Text = "Izena:";
             lblIzena.Visible = false;
@@ -194,7 +203,7 @@
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(192, 192, 255);
-            ClientSize = new Size(766, 433);
+            ClientSize = new Size(1406, 858);
             Controls.Add(panel1);
             Controls.Add(cbEzabatu);
             Controls.Add(cbAldatu);

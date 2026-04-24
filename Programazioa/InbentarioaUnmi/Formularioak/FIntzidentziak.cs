@@ -30,7 +30,7 @@ namespace InbentarioaUnmi.Formularioak
 
         private void FIntzidentziak_Load(object sender, EventArgs e)
         {
-            if(era.Rola == "Irakaslea")
+            if (era.Rola == "Irakaslea")
             {
                 cbGehitu.Visible = false;
                 cbAldatu.Visible = false;
@@ -307,12 +307,17 @@ namespace InbentarioaUnmi.Formularioak
         {
             Intzidentziak intzidentziak = null;
             intzidentziak = (Intzidentziak)cmbId.SelectedItem;
-            if(intzidentziak != null)
+            if (intzidentziak != null)
             {
                 txtMezua.Text = intzidentziak.Mezua;
                 dtpData.Value = intzidentziak.Data.ToDateTime(new TimeOnly(0, 0));
                 cmbGailua.Text = intzidentziak.Gailua.Id;
             }
+        }
+
+        private void dgvIntzidentziak_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }

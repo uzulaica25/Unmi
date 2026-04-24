@@ -41,13 +41,13 @@
             intzidentziakBindingSource = new BindingSource(components);
             panel1 = new Panel();
             cmbGailua = new ComboBox();
-            lblGailua = new Label();
             cmbId = new ComboBox();
+            lblGailua = new Label();
+            dtpData = new DateTimePicker();
+            lblData = new Label();
+            txtMezua = new TextBox();
             lblId = new Label();
             lblMezua = new Label();
-            txtMezua = new TextBox();
-            lblData = new Label();
-            dtpData = new DateTimePicker();
             cbGehitu = new Button();
             cbAldatu = new Button();
             cbEzabatu = new Button();
@@ -63,11 +63,12 @@
             // 
             // cbIrten
             // 
+            cbIrten.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             cbIrten.Cursor = Cursors.Hand;
-            cbIrten.Font = new Font("Times New Roman", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            cbIrten.Location = new Point(682, 365);
+            cbIrten.Font = new Font("Times New Roman", 12F);
+            cbIrten.Location = new Point(1375, 868);
             cbIrten.Name = "cbIrten";
-            cbIrten.Size = new Size(94, 29);
+            cbIrten.Size = new Size(119, 35);
             cbIrten.TabIndex = 4;
             cbIrten.Text = "Irten";
             cbIrten.UseVisualStyleBackColor = true;
@@ -77,18 +78,19 @@
             // 
             dgvIntzidentziak.AllowUserToAddRows = false;
             dgvIntzidentziak.AllowUserToDeleteRows = false;
+            dgvIntzidentziak.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dgvIntzidentziak.AutoGenerateColumns = false;
             dgvIntzidentziak.BackgroundColor = Color.FromArgb(192, 192, 255);
             dgvIntzidentziak.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvIntzidentziak.Columns.AddRange(new DataGridViewColumn[] { Column1, gailuaDataGridViewTextBoxColumn, dataDataGridViewTextBoxColumn, GailuMota, mezuaDataGridViewTextBoxColumn });
             dgvIntzidentziak.DataSource = intzidentziakBindingSource2;
-            dgvIntzidentziak.Dock = DockStyle.Fill;
             dgvIntzidentziak.Location = new Point(0, 0);
             dgvIntzidentziak.Name = "dgvIntzidentziak";
             dgvIntzidentziak.ReadOnly = true;
             dgvIntzidentziak.RowHeadersWidth = 51;
-            dgvIntzidentziak.Size = new Size(653, 339);
+            dgvIntzidentziak.Size = new Size(1329, 848);
             dgvIntzidentziak.TabIndex = 0;
+            dgvIntzidentziak.CellContentClick += dgvIntzidentziak_CellContentClick;
             // 
             // Column1
             // 
@@ -133,7 +135,7 @@
             mezuaDataGridViewTextBoxColumn.MinimumWidth = 6;
             mezuaDataGridViewTextBoxColumn.Name = "mezuaDataGridViewTextBoxColumn";
             mezuaDataGridViewTextBoxColumn.ReadOnly = true;
-            mezuaDataGridViewTextBoxColumn.Width = 200;
+            mezuaDataGridViewTextBoxColumn.Width = 400;
             // 
             // intzidentziakBindingSource2
             // 
@@ -149,49 +151,41 @@
             // 
             // panel1
             // 
+            panel1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             panel1.Controls.Add(cmbGailua);
-            panel1.Controls.Add(lblGailua);
             panel1.Controls.Add(cmbId);
+            panel1.Controls.Add(lblGailua);
+            panel1.Controls.Add(dtpData);
+            panel1.Controls.Add(lblData);
+            panel1.Controls.Add(txtMezua);
             panel1.Controls.Add(lblId);
             panel1.Controls.Add(lblMezua);
-            panel1.Controls.Add(txtMezua);
-            panel1.Controls.Add(lblData);
-            panel1.Controls.Add(dtpData);
             panel1.Controls.Add(dgvIntzidentziak);
             panel1.Location = new Point(12, 55);
             panel1.Name = "panel1";
-            panel1.Size = new Size(653, 339);
+            panel1.Size = new Size(1329, 848);
             panel1.TabIndex = 14;
             // 
             // cmbGailua
             // 
-            cmbGailua.Font = new Font("Times New Roman", 10.2F);
+            cmbGailua.Anchor = AnchorStyles.None;
+            cmbGailua.Font = new Font("Times New Roman", 12F);
             cmbGailua.FormattingEnabled = true;
-            cmbGailua.Location = new Point(201, 109);
+            cmbGailua.Location = new Point(768, 234);
             cmbGailua.Name = "cmbGailua";
-            cmbGailua.Size = new Size(125, 27);
+            cmbGailua.Size = new Size(119, 30);
             cmbGailua.TabIndex = 36;
             cmbGailua.UseWaitCursor = true;
             cmbGailua.Visible = false;
             // 
-            // lblGailua
-            // 
-            lblGailua.AutoSize = true;
-            lblGailua.Font = new Font("Times New Roman", 10.2F);
-            lblGailua.Location = new Point(105, 117);
-            lblGailua.Name = "lblGailua";
-            lblGailua.Size = new Size(58, 19);
-            lblGailua.TabIndex = 37;
-            lblGailua.Text = "Gailua:";
-            lblGailua.Visible = false;
-            // 
             // cmbId
             // 
-            cmbId.Font = new Font("Times New Roman", 10.2F);
+            cmbId.Anchor = AnchorStyles.None;
+            cmbId.Font = new Font("Times New Roman", 12F);
             cmbId.FormattingEnabled = true;
-            cmbId.Location = new Point(201, 61);
+            cmbId.Location = new Point(768, 186);
             cmbId.Name = "cmbId";
-            cmbId.Size = new Size(125, 27);
+            cmbId.Size = new Size(119, 30);
             cmbId.TabIndex = 35;
             cmbId.UseWaitCursor = true;
             cmbId.Visible = false;
@@ -199,68 +193,86 @@
             cmbId.SelectedValueChanged += cmbId_SelectedValueChanged;
             cmbId.Leave += cmbId_Leave;
             // 
+            // lblGailua
+            // 
+            lblGailua.Anchor = AnchorStyles.None;
+            lblGailua.AutoSize = true;
+            lblGailua.Font = new Font("Times New Roman", 12F);
+            lblGailua.Location = new Point(672, 242);
+            lblGailua.Name = "lblGailua";
+            lblGailua.Size = new Size(69, 22);
+            lblGailua.TabIndex = 37;
+            lblGailua.Text = "Gailua:";
+            lblGailua.Visible = false;
+            // 
+            // dtpData
+            // 
+            dtpData.Anchor = AnchorStyles.None;
+            dtpData.CalendarFont = new Font("Times New Roman", 10.2F);
+            dtpData.Font = new Font("Times New Roman", 12F);
+            dtpData.Format = DateTimePickerFormat.Short;
+            dtpData.Location = new Point(768, 290);
+            dtpData.Name = "dtpData";
+            dtpData.Size = new Size(119, 30);
+            dtpData.TabIndex = 37;
+            dtpData.Value = new DateTime(2026, 4, 17, 19, 5, 51, 0);
+            dtpData.Visible = false;
+            // 
+            // lblData
+            // 
+            lblData.Anchor = AnchorStyles.None;
+            lblData.AutoSize = true;
+            lblData.Font = new Font("Times New Roman", 12F);
+            lblData.Location = new Point(672, 297);
+            lblData.Name = "lblData";
+            lblData.Size = new Size(53, 22);
+            lblData.TabIndex = 34;
+            lblData.Text = "Data:";
+            lblData.Visible = false;
+            // 
+            // txtMezua
+            // 
+            txtMezua.Anchor = AnchorStyles.None;
+            txtMezua.Cursor = Cursors.IBeam;
+            txtMezua.Font = new Font("Times New Roman", 12F);
+            txtMezua.Location = new Point(768, 343);
+            txtMezua.Name = "txtMezua";
+            txtMezua.Size = new Size(119, 30);
+            txtMezua.TabIndex = 38;
+            txtMezua.Visible = false;
+            // 
             // lblId
             // 
+            lblId.Anchor = AnchorStyles.None;
             lblId.AutoSize = true;
-            lblId.Font = new Font("Times New Roman", 10.2F);
-            lblId.Location = new Point(105, 69);
+            lblId.Font = new Font("Times New Roman", 12F);
+            lblId.Location = new Point(672, 194);
             lblId.Name = "lblId";
-            lblId.Size = new Size(27, 19);
+            lblId.Size = new Size(32, 22);
             lblId.TabIndex = 31;
             lblId.Text = "Id:";
             lblId.Visible = false;
             // 
             // lblMezua
             // 
+            lblMezua.Anchor = AnchorStyles.None;
             lblMezua.AutoSize = true;
-            lblMezua.Font = new Font("Times New Roman", 10.2F);
-            lblMezua.Location = new Point(105, 223);
+            lblMezua.Font = new Font("Times New Roman", 12F);
+            lblMezua.Location = new Point(672, 348);
             lblMezua.Name = "lblMezua";
-            lblMezua.Size = new Size(59, 19);
+            lblMezua.Size = new Size(68, 22);
             lblMezua.TabIndex = 33;
             lblMezua.Text = "Mezua:";
             lblMezua.Visible = false;
             // 
-            // txtMezua
-            // 
-            txtMezua.Cursor = Cursors.IBeam;
-            txtMezua.Font = new Font("Times New Roman", 10.2F);
-            txtMezua.Location = new Point(201, 218);
-            txtMezua.Name = "txtMezua";
-            txtMezua.Size = new Size(125, 27);
-            txtMezua.TabIndex = 38;
-            txtMezua.Visible = false;
-            // 
-            // lblData
-            // 
-            lblData.AutoSize = true;
-            lblData.Font = new Font("Times New Roman", 10.2F);
-            lblData.Location = new Point(105, 172);
-            lblData.Name = "lblData";
-            lblData.Size = new Size(45, 19);
-            lblData.TabIndex = 34;
-            lblData.Text = "Data:";
-            lblData.Visible = false;
-            // 
-            // dtpData
-            // 
-            dtpData.CalendarFont = new Font("Times New Roman", 10.2F);
-            dtpData.Font = new Font("Times New Roman", 10.2F);
-            dtpData.Format = DateTimePickerFormat.Short;
-            dtpData.Location = new Point(201, 165);
-            dtpData.Name = "dtpData";
-            dtpData.Size = new Size(125, 27);
-            dtpData.TabIndex = 37;
-            dtpData.Value = new DateTime(2026, 4, 17, 19, 5, 51, 0);
-            dtpData.Visible = false;
-            // 
             // cbGehitu
             // 
+            cbGehitu.Anchor = AnchorStyles.Right;
             cbGehitu.Cursor = Cursors.Hand;
-            cbGehitu.Font = new Font("Times New Roman", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            cbGehitu.Location = new Point(682, 55);
+            cbGehitu.Font = new Font("Times New Roman", 12F);
+            cbGehitu.Location = new Point(1375, 55);
             cbGehitu.Name = "cbGehitu";
-            cbGehitu.Size = new Size(94, 29);
+            cbGehitu.Size = new Size(119, 35);
             cbGehitu.TabIndex = 0;
             cbGehitu.Text = "Gehitu";
             cbGehitu.UseVisualStyleBackColor = true;
@@ -268,11 +280,12 @@
             // 
             // cbAldatu
             // 
+            cbAldatu.Anchor = AnchorStyles.Right;
             cbAldatu.Cursor = Cursors.Hand;
-            cbAldatu.Font = new Font("Times New Roman", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            cbAldatu.Location = new Point(682, 103);
+            cbAldatu.Font = new Font("Times New Roman", 12F);
+            cbAldatu.Location = new Point(1375, 103);
             cbAldatu.Name = "cbAldatu";
-            cbAldatu.Size = new Size(94, 29);
+            cbAldatu.Size = new Size(119, 35);
             cbAldatu.TabIndex = 1;
             cbAldatu.Text = "Aldatu";
             cbAldatu.UseVisualStyleBackColor = true;
@@ -280,11 +293,12 @@
             // 
             // cbEzabatu
             // 
+            cbEzabatu.Anchor = AnchorStyles.Right;
             cbEzabatu.Cursor = Cursors.Hand;
-            cbEzabatu.Font = new Font("Times New Roman", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            cbEzabatu.Location = new Point(682, 151);
+            cbEzabatu.Font = new Font("Times New Roman", 12F);
+            cbEzabatu.Location = new Point(1375, 151);
             cbEzabatu.Name = "cbEzabatu";
-            cbEzabatu.Size = new Size(94, 29);
+            cbEzabatu.Size = new Size(119, 35);
             cbEzabatu.TabIndex = 2;
             cbEzabatu.Text = "Ezabatu";
             cbEzabatu.UseVisualStyleBackColor = true;
@@ -296,11 +310,12 @@
             // 
             // cbAurkitu
             // 
+            cbAurkitu.Anchor = AnchorStyles.Right;
             cbAurkitu.Cursor = Cursors.Hand;
-            cbAurkitu.Font = new Font("Times New Roman", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            cbAurkitu.Location = new Point(682, 195);
+            cbAurkitu.Font = new Font("Times New Roman", 12F);
+            cbAurkitu.Location = new Point(1375, 195);
             cbAurkitu.Name = "cbAurkitu";
-            cbAurkitu.Size = new Size(94, 29);
+            cbAurkitu.Size = new Size(119, 35);
             cbAurkitu.TabIndex = 3;
             cbAurkitu.Text = "Aurkitu";
             cbAurkitu.UseVisualStyleBackColor = true;
@@ -311,7 +326,7 @@
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(192, 192, 255);
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(1567, 947);
             Controls.Add(cbAurkitu);
             Controls.Add(panel1);
             Controls.Add(cbEzabatu);
