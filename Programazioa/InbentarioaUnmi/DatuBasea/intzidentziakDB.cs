@@ -92,7 +92,6 @@ namespace InbentarioaUnmi.DatuBasea
                         {
                             kolore = false;
                         }
-
                         min = new Mintegiak(idmin, ize);
                         inp = new Inprimagailuak(id, mar, kok, er, min, kolore);
                         Intzidentziak Inz = new Intzidentziak(idIntz, inp, "Inprimagailua", data, mezua);
@@ -139,7 +138,7 @@ namespace InbentarioaUnmi.DatuBasea
         {
             string update;
 
-            update = @"UPDATE Inbentarioa.Intzidentziak SET IDGailua = @Gailua, mezua = @mezua, data = @data WHERE ID = '" + intzi.Id + "';";
+            update = @"UPDATE Inbentarioa.Intzidentziak SET IDGailua = @Gailua, mezua = @mezua, data = @data WHERE ID = @oldGailua;";
             try
             {
                 using (MySqlConnection conn = DBKonexioa.Konektatu())
@@ -158,7 +157,6 @@ namespace InbentarioaUnmi.DatuBasea
             }
             catch (MySqlException ex)
             {
-                MessageBox.Show(ex.ToString()); // 👈 para debug real
                 return ex.Number;
             }
         }
