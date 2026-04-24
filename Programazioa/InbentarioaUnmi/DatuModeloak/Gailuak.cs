@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace InbentarioaUnmi.DatuModeloak
 {
+    /// <summary>
+    /// Inbentarioko gailu orokor bat irudikatzen duen klasea.
+    /// </summary>
     public class Gailuak
     {
         // Atributuak
@@ -24,6 +27,14 @@ namespace InbentarioaUnmi.DatuModeloak
         public string MintegiaIzena => Mintegia.Izena;
 
         // Eraikitzailea
+        /// <summary>
+        /// Oinarrizko gailu bat sortzen du bere datu guztiekin.
+        /// </summary>
+        /// <param name="i">Gailuaren IDa</param>
+        /// <param name="m">Marka</param>
+        /// <param name="k">Kokalekua</param>
+        /// <param name="e">Erosteko data</param>
+        /// <param name="mi">Dagokion mintegia</param>
         public Gailuak(string i, string m, string k, DateOnly e, Mintegiak mi)
         {
             this.id = i;
@@ -34,28 +45,60 @@ namespace InbentarioaUnmi.DatuModeloak
         }
     }
 
+    /// <summary>
+    /// Ordenagailu motako gailua irudikatzen duen klasea.
+    /// CPU eta RAM informazioa gehitzen du.
+    /// </summary>
     public class Ordenagailuak : Gailuak
     {
         // Atributuak
         private string cpu;
         private string ram;
+
         // Get-Set
         public string Cpu { get => cpu; set => cpu = value; }
         public string Ram { get => ram; set => ram = value; }
+
         // Eraikitzailea
+        /// <summary>
+        /// Ordenagailu berri bat sortzen du bere hardware datuekin.
+        /// </summary>
+        /// <param name="i">IDa</param>
+        /// <param name="m">Marka</param>
+        /// <param name="k">Kokalekua</param>
+        /// <param name="e">Erosteko data</param>
+        /// <param name="mi">Mintegia</param>
+        /// <param name="c">CPU informazioa</param>
+        /// <param name="r">RAM informazioa</param>
         public Ordenagailuak(string i, string m, string k, DateOnly e, Mintegiak mi, string c, string r) : base(i, m, k, e, mi)
         {
             this.cpu = c;
             this.ram = r;
         }
     }
+
+    /// <summary>
+    /// Inprimagailu motako gailua irudikatzen duen klasea.
+    /// Kolorezko inprimaketa duen ala ez adierazten du.
+    /// </summary>
     public class Inprimagailuak : Gailuak
     {
         // Atributuak
         private bool koloretakoa;
+
         // Get-Set
         public bool Koloretakoa { get => koloretakoa; set => koloretakoa = value; }
+
         // Eraikitzailea
+        /// <summary>
+        /// Inprimagailu berri bat sortzen du kolore informazioarekin.
+        /// </summary>
+        /// <param name="i">IDa</param>
+        /// <param name="m">Marka</param>
+        /// <param name="k">Kokalekua</param>
+        /// <param name="e">Erosteko data</param>
+        /// <param name="mi">Mintegia</param>
+        /// <param name="ko">Koloretakoa den ala ez</param>
         public Inprimagailuak(string i, string m, string k, DateOnly e, Mintegiak mi, bool ko) : base(i, m, k, e, mi)
         {
             this.koloretakoa = ko;
