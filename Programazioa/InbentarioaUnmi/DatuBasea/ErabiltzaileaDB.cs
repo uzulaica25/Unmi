@@ -21,7 +21,7 @@ namespace InbentarioaUnmi.DatuBasea
             List<Erabiltzaileak> LisEr = new List<Erabiltzaileak>();
 
             // Irakasle motako erabiltzaileak 
-            select = @"SELECT i.ID, i.izena as erabil, i.pasahitza, i.IDMintegia, m.izena as mintegia FROM Inbentarioa.Irakaslea i JOIN Inbentarioa.Mintegiak m ON i.IDMintegia = m.ID";
+            select = @"SELECT i.ID, e.izena as erabil, e.pasahitza, e.IDMintegia, m.izena as mintegia FROM Inbentarioa.Irakaslea i JOIN Inbentarioa.Erabiltzaileak e ON i.ID = e.ID JOIN Inbentarioa.Mintegiak m ON e.IDMintegia = m.ID";
 
             using (MySqlCommand komandua = new MySqlCommand(select, DBKonexioa.Konektatu()))
             {
@@ -43,7 +43,7 @@ namespace InbentarioaUnmi.DatuBasea
             }
 
             // Mintegi burua motako erabiltzaileak
-            select = @"SELECT i.ID, i.izena as erabil, i.pasahitza, i.IDMintegia, m.izena as mintegia FROM Inbentarioa.MintegiBurua i JOIN Inbentarioa.Mintegiak m ON i.IDMintegia = m.ID";
+            select = @"SELECT i.ID, e.izena as erabil, e.pasahitza, e.IDMintegia, m.izena as mintegia FROM Inbentarioa.MintegiBurua i JOIN Inbentarioa.Erabiltzaileak e ON i.ID = e.ID JOIN Inbentarioa.Mintegiak m ON e.IDMintegia = m.ID";
 
             using (MySqlCommand komandua = new MySqlCommand(select, DBKonexioa.Konektatu()))
             {
@@ -65,7 +65,7 @@ namespace InbentarioaUnmi.DatuBasea
             }
 
             // IKT arduraduna motako erabiltzaileak
-            select = @"SELECT i.ID, i.izena as erabil, i.pasahitza, i.IDMintegia, m.izena as mintegia FROM Inbentarioa.IKTArduraduna i JOIN Inbentarioa.Mintegiak m ON i.IDMintegia = m.ID";
+            select = @"SELECT i.ID, e.izena as erabil, e.pasahitza, e.IDMintegia, m.izena as mintegia FROM Inbentarioa.IKTArduraduna i JOIN Inbentarioa.Erabiltzaileak e ON i.ID = e.ID JOIN Inbentarioa.Mintegiak m ON e.IDMintegia = m.ID";
 
             using (MySqlCommand komandua = new MySqlCommand(select, DBKonexioa.Konektatu()))
             {
@@ -113,23 +113,20 @@ namespace InbentarioaUnmi.DatuBasea
              
             if (e.Rola == "MintegiBurua")
             {
-                insert = @"INSERT INTO Inbentarioa.MintegiBurua(ID, izena, pasahitza, IDMintegia) VALUES(@id, @izena, @pasahitza, @Mintegia)";
+                insert = @"INSERT INTO Inbentarioa.MintegiBurua(ID) VALUES(@id)";
             }
             else if (e.Rola == "IKTArduraduna")
             {
-                insert = @"INSERT INTO Inbentarioa.IKTArduraduna(ID, izena, pasahitza, IDMintegia) VALUES(@id, @izena, @pasahitza, @Mintegia)";
+                insert = @"INSERT INTO Inbentarioa.IKTArduraduna(ID) VALUES(@id)";
             }
             else
             {
-                insert = @"INSERT INTO Inbentarioa.Irakaslea(ID, izena, pasahitza, IDMintegia) VALUES(@id, @izena, @pasahitza, @Mintegia)";
+                insert = @"INSERT INTO Inbentarioa.Irakaslea(ID) VALUES(@id)";
             }
             using (MySqlConnection conn = DBKonexioa.Konektatu())
             using (MySqlCommand komandua = new MySqlCommand(insert, conn))
             {
                 komandua.Parameters.AddWithValue("@id", e.Id);
-                komandua.Parameters.AddWithValue("@izena", e.Izena);
-                komandua.Parameters.AddWithValue("@pasahitza", e.Pasahitza);
-                komandua.Parameters.AddWithValue("@Mintegia", e.Mintegia.Id);
                 try
                 {
                     komandua.ExecuteNonQuery();
@@ -144,33 +141,13 @@ namespace InbentarioaUnmi.DatuBasea
 
         public static int ErabiltzaileaAldatu(Erabiltzaileak e)
         {
-            string update, updatee;
+            string update;
 
-            updatee = @"UPDATE Inbentarioa.Erabiltzaileak SET izena = @era, pasahitza = @pas, IDMintegia = @min WHERE ID = @id;";
-            if (e.Rola == "MintegiBurua")
-            {
-                update = @"UPDATE Inbentarioa.MintegiBurua SET izena = @era, pasahitza = @pas, IDMintegia = @min WHERE ID = @id;";
-            }
-            else if(e.Rola == "IKTArduraduna")
-            {
-                update = @"UPDATE Inbentarioa.IKTArduraduna SET izena = @era, pasahitza = @pas, IDMintegia = @min WHERE ID = @id;";
-            }
-            else
-            {
-                update = @"UPDATE Inbentarioa.Irakaslea SET izena = @era, pasahitza = @pas, IDMintegia = @min WHERE ID = @id;";
-            }
+            update = @"UPDATE Inbentarioa.Erabiltzaileak SET izena = @era, pasahitza = @pas, IDMintegia = @min WHERE ID = @id;";
             try
             {
                 using var conn = DBKonexioa.Konektatu();
 
-                using (MySqlCommand komandua = new MySqlCommand(updatee, conn))
-                {
-                    komandua.Parameters.AddWithValue("@id", e.Id);
-                    komandua.Parameters.AddWithValue("@era", e.Izena);
-                    komandua.Parameters.AddWithValue("@pas", e.Pasahitza);
-                    komandua.Parameters.AddWithValue("@min", e.Mintegia.Id);
-                    komandua.ExecuteNonQuery();
-                }
                 using (MySqlCommand komandua = new MySqlCommand(update, conn))
                 {
                     komandua.Parameters.AddWithValue("@id", e.Id);
@@ -190,32 +167,14 @@ namespace InbentarioaUnmi.DatuBasea
 
         public static int ErabiltzaileaEzabatu(Erabiltzaileak e)
         {
-            string delete, deleteGeneral;
+            string delete;
 
-            deleteGeneral = @"DELETE FROM Inbentarioa.Erabiltzaileak WHERE ID = @id;";
-
-            if (e.Rola == "MintegiBurua")
-            {
-                delete = @"DELETE FROM Inbentarioa.MintegiBurua WHERE ID = @id;";
-            }
-            else if (e.Rola == "IKTArduraduna")
-            {
-                delete = @"DELETE FROM Inbentarioa.IKTArduraduna WHERE ID = @id;";
-            }
-            else
-            {
-                delete = @"DELETE FROM Inbentarioa.Irakaslea WHERE ID = @id;";
-            }
+            delete = @"DELETE FROM Inbentarioa.Erabiltzaileak WHERE ID = @id;";
             try
             {
                 using var conn = DBKonexioa.Konektatu();
 
                 using (var cmd = new MySqlCommand(delete, conn))
-                {
-                    cmd.Parameters.AddWithValue("@id", e.Id);
-                    cmd.ExecuteNonQuery();
-                }
-                using (var cmd = new MySqlCommand(deleteGeneral, conn))
                 {
                     cmd.Parameters.AddWithValue("@id", e.Id);
                     cmd.ExecuteNonQuery();
@@ -235,7 +194,7 @@ namespace InbentarioaUnmi.DatuBasea
             Mintegiak min;
             Erabiltzaileak era =  null;
             // Irakasle motako erabiltzaileak 
-            select = @"SELECT i.ID, i.izena as erabil, i.pasahitza, i.IDMintegia, m.izena as mintegia FROM Inbentarioa.Irakaslea i JOIN Inbentarioa.Mintegiak m ON i.IDMintegia = m.ID WHERE i.izena = '" + i + "' AND i.pasahitza = '" + p + "';";
+            select = @"SELECT i.ID, e.izena as erabil, e.pasahitza, e.IDMintegia, m.izena as mintegia FROM Inbentarioa.Irakaslea i JOIN Inbentarioa.Erabiltzaileak e ON i.ID = e.ID JOIN Inbentarioa.Mintegiak m ON e.IDMintegia = m.ID WHERE e.izena = '" + i + "' AND e.pasahitza = '" + p + "';";
             using (MySqlCommand komandua = new MySqlCommand(select, DBKonexioa.Konektatu()))
             {
                 using (MySqlDataReader reader = komandua.ExecuteReader())
@@ -254,7 +213,7 @@ namespace InbentarioaUnmi.DatuBasea
                 }
             }
             // Mintegi burua motako erabiltzaileak
-            select = @"SELECT mb.ID, mb.izena as erabil, mb.pasahitza, mb.IDMintegia, m.izena as mintegia FROM Inbentarioa.MintegiBurua mb JOIN Inbentarioa.Mintegiak m ON mb.IDMintegia = m.ID WHERE mb.izena = '" + i + "' AND mb.pasahitza = '" + p + "';";
+            select = @"SELECT mb.ID, e.izena as erabil, e.pasahitza, e.IDMintegia, m.izena as mintegia FROM Inbentarioa.MintegiBurua mb JOIN Inbentarioa.Erabiltzaileak e ON mb.ID = e.ID JOIN Inbentarioa.Mintegiak m ON e.IDMintegia = m.ID WHERE e.izena = '" + i + "' AND e.pasahitza = '" + p + "';";
             using (MySqlCommand komandua = new MySqlCommand(select, DBKonexioa.Konektatu()))
             {
                 using (MySqlDataReader reader = komandua.ExecuteReader())
@@ -273,7 +232,7 @@ namespace InbentarioaUnmi.DatuBasea
                 }
             }
             // IKT arduraduna motako erabiltzaileak
-            select = @"SELECT i.ID, i.izena as erabil, i.pasahitza, i.IDMintegia, m.izena as mintegia FROM Inbentarioa.IKTArduraduna i JOIN Inbentarioa.Mintegiak m ON i.IDMintegia = m.ID WHERE i.izena = '" + i + "'  AND i.pasahitza = '" + p + "';";
+            select = @"SELECT i.ID, e.izena as erabil, e.pasahitza, e.IDMintegia, m.izena as mintegia FROM Inbentarioa.IKTArduraduna i JOIN Inbentarioa.Erabiltzaileak e ON i.ID = e.ID JOIN Inbentarioa.Mintegiak m ON e.IDMintegia = m.ID WHERE e.izena = '" + i + "'  AND e.pasahitza = '" + p + "';";
             using (MySqlCommand komandua = new MySqlCommand(select, DBKonexioa.Konektatu()))
             {
                 using (MySqlDataReader reader = komandua.ExecuteReader())

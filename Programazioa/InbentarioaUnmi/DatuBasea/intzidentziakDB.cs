@@ -26,16 +26,16 @@ namespace InbentarioaUnmi.DatuBasea
             if (erab.Rola == "MintegiBurua" || erab.Rola == "Irakaslea")
             {
                 // Ordenagailuen itzidentziak
-                selecto = @"SELECT h.ID AS IdIntzi, h.mezua, h.data, o.ID as IdGailua, g.marka, g.kokalekua, g.erostedata,g.IDMintegia, m.izena, o.RAM, o.CPU FROM Inbentarioa.Intzidentziak h JOIN Inbentarioa.Ordenagailuak o ON h.IDGailua = o.ID JOIN Inbentarioa.Mintegiak m ON g.IDMintegia = m.ID JOIN Inbentarioa.Gailuak g ON h.IDGailua = g.ID WHERE o.ID IN (SELECT ID FROM Gailuak WHERE IDMintegia = '" + erab.Mintegia.Id + "');";
+                selecto = @"SELECT h.ID AS IdIntzi, h.mezua, h.data, o.ID as IdGailua, g.marka, g.kokalekua, g.erostedata,g.IDMintegia, m.izena, o.RAM, o.CPU FROM Inbentarioa.Intzidentziak h JOIN Inbentarioa.Gailuak g ON h.IDGailua = g.ID JOIN Inbentarioa.Ordenagailuak o ON h.IDGailua = o.ID JOIN Inbentarioa.Mintegiak m ON g.IDMintegia = m.ID WHERE o.ID IN (SELECT ID FROM Gailuak WHERE IDMintegia = '" + erab.Mintegia.Id + "');";
                 // Inprimagailuen itzidentziak
-                selecti = @"SELECT h.ID AS IdIntzi, h.mezua, h.data, o.ID as IdGailua, g.marka, g.kokalekua, g.erostedata,g.IDMintegia, m.izena, o.Koloretakoa FROM Inbentarioa.Intzidentziak h JOIN Inbentarioa.Inprimagailuak o ON h.IDGailua = o.ID JOIN Inbentarioa.Mintegiak m ON g.IDMintegia = m.ID JOIN Inbentarioa.Gailuak g ON h.IDGailua = g.ID";
+                selecti = @"SELECT h.ID AS IdIntzi, h.mezua, h.data, o.ID as IdGailua, g.marka, g.kokalekua, g.erostedata,g.IDMintegia, m.izena, o.Koloretakoa FROM Inbentarioa.Intzidentziak h JOIN Inbentarioa.Gailuak g ON h.IDGailua = g.ID JOIN Inbentarioa.Inprimagailuak o ON h.IDGailua = o.ID JOIN Inbentarioa.Mintegiak m ON g.IDMintegia = m.ID";
             }
             else
             {
                 // Ordenagailuen itzidentziak
-                selecto = @"SELECT h.ID AS IdIntzi, h.mezua, h.data, o.ID as IdGailua, g.marka, g.kokalekua, g.erostedata,g.IDMintegia, m.izena, o.RAM, o.CPU FROM Inbentarioa.Intzidentziak h JOIN Inbentarioa.Ordenagailuak o ON h.IDGailua = o.ID JOIN Inbentarioa.Mintegiak m ON g.IDMintegia = m.ID JOIN Inbentarioa.Gailuak g ON h.IDGailua = g.ID";
+                selecto = @"SELECT h.ID AS IdIntzi, h.mezua, h.data, o.ID as IdGailua, g.marka, g.kokalekua, g.erostedata,g.IDMintegia, m.izena, o.RAM, o.CPU FROM Inbentarioa.Intzidentziak h JOIN Inbentarioa.Gailuak g ON h.IDGailua = g.ID JOIN Inbentarioa.Ordenagailuak o ON h.IDGailua = o.ID JOIN Inbentarioa.Mintegiak m ON g.IDMintegia = m.ID";
                 // Inprimagailuen itzidentziak
-                selecti = @"SELECT h.ID AS IdIntzi, h.mezua, h.data, o.ID as IdGailua, o.marka, o.kokalekua, o.erostedata,o.IDMintegia, m.izena, o.Koloretakoa FROM Inbentarioa.Intzidentziak h JOIN Inbentarioa.Inprimagailuak o ON h.IDGailua = o.ID JOIN Inbentarioa.Mintegiak m ON o.IDMintegia = m.ID";
+                selecti = @"SELECT h.ID AS IdIntzi, h.mezua, h.data, o.ID as IdGailua, g.marka, g.kokalekua, g.erostedata,g.IDMintegia, m.izena, o.Koloretakoa FROM Inbentarioa.Intzidentziak h JOIN Inbentarioa.Gailuak g ON h.IDGailua = g.ID JOIN Inbentarioa.Inprimagailuak o ON h.IDGailua = o.ID JOIN Inbentarioa.Mintegiak m ON g.IDMintegia = m.ID";
             }
             using (MySqlCommand komandua = new MySqlCommand(selecto, DBKonexioa.Konektatu()))
             {

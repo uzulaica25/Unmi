@@ -1,8 +1,8 @@
-ALTER TABLE Inprimagailuak
+ALTER TABLE Ezabatutako_ordenagailuak
 DROP COLUMN marka;
-ALTER TABLE Inprimagailuak
+ALTER TABLE Ezabatutako_ordenagailuak
 DROP COLUMN kokalekua;
-ALTER TABLE Inprimagailuak
+ALTER TABLE Ezabatutako_ordenagailuak
 DROP COLUMN erostedata;
-ALTER TABLE Inprimagailuak
-DROP COLUMN IDMintegia;
+ALTER TABLE Ezabatutako_inprimagailuak
+DROP COLUMN IDGailua;

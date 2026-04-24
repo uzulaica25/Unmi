@@ -15,7 +15,7 @@ namespace InbentarioaUnmi.DatuBasea
     {
         public static List<Gailuak> GailuakListaratu(Erabiltzaileak erab)
         {
-            string id, select, marka, kokalekua, CPU, RAM, idmin,izenamin;
+            string id, selecto, selecti, marka, kokalekua, CPU, RAM, idmin,izenamin;
             bool kol;
             Mintegiak min;
             DateOnly er;
@@ -24,117 +24,71 @@ namespace InbentarioaUnmi.DatuBasea
 
             if(erab.Rola == "MintegiBurua" || erab.Rola == "Irakaslea")
             {
-                select = @"SELECT o.ID, o.marka, o.Kokalekua, o.CPU, o.RAM, o.erosteData, o.IDMintegia, m.izena FROM Inbentarioa.Ordenagailuak o JOIN Inbentarioa.Mintegiak m ON o.IDMintegia = m.ID WHERE o.ID IN (SELECT ID FROM Gailuak WHERE IDMintegia = '"+ erab.Mintegia.Id +"');";
+                // Ordenagailuak
+                selecto = @"SELECT o.ID, g.marka, g.Kokalekua, o.CPU, o.RAM, g.erosteData, g.IDMintegia, m.izena FROM Inbentarioa.Ordenagailuak o JOIN Inbentarioa.Gailuak g ON o.ID = g.ID WHERE o.ID JOIN Inbentarioa.Mintegiak m ON g.IDMintegia = m.ID IN (SELECT ID FROM Gailuak WHERE IDMintegia = '" + erab.Mintegia.Id +"');";
 
-                using (MySqlCommand komandua = new MySqlCommand(select, DBKonexioa.Konektatu()))
-                {
-                    using (MySqlDataReader reader = komandua.ExecuteReader())
-                    {
-                        while (reader.Read())
-                        {
-                            id = reader.GetString("ID");
-                            marka = reader.GetString("marka");
-                            kokalekua = reader.GetString("kokalekua");
-                            CPU = reader.GetString("CPU");
-                            RAM = reader.GetString("RAM");
-                            erosteData = reader.GetDateTime("erosteData");
-                            er = DateOnly.FromDateTime(erosteData);
-                            idmin = reader.GetString("IDMintegia");
-                            izenamin = reader.GetString("izena");
-                            min = new Mintegiak(idmin, izenamin);
+                // Inprimagailuak
+                selecti = @"SELECT i.ID, g.marka, g.Kokalekua, i.Koloretakoa, g.erosteData, g.IDMintegia, m.izena FROM Inbentarioa.Inprimagailuak i JOIN Inbentarioa.Gailuak g ON i.ID = g.ID WHERE i.ID JOIN Inbentarioa.Mintegiak m ON g.IDMintegia = m.ID IN (SELECT ID FROM Gailuak WHERE IDMintegia = '" + erab.Mintegia.Id + "');";
 
-                            Ordenagailuak ga = new Ordenagailuak(id, marka, kokalekua, er, min, CPU, RAM);
-
-                            Lisgai.Add(ga);
-                        }
-                    }
-                }
-                select = @"SELECT i.ID, i.marka, i.Kokalekua, i.Koloretakoa, i.erosteData,i.IDMintegia, m.izena FROM Inbentarioa.Inprimagailuak i JOIN Inbentarioa.Mintegiak m ON i.IDMintegia = m.ID WHERE i.ID IN (SELECT ID FROM Gailuak WHERE IDMintegia = '" + erab.Mintegia.Id +"');";
-
-                using (MySqlCommand komandua = new MySqlCommand(select, DBKonexioa.Konektatu()))
-                {
-                    using (MySqlDataReader reader = komandua.ExecuteReader())
-                    {
-                        while (reader.Read())
-                        {
-                            id = reader.GetString("ID");
-                            marka = reader.GetString("marka");
-                            kokalekua = reader.GetString("kokalekua");
-                            erosteData = reader.GetDateTime("erosteData");
-                            er = DateOnly.FromDateTime(erosteData);
-                            idmin = reader.GetString("IDMintegia");
-                            izenamin = reader.GetString("izena");
-                            min = new Mintegiak(idmin, izenamin);
-                            if (reader.GetString("Koloretakoa") == "Bai")
-                            {
-                                kol = true;
-                            }
-                            else
-                            {
-                                kol = false;
-                            }
-                            Inprimagailuak ga = new Inprimagailuak(id, marka, kokalekua, er, min, kol);
-
-                            Lisgai.Add(ga);
-                        }
-                    }
-                }
             }
             else
             {
-                select = @"SELECT o.ID, o.marka, o.Kokalekua, o.CPU, o.RAM, o.erosteData, o.IDMintegia, m.izena FROM Inbentarioa.Ordenagailuak o JOIN Inbentarioa.Mintegiak m ON o.IDMintegia = m.Id";
+                // Ordenagailuak
+                selecto = @"SELECT o.ID, g.marka, g.Kokalekua, o.CPU, o.RAM, g.erosteData, g.IDMintegia, m.izena FROM Inbentarioa.Ordenagailuak o JOIN Inbentarioa.Gailuak g ON o.ID = g.ID JOIN Inbentarioa.Mintegiak m ON g.IDMintegia = m.Id";
 
-                using (MySqlCommand komandua = new MySqlCommand(select, DBKonexioa.Konektatu()))
+                // Inprimagailuak
+                selecti = @"SELECT i.ID, g.marka, g.Kokalekua, i.Koloretakoa, g.erosteData, g.IDMintegia, m.izena FROM Inbentarioa.Inprimagailuak i JOIN Inbentarioa.Gailuak g ON i.ID = g.ID JOIN Inbentarioa.Mintegiak m ON g.IDMintegia = m.Id";
+            }
+
+            using (MySqlCommand komandua = new MySqlCommand(selecto, DBKonexioa.Konektatu()))
+            {
+                using (MySqlDataReader reader = komandua.ExecuteReader())
                 {
-                    using (MySqlDataReader reader = komandua.ExecuteReader())
+                    while (reader.Read())
                     {
-                        while (reader.Read())
-                        {
-                            id = reader.GetString("ID");
-                            marka = reader.GetString("marka");
-                            kokalekua = reader.GetString("kokalekua");
-                            CPU = reader.GetString("CPU");
-                            RAM = reader.GetString("RAM");
-                            erosteData = reader.GetDateTime("erosteData");
-                            er = DateOnly.FromDateTime(erosteData);
-                            idmin = reader.GetString("IDMintegia");
-                            izenamin = reader.GetString("izena");
-                            min = new Mintegiak(idmin, izenamin);
+                        id = reader.GetString("ID");
+                        marka = reader.GetString("marka");
+                        kokalekua = reader.GetString("kokalekua");
+                        CPU = reader.GetString("CPU");
+                        RAM = reader.GetString("RAM");
+                        erosteData = reader.GetDateTime("erosteData");
+                        er = DateOnly.FromDateTime(erosteData);
+                        idmin = reader.GetString("IDMintegia");
+                        izenamin = reader.GetString("izena");
+                        min = new Mintegiak(idmin, izenamin);
 
-                            Ordenagailuak ga = new Ordenagailuak(id, marka, kokalekua, er, min, CPU, RAM);
+                        Ordenagailuak ga = new Ordenagailuak(id, marka, kokalekua, er, min, CPU, RAM);
 
-                            Lisgai.Add(ga);
-                        }
+                        Lisgai.Add(ga);
                     }
                 }
-                select = @"SELECT i.ID, i.marka, i.Kokalekua, i.Koloretakoa, i.erosteData,i.IDMintegia, m.izena FROM Inbentarioa.Inprimagailuak i JOIN Inbentarioa.Mintegiak m ON i.IDMintegia = m.Id";
+            }
 
-                using (MySqlCommand komandua = new MySqlCommand(select, DBKonexioa.Konektatu()))
+            using (MySqlCommand komandua = new MySqlCommand(selecti, DBKonexioa.Konektatu()))
+            {
+                using (MySqlDataReader reader = komandua.ExecuteReader())
                 {
-                    using (MySqlDataReader reader = komandua.ExecuteReader())
+                    while (reader.Read())
                     {
-                        while (reader.Read())
+                        id = reader.GetString("ID");
+                        marka = reader.GetString("marka");
+                        kokalekua = reader.GetString("kokalekua");
+                        erosteData = reader.GetDateTime("erosteData");
+                        er = DateOnly.FromDateTime(erosteData);
+                        idmin = reader.GetString("IDMintegia");
+                        izenamin = reader.GetString("izena");
+                        min = new Mintegiak(idmin, izenamin);
+                        if (reader.GetString("Koloretakoa") == "Bai")
                         {
-                            id = reader.GetString("ID");
-                            marka = reader.GetString("marka");
-                            kokalekua = reader.GetString("kokalekua");
-                            erosteData = reader.GetDateTime("erosteData");
-                            er = DateOnly.FromDateTime(erosteData);
-                            idmin = reader.GetString("IDMintegia");
-                            izenamin = reader.GetString("izena");
-                            min = new Mintegiak(idmin, izenamin);
-                            if (reader.GetString("Koloretakoa") == "Bai")
-                            {
-                                kol = true;
-                            }
-                            else
-                            {
-                                kol = false;
-                            }
-                            Inprimagailuak ga = new Inprimagailuak(id, marka, kokalekua, er, min, kol);
-
-                            Lisgai.Add(ga);
+                            kol = true;
                         }
+                        else
+                        {
+                            kol = false;
+                        }
+                        Inprimagailuak ga = new Inprimagailuak(id, marka, kokalekua, er, min, kol);
+
+                        Lisgai.Add(ga);
                     }
                 }
             }
@@ -160,13 +114,10 @@ namespace InbentarioaUnmi.DatuBasea
                     }
                     if (be is Ordenagailuak or)
                     {
-                        string sql = @"UPDATE Inbentarioa.Ordenagailuak SET marka = @marka, kokalekua = @kokalekua, erostedata = @fecha, CPU=@cpu, RAM=@ram WHERE ID=@oldId";
+                        string sql = @"UPDATE Inbentarioa.Ordenagailuak SET CPU=@cpu, RAM=@ram WHERE ID=@oldId";
 
                         using (MySqlCommand cmd = new MySqlCommand(sql, conn))
                         {
-                            cmd.Parameters.AddWithValue("@marka", be.Marka);
-                            cmd.Parameters.AddWithValue("@kokalekua", be.Kokalekua);
-                            cmd.Parameters.AddWithValue("@fecha", be.ErosteData.ToDateTime(TimeOnly.MinValue));
                             cmd.Parameters.AddWithValue("@cpu", or.Cpu);
                             cmd.Parameters.AddWithValue("@ram", or.Ram);
                             cmd.Parameters.AddWithValue("@oldId", ga1.Id);
@@ -180,13 +131,10 @@ namespace InbentarioaUnmi.DatuBasea
                     // 🔹 INPRIMAGAILUA
                     if (be is Inprimagailuak inpri)
                     {
-                        string sql = @"UPDATE Inbentarioa.Inprimagailuak SET marka = @marka, kokalekua = @kokalekua, erostedata = @fecha, koloretakoa=@kolor WHERE ID=@oldId";
+                        string sql = @"UPDATE Inbentarioa.Inprimagailuak SET  koloretakoa=@kolor WHERE ID=@oldId";
 
                         using (MySqlCommand cmd = new MySqlCommand(sql, conn))
                         {
-                            cmd.Parameters.AddWithValue("@marka", be.Marka);
-                            cmd.Parameters.AddWithValue("@kokalekua", be.Kokalekua);
-                            cmd.Parameters.AddWithValue("@fecha", be.ErosteData.ToDateTime(TimeOnly.MinValue));
                             cmd.Parameters.AddWithValue("@kolor", inpri.Koloretakoa ? "Bai" : "Ez");
                             cmd.Parameters.AddWithValue("@oldId", ga1.Id);
 
@@ -231,15 +179,11 @@ namespace InbentarioaUnmi.DatuBasea
                 }
                 if (g is Ordenagailuak or)
                 {
-                    inserto = @"INSERT INTO Inbentarioa.Ordenagailuak(ID, marka, kokalekua, erostedata, IDMintegia, CPU, RAM) VALUES (@ID, @marka, @kokalekua, @erostedata, @IDMintegia, @CPU, @RAM)";
+                    inserto = @"INSERT INTO Inbentarioa.Ordenagailuak(ID, CPU, RAM) VALUES (@ID, @CPU, @RAM)";
 
                     using (MySqlCommand cmd = new MySqlCommand(inserto, conn))
                     {
                         cmd.Parameters.AddWithValue("@ID", idb);
-                        cmd.Parameters.AddWithValue("@marka", g.Marka);
-                        cmd.Parameters.AddWithValue("@kokalekua", g.Kokalekua);
-                        cmd.Parameters.AddWithValue("@erostedata", g.ErosteData.ToDateTime(TimeOnly.MinValue));
-                        cmd.Parameters.AddWithValue("@IDMintegia", g.Mintegia.Id);
                         cmd.Parameters.AddWithValue("@CPU", or.Cpu);
                         cmd.Parameters.AddWithValue("@RAM", or.Ram);
 
@@ -256,14 +200,10 @@ namespace InbentarioaUnmi.DatuBasea
                 }
                 else if (g is Inprimagailuak inpri)
                 {
-                    inserti = @"INSERT INTO Inbentarioa.Inprimagailuak(ID, marka, kokalekua, erostedata, IDMintegia, koloretakoa) VALUES(@ID, @marka, @kokalekua, @erostedata, @IDMintegia, @koloretakoa)";
+                    inserti = @"INSERT INTO Inbentarioa.Inprimagailuak(ID, koloretakoa) VALUES(@ID, @koloretakoa)";
                     using (MySqlCommand cmd = new MySqlCommand(inserti, conn))
                     {
                         cmd.Parameters.AddWithValue("@ID", idb);
-                        cmd.Parameters.AddWithValue("@marka", g.Marka);
-                        cmd.Parameters.AddWithValue("@kokalekua", g.Kokalekua);
-                        cmd.Parameters.AddWithValue("@erostedata", g.ErosteData.ToDateTime(TimeOnly.MinValue));
-                        cmd.Parameters.AddWithValue("@IDMintegia", inpri.Mintegia.Id);
                         if (inpri.Koloretakoa)
                         {
                             cmd.Parameters.AddWithValue("@koloretakoa", "Bai");
@@ -336,16 +276,11 @@ namespace InbentarioaUnmi.DatuBasea
                 }
                 if (g is Ordenagailuak or)
                 {
-                    inserto = @"INSERT INTO Inbentarioa.Ezabatutako_ordenagailuak(ID, IDGailua, marka, kokalekua, erostedata, IDMintegia, CPU, RAM) VALUES (@ID, @IDGailua, @marka, @kokalekua, @erostedata, @IDMintegia, @CPU, @RAM)";
+                    inserto = @"INSERT INTO Inbentarioa.Ezabatutako_ordenagailuak(ID, CPU, RAM) VALUES (@ID, @CPU, @RAM)";
 
                     using (MySqlCommand cmd = new MySqlCommand(inserto, conn))
                     {
                         cmd.Parameters.AddWithValue("@ID", idb);
-                        cmd.Parameters.AddWithValue("@IDGailua", g.Id);
-                        cmd.Parameters.AddWithValue("@marka", g.Marka);
-                        cmd.Parameters.AddWithValue("@kokalekua", g.Kokalekua);
-                        cmd.Parameters.AddWithValue("@erostedata", g.ErosteData.ToDateTime(TimeOnly.MinValue));
-                        cmd.Parameters.AddWithValue("@IDMintegia", g.Mintegia.Id);
                         cmd.Parameters.AddWithValue("@CPU", or.Cpu);
                         cmd.Parameters.AddWithValue("@RAM", or.Ram);
 
@@ -362,15 +297,10 @@ namespace InbentarioaUnmi.DatuBasea
                 }
                 else if (g is Inprimagailuak inpri)
                 {
-                    inserti = @"INSERT INTO Inbentarioa.Ezabatutako_inprimagailuak(ID,IDGailua, marka, kokalekua, erostedata, IDMintegia, koloretakoa) VALUES(@ID, @IDGailua, @marka, @kokalekua, @erostedata, @IDMintegia, @koloretakoa)";
+                    inserti = @"INSERT INTO Inbentarioa.Ezabatutako_inprimagailuak(ID, koloretakoa) VALUES(@ID, @koloretakoa)";
                     using (MySqlCommand cmd = new MySqlCommand(inserti, conn))
                     {
                         cmd.Parameters.AddWithValue("@ID", idb);
-                        cmd.Parameters.AddWithValue("@IDGailua", g.Id);
-                        cmd.Parameters.AddWithValue("@marka", g.Marka);
-                        cmd.Parameters.AddWithValue("@kokalekua", g.Kokalekua);
-                        cmd.Parameters.AddWithValue("@erostedata", g.ErosteData.ToDateTime(TimeOnly.MinValue));
-                        cmd.Parameters.AddWithValue("@IDMintegia", inpri.Mintegia.Id);
                         if (inpri.Koloretakoa)
                         {
                             cmd.Parameters.AddWithValue("@koloretakoa", "Bai");
@@ -379,7 +309,6 @@ namespace InbentarioaUnmi.DatuBasea
                         {
                             cmd.Parameters.AddWithValue("@koloretakoa", "Ez");
                         }
-
                         try
                         {
                             cmd.ExecuteNonQuery();
