@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace InbentarioaUnmi.DatuModeloak
 {
+    /// <summary>
+    /// Gailuekin lotutako intzidentziak (akatsak edo gertakariak) irudikatzen dituen klasea.
+    /// </summary>
     public class Intzidentziak
     {
         // Atribututak
@@ -23,9 +26,15 @@ namespace InbentarioaUnmi.DatuModeloak
         public string Mezua { get => mezua; set => mezua = value; }
         public string GailuMota { get => gailuMota; set => gailuMota = value; }
 
-
-
-        // Eraikitzaileak
+        // Eraikitzailea
+        /// <summary>
+        /// Intzidentzia berri bat sortzen du gailu bati lotuta.
+        /// </summary>
+        /// <param name="id">Intzidentziaren identifikatzailea</param>
+        /// <param name="g">Eragindako gailua</param>
+        /// <param name="gailuMota">Gailuaren mota (Ordenagailua edo Inprimagailua)</param>
+        /// <param name="d">Intzidentziaren data</param>
+        /// <param name="m">Intzidentziaren mezua</param>
         public Intzidentziak(string id, Gailuak g,string gailuMota, DateOnly d, string m)
         {
             this.id = id;
