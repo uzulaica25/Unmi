@@ -12,15 +12,16 @@ using System.Threading.Tasks;
 namespace InbentarioaUnmi.DatuBasea
 {
     /// <summary>
-    /// 
+    /// Inbentarioko gailuen (ordenagailuak eta inprimagailuak) datu-baseko eragiketak kudeatzen dituen klase estatikoa.
+    /// CRUD funtzionalitateak eta gailuen kudeaketa osoa eskaintzen ditu.
     /// </summary>
     public static class InbentarioaDB
     {
-        /// <summary>Gailuaks the listaratu.</summary>
-        /// <param name="erab">The erab.</param>
-        /// <returns>
-        ///   <br />
-        /// </returns>
+        /// <summary>
+        /// Erabiltzailearen rolaren arabera inbentarioko gailu guztiak edo dagokion mintegikoak lortzen ditu.
+        /// </summary>
+        /// <param name="erab">Saioa hasi duen erabiltzailea</param>
+        /// <returns>Gailuen zerrenda (ordenagailuak eta inprimagailuak)</returns>
         public static List<Gailuak> GailuakListaratu(Erabiltzaileak erab)
         {
             string id, selecto, selecti, marka, kokalekua, CPU, RAM, idmin,izenamin;
@@ -103,11 +104,12 @@ namespace InbentarioaUnmi.DatuBasea
             return Lisgai;
         }
         /// <summary>
-        /// Gailuas the aldatu.
+        /// Datu-basean dagoen gailu baten informazioa eguneratzen du.
+        /// Ordenagailuak edo inprimagailuak badira, dagokion taula ere eguneratzen du.
         /// </summary>
-        /// <param name="ga1">The ga1.</param>
-        /// <param name="be">The be.</param>
-        /// <returns></returns>
+        /// <param name="ga1">Aldatu aurreko gailua</param>
+        /// <param name="be">Datu berriak dituen gailua</param>
+        /// <returns>1 ondo joan bada; bestela MySQL errore kodea</returns>
         public static int GailuaAldatu(Gailuak ga1, Gailuak be)
         {
             try
@@ -167,10 +169,11 @@ namespace InbentarioaUnmi.DatuBasea
             }
         }
         /// <summary>
-        /// Gailuas the gehitu.
+        /// Gailu berri bat gehitzen du datu-basean.
+        /// ID automatikoa sortzen da eta mota (ordenagailua edo inprimagailua) arabera gordetzen da.
         /// </summary>
-        /// <param name="g">The g.</param>
-        /// <returns></returns>
+        /// <param name="g">Gehitu nahi den gailua</param>
+        /// <returns>1 ondo joan bada; bestela MySQL errore kodea</returns>
         public static int GailuaGehitu(Gailuak g)
         {
             string insert, inserto, inserti, idb, queryID;
@@ -247,10 +250,10 @@ namespace InbentarioaUnmi.DatuBasea
             return 0;
         }
         /// <summary>
-        /// Gailuas the ezabatu.
+        /// Datu-baseko gailu bat ezabatzen du.
         /// </summary>
-        /// <param name="g">The g.</param>
-        /// <returns></returns>
+        /// <param name="g">Ezabatu nahi den gailua</param>
+        /// <returns>1 ondo joan bada; bestela MySQL errore kodea</returns>
         public static int GailuaEzabatu(Gailuak g)
         {
             string delete, deleteGeneral;
@@ -274,10 +277,10 @@ namespace InbentarioaUnmi.DatuBasea
             }
         }
         /// <summary>
-        /// Ezabatutakoes the gailuak.
+        /// Ezabatutako gailua historiko taulan gordetzen du (Ezabatuak eta dagokion azpitaulan).
         /// </summary>
-        /// <param name="g">The g.</param>
-        /// <returns></returns>
+        /// <param name="g">Ezabatutako gailua</param>
+        /// <returns>1 ondo joan bada; bestela MySQL errore kodea</returns>
         public static int EzabatutakoGailuak(Gailuak g)
         {
             string insert, inserto, inserti, update, queryID, idb;
