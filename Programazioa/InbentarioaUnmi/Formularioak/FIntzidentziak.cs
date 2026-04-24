@@ -72,7 +72,7 @@ namespace InbentarioaUnmi.Formularioak
                 if (eran == 1)
                 {
                     MessageBox.Show("Intzidentzia gehitu da.");
-                    Aktibatu(10);
+                    this.Close();
                 }
                 else
                 {
@@ -216,7 +216,7 @@ namespace InbentarioaUnmi.Formularioak
         {
             List<Gailuak> LisGai = new List<Gailuak>();
 
-            // z1 1=Gehitu, 2=Aldatu, 3=Ezabatu, 4=Aurkitu, 10=Gehitu/Aldatu amaitu
+            // z1 1=Gehitu, 2=Aldatu, 3=Ezabatu, 4=Aurkitu
             if (z1 == 1 || z1 == 2 || z1 == 3)
             {
                 lblId.Visible = true;
@@ -268,15 +268,6 @@ namespace InbentarioaUnmi.Formularioak
                 cmbGailua.DisplayMember = "Id";
                 cmbGailua.SelectedIndex = -1;
                 cbAurkitu.Visible = true;
-            }
-            else if (z1 == 10)
-            {
-                Desaktibatu();
-                cbGehitu.Visible = true;
-                cbAldatu.Visible = true;
-                cbEzabatu.Visible = true;
-                cbAurkitu.Visible = true;
-                dgvIntzidentziak.Visible = true;
             }
         }
 

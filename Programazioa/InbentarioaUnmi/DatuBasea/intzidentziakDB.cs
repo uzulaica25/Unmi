@@ -14,7 +14,7 @@ namespace InbentarioaUnmi.DatuBasea
     {
         public static List<Intzidentziak> IntzidentziakZerrendatu(Erabiltzaileak erab)
         {
-            string select, mezua, id, mar, kok, ize, ram, cpu, idmin, idIntz;
+            string selecto, selecti, mezua, id, mar, kok, ize, ram, cpu, idmin, idIntz;
             bool kolore;
             DateTime dataordua, erostedata;
             DateOnly data, er;
@@ -26,146 +26,78 @@ namespace InbentarioaUnmi.DatuBasea
             if (erab.Rola == "MintegiBurua" || erab.Rola == "Irakaslea")
             {
                 // Ordenagailuen itzidentziak
-                select = @"SELECT h.ID AS IdIntzi, h.mezua, h.data, o.ID as IdGailua, o.marka, o.kokalekua, o.erostedata,o.IDMintegia, m.izena, o.RAM, o.CPU FROM Inbentarioa.Intzidentziak h JOIN Inbentarioa.Ordenagailuak o ON h.IDGailua = o.ID JOIN Inbentarioa.Mintegiak m ON o.IDMintegia = m.ID WHERE o.ID IN (SELECT ID FROM Gailuak WHERE IDMintegia = '" + erab.Mintegia.Id + "');";
-
-                using (MySqlCommand komandua = new MySqlCommand(select, DBKonexioa.Konektatu()))
-                {
-                    using (MySqlDataReader reader = komandua.ExecuteReader())
-                    {
-                        while (reader.Read())
-                        {
-                            idIntz = reader.GetString("IdIntzi");
-                            mezua = reader.GetString("mezua");
-                            dataordua = reader.GetDateTime("data");
-                            data = DateOnly.FromDateTime(dataordua);
-                            id = reader.GetString("IdGailua");
-                            mar = reader.GetString("marka");
-                            kok = reader.GetString("kokalekua");
-                            erostedata = reader.GetDateTime("erostedata");
-                            er = DateOnly.FromDateTime(erostedata);
-                            ize = reader.GetString("izena");
-                            idmin = reader.GetString("IDMintegia");
-                            ram = reader.GetString("RAM");
-                            cpu = reader.GetString("CPU");
-
-                            min = new Mintegiak(idmin, ize);
-                            or = new Ordenagailuak(id, mar, kok, er, min, ram, cpu);
-                            Intzidentziak Inz = new Intzidentziak(idIntz, or, "Ordenagailua", data, mezua);
-
-                            LisInz.Add(Inz);
-                        }
-                    }
-                }
-
+                selecto = @"SELECT h.ID AS IdIntzi, h.mezua, h.data, o.ID as IdGailua, g.marka, g.kokalekua, g.erostedata,g.IDMintegia, m.izena, o.RAM, o.CPU FROM Inbentarioa.Intzidentziak h JOIN Inbentarioa.Ordenagailuak o ON h.IDGailua = o.ID JOIN Inbentarioa.Mintegiak m ON g.IDMintegia = m.ID JOIN Inbentarioa.Gailuak g ON h.IDGailua = g.ID WHERE o.ID IN (SELECT ID FROM Gailuak WHERE IDMintegia = '" + erab.Mintegia.Id + "');";
                 // Inprimagailuen itzidentziak
-                select = @"SELECT h.ID AS IdIntzi, h.mezua, h.data, o.ID as IdGailua, o.marka, o.kokalekua, o.erostedata,o.IDMintegia, m.izena, o.Koloretakoa FROM Inbentarioa.Intzidentziak h JOIN Inbentarioa.Inprimagailuak o ON h.IDGailua = o.ID JOIN Inbentarioa.Mintegiak m ON o.IDMintegia = m.ID";
-
-                using (MySqlCommand komandua = new MySqlCommand(select, DBKonexioa.Konektatu()))
-                {
-                    using (MySqlDataReader reader = komandua.ExecuteReader())
-                    {
-                        while (reader.Read())
-                        {
-                            idIntz = reader.GetString("IdIntzi");
-                            mezua = reader.GetString("mezua");
-                            dataordua = reader.GetDateTime("data");
-                            data = DateOnly.FromDateTime(dataordua);
-                            id = reader.GetString("IdGailua");
-                            mar = reader.GetString("marka");
-                            kok = reader.GetString("kokalekua");
-                            erostedata = reader.GetDateTime("erostedata");
-                            er = DateOnly.FromDateTime(erostedata);
-                            ize = reader.GetString("izena");
-                            idmin = reader.GetString("IDMintegia");
-                            ram = reader.GetString("koloretakoa");
-                            if (ram == "Bai")
-                            {
-                                kolore = true;
-                            }
-                            else
-                            {
-                                kolore = false;
-                            }
-
-                            min = new Mintegiak(idmin, ize);
-                            inp = new Inprimagailuak(id, mar, kok, er, min, kolore);
-                            Intzidentziak Inz = new Intzidentziak(idIntz, inp, "Inprimagailua", data, mezua);
-
-                            LisInz.Add(Inz);
-                        }
-                    }
-                }
+                selecti = @"SELECT h.ID AS IdIntzi, h.mezua, h.data, o.ID as IdGailua, g.marka, g.kokalekua, g.erostedata,g.IDMintegia, m.izena, o.Koloretakoa FROM Inbentarioa.Intzidentziak h JOIN Inbentarioa.Inprimagailuak o ON h.IDGailua = o.ID JOIN Inbentarioa.Mintegiak m ON g.IDMintegia = m.ID JOIN Inbentarioa.Gailuak g ON h.IDGailua = g.ID";
             }
             else
             {
                 // Ordenagailuen itzidentziak
-                select = @"SELECT h.ID AS IdIntzi, h.mezua, h.data, o.ID as IdGailua, o.marka, o.kokalekua, o.erostedata,o.IDMintegia, m.izena, o.RAM, o.CPU FROM Inbentarioa.Intzidentziak h JOIN Inbentarioa.Ordenagailuak o ON h.IDGailua = o.ID JOIN Inbentarioa.Mintegiak m ON o.IDMintegia = m.ID";
-
-                using (MySqlCommand komandua = new MySqlCommand(select, DBKonexioa.Konektatu()))
+                selecto = @"SELECT h.ID AS IdIntzi, h.mezua, h.data, o.ID as IdGailua, g.marka, g.kokalekua, g.erostedata,g.IDMintegia, m.izena, o.RAM, o.CPU FROM Inbentarioa.Intzidentziak h JOIN Inbentarioa.Ordenagailuak o ON h.IDGailua = o.ID JOIN Inbentarioa.Mintegiak m ON g.IDMintegia = m.ID JOIN Inbentarioa.Gailuak g ON h.IDGailua = g.ID";
+                // Inprimagailuen itzidentziak
+                selecti = @"SELECT h.ID AS IdIntzi, h.mezua, h.data, o.ID as IdGailua, o.marka, o.kokalekua, o.erostedata,o.IDMintegia, m.izena, o.Koloretakoa FROM Inbentarioa.Intzidentziak h JOIN Inbentarioa.Inprimagailuak o ON h.IDGailua = o.ID JOIN Inbentarioa.Mintegiak m ON o.IDMintegia = m.ID";
+            }
+            using (MySqlCommand komandua = new MySqlCommand(selecto, DBKonexioa.Konektatu()))
+            {
+                using (MySqlDataReader reader = komandua.ExecuteReader())
                 {
-                    using (MySqlDataReader reader = komandua.ExecuteReader())
+                    while (reader.Read())
                     {
-                        while (reader.Read())
-                        {
-                            idIntz = reader.GetString("IdIntzi");
-                            mezua = reader.GetString("mezua");
-                            dataordua = reader.GetDateTime("data");
-                            data = DateOnly.FromDateTime(dataordua);
-                            id = reader.GetString("IdGailua");
-                            mar = reader.GetString("marka");
-                            kok = reader.GetString("kokalekua");
-                            erostedata = reader.GetDateTime("erostedata");
-                            er = DateOnly.FromDateTime(erostedata);
-                            ize = reader.GetString("izena");
-                            idmin = reader.GetString("IDMintegia");
-                            ram = reader.GetString("RAM");
-                            cpu = reader.GetString("CPU");
+                        idIntz = reader.GetString("IdIntzi");
+                        mezua = reader.GetString("mezua");
+                        dataordua = reader.GetDateTime("data");
+                        data = DateOnly.FromDateTime(dataordua);
+                        id = reader.GetString("IdGailua");
+                        mar = reader.GetString("marka");
+                        kok = reader.GetString("kokalekua");
+                        erostedata = reader.GetDateTime("erostedata");
+                        er = DateOnly.FromDateTime(erostedata);
+                        ize = reader.GetString("izena");
+                        idmin = reader.GetString("IDMintegia");
+                        ram = reader.GetString("RAM");
+                        cpu = reader.GetString("CPU");
 
-                            min = new Mintegiak(idmin, ize);
-                            or = new Ordenagailuak(id, mar, kok, er, min, ram, cpu);
-                            Intzidentziak Inz = new Intzidentziak(idIntz, or, "Ordenagailua", data, mezua);
+                        min = new Mintegiak(idmin, ize);
+                        or = new Ordenagailuak(id, mar, kok, er, min, ram, cpu);
+                        Intzidentziak Inz = new Intzidentziak(idIntz, or, "Ordenagailua", data, mezua);
 
-                            LisInz.Add(Inz);
-                        }
+                        LisInz.Add(Inz);
                     }
                 }
+            }
 
-                // Inprimagailuen itzidentziak
-                select = @"SELECT h.ID AS IdIntzi, h.mezua, h.data, o.ID as IdGailua, o.marka, o.kokalekua, o.erostedata,o.IDMintegia, m.izena, o.Koloretakoa FROM Inbentarioa.Intzidentziak h JOIN Inbentarioa.Inprimagailuak o ON h.IDGailua = o.ID JOIN Inbentarioa.Mintegiak m ON o.IDMintegia = m.ID";
-
-                using (MySqlCommand komandua = new MySqlCommand(select, DBKonexioa.Konektatu()))
+            using (MySqlCommand komandua = new MySqlCommand(selecti, DBKonexioa.Konektatu()))
+            {
+                using (MySqlDataReader reader = komandua.ExecuteReader())
                 {
-                    using (MySqlDataReader reader = komandua.ExecuteReader())
+                    while (reader.Read())
                     {
-                        while (reader.Read())
+                        idIntz = reader.GetString("IdIntzi");
+                        mezua = reader.GetString("mezua");
+                        dataordua = reader.GetDateTime("data");
+                        data = DateOnly.FromDateTime(dataordua);
+                        id = reader.GetString("IdGailua");
+                        mar = reader.GetString("marka");
+                        kok = reader.GetString("kokalekua");
+                        erostedata = reader.GetDateTime("erostedata");
+                        er = DateOnly.FromDateTime(erostedata);
+                        ize = reader.GetString("izena");
+                        idmin = reader.GetString("IDMintegia");
+                        ram = reader.GetString("koloretakoa");
+                        if (ram == "Bai")
                         {
-                            idIntz = reader.GetString("IdIntzi");
-                            mezua = reader.GetString("mezua");
-                            dataordua = reader.GetDateTime("data");
-                            data = DateOnly.FromDateTime(dataordua);
-                            id = reader.GetString("IdGailua");
-                            mar = reader.GetString("marka");
-                            kok = reader.GetString("kokalekua");
-                            erostedata = reader.GetDateTime("erostedata");
-                            er = DateOnly.FromDateTime(erostedata);
-                            ize = reader.GetString("izena");
-                            idmin = reader.GetString("IDMintegia");
-                            ram = reader.GetString("koloretakoa");
-                            if (ram == "Bai")
-                            {
-                                kolore = true;
-                            }
-                            else
-                            {
-                                kolore = false;
-                            }
-
-                            min = new Mintegiak(idmin, ize);
-                            inp = new Inprimagailuak(id, mar, kok, er, min, kolore);
-                            Intzidentziak Inz = new Intzidentziak(idIntz, inp, "Inprimagailua", data, mezua);
-
-                            LisInz.Add(Inz);
+                            kolore = true;
                         }
+                        else
+                        {
+                            kolore = false;
+                        }
+
+                        min = new Mintegiak(idmin, ize);
+                        inp = new Inprimagailuak(id, mar, kok, er, min, kolore);
+                        Intzidentziak Inz = new Intzidentziak(idIntz, inp, "Inprimagailua", data, mezua);
+
+                        LisInz.Add(Inz);
                     }
                 }
             }
