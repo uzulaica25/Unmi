@@ -6,6 +6,10 @@ using System.Threading.Tasks;
 
 namespace InbentarioaUnmi.DatuModeloak
 {
+    /// <summary>
+    /// Sistemako erabiltzaile bat irudikatzen duen klasea.
+    /// Erabiltzailearen oinarrizko datuak eta rola kudeatzen ditu.
+    /// </summary>
     public class Erabiltzaileak
     {
         // Atributuak
@@ -22,9 +26,17 @@ namespace InbentarioaUnmi.DatuModeloak
         public Mintegiak Mintegia { get => mintegia; set => mintegia = value; }
         public string MintegiaIzena => Mintegia?.Izena;
         public string Rola { get => rola; set => rola = value; }
-        
+
 
         // Eraikitzaileak
+        /// <summary>
+        /// Erabiltzaile berri bat sortzen du bere datu guztiekin, IDarekin batera.
+        /// </summary>
+        /// <param name="id">Erabiltzailearen identifikatzailea</param>
+        /// <param name="iz">Erabiltzailearen izena</param>
+        /// <param name="p">Pasahitza</param>
+        /// <param name="m">Dagokion mintegia</param>
+        /// <param name="r">Erabiltzailearen rola</param>
         public Erabiltzaileak(string id, string iz, string p, Mintegiak m, string r)
         {
             this.id = id;
@@ -33,6 +45,14 @@ namespace InbentarioaUnmi.DatuModeloak
             this.mintegia = m;
             this.rola = r;
         }
+
+        /// <summary>
+        /// Erabiltzaile bat sortzen du IDrik gabe (automatikoki esleitzeko kasuetarako).
+        /// </summary>
+        /// <param name="iz">Erabiltzailearen izena</param>
+        /// <param name="p">Pasahitza</param>
+        /// <param name="m">Mintegia</param>
+        /// <param name="r">Rola</param>
         public Erabiltzaileak( string iz, string p, Mintegiak m, string r)
         {
             this.izena = iz;
