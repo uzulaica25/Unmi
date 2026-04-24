@@ -10,8 +10,16 @@ using System.Threading.Tasks;
 
 namespace InbentarioaUnmi.DatuBasea
 {
+    /// <summary>
+    /// Mintegien datu-basearekin erlazionatutako eragiketak kudeatzen dituen klase estatikoa.
+    /// CRUD funtzionalitateak eskaintzen ditu (sortu, irakurri, eguneratu eta ezabatu).
+    /// </summary>
     public static class MintegiaDB
     {
+        /// <summary>
+        /// Datu-basean dauden mintegi guztiak lortzen ditu.
+        /// </summary>
+        /// <returns>Mintegi zerrenda bat (List&lt;Mintegiak&gt;)</returns>
         public static List<Mintegiak> MintegiakListaratu()
         {
             string select, Izena, Id;
@@ -35,6 +43,11 @@ namespace InbentarioaUnmi.DatuBasea
             }
             return LisMin;
         }
+        /// <summary>
+        /// Existitzen den mintegi baten datuak eguneratzen ditu.
+        /// </summary>
+        /// <param name="m">Eguneratu nahi den Mintegi objektua</param>
+        /// <returns>1 ondo joan bada; bestela errore kodea (MySQL)</returns>
         public static int MintegiakAldatu(Mintegiak m)
         {
             string update;
@@ -57,6 +70,12 @@ namespace InbentarioaUnmi.DatuBasea
             }
 
         }
+        /// <summary>
+        /// Mintegi berri bat gehitzen du datu-basean.
+        /// ID automatikoki sortzen da (M01, M02... formatua jarraituz).
+        /// </summary>
+        /// <param name="m">Gehitu nahi den Mintegi objektua</param>
+        /// <returns>1 ondo joan bada; bestela errore kodea (MySQL)</returns>
         public static int MintegiakGehitu(Mintegiak m)
         {
             string insert;
@@ -79,6 +98,11 @@ namespace InbentarioaUnmi.DatuBasea
 
             }
         }
+        /// <summary>
+        /// Zehaztutako mintegia ezabatzen du datu-basean.
+        /// </summary>
+        /// <param name="m">Ezabatu nahi den Mintegi objektua</param>
+        /// <returns>1 ondo joan bada; bestela errore kodea (MySQL)</returns>
         public static int MintegiakEzabatu(Mintegiak m)
         {
             string delete;
@@ -102,6 +126,11 @@ namespace InbentarioaUnmi.DatuBasea
 
             }
         }
+        /// <summary>
+        /// Mintegi bat bilatzen du bere izenaren arabera.
+        /// </summary>
+        /// <param name="i">Bilatu nahi den mintegiaren izena</param>
+        /// <returns>Aurkitutako Mintegi objektua; bestela null</returns>
         public static Mintegiak MintegiaBilatu(string i)
         {
             Mintegiak min = null;

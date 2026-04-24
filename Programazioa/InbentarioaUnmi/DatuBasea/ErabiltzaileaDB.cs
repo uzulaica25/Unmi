@@ -12,8 +12,15 @@ using static System.ComponentModel.Design.ObjectSelectorEditor;
 
 namespace InbentarioaUnmi.DatuBasea
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public static class ErabiltzaileaDB
     {
+        /// <summary>
+        /// Erabiltzaileas the zerrendatu.
+        /// </summary>
+        /// <returns></returns>
         public static List<Erabiltzaileak> ErabiltzaileaZerrendatu()
         {
             string id, select, Izena, Pas, minte, IDmin;
@@ -88,6 +95,11 @@ namespace InbentarioaUnmi.DatuBasea
             return LisEr;
         }
 
+        /// <summary>
+        /// Erabiltzaileas the gehitu.
+        /// </summary>
+        /// <param name="e">The e.</param>
+        /// <returns></returns>
         public static int ErabiltzaileaGehitu(Erabiltzaileak e)
         {
             string insert, idberria, queryID;
@@ -139,6 +151,11 @@ namespace InbentarioaUnmi.DatuBasea
             }
         }
 
+        /// <summary>
+        /// Erabiltzaileas the aldatu.
+        /// </summary>
+        /// <param name="e">The e.</param>
+        /// <returns></returns>
         public static int ErabiltzaileaAldatu(Erabiltzaileak e)
         {
             string update;
@@ -165,6 +182,11 @@ namespace InbentarioaUnmi.DatuBasea
 
         }
 
+        /// <summary>
+        /// Erabiltzaileas the ezabatu.
+        /// </summary>
+        /// <param name="e">The e.</param>
+        /// <returns></returns>
         public static int ErabiltzaileaEzabatu(Erabiltzaileak e)
         {
             string delete;
@@ -188,6 +210,12 @@ namespace InbentarioaUnmi.DatuBasea
             }
         }
 
+        /// <summary>
+        /// Erabiltzaileas the bilatu.
+        /// </summary>
+        /// <param name="i">The i.</param>
+        /// <param name="p">The p.</param>
+        /// <returns></returns>
         public static Erabiltzaileak ErabiltzaileaBilatu(string i, string p)
         {
             string id, select, Izena, Pas, minte, mizena;

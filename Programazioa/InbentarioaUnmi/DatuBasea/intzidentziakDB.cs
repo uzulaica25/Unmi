@@ -10,8 +10,16 @@ using System.Threading.Tasks;
 
 namespace InbentarioaUnmi.DatuBasea
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public static class intzidentziakDB
     {
+        /// <summary>
+        /// Intzidentziaks the zerrendatu.
+        /// </summary>
+        /// <param name="erab">The erab.</param>
+        /// <returns></returns>
         public static List<Intzidentziak> IntzidentziakZerrendatu(Erabiltzaileak erab)
         {
             string selecto, selecti, mezua, id, mar, kok, ize, ram, cpu, idmin, idIntz;
@@ -102,6 +110,11 @@ namespace InbentarioaUnmi.DatuBasea
             }
             return LisInz;
         }
+        /// <summary>
+        /// Intzidentzias the gehitu.
+        /// </summary>
+        /// <param name="k">The k.</param>
+        /// <returns></returns>
         public static int IntzidentziaGehitu(Intzidentziak k)
         {
             string insert, queryID, idb;
@@ -134,6 +147,12 @@ namespace InbentarioaUnmi.DatuBasea
 
             }
         }
+        /// <summary>
+        /// Intzidentzias the aldatu.
+        /// </summary>
+        /// <param name="berria">The berria.</param>
+        /// <param name="intzi">The intzi.</param>
+        /// <returns></returns>
         public static int IntzidentziaAldatu(Intzidentziak berria, Intzidentziak intzi)
         {
             string update;
@@ -160,6 +179,11 @@ namespace InbentarioaUnmi.DatuBasea
                 return ex.Number;
             }
         }
+        /// <summary>
+        /// Intzidentzias the aurkitu.
+        /// </summary>
+        /// <param name="gail">The gail.</param>
+        /// <returns></returns>
         public static List<Intzidentziak> IntzidentziaAurkitu(Gailuak gail)
         {
             Intzidentziak Inz;
@@ -194,6 +218,11 @@ namespace InbentarioaUnmi.DatuBasea
             }
             return LisInz;
         }
+        /// <summary>
+        /// Intzidentzias the ezabatu.
+        /// </summary>
+        /// <param name="intzi">The intzi.</param>
+        /// <returns></returns>
         public static int IntzidentziaEzabatu(Intzidentziak intzi)
         {
             string delete;

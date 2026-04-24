@@ -9,10 +9,6 @@ CREATE TABLE Gailuak (
 );
 CREATE TABLE Ordenagailuak (
     ID VARCHAR(50),
-    marka VARCHAR(100),
-    kokalekua VARCHAR(100),
-    erostedata DATE,
-    IDMintegia VARCHAR(50),
     CPU VARCHAR(100),
     RAM VARCHAR(50),
     PRIMARY KEY (ID),
@@ -21,10 +17,6 @@ CREATE TABLE Ordenagailuak (
 
 CREATE TABLE Inprimagailuak (
     ID VARCHAR(50),
-    marka VARCHAR(100),
-    kokalekua VARCHAR(100),
-    erostedata DATE,
-    IDMintegia VARCHAR(50),
     koloretakoa VARCHAR(3),
     PRIMARY KEY (ID),
     FOREIGN KEY (ID) REFERENCES Gailuak(ID)

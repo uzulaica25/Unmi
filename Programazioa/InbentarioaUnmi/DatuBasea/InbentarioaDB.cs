@@ -11,8 +11,16 @@ using System.Threading.Tasks;
 
 namespace InbentarioaUnmi.DatuBasea
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public static class InbentarioaDB
     {
+        /// <summary>Gailuaks the listaratu.</summary>
+        /// <param name="erab">The erab.</param>
+        /// <returns>
+        ///   <br />
+        /// </returns>
         public static List<Gailuak> GailuakListaratu(Erabiltzaileak erab)
         {
             string id, selecto, selecti, marka, kokalekua, CPU, RAM, idmin,izenamin;
@@ -94,6 +102,12 @@ namespace InbentarioaUnmi.DatuBasea
             }
             return Lisgai;
         }
+        /// <summary>
+        /// Gailuas the aldatu.
+        /// </summary>
+        /// <param name="ga1">The ga1.</param>
+        /// <param name="be">The be.</param>
+        /// <returns></returns>
         public static int GailuaAldatu(Gailuak ga1, Gailuak be)
         {
             try
@@ -152,6 +166,11 @@ namespace InbentarioaUnmi.DatuBasea
                 return ex.Number;
             }
         }
+        /// <summary>
+        /// Gailuas the gehitu.
+        /// </summary>
+        /// <param name="g">The g.</param>
+        /// <returns></returns>
         public static int GailuaGehitu(Gailuak g)
         {
             string insert, inserto, inserti, idb, queryID;
@@ -227,6 +246,11 @@ namespace InbentarioaUnmi.DatuBasea
             }
             return 0;
         }
+        /// <summary>
+        /// Gailuas the ezabatu.
+        /// </summary>
+        /// <param name="g">The g.</param>
+        /// <returns></returns>
         public static int GailuaEzabatu(Gailuak g)
         {
             string delete, deleteGeneral;
@@ -249,6 +273,11 @@ namespace InbentarioaUnmi.DatuBasea
                 return ex.Number;
             }
         }
+        /// <summary>
+        /// Ezabatutakoes the gailuak.
+        /// </summary>
+        /// <param name="g">The g.</param>
+        /// <returns></returns>
         public static int EzabatutakoGailuak(Gailuak g)
         {
             string insert, inserto, inserti, update, queryID, idb;
