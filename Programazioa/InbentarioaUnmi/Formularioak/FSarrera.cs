@@ -11,10 +11,20 @@ using System.Windows.Forms;
 
 namespace InbentarioaUnmi.Formularioak
 {
+    /// <summary>
+    /// Saioaren sarrera nagusiko formularioa.
+    /// Erabiltzailearen rolaren arabera menu nagusiko aukerak erakusten ditu.
+    /// </summary>
     public partial class FSarrera : Form
     {
         private Erabiltzaileak era;
         private Panel panela;
+        /// <summary>
+        /// FSarrera formularioa hasieratzen du eta erabiltzailearen datuak pantailan kargatzen ditu.
+        /// Rolaren arabera funtzionalitate desberdinak aktibatzen ditu.
+        /// </summary>
+        /// <param name="era">Saioa hasita duen erabiltzailea</param>
+        /// <param name="panela">Nabigazio panel nagusia</param>
         public FSarrera(Erabiltzaileak era, Panel panela)
         {
             InitializeComponent();
@@ -55,21 +65,30 @@ namespace InbentarioaUnmi.Formularioak
                 txtRola.Text = "IKT arduraduna";
             }
         }
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
+        /// <summary>
+        /// Saioaren sarrera formularioa ixten du.
+        /// </summary>
+        /// <param name="sender">Jatorrizko objektua</param>
+        /// <param name="e">Event argudioak</param>
         private void cbIrten_Click(object sender, EventArgs e)
         {
             this.Close();
 
         }
+        /// <summary>
+        /// Formularioa kargatzean lehen aukera aktibatzen du.
+        /// </summary>
+        /// <param name="sender">Jatorrizko objektua</param>
+        /// <param name="e">Event argudioak</param>
         private void FSarrera_Load(object sender, EventArgs e)
         {
             cbInbentarioa.Focus();
         }
-
+        /// <summary>
+        /// Inbentarioaren formularioa irekitzen du eta panel nagusian kargatzen du.
+        /// </summary>
+        /// <param name="sender">Jatorrizko objektua</param>
+        /// <param name="e">Event argudioak</param>
         private void cbInbentarioa_Click(object sender, EventArgs e)
         {
             FInbentarioa fi = new FInbentarioa(era);
@@ -80,7 +99,11 @@ namespace InbentarioaUnmi.Formularioak
             fi.Show();
 
         }
-
+        /// <summary>
+        /// Intzidentzien kudeaketa formularioa irekitzen du.
+        /// </summary>
+        /// <param name="sender">Jatorrizko objektua</param>
+        /// <param name="e">Event argudioak</param>
         private void cbIntzidentziak_Click(object sender, EventArgs e)
         {
             FIntzidentziak fi = new FIntzidentziak(era);
@@ -90,7 +113,11 @@ namespace InbentarioaUnmi.Formularioak
             fi.BringToFront();
             fi.Show();
         }
-
+        /// <summary>
+        /// Mintegien kudeaketa formularioa irekitzen du.
+        /// </summary>
+        /// <param name="sender">Jatorrizko objektua</param>
+        /// <param name="e">Event argudioak</param>
         private void cbMintegia_Click(object sender, EventArgs e)
         {
             FMintegia fm = new FMintegia(era);
@@ -100,7 +127,11 @@ namespace InbentarioaUnmi.Formularioak
             fm.BringToFront();
             fm.Show();
         }
-
+        /// <summary>
+        /// Erabiltzaileen kudeaketa formularioa irekitzen du.
+        /// </summary>
+        /// <param name="sender">Jatorrizko objektua</param>
+        /// <param name="e">Event argudioak</param>
         private void cbErabiltzailea_Click(object sender, EventArgs e)
         {
             FErabiltzailea fe = new FErabiltzailea(era);
@@ -109,11 +140,6 @@ namespace InbentarioaUnmi.Formularioak
             panela.Controls.Add(fe);
             fe.BringToFront();
             fe.Show();
-        }
-
-        private void txtMintegia_TextChanged(object sender, EventArgs e)
-        {
-
         }
     }
 }

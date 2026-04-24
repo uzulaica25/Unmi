@@ -82,7 +82,6 @@
             txtMintegia.Name = "txtMintegia";
             txtMintegia.Size = new Size(231, 30);
             txtMintegia.TabIndex = 13;
-            txtMintegia.TextChanged += txtMintegia_TextChanged;
             // 
             // lblIrakaslea
             // 
@@ -93,7 +92,6 @@
             lblIrakaslea.Size = new Size(88, 22);
             lblIrakaslea.TabIndex = 11;
             lblIrakaslea.Text = "Irakaslea:";
-            lblIrakaslea.Click += label1_Click;
             // 
             // lblMintegia
             // 
