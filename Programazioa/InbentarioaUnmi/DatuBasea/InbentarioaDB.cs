@@ -34,10 +34,10 @@ namespace InbentarioaUnmi.DatuBasea
             if(erab.Rola == "MintegiBurua" || erab.Rola == "Irakaslea")
             {
                 // Ordenagailuak
-                selecto = @"SELECT o.ID, g.marka, g.Kokalekua, o.CPU, o.RAM, g.erosteData, g.IDMintegia, m.izena FROM Inbentarioa.Ordenagailuak o JOIN Inbentarioa.Gailuak g ON o.ID = g.ID WHERE o.ID JOIN Inbentarioa.Mintegiak m ON g.IDMintegia = m.ID IN (SELECT ID FROM Gailuak WHERE IDMintegia = '" + erab.Mintegia.Id +"');";
+                selecto = @"SELECT o.ID, g.marka, g.Kokalekua, o.CPU, o.RAM, g.erosteData, g.IDMintegia, m.izena FROM Inbentarioa.Ordenagailuak o JOIN Inbentarioa.Gailuak g ON o.ID = g.ID JOIN Inbentarioa.Mintegiak m ON g.IDMintegia = m.ID WHERE o.ID IN (SELECT ID FROM Gailuak WHERE IDMintegia = '" + erab.Mintegia.Id +"');";
 
                 // Inprimagailuak
-                selecti = @"SELECT i.ID, g.marka, g.Kokalekua, i.Koloretakoa, g.erosteData, g.IDMintegia, m.izena FROM Inbentarioa.Inprimagailuak i JOIN Inbentarioa.Gailuak g ON i.ID = g.ID WHERE i.ID JOIN Inbentarioa.Mintegiak m ON g.IDMintegia = m.ID IN (SELECT ID FROM Gailuak WHERE IDMintegia = '" + erab.Mintegia.Id + "');";
+                selecti = @"SELECT i.ID, g.marka, g.Kokalekua, i.Koloretakoa, g.erosteData, g.IDMintegia, m.izena FROM Inbentarioa.Inprimagailuak i JOIN Inbentarioa.Gailuak g ON i.ID = g.ID JOIN Inbentarioa.Mintegiak m ON g.IDMintegia = m.ID WHERE i.ID IN (SELECT ID FROM Gailuak WHERE IDMintegia = '" + erab.Mintegia.Id + "');";
 
             }
             else
