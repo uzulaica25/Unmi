@@ -8,11 +8,11 @@ using MySql.Data.MySqlClient;
 namespace InterAgenda
 {
     /// <summary>
-    /// Datu basearekin komunikatzeko  192.168.80.10
+    /// Datu basearekin komunikatzeko 
     /// </summary>
     public static class DBKonexioa
     {
-        private static readonly string konexioa = "server=192.168.1.9;user=Admin;password=1234;database=Inbentarioa;";
+        private static readonly string konexioa = "server=192.168.80.12;user=Admin;password=1234;database=Inbentarioa;";
         /// <summary>
         /// Datu basea konektatzeko.
         /// </summary>
