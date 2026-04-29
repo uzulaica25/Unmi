@@ -240,9 +240,9 @@ namespace InbentarioaUnmi.Formularioak
             if (z1 == 0)
             {
                 Desaktibatu();
-                cmbGailuMota.Focus();
                 lblGailuMota.Visible = true;
                 cmbGailuMota.Visible = true;
+                cmbGailuMota.Focus();
                 cmbGailuMota.SelectedIndex = -1;
             }
             else if (z1 == 1 || z1 == 2 || z1 == 3)

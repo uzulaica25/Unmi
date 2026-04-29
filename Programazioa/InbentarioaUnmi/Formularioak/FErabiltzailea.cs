@@ -82,6 +82,17 @@ namespace InbentarioaUnmi.Formularioak
                 Eizena = txtErabiltzailea.Text;
                 pas = txtPasahitza.Text;
                 rola = cmbRola.Text;
+                if (rola == "MintegiBurua")
+                {
+                    foreach (var usu in LisEra)
+                    {
+                        if (usu.Rola == rola && usu.Mintegia.Izena == min)
+                        {
+                            MessageBox.Show("Mintegi horrek jada badu mintegi burua");
+                            return;
+                        }
+                    }
+                }
                 min = cmbMintegia.Text;
                 mintegia = MintegiaDB.MintegiaBilatu(min);
                 er = new Erabiltzaileak(Eizena, pas, mintegia, rola);
