@@ -82,6 +82,7 @@ namespace InbentarioaUnmi.Formularioak
                 Eizena = txtErabiltzailea.Text;
                 pas = txtPasahitza.Text;
                 rola = cmbRola.Text;
+                min = cmbMintegia.Text;
                 if (rola == "MintegiBurua")
                 {
                     foreach (var usu in LisEra)
@@ -93,7 +94,6 @@ namespace InbentarioaUnmi.Formularioak
                         }
                     }
                 }
-                min = cmbMintegia.Text;
                 mintegia = MintegiaDB.MintegiaBilatu(min);
                 er = new Erabiltzaileak(Eizena, pas, mintegia, rola);
                 eragiketa = ErabiltzaileaDB.ErabiltzaileaGehitu(er);
