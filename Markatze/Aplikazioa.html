@@ -14,8 +14,8 @@
     }
 
     .navbar-brand img {
-      width: 70px;
-      height: 70px;
+      width: 125px;
+      height: 125px;
     }
 
     @media (max-width: 576px) {
@@ -34,10 +34,9 @@
       color: #0d6efd !important;
     }
 
-    /* HERO RESPONSIVE */
+    /* HERO */
     .hero {
       min-height: 30vh;
-      height: auto;
       padding: 80px 20px;
       background-image: url(Inbentarioa.jpg);
       background-size: cover;
@@ -72,18 +71,23 @@
       font-weight: bold;
     }
 
+    /* 🔵 BOX (EGUNETUTA - lehenengo orrialdearen berdina) */
     .box-green {
       background-color: #111338;
-      padding: 20px;
+      padding: 40px;
       text-align: center;
       color: white;
-      border-radius: 15px;
+      width: 100%;
+      max-width: 450px;
+      margin: auto;
+      border-radius: 12px;
     }
 
     .box-green img {
       width: 100%;
       height: auto;
       border-radius: 10px;
+      object-fit: cover;
     }
 
     .card {
@@ -99,12 +103,6 @@
     h3 {
       font-size: 1.4rem;
     }
-
-    @media (max-width: 768px) {
-      .nav-link {
-        margin-right: 0;
-      }
-    }
   </style>
 </head>
 
@@ -115,7 +113,7 @@
   <div class="container">
 
     <a class="navbar-brand d-flex align-items-center" href="index.html">
-      <img src="UNMI.png" alt="logo" width="125" height="125" class="me-2">
+      <img src="UNMI.png" alt="logo" class="me-2">
     </a>
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menua">
@@ -152,17 +150,16 @@
 
         <h4 class="mt-3">
           Proiektu hau Izarraitz Lanbide Heziketa eskolaren eskaeraz dator,
-          ikastetxeak bere <span class="highlight">gailu elektronikoak kudeatzeko</span> aplikazioa eskatu zigun.
+          ikastetxeak bere <span class="highlight">gailu elektronikoak kudeatzeko</span> aplikazioa eskatu ziguten.
         </h4>
 
-        <p class="mt-3 text-muted">
-          Datu-base batera konektatuta dago, gailuen mugimendu guztiak gordetzeko eta ikusteko.
-        </p>
+        
       </div>
 
+      <!-- 🔵 BOX BERRIA (IRUDIAREKIN) -->
       <div class="col-12 col-md-6">
         <div class="box-green">
-          <img src="Izarraitz.png" alt="Irudia">
+          <img src="Izarraitz.png" alt="Izarraitz">
         </div>
       </div>
 
@@ -170,15 +167,49 @@
   </div>
 </section>
 
+<section class="py-5 bg-dark text text-white">
+  <div class="container text-center text-white">
+
+    <h2 class="fw-bold mb-4">Nola funtzionatzen du?</h2>
+
+    <p class=" mb-4 text-white">
+      Programa hau gailu elektronikoen inbentarioa kudeatzeko sortuta dago.
+      Erabiltzaile bakoitzak bere rolaren arabera funtzio desberdinak ditu:
+      ikusi, gehitu, editatu edo ezabatu gailuak eta erabiltzaileak.
+    </p>
+
+    <p class=" mb-4 text-white">
+      Datu guztiak datu-base batean gordetzen dira eta momentuan eguneratzen dira.
+    </p>
+
+    <div class="alert alert-primary shadow-sm bg">
+      <strong>Instalatu nahi baduzu?</strong><br>
+      Aplikazioa erabiltzeko edo probatzeko, lehenik erregistratu behar duzu.
+    </div>
+
+    <!-- BOTOIA -->
+    <a href="Erregistratu.html" class="btn btn-dark btn-lg mt-2">
+      Erregistratu hemen
+    </a>
+
+  </div>
+</section>
+
+<!-- CARD SECTION -->
 <!-- CARD SECTION -->
 <div class="container mt-5">
 
+  <!-- LOGIN -->
   <div class="card shadow-sm border-0 mb-4">
     <div class="row g-0 align-items-center">
 
       <div class="col-12 col-md-6 p-4">
-        <h3 class="text-primary fw-bold">Logina</h3>
-        <p class="text-muted">Erabiltzailea eta pasahitza eskatzen ditu sistemara sartzeko.</p>
+        <h3 class="text-dark fw-bold strong">LOGINA</h3>
+        <ul>
+          <li>Erabiltzailea eta pasahitza eskatzen ditu sistemara sartzeko.</li>
+          <li>Erabiltzaile desberdinak daude: irakaslea, mintegi burua eta IKT arduraduna.</li>
+          <li>Erabiltzaile mota bakoitzak aukera desberdinak dauzka</li>
+        </ul>
       </div>
 
       <div class="col-12 col-md-6">
@@ -188,37 +219,62 @@
     </div>
   </div>
 
-  <div class="card shadow-sm border-0 mb-4">
-    <div class="row g-0 align-items-center flex-md-row-reverse">
+  <!-- IRAKASLEA -->
+  <div class="card shadow-sm border-0 mb-4 p-4">
+    <h3 class="text-dark fw-bold mb-3 strong">IRAKASLEA</h3>
 
-      <div class="col-12 col-md-6 p-4">
-        <h3 class="text-primary fw-bold">Erabiltzaile Kudeaketa</h3>
-        <p class="text-muted">Erabiltzaile desberdinak sortu eta kudeatu daitezke.</p>
-      </div>
+    <ul>
+      <li>Irakaslearen datuak azaltzen dira.</li>
+    </ul>
+     
 
-      <div class="col-12 col-md-6">
-        <img src="https://via.placeholder.com/600x400" class="img-fluid w-100" alt="Erabiltzaileak">
-      </div>
+    <img src="Amaia.png" class="img-fluid w-100 rounded mb-3" alt="Irakaslea">
 
-    </div>
+    <ul>
+      <li>Irakasleak inbentarioa eta intzidentziak ikustea bakarrik dauka.</li>
+    </ul>
+
+    <img src="InbenIraka.png" class="img-fluid w-100 rounded" alt="Irakaslea 2">
   </div>
 
-  <div class="card shadow-sm border-0 mb-4">
-    <div class="row g-0 align-items-center">
+  <!-- MINTEGI BURUA -->
+  <div class="card shadow-sm border-0 mb-4 p-4">
+    <h3 class="text-dark fw-bold mb-3">MINTEGI BURUA</h3>
 
-      <div class="col-12 col-md-6 p-4">
-        <h3 class="text-primary fw-bold">Txostenak eta Analisiak</h3>
-        <p class="text-muted">Datuen analisia eta txosten automatikoak.</p>
-      </div>
+    <ul>
+      <li>Mintegi buruak inbentarioa editatu dezake.</li>
+      <li>Gailuak gehitu, aldatu eta ezabatu.</li>
+      
+    </ul>
 
-      <div class="col-12 col-md-6">
-        <img src="https://via.placeholder.com/600x400" class="img-fluid w-100" alt="Analisiak">
-      </div>
+    <img src="InbenMin.png" class="img-fluid w-100 rounded mb-3" alt="Mintegi burua">
+    <ul>
+      <li> Bere mintegiko erabiltzailea gehitu, aldatu eta ezabatu dezake.</li>
+      </ul>
+    <img src="ErabMin.png" class="img-fluid w-100 rounded h-50" alt="Erabiltzaileak">
+  </div>
 
-    </div>
+  <!-- IKT ARDURADUNA -->
+  <div class="card shadow-sm border-0 mb-4 p-4">
+    <h3 class="text-darkfw-bold mb-3">IKT ARDURADUNA</h3>
+
+    <ul>
+      <li>Erabiltzaile guztiak kudeatzen ditu.</li>
+      <li>Rola eta mintegia aldatu ditzake.</li>
+      
+    </ul>
+
+    <img src="ErabIKT.png" class="img-fluid w-100 rounded mb-3 h-50 " alt="IKT">
+    <ul>
+      <li> Mintegi berriak sortu dezazke.</li>
+      </ul>
+    <img src="MintIKT.png" class="img-fluid w-100 rounded" alt="Mintegiak">
   </div>
 
 </div>
+
+
+
 
 <!-- FOOTER -->
 <footer class="bg-white text-dark py-5 border-top">
