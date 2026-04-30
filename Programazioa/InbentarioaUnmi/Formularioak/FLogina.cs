@@ -80,7 +80,6 @@ namespace InbentarioaUnmi
             {
                 if (string.IsNullOrWhiteSpace(txtPasahitza.Text))
                 {
-                    MessageBox.Show("Sartu pasahitza");
                     txtPasahitza.Focus();
                 }
                 else
@@ -162,6 +161,11 @@ namespace InbentarioaUnmi
         {
             this.txi = false;
             txtErabiltzailea.Focus();
+        }
+
+        private void panelak_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

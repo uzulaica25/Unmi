@@ -184,6 +184,7 @@
             panelak.Name = "panelak";
             panelak.Size = new Size(1716, 894);
             panelak.TabIndex = 21;
+            panelak.Paint += panelak_Paint;
             // 
             // FLogina
             // 
